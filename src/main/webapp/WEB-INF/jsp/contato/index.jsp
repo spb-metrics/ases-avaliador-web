@@ -9,10 +9,19 @@
 						<h2 class="outstanding-title">Contato</h2>
 					</div>
 				</div>
+					<c:if test="${not empty mensagem}">
+						<div id="mensagem">
+   							<div class="${status}"> <div class="alinName">${mensagem}</div></div>
+						</div>
+					</c:if>
+					
 					<c:forEach var="error" items="${errors}">  
    							<%-- <div class=" ${error.category}"> ${error.message}</div><br/> --%> 
    							<div class="${error.category}"> <div class="alinName">${error.message}</div></div>  
    					</c:forEach>  
+   					
+   					
+   					
 				    <form method="post" action="${pageContext.request.contextPath}/contato/confirmacao">   
 					<fieldset>   
 						<legend>Formulário de Contato</legend>
