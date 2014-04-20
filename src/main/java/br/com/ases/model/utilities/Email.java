@@ -22,8 +22,8 @@ public class Email {
 	
 	private final String HOST = "smtp.gmail.com";
 	private final int PORT = 465;
-	private final String AUTHUSER = "";
-	private final String AUTHPASS = "";
+	private final String AUTHUSER = "contato.asesweb";
+	private final String AUTHPASS = "@s3sc@nt@t@#";
     
 	/**
 	 * @param String host, int port, String authUser, String authPass*/

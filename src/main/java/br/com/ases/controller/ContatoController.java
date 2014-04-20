@@ -41,8 +41,8 @@ public class ContatoController {
 		if(this.validateContato(contato)){
 			
 			Email email = new Email();
-			String respSendEmail = email.sendEmail("Lyandro", 
-					"lyandro.santana@gmail.com", 
+			String respSendEmail = email.sendEmail("Contato", 
+					"contato.asesweb@gmail.com", 
 					contato.getNome(), 
 					contato.getEmail(), 
 					contato.getAssunto(),

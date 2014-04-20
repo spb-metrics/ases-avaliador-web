@@ -1,29 +1,36 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <t:baseLayout>
    <jsp:body>
        <div class="tile --NOVALUE--">	
-				<div class="outstanding-header">
-					<h2 class="outstanding-title">Perguntas Frequentes</h2>
+       		<c:if test="${not empty mensagem}">
+				<div id="mensagem">
+   					<div class="${status}"> <div class="alinName">${mensagem}</div></div>
 				</div>
-				<dt>
-					<dd class="summary"><strong><a href="#resp1">Pergunta 1</a></strong></dd>
-					<dd class="summary"><strong><a href="#resp2">Pergunta 2</a></strong></dd>
-					<dd class="summary"><strong><a href="#resp3">Pergunta 3</a></strong></dd>
-				</dt>
-			</div>
+			</c:if>
 			
-			
-			<div class="tile --NOVALUE--">	
-				<div class="outstanding-header">
-					<h2 class="outstanding-title">Respostas Perguntas Frequentes</h2>
-				</div>
-				<dt>
-					<dd class="summary"><a name="resp1"><i>Respota pergunta 1</i></a></dd>
-					<dd class="summary"><a name="resp2"><i>Respota pergunta 2</i></a></dd>
-					<dd class="summary"><a name="resp3"><i>Respota pergunta 3</i></a></dd>
-				</dt>
+			<div class="outstanding-header">
+				<h2 class="outstanding-title">Perguntas Frequentes</h2>
 			</div>
+					
+			<dt>
+				<c:forEach var="perguntaFrequente" items="${perguntasFrequentes}">
+					<dd class="summary"><strong><a href="#resp${perguntaFrequente.id}">${perguntaFrequente.pergunta}</a></strong></dd>
+				</c:forEach> 	
+			</dt>
+		</div>
+		
+		<div class="tile --NOVALUE--">	
+			<div class="outstanding-header">
+				<h2 class="outstanding-title">Respostas Perguntas Frequentes</h2>
+			</div>
+			<dt>
+				<c:forEach var="perguntaFrequente" items="${perguntasFrequentes}">
+					<dd class="summary"><a name="resp${perguntaFrequente.id}"><i>${perguntaFrequente.resposta}</i></a></dd>
+				</c:forEach> 
+			</dt>
+		</div>
    </jsp:body>
 </t:baseLayout>
