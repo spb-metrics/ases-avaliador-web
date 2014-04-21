@@ -1,0 +1,22 @@
+<perguntasFrequentes>
+  <perguntaFrequente>
+    <id>1</id>
+    <pergunta>Pergunta 1</pergunta>
+    <resposta>Resposta da pergunta 1.</resposta>
+  </perguntaFrequente>
+  <perguntaFrequente>
+    <id>2</id>
+    <pergunta>Pergunta 2</pergunta>
+    <resposta>Resposta da pergunta 2.</resposta>
+  </perguntaFrequente>
+  <perguntaFrequente>
+    <id>3</id>
+    <pergunta>Mais uma pergunta</pergunta>
+    <resposta>Resposta mais uma pergunta</resposta>
+  </perguntaFrequente>
+  <perguntaFrequente>
+    <id>4</id>
+    <pergunta>Vraptor</pergunta>
+    <resposta>Teste funcionando</resposta>
+  </perguntaFrequente>
+</perguntasFrequentes>

@@ -1,5 +1,4 @@
 package br.com.ases.controller;
-
 import javax.servlet.ServletContext;
 
 import br.com.ases.model.utilities.ManagerXml;
@@ -19,16 +18,13 @@ public class InstitucionalController {
 	public InstitucionalController(Result result, Validator validator, ServletContext application) {
 		this.result = result;
 		this.validator = validator;
-		 this.application = application;
+		this.application = application;
 	}
 	
 	@Path("/perguntas-frequentes")
 	public void perguntasFrequentes() {
 		
-		/*String path = this.application.getContextPath(); 
-		System.out.println(path);*/
-		
-		ManagerXml managerXml = new ManagerXml("perguntas-frequentes.xml");
+		ManagerXml managerXml = new ManagerXml(this.application.getRealPath("")+"/WEB-INF/perguntas-frequentes.xml");
 		
 		if(!managerXml.xmlPerguntaFrequenteExiste()){
 			result.include("mensagem", "Não foi possível carregar o arquivo que armazena as perguntas e respostas! Ocorreu o problema: (Arquivo ou diretório não encontrado)");
