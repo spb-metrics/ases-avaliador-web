@@ -86,14 +86,12 @@
 						</div>
 					 
 					
-					
 						<div style="display: none;">
 							
 							<a name="pri2" id="pri2"></a>
 							<t:listaResultado lista="${LISTA_BEHAVIOR}"/>
 						</div>
 					 
-					
 					
 						<div style="display: none;">
 						

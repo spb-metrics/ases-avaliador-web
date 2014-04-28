@@ -12,11 +12,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.domain.ResumoAvaliacao;
 import br.com.ases.infra.WebChecker;
 import br.com.caelum.vraptor.Path;
@@ -31,11 +33,13 @@ import br.com.checker.emag.core.Checker;
 public class AvaliacaoController {
 	
 	private Result result;
+	private AvaliacaoBusiness avaliacaoBusiness;
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	
 	
-	public AvaliacaoController (Result result) {
+	public AvaliacaoController (Result result, AvaliacaoBusiness avaliacaoBusiness) {
 		this.result = result;
+		this.avaliacaoBusiness = avaliacaoBusiness;
 	}
 	
 	
@@ -139,8 +143,12 @@ public class AvaliacaoController {
 			ocorrencias.get(occurrence.getType()).add(occurrence);
 		}
 		
-		for(Entry<OccurrenceClassification, List<SummarizedOccurrence>> entry : ocorrencias.entrySet())
-			result.include("LISTA_"+entry.getKey().toString(),entry.getValue());
+		for(Entry<OccurrenceClassification, List<SummarizedOccurrence>> entry : ocorrencias.entrySet()) {
+			List<SummarizedOccurrence> ocorrenciasComputadas = entry.getValue();
+			Collections.sort(ocorrenciasComputadas);
+			
+			result.include("LISTA_"+entry.getKey().toString(),ocorrenciasComputadas);
+		}
 		
 		
 		List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
@@ -158,6 +166,8 @@ public class AvaliacaoController {
 		
 		
 	}
+	
+	
 	
 	private List<ResumoAvaliacao> obterResumoAvaliacao() {
 		List<ResumoAvaliacao>  resultado = new ArrayList<ResumoAvaliacao>();
@@ -180,7 +190,6 @@ public class AvaliacaoController {
 		
 		return resultado;
 	}
-	
 	
 
 }

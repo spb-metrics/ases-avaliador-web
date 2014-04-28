@@ -10,18 +10,21 @@
 			<tr>
 				<td colspan="2" class="topo2"> Recomendações </td>
 				<td width="9%" class="topo2"> Quantidade</td>
-				<td width="56%" class="topo2"> Detalhes</td>
+				<td width="56%" class="topo2"> Linha(s) do código fonte</td>
 			</tr>
 			<c:forEach items="${lista}" var="item">
 				<c:if test="${item.error }">
 					<tr>
-					   <td class="celula" width="2%">${item.checkPoint}</td>
+					   <td class="celula" width="2%"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/emag/#r${item.checkPoint}">${item.checkPoint}</a></td>
 					   <td class="celula" width="60%" align="left"> ${item.description}</td>
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
 					   
-							<a href="#" class="sublinharLink">${item.stringLines}</a>
+							<a class="sublinharLink" onclick=" $( '.dialog_${item.checkPoint}' ).dialog();">${item.stringLines}</a>
+							<div id="dialog" title="Codigo Fonte" class="dialog_${item.checkPoint}">
+								<p>${item.sourceCode}</p>
+							</div>
 						
 					   </td>
 					</tr>
@@ -48,13 +51,16 @@
 				<c:if test="${not item.error }">
 	
 					<tr>
-					   <td class="celula" width="2%">${item.checkPoint}</td>
+					   <td class="celula" width="2%"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/emag/#r${item.checkPoint}">${item.checkPoint}</a></td>
 					   <td class="celula" width="60%" align="left"> ${item.description}</td>
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
 					   
-							<a href="#" class="sublinharLink">${item.stringLines}</a>
+							<a class="sublinharLink" onclick=" $( '.dialog_${item.checkPoint}' ).dialog();">${item.stringLines}</a>
+							<div id="dialog" title="Codigo Fonte" class="dialog_${item.checkPoint}">
+								<p>${item.sourceCode}</p>
+							</div>
 					   
 					   </td>
 					</tr>
