@@ -32,7 +32,7 @@
 						<div id="block">
 							<div id="webaxscore" class="scoreB">Porcentagem
 								<strong>ASES</strong>
-								<span>xx%</span>
+								<span>${nota.valor}%</span>
 							</div>
 						</div>
 					</div>

@@ -85,7 +85,7 @@ public class WebChecker {
 	private void setRequestHeader(String key, String value){
 		this.method.setRequestHeader(key,value);
 	}
-	private class PostParams{
+	public class PostParams{
 		private  List<NameValuePair> data = new ArrayList<NameValuePair>();
 		private WebChecker webChecker;
 		private PostMethod post;

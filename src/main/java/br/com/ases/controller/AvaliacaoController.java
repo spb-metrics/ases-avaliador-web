@@ -72,6 +72,7 @@ public class AvaliacaoController {
 		html = html.replaceAll(" ", "&nbsp");
 		
 		result.include("html", html);
+		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized()));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior);
     }
@@ -101,6 +102,7 @@ public class AvaliacaoController {
 		
 		result.include("url", url);
 		result.include("html", pagina.getParsedContent());
+		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized()));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		
 	}

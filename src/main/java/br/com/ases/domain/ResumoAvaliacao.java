@@ -7,7 +7,9 @@ public class ResumoAvaliacao {
 	private OccurrenceClassification tipo;
 	private int quantidadeErros;
 	private int quantidadeAvisos;
-	
+	public ResumoAvaliacao(){
+		
+	}
 	
 	public ResumoAvaliacao(OccurrenceClassification tipo,int quantidadeErros, int quantidadeAvisos){
 		this.tipo = tipo;
