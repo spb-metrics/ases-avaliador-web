@@ -1,12 +1,16 @@
 package br.com.ases.infra;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
 public class WebChecker {
@@ -39,6 +43,12 @@ public class WebChecker {
 		return this;
 	}
 	
+	public PostParams withPostRequest(){
+		
+        return new PostParams(this,new PostMethod(this.url));
+        
+	}
+	
 	public WebChecker execute() {
 		try {
 			
@@ -69,5 +79,52 @@ public class WebChecker {
 		return content;
 	}
 	
+	private void setMethod(HttpMethod method){
+		this.method = method;
+	}
+	private void setRequestHeader(String key, String value){
+		this.method.setRequestHeader(key,value);
+	}
+	private class PostParams{
+		private  List<NameValuePair> data = new ArrayList<NameValuePair>();
+		private WebChecker webChecker;
+		private PostMethod post;
+		
+		private PostParams(WebChecker webChecker,PostMethod post){
+			this.webChecker = webChecker;
+			this.post = post;
+		}
+		
+		public PostParams addParam(String key, String value) {
+			this.data.add(new NameValuePair(key,value));
+			return this;
+		}
+		
+		public WebChecker execute(){
+			this.post.setRequestBody(data.toArray(new NameValuePair[data.size()] ));
+	        this.webChecker.setMethod(post);
+	        this.webChecker.setRequestHeader("user-agent", "Mozilla/5.0");
+			this.webChecker.execute();
+			return webChecker;
+		}
+		
+		
+	}
+
+	
+	public static void main(String ...arg){
+		
+		WebChecker pagina = WebChecker.from("http://127.0.0.1:8080/ases/calcular-nota").withPostRequest()
+				.addParam("resumo.url", "www.globo.com")
+				.addParam("resumo.checkPoints[0].identificador", "Marcação")
+				.addParam("resumo.checkPoints[0].totalErrors", "10")
+				.addParam("resumo.checkPoints[0].totalWarnings", "5")
+				.addParam("resumo.checkPoints[1].identificador", "Formulário")
+				.addParam("resumo.checkPoints[1].totalErrors", "3")
+				.addParam("resumo.checkPoints[1].totalWarnings", "6")
+				.execute();
+		
+		System.out.println(pagina.getContent());
+	}
 	
 }
