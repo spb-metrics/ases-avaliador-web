@@ -1,6 +1,7 @@
 package br.com.ases.infra;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,17 +115,28 @@ public class WebChecker {
 	
 	public static void main(String ...arg){
 		
-		WebChecker pagina = WebChecker.from("http://127.0.0.1:8080/ases/calcular-nota").withPostRequest()
-				.addParam("resumo.url", "www.globo.com")
-				.addParam("resumo.checkPoints[0].identificador", "Marcação")
-				.addParam("resumo.checkPoints[0].totalErrors", "10")
-				.addParam("resumo.checkPoints[0].totalWarnings", "5")
-				.addParam("resumo.checkPoints[1].identificador", "Formulário")
-				.addParam("resumo.checkPoints[1].totalErrors", "3")
-				.addParam("resumo.checkPoints[1].totalWarnings", "6")
+		WebChecker pagina = WebChecker.from("https://sistemas-treinamento.ifbaiano.edu.br/eselo/calcular-nota").withPostRequest()
+				.addParam("avaliationReport.url", "http://www.globo.com")
+				.addParam("avaliationReport.date","2014-04-24 10:07:02.447 GMT-03:00")
+				.addParam("avaliationReport.checkPoints[0].identificador", "2")
+				.addParam("avaliationReport.checkPoints[0].totalErrors", "10")
+				.addParam("avaliationReport.checkPoints[0].totalWarnings", "5")
+				.addParam("avaliationReport.checkPoints[1].identificador", "3")
+				.addParam("avaliationReport.checkPoints[1].totalErrors", "3")
+				.addParam("avaliationReport.checkPoints[1].totalWarnings", "6")
 				.execute();
 		
 		System.out.println(pagina.getContent());
+		
+		
+		
+		NumberFormat myFormat = NumberFormat.getInstance();
+	    
+	    myFormat.setMaximumFractionDigits(2);
+	    myFormat.setMinimumFractionDigits(0);
+	    
+	    System.out.println(myFormat.format("100.0"));
+		 
 	}
 	
 }

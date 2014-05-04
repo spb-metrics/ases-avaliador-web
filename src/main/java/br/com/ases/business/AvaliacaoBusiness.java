@@ -10,5 +10,5 @@ import br.com.checker.emag.SummarizedOccurrence;
 public interface AvaliacaoBusiness {
 	
 	public List<SummarizedOccurrence> ocorrenciasNaoComputadas(List<SummarizedOccurrence> ocorrenciasAvaliadas,OccurrenceClassification tipo );
-	public Nota obterNota(List<SummarizedOccurrence> occurrences);
+	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url);
 }

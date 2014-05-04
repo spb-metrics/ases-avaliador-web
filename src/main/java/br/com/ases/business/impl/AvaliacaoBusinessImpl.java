@@ -1,6 +1,7 @@
 package br.com.ases.business.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.ases.business.AvaliacaoBusiness;
@@ -17,6 +18,8 @@ import com.google.gson.GsonBuilder;
 @Component
 public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 	
+	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo/calcular-nota";
+
 	public List<SummarizedOccurrence> ocorrenciasNaoComputadas(List<SummarizedOccurrence> ocorrenciasAvaliadas,OccurrenceClassification tipo ) {
 		
 		List<SummarizedOccurrence> ocorrenciasNaoComputadas = new ArrayList<SummarizedOccurrence>();
@@ -34,16 +37,17 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 		return ocorrenciasNaoComputadas;
 	}
 
-	public Nota obterNota(List<SummarizedOccurrence> occurrences) {
+	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
 		
-		WebChecker.PostParams postParams = WebChecker.from("http://127.0.0.1:8080/ases/calcular-nota").withPostRequest()
-				.addParam("resumo.url", "www.globo.com");
+		WebChecker.PostParams postParams = WebChecker.from(CALCULAR_NOTA_REST).withPostRequest()
+				.addParam("avaliationReport.url", url)
+				.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
 				
 		int index = 0;
 		for(SummarizedOccurrence occurence : occurrences){
-			postParams.addParam("resumo.checkPoints["+index+"].identificador", occurence.getCheckPoint())
-					  .addParam("resumo.checkPoints["+index+"].totalErrors", occurence.isError()?occurence.getNumberOfOccurrences():"0")
-					  .addParam("resumo.checkPoints["+index+"].totalWarnings", ((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0"));
+			postParams.addParam("avaliationReport.checkPoints["+index+"].identificador", occurence.getCheckPoint())
+					  .addParam("avaliationReport.checkPoints["+index+"].totalErrors", occurence.isError()?occurence.getNumberOfOccurrences():"0")
+					  .addParam("avaliationReport.checkPoints["+index+"].totalWarnings", ((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0"));
 			index++;
 		}
 		

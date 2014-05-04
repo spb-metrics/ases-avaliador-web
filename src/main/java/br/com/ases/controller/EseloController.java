@@ -1,5 +1,6 @@
 package br.com.ases.controller;
 
+import java.text.NumberFormat;
 import java.util.Date;
 
 import br.com.caelum.vraptor.Path;
@@ -35,7 +36,7 @@ public class EseloController {
 		
 		private String url;
 		private String data;
-		private String valor;
+		private String nota;
 		
 		
 		
@@ -43,7 +44,7 @@ public class EseloController {
 			super();
 			this.url = url;
 			this.data = data;
-			this.valor = valor;
+			this.nota = valor;
 		}
 		public String getUrl() {
 			return url;
@@ -58,11 +59,16 @@ public class EseloController {
 			this.data = data;
 		}
 		public String getValor() {
-			return valor;
+			NumberFormat format = NumberFormat.getInstance();
+		    
+			format.setMaximumFractionDigits(2);
+			format.setMinimumFractionDigits(0);
+
+			return format.format(Double.valueOf(nota));
 		}
 		
-		public void setValor(String valor) {
-			this.valor = valor;
+		public void setNota(String valor) {
+			this.nota = valor;
 		}
 		
 		
