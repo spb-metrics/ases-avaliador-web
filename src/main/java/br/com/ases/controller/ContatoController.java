@@ -6,6 +6,8 @@ import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.mail.EmailException;
 
 import br.com.ases.model.entity.Contato;
@@ -24,10 +26,12 @@ public class ContatoController {
 
 	private Result result;
 	private final Validator validator;
+	private ServletContext application;
 	
-	public ContatoController(Result result, Validator validator) {
+	public ContatoController(Result result, Validator validator,ServletContext application) {
 		this.result = result;
 		this.validator = validator;
+		this.application = application;
 	}
 	
 	@Path("")
@@ -40,7 +44,7 @@ public class ContatoController {
 	public void confirmation(Contato contato) throws EmailException, MalformedURLException, UnsupportedEncodingException{
 		if(this.validateContato(contato)){
 			
-			Email email = new Email();
+			Email email = new Email(this.application.getRealPath("")+"/WEB-INF/mail.properties");
 			String respSendEmail = email.sendEmail("Contato", 
 					"contato.asesweb@gmail.com", 
 					contato.getNome(), 

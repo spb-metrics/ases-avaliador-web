@@ -1,6 +1,8 @@
 package br.com.ases.model.utilities;
 
+import java.io.IOException;
 import java.net.MalformedURLException;  
+import java.util.Properties;
 
 import org.apache.commons.mail.EmailAttachment;  
 import org.apache.commons.mail.EmailException;  
@@ -20,26 +22,37 @@ public class Email {
 	private MultiPartEmail email;
 	private  EmailAttachment anexo;
 	
-	private final String HOST = "smtp.gmail.com";
-	private final int PORT = 465;
-	private final String AUTHUSER = "contato.asesweb";
-	private final String AUTHPASS = "@s3sc@nt@t@#";
-    
+	private void initConf(String path){
+		ManagerProperties managerProperties = new ManagerProperties();  
+		try {
+			Properties prop = managerProperties.getProp(path);
+			
+			this.host  = prop.getProperty("prop.email.host"); 
+			this.port = Integer.parseInt(prop.getProperty("prop.email.port")); 
+			this.authUser = prop.getProperty("prop.email.authuser");
+			this.authPass = prop.getProperty("prop.email.authpass");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	/**
 	 * @param String host, int port, String authUser, String authPass*/
 	public Email(String host, int port, String authUser, String authPass){
-    	this.host = host;
+		this.host = host;
     	this.port = port;
     	this.authUser = authUser;
     	this.authPass = authPass;
-    	this.email = new HtmlEmail();  
+    	this.email = new HtmlEmail();
     }  
     
-    public Email() {
-    	this.host = HOST;
-    	this.port = PORT;
-    	this.authUser = AUTHUSER;
-    	this.authPass = AUTHPASS;
+	/**
+	 * @param String path. Caminho do arquivo mail.properties*/
+    public Email(String path) {
+    	this.initConf(path);
     	this.email = new MultiPartEmail();
     }
     
@@ -52,7 +65,7 @@ public class Email {
        
     	this.email.setHostName(this.host); // o servidor SMTP para envio do e-mail  
     	this.email.addTo(emailDestinatario, nomeDestinatario); //destinat�rio  
-    	this.email.setFrom(emailRemetente, nomeRemetente); // remetente  
+    	this.email.setFrom(emailRemetente, nomeRemetente+" - "+emailRemetente+"-"); // remetente  
     	this.email.setSubject(assunto); // assunto do e-mail  
     	this.email.setMsg(mensagem); //conteudo do e-mail  
     	this.email.setAuthentication(this.authUser, this.authPass);  
