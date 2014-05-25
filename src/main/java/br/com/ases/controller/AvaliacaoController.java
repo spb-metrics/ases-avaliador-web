@@ -9,6 +9,7 @@ import static br.com.checker.emag.core.Checker.content;
 import static br.com.checker.emag.core.Checker.presentation;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -18,13 +19,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.servlet.ServletContext;
+
+import net.sf.jasperreports.engine.JRException;
 import br.com.ases.business.AvaliacaoBusiness;
+import br.com.ases.business.impl.AvaliacaoBusinessImpl;
+import br.com.ases.controller.EseloController.Nota;
 import br.com.ases.domain.ResumoAvaliacao;
 import br.com.ases.infra.WebChecker;
+import br.com.ases.model.utilities.ManagerReport;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
@@ -35,22 +44,24 @@ public class AvaliacaoController {
 	private Result result;
 	private AvaliacaoBusiness avaliacaoBusiness;
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
+	private ServletContext application;
 	
-	
-	public AvaliacaoController (Result result, AvaliacaoBusiness avaliacaoBusiness) {
+	public AvaliacaoController (Result result, AvaliacaoBusiness avaliacaoBusiness,ServletContext application) {
 		this.result = result;
 		this.avaliacaoBusiness = avaliacaoBusiness;
+		this.application = application;
 	}
 	
 	
-	@Post
+	
 	@Path("/avaliar-arquivo")
 	public void avaliarArquivo(UploadedFile file, boolean mark,
 												  boolean content,
 												  boolean presentation,
 												  boolean multimedia, 
 												  boolean form,
-												  boolean behavior) throws IOException {
+												  boolean behavior,
+												  int tiporel) throws IOException {
         
 		BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
 		String html = "";   
@@ -74,7 +85,7 @@ public class AvaliacaoController {
 		result.include("html", html);
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior);
+		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
     }
 	
 	
@@ -84,7 +95,12 @@ public class AvaliacaoController {
 									boolean presentation,
 									boolean multimedia, 
 									boolean form, 
-									boolean behavior) {
+									boolean behavior,
+									int tiporel) {
+		
+		
+		if(tiporel != 5)
+			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel);
 		
 		if(url.startsWith("www")) url="http://"+url;
 		
@@ -104,6 +120,128 @@ public class AvaliacaoController {
 		result.include("html", pagina.getParsedContent());
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+				
+	}
+	
+	@Get("/relatorioavaliacao")
+	@Post("/relatorioavaliacao")
+	public FileDownload relatorioAvaliacao(String url, boolean mark, 
+									boolean content,
+									boolean presentation,
+									boolean multimedia, 
+									boolean form, 
+									boolean behavior,
+									int tiporel) {
+		
+		if(url.startsWith("www")) url="http://"+url;
+		
+		WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
+		
+		
+		Checker checker = from(pagina.getContent());
+		
+		if(mark) checker.with(marking());
+		if(content) checker.with(content());
+		if(presentation) checker.with(presentation());
+		if(multimedia) checker.with(multimedia());
+		if(form) checker.with(form());
+		if(behavior) checker.with(behavior());
+		
+		//result.include("url", url);
+		//result.include("html", pagina.getParsedContent());
+		//result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
+		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+		
+		
+	//================================= GERAR RELATÓRIO =============================================//
+		/*List <SummarizedOccurrence> list = checker.checkSumarized();
+				List<RelatorioAvaliacaoJasper> listaImpressao = new ArrayList<RelatorioAvaliacaoJasper>();
+				for(SummarizedOccurrence occurrence : list){
+	
+					System.out.println(occurrence.isError());
+					System.out.println(occurrence.getType().getDescription());
+					System.out.println(occurrence.getStringLines());
+					System.out.println(occurrence.getDescription());
+					System.out.println("----------------------------------------------------");
+					
+					
+					RelatorioAvaliacaoJasper relatorioAvaliacao = new RelatorioAvaliacaoJasper();
+					relatorioAvaliacao.setGrupo(occurrence.getType().getDescription());
+					relatorioAvaliacao.setTipoErro(occurrence.isError() == false ? "Error" : "Aviso");
+					int num = occurrence.getStringLines().split(",").length;
+					
+					relatorioAvaliacao.setQuantidade(num);
+					relatorioAvaliacao.setlinhasCodigo(occurrence.getStringLines());
+					relatorioAvaliacao.setRecomendacao(occurrence.getCheckPoint()+" - "+occurrence.getDescription());
+					
+					listaImpressao.add(relatorioAvaliacao);
+					num = 0;
+					
+				}*/
+		
+				/*Cria um Map de par�metros*/
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				
+				/*Obtem a nota*/
+				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
+				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), url);
+				map.put("pPercentualAses", nota.getValor());
+				map.put("pPagina", url);
+				map.put("pTitulo", "governoeletronico");
+				map.put("pTamanho", "29.8 KB (30475 bytes)");
+				map.put("pDataHoraAvaliacao",  nota.getData());
+				
+				
+				
+				
+				/*Obter Resumo da Avaliação*/
+				/*List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
+				int totalErros = 0;
+				int totalAvisos = 0;
+				
+				for(ResumoAvaliacao resumo :resumoErrosAvisos ){
+					
+					System.out.println(resumo.getTipo());
+					System.out.println(resumo.getQuantidadeAvisos());
+					System.out.println(resumo.getQuantidadeErros());
+					
+					totalErros+=resumo.getQuantidadeErros();
+					totalAvisos+=resumo.getQuantidadeAvisos();
+				}*/
+				
+				
+				ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-avaliacao.jrxml");
+				String path =null;
+				String contentType = null;
+	   			String filename = null;
+	
+	   			try {
+		   			switch (tiporel) {
+						case 2://Export XLS
+							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 2);
+							contentType = "application/xls";
+							filename = "RelatorioAvaliacao.xls";
+						break;
+						case 3://Export ODT
+							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 3);
+							contentType = "application/odt";
+							filename = "RelatorioAvaliacao.odt";
+						break;
+						default:
+							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 4);
+							contentType = "application/pdf";
+							filename = "RelatorioAvaliacao.pdf";
+						break;
+		   			}
+	   			} catch (JRException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	   			File file = new File(path);
+	   	
+	   	return new FileDownload(file, contentType, filename);
+	
+	   	//================================= FIM GERAR RELATÓRIO =============================================//
 		
 	}
 	
@@ -113,7 +251,8 @@ public class AvaliacaoController {
 											  boolean presentation, 
 											  boolean multimedia, 
 											  boolean form, 
-											  boolean behavior) {
+											  boolean behavior,
+											  int tiporel) {
 		
 		
 		Checker checker = from(html);
@@ -132,7 +271,7 @@ public class AvaliacaoController {
 		result.include("html", html);
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),null));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior);
+		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 		
 	}
 	
