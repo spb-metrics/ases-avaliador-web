@@ -35,6 +35,8 @@
 									   <input type="radio" name="tiporel" value="3">ODT
 									   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/xls.png" alt="xls" title="Gerar em XLS" height="20" width="20">
 									   <input type="radio" name="tiporel" value="2">XLS
+									   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/doc-rtf.png" alt="xls" title="Gerar em RFT" height="20" width="20">
+									   <input type="radio" name="tiporel" value="1">RTF
 									</p>
 									<label for="uri">URL: <input id="url" name="url" value="http://" size="50" type="text"></label>
 									<input class="submit" name="executar" value="Executar" type="submit">
