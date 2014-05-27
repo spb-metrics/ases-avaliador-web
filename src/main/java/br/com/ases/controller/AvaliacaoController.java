@@ -217,6 +217,11 @@ public class AvaliacaoController {
 	
 	   			try {
 		   			switch (tiporel) {
+			   			case 1://Export RTF
+							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 1);
+							contentType = "application/rtf";
+							filename = "RelatorioAvaliacao.rtf";
+						break;
 						case 2://Export XLS
 							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 2);
 							contentType = "application/xls";

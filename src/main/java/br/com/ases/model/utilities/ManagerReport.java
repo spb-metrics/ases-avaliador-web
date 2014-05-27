@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.com.ases.model.entity.RelatorioAvaliacaoJasper;
 import br.com.checker.emag.SummarizedOccurrence;
+import net.sf.jasperreports.engine.JRAbstractExporter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -20,6 +21,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporterParameter;
+import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdtExporter;
 
@@ -39,16 +41,13 @@ public class ManagerReport {
 		
 		try {	
 			switch (tipoRelatorio) {
-				case 1://Export CSV
-					JRCsvExporter csvExporter = new JRCsvExporter();
-					csvExporter.setParameter(JRCsvExporterParameter.FIELD_DELIMITER, ",");
-					csvExporter.setParameter(JRCsvExporterParameter.CHARACTER_ENCODING, "UTF-8");
-					csvExporter.setParameter(JRCsvExporterParameter.RECORD_DELIMITER, ",");
-					csvExporter.setParameter(JRCsvExporterParameter.JASPER_PRINT, print);
-					csvExporter.setParameter(JRCsvExporterParameter.IGNORE_PAGE_MARGINS, true);
-					out = File.createTempFile("output.", ".csv");
-					csvExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(out));
-					csvExporter.exportReport();
+				case 1://Export RTF
+					JRAbstractExporter exporterRtf = new JRRtfExporter();                 
+					exporterRtf.setParameter(JRExporterParameter.CHARACTER_ENCODING, "UTF-8");                  
+					exporterRtf.setParameter(JRExporterParameter.JASPER_PRINT, print); 
+					out = File.createTempFile("output.", ".rtf");
+					exporterRtf.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(out));   
+					exporterRtf.exportReport();
 				break;
 				case 2://Export XLS
 					JRXlsExporter exporterXls = new JRXlsExporter();
@@ -65,6 +64,17 @@ public class ManagerReport {
 				    out = File.createTempFile("output.", ".odt");
 					exporterODT.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(out));
 					exporterODT.exportReport();
+				break;
+				case 5://Export CSV
+					JRCsvExporter csvExporter = new JRCsvExporter();
+					csvExporter.setParameter(JRCsvExporterParameter.FIELD_DELIMITER, ",");
+					csvExporter.setParameter(JRCsvExporterParameter.CHARACTER_ENCODING, "UTF-8");
+					csvExporter.setParameter(JRCsvExporterParameter.RECORD_DELIMITER, ",");
+					csvExporter.setParameter(JRCsvExporterParameter.JASPER_PRINT, print);
+					csvExporter.setParameter(JRCsvExporterParameter.IGNORE_PAGE_MARGINS, true);
+					out = File.createTempFile("output.", ".csv");
+					csvExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(out));
+					csvExporter.exportReport();
 				break;
 				default:
 					out = File.createTempFile("output.", ".pdf");
