@@ -154,32 +154,8 @@ public class AvaliacaoController {
 		
 		
 	//================================= GERAR RELATÓRIO =============================================//
-		/*List <SummarizedOccurrence> list = checker.checkSumarized();
-				List<RelatorioAvaliacaoJasper> listaImpressao = new ArrayList<RelatorioAvaliacaoJasper>();
-				for(SummarizedOccurrence occurrence : list){
-	
-					System.out.println(occurrence.isError());
-					System.out.println(occurrence.getType().getDescription());
-					System.out.println(occurrence.getStringLines());
-					System.out.println(occurrence.getDescription());
-					System.out.println("----------------------------------------------------");
-					
-					
-					RelatorioAvaliacaoJasper relatorioAvaliacao = new RelatorioAvaliacaoJasper();
-					relatorioAvaliacao.setGrupo(occurrence.getType().getDescription());
-					relatorioAvaliacao.setTipoErro(occurrence.isError() == false ? "Error" : "Aviso");
-					int num = occurrence.getStringLines().split(",").length;
-					
-					relatorioAvaliacao.setQuantidade(num);
-					relatorioAvaliacao.setlinhasCodigo(occurrence.getStringLines());
-					relatorioAvaliacao.setRecomendacao(occurrence.getCheckPoint()+" - "+occurrence.getDescription());
-					
-					listaImpressao.add(relatorioAvaliacao);
-					num = 0;
-					
-				}*/
 		
-				/*Cria um Map de par�metros*/
+				/*Cria um Map de parâmetros*/
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
 				/*Obtem a nota*/
@@ -191,24 +167,22 @@ public class AvaliacaoController {
 				map.put("pTamanho", "29.8 KB (30475 bytes)");
 				map.put("pDataHoraAvaliacao",  nota.getData());
 				
+				//Obtem Resumo da Avaliação
+				List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
 				
-				
-				
-				/*Obter Resumo da Avaliação*/
-				/*List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
 				int totalErros = 0;
 				int totalAvisos = 0;
 				
 				for(ResumoAvaliacao resumo :resumoErrosAvisos ){
-					
-					System.out.println(resumo.getTipo());
-					System.out.println(resumo.getQuantidadeAvisos());
-					System.out.println(resumo.getQuantidadeErros());
-					
+					map.put(resumo.getTipo()+"_A",resumo.getQuantidadeAvisos());
+					map.put(resumo.getTipo()+"_E",resumo.getQuantidadeErros());
+				
 					totalErros+=resumo.getQuantidadeErros();
 					totalAvisos+=resumo.getQuantidadeAvisos();
-				}*/
+				}
 				
+				map.put("TOTAL_E",totalErros);
+				map.put("TOTAL_A",totalAvisos);
 				
 				ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-avaliacao.jrxml");
 				String path =null;

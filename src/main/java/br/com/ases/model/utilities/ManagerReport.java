@@ -101,7 +101,7 @@ public class ManagerReport {
 			
 			RelatorioAvaliacaoJasper relatorioAvaliacao = new RelatorioAvaliacaoJasper();
 			relatorioAvaliacao.setGrupo(occurrence.getType().getDescription());
-			relatorioAvaliacao.setTipoErro(occurrence.isError() == false ? "Aviso" : "Error");
+			relatorioAvaliacao.setTipoErro(occurrence.isError() == false ? "Aviso" : "Erro");
 			int num = occurrence.getStringLines().split(",").length;
 			
 			relatorioAvaliacao.setQuantidade(num);
