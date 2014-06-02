@@ -91,14 +91,7 @@ public class ManagerReport {
 	private List carregarBean(List <SummarizedOccurrence> list){
 		List<RelatorioAvaliacaoJasper> listaImpressao = new ArrayList<RelatorioAvaliacaoJasper>();
 		for(SummarizedOccurrence occurrence : list){
-
-			/*System.out.println(occurrence.isError());
-			System.out.println(occurrence.getType().getDescription());
-			System.out.println(occurrence.getStringLines());
-			System.out.println(occurrence.getDescription());
-			System.out.println("----------------------------------------------------");*/
-			
-			
+	
 			RelatorioAvaliacaoJasper relatorioAvaliacao = new RelatorioAvaliacaoJasper();
 			relatorioAvaliacao.setGrupo(occurrence.getType().getDescription());
 			relatorioAvaliacao.setTipoErro(occurrence.isError() == false ? "Aviso" : "Erro");

@@ -35,9 +35,11 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
+
 @Resource
 public class AvaliacaoController {
 	
@@ -115,11 +117,13 @@ public class AvaliacaoController {
 		if(multimedia) checker.with(multimedia());
 		if(form) checker.with(form());
 		if(behavior) checker.with(behavior());
-		
+
 		result.include("url", url);
 		result.include("html", pagina.getParsedContent());
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+		
+		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized()); 
 				
 	}
 	
@@ -146,12 +150,7 @@ public class AvaliacaoController {
 		if(multimedia) checker.with(multimedia());
 		if(form) checker.with(form());
 		if(behavior) checker.with(behavior());
-		
-		//result.include("url", url);
-		//result.include("html", pagina.getParsedContent());
-		//result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		
 		
 	//================================= GERAR RELATÓRIO =============================================//
 		
@@ -271,7 +270,6 @@ public class AvaliacaoController {
 			result.include("LISTA_"+entry.getKey().toString(),ocorrenciasComputadas);
 		}
 		
-		
 		List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
 		int totalErros = 0;
 		int totalAvisos = 0;
@@ -285,10 +283,7 @@ public class AvaliacaoController {
 		result.include("totalAvisos",totalAvisos);
 		result.include("listaResumo",resumoErrosAvisos);
 		
-		
 	}
-	
-	
 	
 	private List<ResumoAvaliacao> obterResumoAvaliacao() {
 		List<ResumoAvaliacao>  resultado = new ArrayList<ResumoAvaliacao>();
@@ -312,5 +307,12 @@ public class AvaliacaoController {
 		return resultado;
 	}
 	
+	
+	@Path("/detalhes-avaliacao")
+	public void detalhesAvaliacao(String checkPoint, String hashCode){
+		List<SummarizedOccurrence> res = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
+		result.include("detalhesAvaliacao",res); 
+		//result.include("recomendacao",resultado.getMapDescription().get(resultado.getCheckPoint()));
+	}
 
 }
