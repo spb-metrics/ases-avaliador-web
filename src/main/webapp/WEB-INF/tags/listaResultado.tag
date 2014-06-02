@@ -1,7 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ attribute name="lista" required="true" type="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 	<p><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros" height="19" width="20"> Erros</p>
 	<table id="tabelaErros2">
 	

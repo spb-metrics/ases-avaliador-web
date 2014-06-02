@@ -46,10 +46,10 @@
 							</tr>
 							<c:forEach items="${listaResumo}" var="resumo">
 								<tr>
-								<td class="celula">${resumo.tipo.description}</td>
-								<td class="celula">${resumo.quantidadeErros}</td>
-								<td class="celula">${resumo.quantidadeAvisos}</td>
-							</tr>
+									<td class="celula">${resumo.tipo.description}</td>
+									<td class="celula">${resumo.quantidadeErros}</td>
+									<td class="celula">${resumo.quantidadeAvisos}</td>
+								</tr>
 							</c:forEach>
 							</tbody>
 							<tfoot>
@@ -67,7 +67,7 @@
 			
 			<div class="tile --NOVALUE--">
 				<div class="outstanding-header">
-    		    	<h2 class="outstanding-title">Detalhes da Avaliação</h2>
+    		    	<h2 class="outstanding-title">Detalhes da Avaliação</h2><a href="<c:url value="/detalhes-avaliacao"/>">Visualizar</a>
 				</div>
 					<div class="domtab">
 
