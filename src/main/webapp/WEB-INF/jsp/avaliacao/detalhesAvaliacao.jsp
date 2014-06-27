@@ -29,18 +29,18 @@
 								</tr>
 					
 					
-					 <c:forEach items="${detalhesAvaliacao}" var="detalhe">
+					 <c:forEach items="${detalhe.criterios}" var="criterio">
 					
 					
 								<tr>
-								   <td class="celula" width="2%"> ${detalhe.checkPoint} </td>
-								   <td class="celula" width="60%" align="left">${detalhe.description}</td>
+								   <td class="celula" width="2%"> ${criterio.id} </td>
+								   <td class="celula" width="60%" align="left">${criterio.descricao}</td>
 								   
-								   <td class="celula">${detalhe.numberOfOccurrences}</td>
+								   <td class="celula">${criterio.numeroOcorrencias}</td>
 								   <td class="celula">
-								   
-										<a href="#${detalhe.stringLines}" class="sublinharLink">  ${detalhe.stringLines}</a>
-									
+								     <c:forEach items="${criterio.linhas}" var="linha">
+								       <a href="#${linha}" class="sublinharLink">  ${linha}</a> -
+								     </c:forEach> 
 								   </td>
 								</tr>
 
@@ -57,9 +57,8 @@
 				</div>
 				<div id="codigo" align="left">
 					<pre>
-						<!-- <a name="0048">0048 :&lt;script type="text/javascript" </a> -->
-						<c:forEach items="${detalhesAvaliacao}" var="detalhe">
-							<a name="${detalhe.stringLines}">${detalhe.sourceCode}</a>
+						<c:forEach items="${detalhe.ocorrencias}" var="ocorrencia">
+							<a name="${ocorrencia.line}">${ocorrencia.line}: ${ocorrencia.tag}</a>
 						</c:forEach> 
 					</pre>
 				</div>

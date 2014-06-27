@@ -1,11 +1,11 @@
 package br.com.ases.controller;
 
 import static br.com.checker.emag.core.Checker.behavior;
+import static br.com.checker.emag.core.Checker.content;
 import static br.com.checker.emag.core.Checker.form;
 import static br.com.checker.emag.core.Checker.from;
 import static br.com.checker.emag.core.Checker.marking;
 import static br.com.checker.emag.core.Checker.multimedia;
-import static br.com.checker.emag.core.Checker.content;
 import static br.com.checker.emag.core.Checker.presentation;
 
 import java.io.BufferedReader;
@@ -25,6 +25,8 @@ import net.sf.jasperreports.engine.JRException;
 import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.business.impl.AvaliacaoBusinessImpl;
 import br.com.ases.controller.EseloController.Nota;
+import br.com.ases.domain.DetalheAvaliacao;
+import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.domain.ResumoAvaliacao;
 import br.com.ases.infra.WebChecker;
 import br.com.ases.model.utilities.ManagerReport;
@@ -47,11 +49,14 @@ public class AvaliacaoController {
 	private AvaliacaoBusiness avaliacaoBusiness;
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	private ServletContext application;
+	private DetalheAvaliacao detalheAvaliacao;
 	
-	public AvaliacaoController (Result result, AvaliacaoBusiness avaliacaoBusiness,ServletContext application) {
+	public AvaliacaoController (Result result, AvaliacaoBusiness avaliacaoBusiness,ServletContext application,DetalheAvaliacao detalheAvaliacao) {
 		this.result = result;
 		this.avaliacaoBusiness = avaliacaoBusiness;
 		this.application = application;
+		this.detalheAvaliacao = detalheAvaliacao;
+		
 	}
 	
 	
@@ -123,6 +128,7 @@ public class AvaliacaoController {
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		
+		this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(AvaliacaoBusinessImpl.resultadoAvaliacao));
 		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized()); 
 				
 	}
@@ -308,11 +314,9 @@ public class AvaliacaoController {
 	}
 	
 	
-	@Path("/detalhes-avaliacao")
-	public void detalhesAvaliacao(String checkPoint, String hashCode){
-		List<SummarizedOccurrence> res = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
-		result.include("detalhesAvaliacao",res); 
-		//result.include("recomendacao",resultado.getMapDescription().get(resultado.getCheckPoint()));
+	@Path("/detalhes-avaliacao/{rn}")
+	public void detalhesAvaliacao(OccurrenceKey rn){
+		result.include("detalhe",this.detalheAvaliacao.get(rn));
 	}
 
 }

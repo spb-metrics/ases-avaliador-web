@@ -19,12 +19,7 @@
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
-					   
-							<a class="sublinharLink" onclick=" $( '.dialog_${item.checkPoint}' ).dialog();">${item.stringLines}</a>
-							<div id="dialog" title="Codigo Fonte" class="dialog_${item.checkPoint}">
-								<p>${item.sourceCode}</p>
-							</div>
-						
+							<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
 					   </td>
 					</tr>
 				</c:if>
@@ -55,12 +50,7 @@
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
-					   
-							<a class="sublinharLink" onclick=" $( '.dialog_${item.checkPoint}' ).dialog();">${item.stringLines}</a>
-							<div id="dialog" title="Codigo Fonte" class="dialog_${item.checkPoint}">
-								<p>${item.sourceCode}</p>
-							</div>
-					   
+							<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
 					   </td>
 					</tr>
 				</c:if>
