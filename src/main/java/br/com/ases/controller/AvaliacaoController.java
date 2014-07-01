@@ -68,13 +68,19 @@ public class AvaliacaoController {
 												  boolean multimedia, 
 												  boolean form,
 												  boolean behavior,
-												  int tiporel) throws IOException {
+												  int tiprel) throws IOException {
+		
+		
         
-		BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
+	BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
 		String html = "";   
 	    String linha = "";  
 	    while( ( linha = reader.readLine() ) != null )  
 	        html += "\n"+linha;
+	     
+	    
+	    if(tiprel != 5)
+			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);
 	    
 		Checker checker = from(html);
 		
@@ -92,7 +98,7 @@ public class AvaliacaoController {
 		result.include("html", html);
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
+		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
     }
 	
 	
@@ -107,7 +113,7 @@ public class AvaliacaoController {
 		
 		
 		if(tiporel != 5)
-			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel);
+			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);
 		
 		if(url.startsWith("www")) url="http://"+url;
 		
@@ -141,14 +147,19 @@ public class AvaliacaoController {
 									boolean multimedia, 
 									boolean form, 
 									boolean behavior,
-									int tiporel) {
+									int tiporel, boolean isUrl) {
+	
+		Checker checker = null;
+		WebChecker pagina = null;
 		
-		if(url.startsWith("www")) url="http://"+url;
-		
-		WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
-		
-		
-		Checker checker = from(pagina.getContent());
+		if(isUrl){
+			if(url.startsWith("www")) url="http://"+url;
+			
+			pagina = WebChecker.from(url).withGetRequest().execute();
+			checker = from(pagina.getContent());
+		}else{
+			checker = from(url);
+		}
 		
 		if(mark) checker.with(marking());
 		if(content) checker.with(content());
@@ -165,9 +176,9 @@ public class AvaliacaoController {
 				
 				/*Obtem a nota*/
 				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), url);
+				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), isUrl ? url: "Código Fonte ou Arquivo");
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", url);
+				map.put("pPagina", isUrl ? url: "Código Fonte ou Arquivo");
 				map.put("pTitulo", "governoeletronico");
 				map.put("pTamanho", "29.8 KB (30475 bytes)");
 				map.put("pDataHoraAvaliacao",  nota.getData());
@@ -238,6 +249,8 @@ public class AvaliacaoController {
 											  boolean behavior,
 											  int tiporel) {
 		
+		if(tiporel != 5)
+			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);
 		
 		Checker checker = from(html);
 		
@@ -253,7 +266,7 @@ public class AvaliacaoController {
 		html = html.replaceAll(" ", "&nbsp");
 		
 		result.include("html", html);
-		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),null));
+		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"Código Fonte ou Arquivo"));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 		
