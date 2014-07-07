@@ -38,6 +38,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
+import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
@@ -78,7 +79,6 @@ public class AvaliacaoController {
 	    while( ( linha = reader.readLine() ) != null )  
 	        html += "\n"+linha;
 	     
-	    
 	    if(tiprel != 5)
 			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);
 	    
@@ -134,7 +134,7 @@ public class AvaliacaoController {
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		
-		this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(AvaliacaoBusinessImpl.resultadoAvaliacao));
+		this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized()); 
 				
 	}

@@ -61,7 +61,7 @@ public class DetalheAvaliacao {
 		public Criterio(String rn, String key,List<Occurrence> ocorrencias) {
 			this.linhas = new ArrayList<String>();
 			//TODO concatenar rn + key
-			this.descricao = criterioProperties.getDescricao("1.1");
+			this.descricao = criterioProperties.getDescricao(rn+"."+key);
 			
 			this.id = key;
 			for(Occurrence ocorrencia : ocorrencias) {

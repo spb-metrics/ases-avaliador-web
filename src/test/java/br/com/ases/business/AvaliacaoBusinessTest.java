@@ -26,11 +26,13 @@ public class AvaliacaoBusinessTest {
 		Occurrence ocorrencia2 = new Occurrence(55, 10, "1", false, "<a hrf=\"#home2\">Tag home completa 2</a>",OccurrenceClassification.MARK,"1");
 		Occurrence ocorrencia3 = new Occurrence(60, 5, "2", true, "<h1>Teste</h1>",OccurrenceClassification.MARK,"2");
 		Occurrence ocorrencia4 = new Occurrence(90, 10, "2", false, "<h2>Teste H2</h2>",OccurrenceClassification.MARK,"3");
+		Occurrence ocorrencia5 = new Occurrence(115, 10, "1", false, "<a hrf=\"#home2\">Tag home completa 3</a>",OccurrenceClassification.MARK);
 		List<Occurrence> ocorrenciasMarcacao = new ArrayList<Occurrence>();
 		ocorrenciasMarcacao.add(ocorrencia1);
 		ocorrenciasMarcacao.add(ocorrencia2);
 		ocorrenciasMarcacao.add(ocorrencia3);
 		ocorrenciasMarcacao.add(ocorrencia4);
+		ocorrenciasMarcacao.add(ocorrencia5);
 		
 		Occurrence ocorrencia1Comportamento = new Occurrence(10, 5, "3", true, "<a hrf=\"#home\">Tag home completa</a>",OccurrenceClassification.BEHAVIOR,"1");
 		Occurrence ocorrencia2Comportamento = new Occurrence(55, 10, "3", false, "<a hrf=\"#home2\">Tag home completa 2</a>",OccurrenceClassification.BEHAVIOR,"1");
