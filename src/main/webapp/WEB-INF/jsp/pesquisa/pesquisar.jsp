@@ -22,7 +22,7 @@
 								<cite class="documentLocation link-location">
                                   <span>Localizado em</span>
 									<span dir="ltr">
-                                    	<a href="contato.html">Contato					
+                                    	<a href="${pageContext.request.contextPath}/contato">Contato					
 										</a>
                                     </span>
 								</cite>
@@ -35,7 +35,7 @@
 								<cite class="documentLocation link-location">
                                   <span>Localizado em</span>
 									<span dir="ltr">
-                                    	<a href="perguntas_frequentes.htm">Perguntas Frequentes					
+                                    	<a href="${pageContext.request.contextPath}/perguntas-frequentes">Perguntas Frequentes					
 										</a>
                                     </span>
 								</cite>

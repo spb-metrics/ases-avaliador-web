@@ -19,7 +19,14 @@
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
-							<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
+					   	<c:choose>
+					   		<c:when test="${item.possuiLinhas }">
+					   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
+					   		</c:when>
+					   		<c:otherwise>
+					   			${item.stringLines}
+					   		</c:otherwise>
+					   	</c:choose>
 					   </td>
 					</tr>
 				</c:if>
@@ -50,7 +57,14 @@
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
-							<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
+						<c:choose>
+					   		<c:when test="${item.possuiLinhas }">
+					   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
+					   		</c:when>
+					   		<c:otherwise>
+					   			${item.stringLines}
+					   		</c:otherwise>
+					   	</c:choose>
 					   </td>
 					</tr>
 				</c:if>

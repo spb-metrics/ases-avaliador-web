@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page  contentType="text/html; charset=UTF-8"  %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,7 +18,7 @@
 		<br>
 		<strong>Tamanho:</strong> 29.8 KB (30475 bytes)
 		<br>
-		<strong>Data/Hora:02/09/2013 - 19:29 GMT</p>
+		<strong>Data/Hora:</strong> ${data}
      </div>
      
      <div class="tile --NOVALUE--">	

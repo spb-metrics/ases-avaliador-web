@@ -29,6 +29,7 @@ import br.com.ases.domain.DetalheAvaliacao;
 import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.domain.ResumoAvaliacao;
 import br.com.ases.infra.WebChecker;
+import br.com.ases.model.utilities.DateUtil;
 import br.com.ases.model.utilities.ManagerReport;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -38,7 +39,6 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
-import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
@@ -301,26 +301,27 @@ public class AvaliacaoController {
 		result.include("totalErros",totalErros);
 		result.include("totalAvisos",totalAvisos);
 		result.include("listaResumo",resumoErrosAvisos);
+		result.include("data", DateUtil.dataHoraAtual());
 		
 	}
 	
 	private List<ResumoAvaliacao> obterResumoAvaliacao() {
 		List<ResumoAvaliacao>  resultado = new ArrayList<ResumoAvaliacao>();
 		
-		for(Entry<OccurrenceClassification, List<SummarizedOccurrence>> entry : ocorrencias.entrySet()){
+		for(OccurrenceClassification classificacao : OccurrenceClassification.values()) {
+		
 			
 			int erros = 0;
 			int avisos = 0;
 			
-			for(SummarizedOccurrence ocorrencia : entry.getValue()){
+			for(SummarizedOccurrence ocorrencia : ocorrencias.get(classificacao) ){
 				if(ocorrencia.isError())
 					erros++ ;
 				else
 					avisos++;
 			}
 			
-			resultado.add(new ResumoAvaliacao(entry.getKey(), erros, avisos));
-				
+			resultado.add(new ResumoAvaliacao(classificacao, erros, avisos));
 		}
 		
 		return resultado;
