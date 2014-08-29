@@ -511,20 +511,20 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{PRESENTATION_DESIGN_A}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="394" width="97" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$P{MULTIMEDIA_A}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{MULTIMEDIA_A} != null ? $P{MULTIMEDIA_A} : "0"  ]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="412" width="97" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{FORM_A}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="356" y="394" width="103" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$P{MULTIMEDIA_E}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{MULTIMEDIA_E} != null ? $P{MULTIMEDIA_E} : "0"  ]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="356" y="412" width="103" height="16" backcolor="#C0C0C0"/>
