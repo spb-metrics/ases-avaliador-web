@@ -176,9 +176,9 @@ public class AvaliacaoController {
 				
 				/*Obtem a nota*/
 				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), isUrl ? url: "Código Fonte ou Arquivo");
+				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), isUrl ? url: "Cï¿½digo Fonte ou Arquivo");
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", isUrl ? url: "Código Fonte ou Arquivo");
+				map.put("pPagina", isUrl ? url: "Cï¿½digo Fonte ou Arquivo");
 				map.put("pTitulo", "governoeletronico");
 				map.put("pTamanho", "29.8 KB (30475 bytes)");
 				map.put("pDataHoraAvaliacao",  nota.getData());
@@ -266,7 +266,7 @@ public class AvaliacaoController {
 		html = html.replaceAll(" ", "&nbsp");
 		
 		result.include("html", html);
-		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"Código Fonte ou Arquivo"));
+		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"Cï¿½digo Fonte ou Arquivo"));
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 		
@@ -314,11 +314,15 @@ public class AvaliacaoController {
 			int erros = 0;
 			int avisos = 0;
 			
-			for(SummarizedOccurrence ocorrencia : ocorrencias.get(classificacao) ){
-				if(ocorrencia.isError())
-					erros++ ;
-				else
-					avisos++;
+			List<SummarizedOccurrence> listaOcorrencias = ocorrencias.get(classificacao);
+			
+			if(listaOcorrencias!=null){
+				for(SummarizedOccurrence ocorrencia : ocorrencias.get(classificacao) ){
+					if(ocorrencia.isError())
+						erros++ ;
+					else
+						avisos++;
+				}
 			}
 			
 			resultado.add(new ResumoAvaliacao(classificacao, erros, avisos));
