@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import br.com.ases.business.AvaliacaoBusiness;
+import br.com.ases.controller.EseloController;
 import br.com.ases.controller.EseloController.Nota;
 import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.infra.WebChecker;
@@ -26,6 +27,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
 		
+		Nota nota = null ;
+		try {
 		WebChecker.PostParams postParams = WebChecker.from(CALCULAR_NOTA_REST).withPostRequest()
 				.addParam("avaliationReport.url", url)
 				.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
@@ -40,7 +43,10 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 		
 		
 		Gson g = new GsonBuilder().create();
-		Nota nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
+		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
+		}catch(Exception e){
+			nota = new EseloController(null).new Nota(url, "---" , "0.0");
+		}
 		
 		return nota;
 	}
