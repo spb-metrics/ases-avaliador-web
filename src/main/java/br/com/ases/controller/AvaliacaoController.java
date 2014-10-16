@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 
@@ -128,7 +130,13 @@ public class AvaliacaoController {
 		if(multimedia) checker.with(multimedia());
 		if(form) checker.with(form());
 		if(behavior) checker.with(behavior());
-
+		
+		Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
+	    Matcher mm = pp.matcher(url.toLowerCase());  
+	    
+	    if (mm.find())
+	      	result.include("titulosite", mm.group(2));
+	   
 		result.include("url", url);
 		result.include("html", pagina.getParsedContent());
 		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
