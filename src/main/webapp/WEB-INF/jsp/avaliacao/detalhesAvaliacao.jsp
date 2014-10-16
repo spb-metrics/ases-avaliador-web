@@ -11,7 +11,7 @@
 				<div class="outstanding-header">
 					<h2 class="outstanding-title">Recomendação Avaliada</h2>
 				</div>
-				<p><strong>1. Respeitar os padrões de desenvolvimento web</strong>
+				<p><strong>${recomendacao}</strong>
 			</div>
 			
 			<div class="tile --NOVALUE--">
