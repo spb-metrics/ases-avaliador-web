@@ -335,6 +335,16 @@ public class AvaliacaoController {
 	@Path("/detalhes-avaliacao/{rn}")
 	public void detalhesAvaliacao(OccurrenceKey rn){
 		result.include("detalhe",this.detalheAvaliacao.get(rn));
+		
+		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
+		String recomendacao = "";
+		
+		for(SummarizedOccurrence occurrence : ob){
+			recomendacao = occurrence.getMapDescription().get(rn.getCode());
+			break;
+		}
+		
+		result.include("recomendacao",recomendacao);
 	}
 
 }
