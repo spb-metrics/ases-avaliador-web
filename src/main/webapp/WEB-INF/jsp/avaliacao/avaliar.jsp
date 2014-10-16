@@ -14,7 +14,7 @@
 			<strong>Página:</strong> ${url}
 			<br>
 		</c:if>
-		<strong>Título:</strong> governoeletronico
+		<strong>Título:</strong> ${url}
 		<br>
 		<strong>Tamanho:</strong> 29.8 KB (30475 bytes)
 		<br>
