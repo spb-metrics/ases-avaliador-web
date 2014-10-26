@@ -14,7 +14,7 @@
 			<strong>Página:</strong> ${url}
 			<br>
 		</c:if>
-		<strong>Título:</strong> ${url}
+		<strong>Título:</strong> ${titulosite}
 		<br>
 		<strong>Tamanho:</strong> 29.8 KB (30475 bytes)
 		<br>

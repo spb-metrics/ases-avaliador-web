@@ -5,8 +5,26 @@
 
 <t:baseLayout>
    <jsp:body>
-      
       <!-- Início Conteudo -->
+      
+      <form name="form" action="${pageContext.request.contextPath}/exportar-detalhes-avaliacao" method="post">
+	      <fieldset>
+			   <legend><label for="uri">Exportar Resultado</label></legend>
+				<p>
+				   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png" alt="pdf" title="Gerar em PDF" height="20" width="20">
+				   <input type="radio" name="tiporel" value="4">PDF
+				   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/odt.png" alt="odt" title="Gerar em ODT" height="20" width="20">
+				   <input type="radio" name="tiporel" value="3">ODT
+				   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/xls.png" alt="xls" title="Gerar em XLS" height="20" width="20">
+				   <input type="radio" name="tiporel" value="2">XLS
+				   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/doc-rtf.png" alt="xls" title="Gerar em RFT" height="20" width="20">
+				   <input type="radio" name="tiporel" value="1">RTF
+				   <input type="hidden" name="rn" value="${rn}">
+		           <input class="submit" name="executar" value="Gerar" type="submit">
+				</p>
+		  </fieldset>
+	  </form>
+    
 			<div class="tile --NOVALUE--">	
 				<div class="outstanding-header">
 					<h2 class="outstanding-title">Recomendação Avaliada</h2>

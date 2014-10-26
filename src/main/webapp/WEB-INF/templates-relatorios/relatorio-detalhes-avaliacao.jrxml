@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="142666df-1bd1-4422-a844-93ee33ac154f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="100"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0FFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="fb384b78-0269-45af-87a4-5fdbb960b571"/>
+	<subDataset name="dataset1" uuid="a0d48e7c-a242-48e7-baab-67bb106e3a0b"/>
+	<subDataset name="New Dataset 1" uuid="4f380764-ef45-430f-a2e6-f6450e71ca90"/>
+	<subDataset name="Table Dataset 2" uuid="fb036e9f-236e-43ee-8176-c652711211c7"/>
+	<parameter name="rnAvaliada" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="300" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4f1c5dc2-865a-4f24-9920-8520c9890dc0" x="0" y="21" width="284" height="47"/>
+				<textElement verticalAlignment="Middle">
+					<font size="37" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483" x="0" y="1" width="555" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Avaliador e Simulador de Acessibilidade de Sítios]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f4e0efe1-6fc3-459b-97ee-f55098bbfbaf" x="1" y="174" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483" x="0" y="68" width="284" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GOVERNO FEDERAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="2" y="149" width="283" height="23" forecolor="#000000"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Recomendação Avaliada]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c4093aae-6fbc-482d-afb6-4983c7d15bb6" x="1" y="175" width="554" height="86"/>
+				<textElement textAlignment="Justified">
+					<paragraph spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rnAvaliada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4c3afaca-feb9-48aa-8a32-aadd8b7475c4" mode="Opaque" x="0" y="107" width="555" height="16" forecolor="#000000" backcolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalhes Relatório de Avaliação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="0" y="274" width="288" height="23" forecolor="#000000"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Critério(s) Avaliado(s)]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="c0051e6c-900d-4392-96a2-b920f9a27131" x="2" y="298" width="555" height="1"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<elementGroup/>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c4093aae-6fbc-482d-afb6-4983c7d15bb6" x="4" y="1" width="551" height="18"/>
+				<textElement textAlignment="Justified">
+					<paragraph spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="85d4ce4d-a582-4705-91b7-31366d02c70e" mode="Opaque" x="0" y="41" width="458" height="13" backcolor="#C0C0C0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16" mode="Opaque" x="458" y="41" width="97" height="13" backcolor="#C0C0C0"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba" mode="Opaque" x="4" y="41" width="100" height="13" backcolor="#C0C0C0"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

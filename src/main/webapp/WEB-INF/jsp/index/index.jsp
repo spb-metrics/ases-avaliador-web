@@ -1,11 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <t:baseLayout>
    <jsp:body>
-		<div class="tile --NOVALUE--">
+   		<div class="tile --NOVALUE--">
+   		
+   			<!-- ADICIONANDO ERROS -->
+				<c:if test="${not empty errors}">
+					<c:forEach items="${errors}" var="error">
+						<div class="${error.category}"><div class="alinName">${error.message}</div></div><br/>
+					</c:forEach>				
+				</c:if>
+   		
        		<div class="domtab">
-
 						<ul class="domtabs">
 							<li class=""><a href="#pri1">Validação pela URI</a></li>
 							<li class=""><a href="#pri2">Validação pelo upload de arquivo</a></li>
