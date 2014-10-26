@@ -35,9 +35,22 @@ public class ManagerReport {
 	public String gerarRelatorio(List list, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
-				
 		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(Ordenacao.ordenarLista(this.carregarBean(list),null)));
-		File out = null;
+		
+		return this.getRelatorio(print, tipoRelatorio);
+	}
+	
+	
+   public String teste(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
+		
+		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
+		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(criterios));		
+	   return  this.getRelatorio(print, tipoRelatorio);
+   }
+
+   private String getRelatorio(JasperPrint print, int tipoRelatorio) throws JRException{
+    	
+    	File out = null;
 		
 		try {	
 			switch (tipoRelatorio) {
@@ -80,13 +93,15 @@ public class ManagerReport {
 					out = File.createTempFile("output.", ".pdf");
 					JasperExportManager.exportReportToPdfStream(print, new FileOutputStream(out));
 				break;
+				
 			}
 		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		return out.getAbsolutePath();
-	}
+    } 
 	
 	private List carregarBean(List <SummarizedOccurrence> list){
 		List<RelatorioAvaliacaoJasper> listaImpressao = new ArrayList<RelatorioAvaliacaoJasper>();
@@ -108,5 +123,4 @@ public class ManagerReport {
 		
 		return listaImpressao;
 	}
-
 }

@@ -38,9 +38,11 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
@@ -49,20 +51,20 @@ import br.com.checker.emag.core.Checker;
 public class AvaliacaoController {
 	
 	private Result result;
+	private final Validator validator;
 	private AvaliacaoBusiness avaliacaoBusiness;
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	private ServletContext application;
 	private DetalheAvaliacao detalheAvaliacao;
 	
-	public AvaliacaoController (Result result, AvaliacaoBusiness avaliacaoBusiness,ServletContext application,DetalheAvaliacao detalheAvaliacao) {
+	public AvaliacaoController (Result result, Validator validator,AvaliacaoBusiness avaliacaoBusiness,ServletContext application,DetalheAvaliacao detalheAvaliacao) {
 		this.result = result;
+		this.validator = validator;
 		this.avaliacaoBusiness = avaliacaoBusiness;
 		this.application = application;
 		this.detalheAvaliacao = detalheAvaliacao;
 		
 	}
-	
-	
 	
 	@Path("/avaliar-arquivo")
 	public void avaliarArquivo(UploadedFile file, boolean mark,
@@ -73,34 +75,38 @@ public class AvaliacaoController {
 												  boolean behavior,
 												  int tiprel) throws IOException {
 		
+	if(this.validadarUploadForm(file)){
 		
-        
-	BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
+		BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
 		String html = "";   
 	    String linha = "";  
 	    while( ( linha = reader.readLine() ) != null )  
 	        html += "\n"+linha;
-	     
-	    if(tiprel != 5)
-			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);
 	    
-		Checker checker = from(html);
-		
-		if(mark) checker.with(marking());
-		if(content) checker.with(content());
-		if(presentation) checker.with(presentation());
-		if(multimedia) checker.with(multimedia());
-		if(form) checker.with(form());
-		if(behavior) checker.with(behavior());
-		
-		html = html.replaceAll("<", "&lt;");
-		html = html.replaceAll(">", "&gt;");
-		html = html.replaceAll(" ", "&nbsp");
-		
-		result.include("html", html);
-		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
-		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
+		    if(tiprel != 5)
+				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);
+		    
+			Checker checker = from(html);
+			
+			if(mark) checker.with(marking());
+			if(content) checker.with(content());
+			if(presentation) checker.with(presentation());
+			if(multimedia) checker.with(multimedia());
+			if(form) checker.with(form());
+			if(behavior) checker.with(behavior());
+			
+			html = html.replaceAll("<", "&lt;");
+			html = html.replaceAll(">", "&gt;");
+			html = html.replaceAll(" ", "&nbsp");
+			
+			result.include("html", html);
+			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
+			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
+			
+		}else{
+			 this.validator.onErrorUsePageOf(IndexController.class).index();
+		}	
     }
 	
 	
@@ -113,38 +119,42 @@ public class AvaliacaoController {
 									boolean behavior,
 									int tiporel) {
 		
-		
-		if(tiporel != 5)
-			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);
-		
-		if(url.startsWith("www")) url="http://"+url;
-		
-		WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
-		
-		
-		Checker checker = from(pagina.getContent());
-		
-		if(mark) checker.with(marking());
-		if(content) checker.with(content());
-		if(presentation) checker.with(presentation());
-		if(multimedia) checker.with(multimedia());
-		if(form) checker.with(form());
-		if(behavior) checker.with(behavior());
-		
-		Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
-	    Matcher mm = pp.matcher(url.toLowerCase());  
-	    
-	    if (mm.find())
-	      	result.include("titulosite", mm.group(2));
-	   
-		result.include("url", url);
-		result.include("html", pagina.getParsedContent());
-		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
-		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		
-		this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
-		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized()); 
-				
+		if(this.validadarCampoForm(url)){
+			
+			if(tiporel != 5)
+				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);
+			
+			if(url.startsWith("www")) url="http://"+url;
+			
+			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
+			
+			
+			Checker checker = from(pagina.getContent());
+			
+			if(mark) checker.with(marking());
+			if(content) checker.with(content());
+			if(presentation) checker.with(presentation());
+			if(multimedia) checker.with(multimedia());
+			if(form) checker.with(form());
+			if(behavior) checker.with(behavior());
+			
+			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
+		    Matcher mm = pp.matcher(url.toLowerCase());  
+		    
+		    if (mm.find())
+		      	result.include("titulosite", mm.group(2));
+		   
+			result.include("url", url);
+			result.include("html", pagina.getParsedContent());
+			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
+			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			
+			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized()); 
+			
+		}else{
+			 this.validator.onErrorUsePageOf(IndexController.class).index();
+		}
 	}
 	
 	@Get("/relatorioavaliacao")
@@ -185,9 +195,12 @@ public class AvaliacaoController {
 				/*Obtem a nota*/
 				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
 				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), isUrl ? url: "C�digo Fonte ou Arquivo");
+				Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
+			    Matcher mm = pp.matcher(url.toLowerCase());
+				
 				map.put("pPercentualAses", nota.getValor());
 				map.put("pPagina", isUrl ? url: "C�digo Fonte ou Arquivo");
-				map.put("pTitulo", "governoeletronico");
+				map.put("pTitulo", mm.find() ? mm.group(2): "governoeletronico");
 				map.put("pTamanho", "29.8 KB (30475 bytes)");
 				map.put("pDataHoraAvaliacao",  nota.getData());
 				
@@ -257,27 +270,32 @@ public class AvaliacaoController {
 											  boolean behavior,
 											  int tiporel) {
 		
-		if(tiporel != 5)
-			this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);
+		if(this.validadarCampoForm(html)){
 		
-		Checker checker = from(html);
-		
-		if(mark) checker.with(marking());
-		if(content) checker.with(content());
-		if(presentation) checker.with(presentation());
-		if(multimedia) checker.with(multimedia());
-		if(form) checker.with(form());
-		if(behavior) checker.with(behavior());
-		
-		html = html.replaceAll("<", "&lt;");
-		html = html.replaceAll(">", "&gt;");
-		html = html.replaceAll(" ", "&nbsp");
-		
-		result.include("html", html);
-		result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C�digo Fonte ou Arquivo"));
-		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
-		
+			if(tiporel != 5)
+				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);
+			
+			Checker checker = from(html);
+			
+			if(mark) checker.with(marking());
+			if(content) checker.with(content());
+			if(presentation) checker.with(presentation());
+			if(multimedia) checker.with(multimedia());
+			if(form) checker.with(form());
+			if(behavior) checker.with(behavior());
+			
+			html = html.replaceAll("<", "&lt;");
+			html = html.replaceAll(">", "&gt;");
+			html = html.replaceAll(" ", "&nbsp");
+			
+			result.include("html", html);
+			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C�digo Fonte ou Arquivo"));
+			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
+			
+		}else{
+			 this.validator.onErrorUsePageOf(IndexController.class).index();
+		}
 	}
 	
 	
@@ -353,6 +371,87 @@ public class AvaliacaoController {
 		}
 		
 		result.include("recomendacao",recomendacao);
+		result.include("rn",rn.getCode());
 	}
+	
+	@Post("/exportar-detalhes-avaliacao")
+	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn, int tiporel){
+		
+		/*Cria um Map de par�metroe*/
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		List list = this.detalheAvaliacao.get(rn).getCriterios();
+		
+		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
+		String recomendacao = "";
+		
+		for(SummarizedOccurrence occurrence : ob){
+			recomendacao = occurrence.getMapDescription().get(rn.getCode());
+			break;
+		}
+		
+		map.put("rnAvaliada",  recomendacao);
+		
+		ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-detalhes-avaliacao.jrxml");
+		
+		String path = null;
+		String contentType = null;
+		String filename = null;
+		
+		
+		try{
+   			switch (tiporel) {
+	   			case 1://Export RTF
+					path =  managerReport.teste(list,map, tiporel);
+					contentType = "application/rtf";
+					filename = "DetalhesRelatorioAvaliacao.rtf";
+				break;
+				case 2://Export XLS
+					path =  managerReport.teste(list,map, tiporel);
+					contentType = "application/xls";
+					filename = "DetalhesRelatorioAvaliacao.xls";
+				break;
+				case 3://Export ODT
+					path =  managerReport.teste(list,map, tiporel);
+					contentType = "application/odt";
+					filename = "DetalhesRelatorioAvaliacao.odt";
+				break;
+				default:
+					path =  managerReport.teste(list,map, tiporel);
+					contentType = "application/pdf";
+					filename = "DetalhesRelatorioAvaliacao.pdf";
+				break;
+   			}
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	    }
+	   			
+	   	File file = new File(path);
+	   	
+	   	return new FileDownload(file, contentType, filename);
+	}
+	
+	private boolean validadarCampoForm(String campo){
+		boolean isValido = true;
+		if(campo == null || campo.length() <= 10 ){
+			this.validator.add(new ValidationMessage("Deve ser informada a url, ou o código à analisar!", "warning"));
+			isValido = false;
+		}
+		return isValido;
+		
+	} 
+	
 
+	private boolean validadarUploadForm(UploadedFile file){
+		boolean isValido = true;
+		if(file == null ){
+			this.validator.add(new ValidationMessage("O arquivo para o upload não foi selecionado!", "warning"));
+			isValido = false;
+		}
+		return isValido;
+		
+	}
+	
+	
 }
