@@ -41,11 +41,12 @@ public class ManagerReport {
 	}
 	
 	
-   public String teste(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
+   public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(criterios));		
-	   return  this.getRelatorio(print, tipoRelatorio);
+	   
+		return  this.getRelatorio(print, tipoRelatorio);
    }
 
    private String getRelatorio(JasperPrint print, int tipoRelatorio) throws JRException{

@@ -402,22 +402,22 @@ public class AvaliacaoController {
 		try{
    			switch (tiporel) {
 	   			case 1://Export RTF
-					path =  managerReport.teste(list,map, tiporel);
+					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
 					contentType = "application/rtf";
 					filename = "DetalhesRelatorioAvaliacao.rtf";
 				break;
 				case 2://Export XLS
-					path =  managerReport.teste(list,map, tiporel);
+					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
 					contentType = "application/xls";
 					filename = "DetalhesRelatorioAvaliacao.xls";
 				break;
 				case 3://Export ODT
-					path =  managerReport.teste(list,map, tiporel);
+					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
 					contentType = "application/odt";
 					filename = "DetalhesRelatorioAvaliacao.odt";
 				break;
 				default:
-					path =  managerReport.teste(list,map, tiporel);
+					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
 					contentType = "application/pdf";
 					filename = "DetalhesRelatorioAvaliacao.pdf";
 				break;
