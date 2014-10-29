@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="142666df-1bd1-4422-a844-93ee33ac154f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="100"/>
+	<property name="ireport.y" value="17"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -47,13 +47,24 @@
 	<subDataset name="dataset1" uuid="a0d48e7c-a242-48e7-baab-67bb106e3a0b"/>
 	<subDataset name="New Dataset 1" uuid="4f380764-ef45-430f-a2e6-f6450e71ca90"/>
 	<subDataset name="Table Dataset 2" uuid="fb036e9f-236e-43ee-8176-c652711211c7"/>
+	<parameter name="pPagina" class="java.lang.String"/>
+	<parameter name="pTitulo" class="java.lang.String"/>
+	<parameter name="pTamanho" class="java.lang.String"/>
+	<parameter name="pDataHoraAvaliacao" class="java.lang.String"/>
 	<parameter name="rnAvaliada" class="java.lang.String"/>
 	<field name="descricao" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="300" splitType="Stretch">
+		<band height="306" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="0" y="283" width="286" height="23" forecolor="#000000"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Critérios]]></text>
+			</staticText>
 			<staticText>
 				<reportElement uuid="4f1c5dc2-865a-4f24-9920-8520c9890dc0" x="0" y="21" width="284" height="47"/>
 				<textElement verticalAlignment="Middle">
@@ -72,6 +83,13 @@
 				<reportElement uuid="f4e0efe1-6fc3-459b-97ee-f55098bbfbaf" x="1" y="174" width="555" height="1"/>
 			</line>
 			<staticText>
+				<reportElement uuid="81b0709b-5fba-49d1-82a7-0d203d3163d2" x="1" y="151" width="214" height="23" forecolor="#000000"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Recomendação Avalidada]]></text>
+			</staticText>
+			<staticText>
 				<reportElement uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483" x="0" y="68" width="284" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12" isBold="true"/>
@@ -79,45 +97,29 @@
 				<text><![CDATA[GOVERNO FEDERAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="2" y="149" width="283" height="23" forecolor="#000000"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="18" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Recomendação Avaliada]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="c4093aae-6fbc-482d-afb6-4983c7d15bb6" x="1" y="175" width="554" height="86"/>
-				<textElement textAlignment="Justified">
-					<paragraph spacingAfter="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{rnAvaliada}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="4c3afaca-feb9-48aa-8a32-aadd8b7475c4" mode="Opaque" x="0" y="107" width="555" height="16" forecolor="#000000" backcolor="#999999"/>
+				<reportElement uuid="4c3afaca-feb9-48aa-8a32-aadd8b7475c4" mode="Opaque" x="0" y="106" width="555" height="16" forecolor="#000000" backcolor="#999999"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Detalhes Relatório de Avaliação]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="0" y="274" width="288" height="23" forecolor="#000000"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="18" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Critério(s) Avaliado(s)]]></text>
-			</staticText>
+			<textField>
+				<reportElement uuid="f2c7d9df-c3f8-4216-8083-66e15b6e2dd0" mode="Opaque" x="1" y="175" width="554" height="106" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$P{rnAvaliada}]]></textFieldExpression>
+			</textField>
 			<line>
-				<reportElement uuid="c0051e6c-900d-4392-96a2-b920f9a27131" x="2" y="298" width="555" height="1"/>
+				<reportElement uuid="c0051e6c-900d-4392-96a2-b920f9a27131" x="1" y="281" width="555" height="1"/>
 			</line>
 		</band>
 	</title>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<elementGroup/>
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="c4093aae-6fbc-482d-afb6-4983c7d15bb6" x="4" y="1" width="551" height="18"/>
-				<textElement textAlignment="Justified">
-					<paragraph spacingAfter="5"/>
+			<textField>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="0" y="0" width="555" height="14"/>
+				<textElement>
+					<paragraph tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
@@ -146,6 +148,6 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="27" splitType="Stretch"/>
 	</summary>
 </jasperReport>
