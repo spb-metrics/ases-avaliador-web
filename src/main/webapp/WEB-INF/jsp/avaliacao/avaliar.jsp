@@ -67,7 +67,7 @@
 			
 			<div class="tile --NOVALUE--">
 				<div class="outstanding-header">
-    		    	<h2 class="outstanding-title">Detalhes da Avaliação</h2><a href="<c:url value="/detalhes-avaliacao"/>">Visualizar</a>
+    		    <!-- 	 -->
 				</div>
 					<div class="domtab">
 
