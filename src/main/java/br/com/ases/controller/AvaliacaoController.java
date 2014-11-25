@@ -102,6 +102,8 @@ public class AvaliacaoController {
 			result.include("html", html);
 			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
 			
 		}else{
