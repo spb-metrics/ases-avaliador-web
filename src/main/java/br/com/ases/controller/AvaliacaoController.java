@@ -461,7 +461,7 @@ public class AvaliacaoController {
 	private boolean validadarCampoForm(String campo){
 		boolean isValido = true;
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. Favor preencher o campo URL!", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo URL.", "warning"));
 			isValido = false;
 		}else{
 		
@@ -471,10 +471,10 @@ public class AvaliacaoController {
 		    URLConnection conn = url.openConnection();
 		    conn.connect();
 		} catch (MalformedURLException e) {
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. URL "+campo+" considerada inválida!", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
 			isValido = false;
 		} catch (IOException e) {
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. URL "+campo+" considerada inválida!", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
 			isValido = false;
 		}
 		}
@@ -487,7 +487,7 @@ public class AvaliacaoController {
 	private boolean validadarCondigoFonteAvaliar(String campo){
 		
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. Favor preencher o campo Código a Analizar!", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo Código a Analizar.", "warning"));
 			return false;
 		}
 		
@@ -497,12 +497,12 @@ public class AvaliacaoController {
 	    Matcher m = p.matcher(campo);
 	    
 	    if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. O conteúdo do arquivo não é do tipo HTML ou XHTML!", "warning"));
+	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O conteúdo do arquivo não é do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	    }	
 	    
-		if(campo.length() > 1024){
-			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo. Tamanho máximo permitido é de 1024 bytes!", "warning"));
+		if(campo.length() > 1048576){
+			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido é de 1024KB.", "warning"));
 			return false;
 		}
 		
@@ -514,7 +514,7 @@ public class AvaliacaoController {
 	private boolean validadarUploadForm(UploadedFile file){
 		
 		if(file == null ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. Favor realizar o upload do arquivo!", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor realizar o upload do arquivo.", "warning"));
 			return false;
 		}
 		
@@ -524,8 +524,8 @@ public class AvaliacaoController {
 			return false;
 		}
 		
-		if(file.getSize() > 1024){
-			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo. Tamanho máximo permitido é de 1024 bytes!", "warning"));
+		if(file.getSize() > 1048576){
+			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido é de 1024KB.", "warning"));
 			return false;
 		}
 		
@@ -542,7 +542,7 @@ public class AvaliacaoController {
 	    Matcher m = p.matcher(html);
 	        
 	     if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. O conteúdo do arquivo não é do tipo HTML ou XHTML!", "warning"));
+	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O conteúdo do arquivo não é do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	     }	
 		
