@@ -14,7 +14,7 @@
 			<c:forEach items="${lista}" var="item">
 				<c:if test="${item.error }">
 					<tr>
-					   <td class="celula" width="2%"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/emag/#r${item.checkPoint}">${item.checkPoint}</a></td>
+					   <td class="celula" width="2%"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/#r${item.checkPoint}">${item.checkPoint}</a></td>
 					   <td class="celula" width="60%" align="left"> ${item.description}</td>
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
@@ -52,7 +52,7 @@
 				<c:if test="${not item.error }">
 	
 					<tr>
-					   <td class="celula" width="2%"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/emag/#r${item.checkPoint}">${item.checkPoint}</a></td>
+					   <td class="celula" width="2%"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/#r${item.checkPoint}">${item.checkPoint}</a></td>
 					   <td class="celula" width="60%" align="left"> ${item.description}</td>
 					   
 					   <td class="celula">${item.numberOfOccurrences}</td>
