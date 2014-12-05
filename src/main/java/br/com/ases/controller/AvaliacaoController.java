@@ -97,7 +97,8 @@ public class AvaliacaoController {
 		
 	    if(validarConteudoUploadForm(html)){
 	    	
-	    	 if(tiprel != 5)
+	    	 //if(tiprel != 5)
+	    	 if(tiprel != 0)
 					this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);
 			    
 				Checker checker = from(html);
@@ -144,7 +145,8 @@ public class AvaliacaoController {
 		
 		if(this.validadarCampoForm(url)){
 			
-			if(tiporel != 5)
+			//if(tiporel != 5)
+			if(tiporel != 0)
 				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);
 			
 			if(url.startsWith("www")) url="http://"+url;
@@ -189,7 +191,7 @@ public class AvaliacaoController {
 									boolean form, 
 									boolean behavior,
 									int tiporel, boolean isUrl) {
-	
+		
 		Checker checker = null;
 		WebChecker pagina = null;
 		
@@ -295,7 +297,8 @@ public class AvaliacaoController {
 		
 		if(this.validadarCondigoFonteAvaliar(html)){
 		
-			if(tiporel != 5)
+			//if(tiporel != 5)
+			if(tiporel != 0)
 				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);
 			
 			Checker checker = from(html);
