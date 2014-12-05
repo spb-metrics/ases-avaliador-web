@@ -487,7 +487,7 @@ public class AvaliacaoController {
 	private boolean validadarCondigoFonteAvaliar(String campo){
 		
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo Código a Analizar.", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo Código a Analisar.", "warning"));
 			return false;
 		}
 		
@@ -520,7 +520,7 @@ public class AvaliacaoController {
 		
 		String fileType = file.getContentType();
 		if(!(fileType.equals("text/html") || fileType.equals("application/xhtml+xml") ||  fileType.equals("application/xhtml") ||  fileType.equals("application/xml"))){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação. As extensões permitidas para o arquivo são: .xht, .htm, .html ou .xhtml!", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! As extensões permitidas para o arquivo são: .xht, .htm, .html ou .xhtml.", "warning"));
 			return false;
 		}
 		
