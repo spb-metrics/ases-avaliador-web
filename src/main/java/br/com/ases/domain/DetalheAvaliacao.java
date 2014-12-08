@@ -1,6 +1,7 @@
 package br.com.ases.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -48,11 +49,13 @@ public class DetalheAvaliacao {
 				for(Occurrence ocorrencia : entry.getValue())
 					ocorrencias.add(ocorrencia);
 			}
+			
+			Collections.sort(this.criterios);
 		}
 		
 	}
 	
-	public @Getter class  Criterio {
+	public @Getter class  Criterio implements Comparable<Criterio>{
 		private String id;
 		private String descricao;
 		private List<String> linhas;
@@ -69,5 +72,11 @@ public class DetalheAvaliacao {
 			}
 			this.numeroOcorrencias = String.valueOf(ocorrencias.size());
 		}
+
+		public int compareTo(Criterio other) {
+			return Integer.valueOf(this.id).compareTo(Integer.valueOf(other.id));
+		}
+
+		
 	}
 }

@@ -2,6 +2,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <t:baseLayout>
    <jsp:body>
@@ -56,8 +58,9 @@
 								   
 								   <td class="celula">${criterio.numeroOcorrencias}</td>
 								   <td class="celula">
-								     <c:forEach items="${criterio.linhas}" var="linha">
-								       <a href="#${linha}" class="sublinharLink">  ${linha}</a> -
+								     <c:forEach items="${criterio.linhas}" var="linha" varStatus="index">
+								       <a href="#${linha}" class="sublinharLink">  ${linha}</a>
+								       <c:if test="${index.index !=  fn:length(criterio.linhas) -1}"> - </c:if>
 								     </c:forEach> 
 								   </td>
 								</tr>
