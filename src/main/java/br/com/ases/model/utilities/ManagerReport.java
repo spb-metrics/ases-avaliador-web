@@ -35,7 +35,12 @@ public class ManagerReport {
 	public String gerarRelatorio(List list, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
-		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(Ordenacao.ordenarLista(this.carregarBean(list),null)));
+		
+		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(
+				this.criterioOrdenacao(Ordenacao.ordenarLista(this.carregarBean(list),null)))
+				);
+		
+		//JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(Ordenacao.ordenarLista(this.carregarBean(list),null)));
 		
 		return this.getRelatorio(print, tipoRelatorio);
 	}
@@ -120,6 +125,21 @@ public class ManagerReport {
 			listaImpressao.add(relatorioAvaliacao);
 			num = 0;
 			
+		}
+		
+		return listaImpressao;
+	}
+	
+	private List criterioOrdenacao(List <RelatorioAvaliacaoJasper> list){
+		List<RelatorioAvaliacaoJasper> listaImpressao = new ArrayList<RelatorioAvaliacaoJasper>();
+		
+		String[] grupos = {"Marcação", "Comportamento", "Conteúdo/Informação", "Apresentação / Design", "Multimídia", "Formulários"};
+		
+		for(String grupo : grupos){
+			for(RelatorioAvaliacaoJasper relatorioAvaliacaoJasper : list){
+				if(relatorioAvaliacaoJasper.getGrupo().equalsIgnoreCase(grupo))
+					listaImpressao.add(relatorioAvaliacaoJasper);
+			}	
 		}
 		
 		return listaImpressao;

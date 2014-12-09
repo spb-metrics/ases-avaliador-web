@@ -10,14 +10,12 @@ import static br.com.checker.emag.core.Checker.presentation;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +25,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
-
-import org.hibernate.validator.constraints.impl.URLValidator;
 
 import net.sf.jasperreports.engine.JRException;
 import br.com.ases.business.AvaliacaoBusiness;
@@ -83,9 +79,6 @@ public class AvaliacaoController {
 												  int tiprel) throws IOException {
 		
 		
-		
-		
-		
 	if(this.validadarUploadForm(file)){
 		
 		
@@ -95,38 +88,33 @@ public class AvaliacaoController {
 	    while( ( linha = reader.readLine() ) != null )  
 	        html += "\n"+linha;
 		
-	    if(validarConteudoUploadForm(html)){
-	    	
-	    	 //if(tiprel != 5)
-	    	 if(tiprel != 0)
-					this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);
-			    
-				Checker checker = from(html);
-				
-				if(mark) checker.with(marking());
-				if(content) checker.with(content());
-				if(presentation) checker.with(presentation());
-				if(multimedia) checker.with(multimedia());
-				if(form) checker.with(form());
-				if(behavior) checker.with(behavior());
-				
-				html = html.replaceAll("<", "&lt;");
-				html = html.replaceAll(">", "&gt;");
-				html = html.replaceAll(" ", "&nbsp");
-				
-				result.include("html", html);
-				result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
-				this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-				this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
-				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
-				result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
-	    	
-	    }else{
-			 this.validator.onErrorUsePageOf(IndexController.class).index();
-		}	
-	    
-	    
-		   
+		    if(validarConteudoUploadForm(html)){
+		    	
+		    	 /*if(tiprel != 5)
+		    	 		this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);*/
+				    
+					Checker checker = from(html);
+					
+					if(mark) checker.with(marking());
+					if(content) checker.with(content());
+					if(presentation) checker.with(presentation());
+					if(multimedia) checker.with(multimedia());
+					if(form) checker.with(form());
+					if(behavior) checker.with(behavior());
+					
+					html = html.replaceAll("<", "&lt;");
+					html = html.replaceAll(">", "&gt;");
+					html = html.replaceAll(" ", "&nbsp");
+					
+					result.include("html", html);
+					result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
+					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+					this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
+					result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
+		    	
+		    }else
+				 this.validator.onErrorUsePageOf(IndexController.class).index();
 			
 		}else{
 			 this.validator.onErrorUsePageOf(IndexController.class).index();
@@ -145,14 +133,12 @@ public class AvaliacaoController {
 		
 		if(this.validadarCampoForm(url)){
 			
-			//if(tiporel != 5)
-			if(tiporel != 0)
-				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);
+			/*if(tiporel != 5)
+				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);*/
 			
 			if(url.startsWith("www")) url="http://"+url;
 			
 			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
-			
 			
 			Checker checker = from(pagina.getContent());
 			
@@ -212,9 +198,9 @@ public class AvaliacaoController {
 		if(behavior) checker.with(behavior());
 		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 		
-	//================================= GERAR RELATÃ“RIO =============================================//
+	//================================= GERAR RELATÓRIO =============================================//
 		
-				/*Cria um Map de parÃ¢metros*/
+				/*Cria um Map de parâmetros*/
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
 				/*Obtem a nota*/
@@ -297,9 +283,8 @@ public class AvaliacaoController {
 		
 		if(this.validadarCondigoFonteAvaliar(html)){
 		
-			//if(tiporel != 5)
-			if(tiporel != 0)
-				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);
+			/*if(tiporel != 5)
+				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);*/
 			
 			Checker checker = from(html);
 			
@@ -424,7 +409,6 @@ public class AvaliacaoController {
 		String contentType = null;
 		String filename = null;
 		
-		
 		try{
    			switch (tiporel) {
 	   			case 1://Export RTF
@@ -449,7 +433,6 @@ public class AvaliacaoController {
 				break;
    			}
 		} catch (JRException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 	    }
 	   			
@@ -464,25 +447,22 @@ public class AvaliacaoController {
 			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo URL.", "warning"));
 			isValido = false;
 		}else{
-		
-		
-		try {
-		    URL url = new URL(campo);
-		    URLConnection conn = url.openConnection();
-		    conn.connect();
-		} catch (MalformedURLException e) {
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
-			isValido = false;
-		} catch (IOException e) {
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
-			isValido = false;
-		}
+			try {
+			    URL url = new URL(campo);
+			    URLConnection conn = url.openConnection();
+			    conn.connect();
+			} catch (MalformedURLException e) {
+				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				isValido = false;
+			} catch (IOException e) {
+				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				isValido = false;
+			}
 		}
 		
 		return isValido;
 		
 	} 
-	
 	
 	private boolean validadarCondigoFonteAvaliar(String campo){
 		
@@ -532,7 +512,6 @@ public class AvaliacaoController {
 		return true;
 		
 	}
-	
 	
 	private boolean validarConteudoUploadForm(String html){
 		
