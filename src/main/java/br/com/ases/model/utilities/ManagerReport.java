@@ -37,7 +37,7 @@ public class ManagerReport {
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		
 		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(
-				this.criterioOrdenacao(Ordenacao.ordenarLista(this.carregarBean(list),null)))
+				this.criterioOrdenacao(Ordenacao.ordenarLista(this.carregarBean(list),null, true)))
 				);
 		
 		//JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(Ordenacao.ordenarLista(this.carregarBean(list),null)));

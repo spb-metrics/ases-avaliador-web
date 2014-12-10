@@ -13,6 +13,7 @@ import org.apache.commons.mail.EmailException;
 import br.com.ases.model.entity.Contato;
 import br.com.ases.model.utilities.Email;
 import br.com.ases.model.utilities.StringHelper;
+import br.com.ases.model.utilities.Validate;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
@@ -25,7 +26,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 public class ContatoController {
 
 	private Result result;
-	private final Validator validator;
+	private Validator validator;
 	private ServletContext application;
 	
 	public ContatoController(Result result, Validator validator,ServletContext application) {
@@ -42,7 +43,10 @@ public class ContatoController {
 	
 	@Post("/confirmacao")
 	public void confirmation(Contato contato) throws EmailException, MalformedURLException, UnsupportedEncodingException{
-		if(this.validateContato(contato)){
+		
+		Validate validate = new Validate(this.validator);
+		
+		if(validate.contato(contato)){
 			
 			Email email = new Email(this.application.getRealPath("")+"/WEB-INF/mail.properties");
 			String respSendEmail = email.sendEmail("Contato", 
@@ -65,42 +69,9 @@ public class ContatoController {
 			this.result.redirectTo(ContatoController.class).index();
 			
 		}else{
+			 this.validator = validate.getMessage();
 			 this.validator.onErrorUsePageOf(ContatoController.class).index();
 		}
-	}
-	
-	private boolean validateContato(Contato contato){
-		boolean isValido =  true;
-		
-		if(contato.getNome() == null){
-			isValido = false;
-			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo NOME!", "error"));
-	    }
-		
-		if(contato.getEmail() == null){
-			isValido = false;
-			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo E-MAIL!", "error"));
-		}else{
-			Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$"); 
-		    Matcher m = p.matcher(contato.getEmail()); 
-		    if (!m.find()){
-		    	isValido = false;
-		    	this.validator.add(new ValidationMessage(" N&atilde;o foi poss&iacute;vel enviar a mensagem!  E-MAIL '"+contato.getEmail()+"' considerado inv&aacute;lido!", "error"));
-		    }
-		}
-		
-		if(contato.getAssunto() == null){
-			isValido = false;
-			this.validator.add(new ValidationMessage(" N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor escolher uma das op&ccedil;&otilde;es no campo ASSUNTO!", "error"));
-		}
-			
-		if(contato.getMensagem() == null){
-			isValido = false;
-			this.validator.add(new ValidationMessage(" N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo MENSAGEM!", "error"));
-		}
-		
-		return isValido;
-		
 	}
 	
 }

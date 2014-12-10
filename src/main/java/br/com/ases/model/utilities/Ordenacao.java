@@ -11,7 +11,7 @@ import java.util.List;
  * atributos do objeto contido na lista.
  */
 public class Ordenacao implements Comparator {
-
+	
 	private String campo;
 
 	private static Ordenacao instance;
@@ -68,13 +68,18 @@ public class Ordenacao implements Comparator {
 	 * @param campo
 	 * @return List
 	 */
-	public static List ordenarLista(List lista, String campo) {
+	public static List ordenarLista(List lista, String campo, boolean orderDesc) {
 		if (lista != null && !lista.isEmpty() && campo != null && !(campo.trim().length() == 0)) {
 			getInstance().campo = (campo);
 			Collections.sort(lista, getInstance());
 		}else{
 			getInstance().campo = ("tipoErro");
-			Collections.sort(lista, getInstance());
+			
+			if(orderDesc)
+				Collections.sort(lista, Collections.reverseOrder(getInstance()));
+			else
+				Collections.sort(lista, getInstance());
+			
 			getInstance().campo = ("grupo");
 			Collections.sort(lista, getInstance());
 		}

@@ -467,7 +467,7 @@ public class AvaliacaoController {
 	private boolean validadarCondigoFonteAvaliar(String campo){
 		
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo Código a Analisar.", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
 			return false;
 		}
 		
