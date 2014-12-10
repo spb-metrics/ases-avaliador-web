@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="142666df-1bd1-4422-a844-93ee33ac154f">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="167"/>
-	<property name="ireport.y" value="353"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="260"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -252,14 +252,14 @@
 				<text><![CDATA[Nota e Resumo da Avaliação de Acessibilidade]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement uuid="d71b4d68-643d-4ad4-87c1-e981f6bc1c3e" x="15" y="304" width="118" height="85" backcolor="#C0C0C0"/>
+				<reportElement uuid="d71b4d68-643d-4ad4-87c1-e981f6bc1c3e" x="15" y="304" width="118" height="85"/>
 			</rectangle>
 			<textField>
 				<reportElement uuid="c3bc12e0-e3aa-4e3f-8fa7-369a9b1dd950" x="23" y="352" width="103" height="30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="20"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{pPercentualAses}.concat("%")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pPercentualAses}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="97e6a15e-1360-48d0-97b5-63d8a1fa9678" x="15" y="310" width="118" height="18"/>
@@ -492,7 +492,7 @@
 				<textFieldExpression><![CDATA[$P{BEHAVIOR_A}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="458" y="358" width="97" height="16" backcolor="#C0C0C0"/>
+				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="458" y="358" width="98" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{CONTENT_INFORMATION_A}]]></textFieldExpression>
 			</textField>
@@ -507,24 +507,24 @@
 				<textFieldExpression><![CDATA[$P{PRESENTATION_DESIGN_E}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="458" y="376" width="97" height="15" backcolor="#C0C0C0"/>
+				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="458" y="376" width="98" height="15" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{PRESENTATION_DESIGN_A}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="394" width="96" height="16" backcolor="#C0C0C0"/>
+				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="394" width="97" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$P{MULTIMEDIA_A} != null ? $P{MULTIMEDIA_A} : "0"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{MULTIMEDIA_A} != null ? $P{MULTIMEDIA_A} : "0"  ]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="412" width="96" height="16" backcolor="#C0C0C0"/>
+				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="412" width="97" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{FORM_A}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="356" y="394" width="103" height="16" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$P{MULTIMEDIA_E} != null ? $P{MULTIMEDIA_E} : "0"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{MULTIMEDIA_E} != null ? $P{MULTIMEDIA_E} : "0"  ]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="356" y="412" width="103" height="16" backcolor="#C0C0C0"/>
@@ -537,7 +537,7 @@
 				<textFieldExpression><![CDATA[$P{TOTAL_E}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="431" width="96" height="16" backcolor="#808080"/>
+				<reportElement uuid="0341b995-8876-436e-a1cb-5054e47638bd" mode="Opaque" x="459" y="431" width="97" height="16" backcolor="#808080"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{TOTAL_A}]]></textFieldExpression>
 			</textField>
@@ -571,17 +571,17 @@
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement uuid="85d4ce4d-a582-4705-91b7-31366d02c70e" mode="Opaque" x="272" y="41" width="270" height="13" backcolor="#C0C0C0"/>
+				<reportElement uuid="85d4ce4d-a582-4705-91b7-31366d02c70e" mode="Opaque" x="0" y="41" width="458" height="13" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16" mode="Opaque" x="542" y="41" width="14" height="13" backcolor="#C0C0C0"/>
-				<textElement textAlignment="Right"/>
+				<reportElement uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16" mode="Opaque" x="458" y="41" width="97" height="13" backcolor="#C0C0C0"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba" mode="Opaque" x="1" y="41" width="271" height="13" backcolor="#C0C0C0"/>
+				<reportElement uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba" mode="Opaque" x="4" y="41" width="100" height="13" backcolor="#C0C0C0"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
