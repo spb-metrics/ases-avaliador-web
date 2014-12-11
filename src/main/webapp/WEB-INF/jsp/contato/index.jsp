@@ -37,9 +37,9 @@
 						<label for="assunto">Assunto:</label>   
 						<select name="contato.assunto"  id="assunto">
 							<option value="" selected="selected">Selecione o assunto desejado</option>   
-							<option value="informacoes">Informações</option>   
-							<option value="sugestoes">Sugestões</option>   
-							<option value="duvidas">Dúvidas</option>   
+							<option value="Informações">Informações</option>   
+							<option value="Sugestões">Sugestões</option>   
+							<option value="Dúvidas">Dúvidas</option>   
 						</select>
 						<br>
 						<br>   
