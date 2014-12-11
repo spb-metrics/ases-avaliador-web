@@ -44,7 +44,7 @@
 		</c:if>
 		<strong>Título:</strong> ${titulosite}
 		<br>
-		<strong>Tamanho:</strong> 29.8 KB (30475 bytes)
+		<strong>Tamanho:</strong> ${contentLenght} Bytes  
 		<br>
 		<strong>Data/Hora:</strong> ${data}
      </div>

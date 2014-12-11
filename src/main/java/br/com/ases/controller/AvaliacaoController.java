@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -106,6 +107,7 @@ public class AvaliacaoController {
 					html = html.replaceAll(">", "&gt;");
 					html = html.replaceAll(" ", "&nbsp");
 					
+					result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 					result.include("html", html);
 					result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
 					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
@@ -155,6 +157,7 @@ public class AvaliacaoController {
 		    if (mm.find())
 		      	result.include("titulosite", mm.group(2));
 		   
+		    result.include("contentLenght", pagina.getContentLength());
 			result.include("url", url);
 			result.include("html", pagina.getParsedContent());
 			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
@@ -299,6 +302,11 @@ public class AvaliacaoController {
 			html = html.replaceAll(">", "&gt;");
 			html = html.replaceAll(" ", "&nbsp");
 			
+			try {
+				result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			result.include("html", html);
 			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C�digo Fonte ou Arquivo"));
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
