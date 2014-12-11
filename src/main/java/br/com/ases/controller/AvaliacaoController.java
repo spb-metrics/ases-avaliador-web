@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -109,10 +108,15 @@ public class AvaliacaoController {
 					
 					result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 					result.include("html", html);
+					result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
 					result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
 					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 					this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+					
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
+					
 					result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
 		    	
 		    }else
@@ -164,7 +168,9 @@ public class AvaliacaoController {
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 			
 			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized()); 
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", url);
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
 			
 		}else{
 			 this.validator.onErrorUsePageOf(IndexController.class).index();
@@ -173,49 +179,36 @@ public class AvaliacaoController {
 	
 	@Get("/relatorioavaliacao")
 	@Post("/relatorioavaliacao")
-	public FileDownload relatorioAvaliacao(String url, boolean mark, 
-									boolean content,
-									boolean presentation,
-									boolean multimedia, 
-									boolean form, 
-									boolean behavior,
-									int tiporel, boolean isUrl) {
+	public FileDownload relatorioAvaliacao( int tiporel) {
 		
-		Checker checker = null;
-		WebChecker pagina = null;
+		List<SummarizedOccurrence> checkerList = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
+		String urlAvaliada = (String) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("urlAvaliada");
+		String contentLenght = (String) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("contentLenght");
+		this.sumarizarResultasNoResponse(checkerList, result);
 		
-		if(isUrl){
-			if(url.startsWith("www")) url="http://"+url;
-			
-			pagina = WebChecker.from(url).withGetRequest().execute();
-			checker = from(pagina.getContent());
-		}else{
-			checker = from(url);
-		}
-		
-		if(mark) checker.with(marking());
-		if(content) checker.with(content());
-		if(presentation) checker.with(presentation());
-		if(multimedia) checker.with(multimedia());
-		if(form) checker.with(form());
-		if(behavior) checker.with(behavior());
-		this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-		
-	//================================= GERAR RELATÓRIO =============================================//
+		//================================================ GERAR RELATÓRIO =============================================//
 		
 				/*Cria um Map de parâmetros*/
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
 				/*Obtem a nota*/
 				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), isUrl ? url: "Cï¿½digo Fonte ou Arquivo");
-				Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
-			    Matcher mm = pp.matcher(url.toLowerCase());
+				Nota nota = avaliacaoBusiness.obterNota(checkerList, urlAvaliada != "" ? urlAvaliada: "Código Fonte ou Arquivo");
 				
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", isUrl ? url: "Cï¿½digo Fonte ou Arquivo");
-				map.put("pTitulo", mm.find() ? mm.group(2): "governoeletronico");
-				map.put("pTamanho", "29.8 KB (30475 bytes)");
+				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
+				
+				if(urlAvaliada != ""){
+					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
+				    Matcher mm = pp.matcher(urlAvaliada.toLowerCase());  
+			
+				    if (mm.find())
+				        map.put("pTitulo",  mm.group(2));
+				
+				}else
+					 map.put("pTitulo", "governoeletronico");
+				
+				map.put("pTamanho", contentLenght+" Bytes");
 				map.put("pDataHoraAvaliacao",  nota.getData());
 				
 				//Obtem Resumo da AvaliaÃ§Ã£o
@@ -243,22 +236,22 @@ public class AvaliacaoController {
 	   			try {
 		   			switch (tiporel) {
 			   			case 1://Export RTF
-							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 1);
+							path =  managerReport.gerarRelatorio(checkerList, map, 1);
 							contentType = "application/rtf";
 							filename = "RelatorioAvaliacao.rtf";
 						break;
 						case 2://Export XLS
-							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 2);
+							path =  managerReport.gerarRelatorio(checkerList, map, 2);
 							contentType = "application/xls";
 							filename = "RelatorioAvaliacao.xls";
 						break;
 						case 3://Export ODT
-							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 3);
+							path =  managerReport.gerarRelatorio(checkerList, map, 3);
 							contentType = "application/odt";
 							filename = "RelatorioAvaliacao.odt";
 						break;
 						default:
-							path =  managerReport.gerarRelatorio(checker.checkSumarized(), map, 4);
+							path =  managerReport.gerarRelatorio(checkerList, map, 4);
 							contentType = "application/pdf";
 							filename = "RelatorioAvaliacao.pdf";
 						break;
@@ -271,7 +264,7 @@ public class AvaliacaoController {
 	   	
 	   	return new FileDownload(file, contentType, filename);
 	
-	   	//================================= FIM GERAR RELATÃ“RIO =============================================//
+	   //=========================================== FIM GERAR RELATÓRIO =============================================//
 		
 	}
 	
@@ -282,7 +275,7 @@ public class AvaliacaoController {
 											  boolean multimedia, 
 											  boolean form, 
 											  boolean behavior,
-											  int tiporel) {
+											  int tiporel) throws IOException{
 		
 		if(this.validadarCondigoFonteAvaliar(html)){
 		
@@ -302,14 +295,17 @@ public class AvaliacaoController {
 			html = html.replaceAll(">", "&gt;");
 			html = html.replaceAll(" ", "&nbsp");
 			
-			try {
-				result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
+			
+			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
-			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"Cï¿½digo Fonte ou Arquivo"));
+			result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
+			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo"));
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
+			
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 			
 		}else{
