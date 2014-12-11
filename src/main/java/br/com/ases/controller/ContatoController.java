@@ -50,11 +50,12 @@ public class ContatoController {
 			
 			Email email = new Email(this.application.getRealPath("")+"/WEB-INF/mail.properties");
 			String respSendEmail = email.sendEmail("Contato", 
-					"contato.asesweb@gmail.com", 
+					"govbr@planejamento.gov.br", 
 					contato.getNome(), 
 					contato.getEmail(), 
-					contato.getAssunto(),
-					StringHelper.convertFromUTF8(contato.getMensagem())
+					StringHelper.convertFromUTF8(contato.getAssunto()),
+					StringHelper.convertFromUTF8(contato.getMensagem()),
+					true
 					);
 			
 			if(respSendEmail.equals("")){
@@ -62,7 +63,7 @@ public class ContatoController {
 				result.include("status", "success");
 				
 			}else{
-				result.include("mensagem", "Não foi possível enviar a mensagem! Ocorreu o problema: "+respSendEmail);
+				result.include("mensagem", "N&atilde; foi poss&iacute;vel enviar a mensagem! Ocorreu o problema: "+respSendEmail);
 				result.include("status", "error");
 			}
 			

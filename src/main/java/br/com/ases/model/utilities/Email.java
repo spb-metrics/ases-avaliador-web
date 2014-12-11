@@ -2,6 +2,7 @@ package br.com.ases.model.utilities;
 
 import java.io.IOException;
 import java.net.MalformedURLException;  
+import java.util.Date;
 import java.util.Properties;
 
 import org.apache.commons.mail.EmailAttachment;  
@@ -61,13 +62,19 @@ public class Email {
      * @throws EmailException  
      * @throws MalformedURLException
      * @return String*/  
-	public String sendEmail( String nomeDestinatario, String emailDestinatario, String nomeRemetente, String emailRemetente, String assunto, String mensagem) throws EmailException {  
+	public String sendEmail( String nomeDestinatario, String emailDestinatario, String nomeRemetente, String emailRemetente, String assunto, String mensagem, boolean isHtml) throws EmailException {  
        
     	this.email.setHostName(this.host); // o servidor SMTP para envio do e-mail  
     	this.email.addTo(emailDestinatario, nomeDestinatario); //destinatï¿½rio  
-    	this.email.setFrom(emailRemetente, nomeRemetente+" - "+emailRemetente+"-"); // remetente  
-    	this.email.setSubject(assunto); // assunto do e-mail  
-    	this.email.setMsg(mensagem); //conteudo do e-mail  
+    	this.email.setFrom(emailRemetente, emailRemetente+", "); // remetente
+    	this.email.setSubject(assunto); // assunto do e-mail
+    	
+    	if(isHtml)
+    		this.email.setContent("<p>Olá, <b>"+nomeRemetente+"</b> enviou a seguinte mensagem:</p> \n "+mensagem, "text/html");
+    	else
+    		this.email.setMsg("<p>Olá, <b>"+nomeRemetente+"</b> enviou a seguinte mensagem:</p> \n "+mensagem); //conteudo do e-mail  
+    	
+    	this.email.setSentDate(new Date());
     	this.email.setAuthentication(this.authUser, this.authPass);  
     	this.email.setSmtpPort(this.port);  
     	this.email.setSSL(true);  
