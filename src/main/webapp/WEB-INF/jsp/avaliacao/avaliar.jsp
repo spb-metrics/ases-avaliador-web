@@ -103,36 +103,36 @@
 					
 						<div style="display: block;">
 							<a name="pri1" id="pri1"></a>
-							<t:listaResultado lista="${LISTA_MARK}"/>
+							<t:listaResultado cssClass="mark" lista="${LISTA_MARK}"/>
 						</div>
 					 
 					
 						<div style="display: none;">
 							
 							<a name="pri2" id="pri2"></a>
-							<t:listaResultado lista="${LISTA_BEHAVIOR}"/>
+							<t:listaResultado cssClass="behavior" lista="${LISTA_BEHAVIOR}"/>
 						</div>
 					 
 					
 						<div style="display: none;">
 						
 							<a name="pri3" id="pri3"></a>
-							<t:listaResultado lista="${LISTA_CONTENT_INFORMATION}"/>
+							<t:listaResultado cssClass="information" lista="${LISTA_CONTENT_INFORMATION}"/>
 						</div>
 					 
 						<div style="display: none;">
 							<a name="pri4" id="pri4"></a>
-							<t:listaResultado lista="${LISTA_PRESENTATION_DESIGN}"/>
+							<t:listaResultado cssClass="presentation" lista="${LISTA_PRESENTATION_DESIGN}"/>
 						</div> 
 					 
 						<div style="display: none;">
 							<a name="pri5" id="pri5"></a>
-							<t:listaResultado lista="${LISTA_MULTIMEDIA}"/>
+							<t:listaResultado cssClass="multimedia" lista="${LISTA_MULTIMEDIA}"/>
 						</div>
 					 
 						<div style="display: none;">
 							<a name="pri6" id="pri6"></a>
-							<t:listaResultado lista="${LISTA_FORM}"/>
+							<t:listaResultado cssClass="form" lista="${LISTA_FORM}"/>
 						</div>
 					 
 					</div>
