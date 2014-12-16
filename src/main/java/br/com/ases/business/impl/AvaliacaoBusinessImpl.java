@@ -23,7 +23,7 @@ import com.google.gson.GsonBuilder;
 @Component
 public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 	
-	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo/calcular-nota";
+	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo5/avaliar";
 
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
 		
