@@ -494,12 +494,12 @@ public class AvaliacaoController {
 	    Matcher m = p.matcher(campo);
 	    
 	    if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O conteúdo do arquivo não é do tipo HTML ou XHTML.", "warning"));
+	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O código fonte não é do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	    }	
 	    
 		if(campo.length() > 1048576){
-			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido é de 1024KB.", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido para código fonte é até 1024KB.", "warning"));
 			return false;
 		}
 		
