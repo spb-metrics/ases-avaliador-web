@@ -46,6 +46,7 @@ import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
 import br.com.caelum.vraptor.validator.ValidationMessage;
+import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
@@ -66,7 +67,7 @@ public class AvaliacaoController {
 		this.avaliacaoBusiness = avaliacaoBusiness;
 		this.application = application;
 		this.detalheAvaliacao = detalheAvaliacao;
-		
+				
 	}
 	
 	@Path("/avaliar-arquivo")
@@ -139,6 +140,7 @@ public class AvaliacaoController {
 		
 		if(this.validadarCampoForm(url)){
 			
+			
 			/*if(tiporel != 5)
 				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);*/
 			
@@ -209,7 +211,7 @@ public class AvaliacaoController {
 					 map.put("pTitulo", "governoeletronico");
 				
 				map.put("pTamanho", contentLenght+" Bytes");
-				map.put("pDataHoraAvaliacao",  nota.getData());
+				map.put("pDataHoraAvaliacao",   DateUtil.dataHoraAtual());
 				
 				//Obtem Resumo da Avaliação
 				List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
@@ -397,6 +399,16 @@ public class AvaliacaoController {
 		
 		List list = this.detalheAvaliacao.get(rn).getCriterios();
 		
+		
+		List<String> teste = new ArrayList();
+		for(Occurrence occurrence : this.detalheAvaliacao.get(rn).getOcorrencias()){
+			//System.out.println(occurrence.getLine() +": "+occurrence.getTag()+" \n");
+			teste.add(occurrence.getLine() +": "+occurrence.getTag()+"\n");
+			
+		}
+		map.put("teste",  teste);
+		
+				
 		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
 		String recomendacao = "";
 		
@@ -406,6 +418,7 @@ public class AvaliacaoController {
 		}
 		
 		map.put("rnAvaliada",  recomendacao);
+				
 		
 		ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-detalhes-avaliacao.jrxml");
 		
