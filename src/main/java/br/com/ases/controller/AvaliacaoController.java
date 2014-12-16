@@ -499,7 +499,7 @@ public class AvaliacaoController {
 	    }	
 	    
 		if(campo.length() > 1048576){
-			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido para código fonte é até 1024KB.", "warning"));
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Tamanho máximo permitido para código fonte é até 1024KB.", "warning"));
 			return false;
 		}
 		
