@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="142666df-1bd1-4422-a844-93ee33ac154f">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="378"/>
+	<property name="ireport.x" value="169"/>
+	<property name="ireport.y" value="198"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -48,7 +48,7 @@
 	<parameter name="pTamanho" class="java.lang.String"/>
 	<parameter name="pDataHoraAvaliacao" class="java.lang.String"/>
 	<parameter name="rnAvaliada" class="java.lang.String"/>
-	<parameter name="codigoFonte" class="java.util.List"/>
+	<parameter name="teste" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Lyandro\\Desktop\\"]]></defaultValueExpression>
 	</parameter>
@@ -56,47 +56,13 @@
 	<field name="id" class="java.lang.String"/>
 	<field name="numeroOcorrencias" class="java.lang.String"/>
 	<field name="linhas" class="java.util.List"/>
-	<group name="SUB_REPORT">
-		<groupExpression><![CDATA[$P{codigoFonte}]]></groupExpression>
-		<groupHeader>
-			<band height="50"/>
-		</groupHeader>
-		<groupFooter>
-			<band height="50">
-				<subreport>
-					<reportElement uuid="d8cdc113-0414-44a7-b98a-7883450f9983" x="0" y="0" width="554" height="23"/>
-					<subreportParameter name="SUBREPORT_DIR"/>
-					<subreportParameter name="codigoFonte">
-						<subreportParameterExpression><![CDATA[$P{codigoFonte}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="pTitulo">
-						<subreportParameterExpression><![CDATA[$P{pTitulo}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="pDataHoraAvaliacao">
-						<subreportParameterExpression><![CDATA[$P{pDataHoraAvaliacao}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="pTamanho">
-						<subreportParameterExpression><![CDATA[$P{pTamanho}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="pPagina">
-						<subreportParameterExpression><![CDATA[$P{pPagina}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="rnAvaliada">
-						<subreportParameterExpression><![CDATA[$P{rnAvaliada}]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[]]></dataSourceExpression>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub-relatorio-detalhes-avaliacao.jasper"]]></subreportExpression>
-				</subreport>
-			</band>
-		</groupFooter>
-	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="306" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="0" y="283" width="271" height="23" forecolor="#000000"/>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="0" y="283" width="286" height="23" forecolor="#000000"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="18" isBold="false"/>
 				</textElement>
@@ -149,15 +115,15 @@
 				<reportElement uuid="c0051e6c-900d-4392-96a2-b920f9a27131" x="1" y="281" width="555" height="1"/>
 			</line>
 			<staticText>
-				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="270" y="283" width="108" height="23" forecolor="#000000"/>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="285" y="283" width="94" height="23" forecolor="#000000"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="18" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Quantidade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="377" y="283" width="178" height="23" forecolor="#000000"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="378" y="283" width="178" height="23" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="18" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Linha(s) de Cógido Fonte]]></text>
@@ -165,24 +131,24 @@
 		</band>
 	</title>
 	<detail>
-		<band height="62" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<elementGroup/>
 			<textField>
-				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="0" y="0" width="271" height="15" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="0" y="0" width="286" height="15" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<paragraph tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}+"  "+$F{descricao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="270" y="0" width="108" height="15"/>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="285" y="0" width="94" height="15"/>
 				<textElement textAlignment="Center">
 					<paragraph tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numeroOcorrencias}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="377" y="0" width="178" height="15" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="378" y="0" width="177" height="15" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Left">
 					<paragraph tabStopWidth="40"/>
 				</textElement>
@@ -194,25 +160,25 @@
 		<band height="28" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="17" splitType="Stretch">
-			<textField evaluationTime="Report">
-				<reportElement uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16" mode="Opaque" x="526" y="0" width="29" height="13" backcolor="#C0C0C0"/>
-				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
+		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement uuid="85d4ce4d-a582-4705-91b7-31366d02c70e" mode="Opaque" x="271" y="0" width="255" height="13" backcolor="#C0C0C0"/>
+				<reportElement uuid="85d4ce4d-a582-4705-91b7-31366d02c70e" mode="Opaque" x="0" y="41" width="458" height="13" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16" mode="Opaque" x="458" y="41" width="97" height="13" backcolor="#C0C0C0"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba" mode="Opaque" x="0" y="0" width="271" height="13" backcolor="#C0C0C0"/>
+				<reportElement uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba" mode="Opaque" x="4" y="41" width="100" height="13" backcolor="#C0C0C0"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="46" splitType="Stretch"/>
+		<band height="27" splitType="Stretch"/>
 	</summary>
 </jasperReport>
