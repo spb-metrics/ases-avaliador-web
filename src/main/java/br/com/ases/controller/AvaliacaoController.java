@@ -394,19 +394,16 @@ public class AvaliacaoController {
 	@Post("/exportar-detalhes-avaliacao")
 	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn, int tiporel){
 		
-		/*Cria um Map de parï¿½metroe*/
+		/*Cria um Map de parâmetros*/
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		List list = this.detalheAvaliacao.get(rn).getCriterios();
 		
-		
-		List<String> teste = new ArrayList();
+		List<String> codigoFonte = new ArrayList();
 		for(Occurrence occurrence : this.detalheAvaliacao.get(rn).getOcorrencias()){
-			//System.out.println(occurrence.getLine() +": "+occurrence.getTag()+" \n");
-			teste.add(occurrence.getLine() +": "+occurrence.getTag()+"\n");
-			
+			codigoFonte.add(occurrence.getLine() +": "+occurrence.getTag()+"\n");
 		}
-		map.put("teste",  teste);
+		map.put("codigoFonte",  codigoFonte);
 		
 				
 		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
@@ -418,7 +415,8 @@ public class AvaliacaoController {
 		}
 		
 		map.put("rnAvaliada",  recomendacao);
-				
+		map.put("SUBREPORT_DIR",  this.application.getRealPath("")+"/WEB-INF/templates-relatorios/");
+			
 		
 		ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-detalhes-avaliacao.jrxml");
 		
