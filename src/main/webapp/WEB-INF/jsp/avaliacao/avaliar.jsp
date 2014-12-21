@@ -17,7 +17,9 @@
 					   <input type="radio" name="tiporel" value="3">ODT
 					   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/xls.png" alt="xls" title="Gerar em XLS" height="20" width="20">
 					   <input type="radio" name="tiporel" value="2">XLS
-					   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/doc-rtf.png" alt="xls" title="Gerar em RFT" height="20" width="20">
+					   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/csv_text.png" alt="csv" title="Gerar em CSV" height="20" width="20">
+					   <input type="radio" name="tiporel" value="5">CSV
+					   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/doc-rtf.png" alt="rtf" title="Gerar em RFT" height="20" width="20">
 					   <input type="radio" name="tiporel" value="1">RTF
 					
 					   <label for="uri"><input id="url" name="url" value="${url}" size="50" type="hidden"></label>
