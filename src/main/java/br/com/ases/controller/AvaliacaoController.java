@@ -232,39 +232,17 @@ public class AvaliacaoController {
 				
 				ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-avaliacao.jrxml");
 				String path =null;
-				String contentType = null;
-	   			String filename = null;
-	
+			
 	   			try {
-		   			switch (tiporel) {
-			   			case 1://Export RTF
-							path =  managerReport.gerarRelatorio(checkerList, map, 1);
-							contentType = "application/rtf";
-							filename = "RelatorioAvaliacao.rtf";
-						break;
-						case 2://Export XLS
-							path =  managerReport.gerarRelatorio(checkerList, map, 2);
-							contentType = "application/xls";
-							filename = "RelatorioAvaliacao.xls";
-						break;
-						case 3://Export ODT
-							path =  managerReport.gerarRelatorio(checkerList, map, 3);
-							contentType = "application/odt";
-							filename = "RelatorioAvaliacao.odt";
-						break;
-						default:
-							path =  managerReport.gerarRelatorio(checkerList, map, 4);
-							contentType = "application/pdf";
-							filename = "RelatorioAvaliacao.pdf";
-						break;
-		   			}
-	   			} catch (JRException e) {
-					// TODO Auto-generated catch block
+	   				path =  managerReport.gerarRelatorio(checkerList, map, tiporel);
+				} catch (JRException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 	   			File file = new File(path);
 	   	
-	   	return new FileDownload(file, contentType, filename);
+	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
 	
 	   //=========================================== FIM GERAR RELATÓRIO =============================================//
 		
@@ -398,10 +376,9 @@ public class AvaliacaoController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		List list = this.detalheAvaliacao.get(rn).getCriterios();
-		
 		List<String> codigoFonte = new ArrayList();
 		for(Occurrence occurrence : this.detalheAvaliacao.get(rn).getOcorrencias()){
-			codigoFonte.add(occurrence.getLine() +": "+occurrence.getTag()+"\n");
+			codigoFonte.add(occurrence.getLine() +": "+ occurrence.getTag().replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&nbsp"," ")+"\n\n");
 		}
 		map.put("codigoFonte",  codigoFonte);
 		
@@ -421,39 +398,18 @@ public class AvaliacaoController {
 		ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-detalhes-avaliacao.jrxml");
 		
 		String path = null;
-		String contentType = null;
-		String filename = null;
 		
 		try{
-   			switch (tiporel) {
-	   			case 1://Export RTF
-					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
-					contentType = "application/rtf";
-					filename = "DetalhesRelatorioAvaliacao.rtf";
-				break;
-				case 2://Export XLS
-					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
-					contentType = "application/xls";
-					filename = "DetalhesRelatorioAvaliacao.xls";
-				break;
-				case 3://Export ODT
-					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
-					contentType = "application/odt";
-					filename = "DetalhesRelatorioAvaliacao.odt";
-				break;
-				default:
-					path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
-					contentType = "application/pdf";
-					filename = "DetalhesRelatorioAvaliacao.pdf";
-				break;
-   			}
+			path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
 		} catch (JRException e) {
 			e.printStackTrace();
-	    }
+	    } catch (IOException e) {
+			e.printStackTrace();
+		}
 	   			
 	   	File file = new File(path);
 	   	
-	   	return new FileDownload(file, contentType, filename);
+	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
 	}
 	
 	private boolean validadarCampoForm(String campo){

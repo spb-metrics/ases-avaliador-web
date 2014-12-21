@@ -26,13 +26,16 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdtExporter;
 
 public class ManagerReport {
-	String pathTemplate = null;
+	
+	private String pathTemplate = null;
+	private String contentType = null;
+	private String fileName = null;
 	
 	public ManagerReport(String path){
 		this.pathTemplate = path;
 	}
 	
-	public String gerarRelatorio(List list, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
+	public String gerarRelatorio(List list, HashMap<String, Object> map, int tipoRelatorio) throws JRException, IOException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		
@@ -46,7 +49,7 @@ public class ManagerReport {
 	}
 	
 	
-   public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio) throws JRException{
+   public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio) throws JRException, IOException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(criterios));		
@@ -54,13 +57,17 @@ public class ManagerReport {
 		return  this.getRelatorio(print, tipoRelatorio);
    }
 
-   private String getRelatorio(JasperPrint print, int tipoRelatorio) throws JRException{
+   private String getRelatorio(JasperPrint print, int tipoRelatorio) throws JRException, IOException{
     	
     	File out = null;
 		
-		try {	
+		//try {	
 			switch (tipoRelatorio) {
 				case 1://Export RTF
+					
+					this.contentType = "application/rtf";
+					this.fileName = "RelatorioAvaliacao.rtf";
+					
 					JRAbstractExporter exporterRtf = new JRRtfExporter();                 
 					exporterRtf.setParameter(JRExporterParameter.CHARACTER_ENCODING, "UTF-8");                  
 					exporterRtf.setParameter(JRExporterParameter.JASPER_PRINT, print); 
@@ -69,6 +76,10 @@ public class ManagerReport {
 					exporterRtf.exportReport();
 				break;
 				case 2://Export XLS
+					
+					this.contentType = "application/xls";
+					this.fileName = "RelatorioAvaliacao.xls";
+					
 					JRXlsExporter exporterXls = new JRXlsExporter();
 					exporterXls.setParameter(JRExporterParameter.JASPER_PRINT, print);
 					exporterXls.setParameter(JRExporterParameter.IGNORE_PAGE_MARGINS, true);
@@ -77,6 +88,10 @@ public class ManagerReport {
 					exporterXls.exportReport();
 				break;
 				case 3://Export ODT
+					
+					this.contentType = "application/odt";
+					this.fileName = "RelatorioAvaliacao.odt";
+					
 					JROdtExporter exporterODT = new JROdtExporter();
 				    exporterODT.setParameter(JRExporterParameter.JASPER_PRINT, print);
 				    exporterODT.setParameter(JRExporterParameter.IGNORE_PAGE_MARGINS, true);
@@ -85,26 +100,39 @@ public class ManagerReport {
 					exporterODT.exportReport();
 				break;
 				case 5://Export CSV
+										
+					this.contentType = "text/csv";
+					this.fileName = "RelatorioAvaliacao.csv";
+					
 					JRCsvExporter csvExporter = new JRCsvExporter();
 					csvExporter.setParameter(JRCsvExporterParameter.FIELD_DELIMITER, ",");
 					csvExporter.setParameter(JRCsvExporterParameter.CHARACTER_ENCODING, "UTF-8");
-					csvExporter.setParameter(JRCsvExporterParameter.RECORD_DELIMITER, ",");
+					//csvExporter.setParameter(JRCsvExporterParameter.RECORD_DELIMITER, ",");
 					csvExporter.setParameter(JRCsvExporterParameter.JASPER_PRINT, print);
 					csvExporter.setParameter(JRCsvExporterParameter.IGNORE_PAGE_MARGINS, true);
 					out = File.createTempFile("output.", ".csv");
 					csvExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(out));
 					csvExporter.exportReport();
+					
+					
 				break;
 				default:
+					
+					this.contentType = "application/pdf";
+					this.fileName = "RelatorioAvaliacao.pdf";
+					
 					out = File.createTempFile("output.", ".pdf");
 					JasperExportManager.exportReportToPdfStream(print, new FileOutputStream(out));
 				break;
 				
+				
 			}
 		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//} catch (IOException e) {
+			//e.printStackTrace();
+		//}
+
+	
 		
 		return out.getAbsolutePath();
     } 
@@ -143,5 +171,14 @@ public class ManagerReport {
 		}
 		
 		return listaImpressao;
+	}
+	
+	
+	public String getContentType(){
+		return this.contentType;
+	}
+	
+	public String getFileName(){
+		return this.fileName;
 	}
 }
