@@ -5,8 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
 
 import lombok.Getter;
+
+import org.apache.poi.hssf.record.formula.functions.T;
+
 import br.com.ases.infra.CriterioProperties;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.ioc.SessionScoped;
@@ -36,11 +41,11 @@ public class DetalheAvaliacao {
 	public @Getter class Detalhe {
 		
 		private List<Criterio> criterios;
-		private List<Occurrence> ocorrencias;
+		private Set<Occurrence> ocorrencias;
 		
 		public Detalhe(String rn,Map<String, List<Occurrence>> map) {
 			
-			this.ocorrencias = new ArrayList<Occurrence>();
+			this.ocorrencias = new TreeSet<Occurrence>();
 			this.criterios = new ArrayList<DetalheAvaliacao.Criterio>();
 			
 			for(Entry<String, List<Occurrence>> entry : map.entrySet()){
