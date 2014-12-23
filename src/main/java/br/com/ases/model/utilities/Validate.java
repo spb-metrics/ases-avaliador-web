@@ -1,10 +1,15 @@
 package br.com.ases.model.utilities;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.com.ases.model.entity.Contato;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 
 public class Validate {
@@ -54,6 +59,96 @@ public class Validate {
 			}
 		
 		return isValido;
+	}
+	
+	
+	
+	
+	public boolean url(String campo){
+		
+		boolean isValido = true;
+		if(campo == null || campo.length() <= 10 ){
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo URL.", "warning"));
+			isValido = false;
+		}else{
+			try {
+			    URL url = new URL(campo);
+			    URLConnection conn = url.openConnection();
+			    conn.connect();
+			} catch (MalformedURLException e) {
+				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				isValido = false;
+			} catch (IOException e) {
+				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				isValido = false;
+			}
+		}
+		
+		return isValido;
+	}
+	
+	
+	public boolean condigoFonte(String campo){
+		
+		if(campo == null || campo.length() <= 10 ){
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
+			return false;
+		}
+		
+		String reg = "<html.*?>(.*)<\\/html>";
+		 
+	    Pattern p = Pattern.compile(reg,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE );
+	    Matcher m = p.matcher(campo);
+	    
+	    if(!m.find()){
+	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O código fonte não é do tipo HTML ou XHTML.", "warning"));
+	    	return false;
+	    }	
+	    
+		if(campo.length() > 1048576){
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Tamanho máximo permitido para código fonte é até 1024KB.", "warning"));
+			return false;
+		}
+		
+		return true;
+		
+	} 
+	
+	public boolean uploadForm(UploadedFile file){
+		
+		if(file == null ){
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor realizar o upload do arquivo.", "warning"));
+			return false;
+		}
+		
+		String fileType = file.getContentType();
+		if(!(fileType.equals("text/html") || fileType.equals("application/xhtml+xml") ||  fileType.equals("application/xhtml") ||  fileType.equals("application/xml"))){
+			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! As extensões permitidas para o arquivo são: .xht, .htm, .html ou .xhtml.", "warning"));
+			return false;
+		}
+		
+		if(file.getSize() > 1048576){
+			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido é de 1024KB.", "warning"));
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
+	public boolean conteudoUploadForm(String html){
+		
+		String reg = "<html.*?>(.*)<\\/html>";
+	     
+	    Pattern p = Pattern.compile(reg,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
+	    Matcher m = p.matcher(html);
+	        
+	     if(!m.find()){
+	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O conteúdo do arquivo não é do tipo HTML ou XHTML.", "warning"));
+	    	return false;
+	     }	
+		
+	     return true;
 	}
 	
 	public Validator getMessage(){

@@ -36,6 +36,7 @@ import br.com.ases.domain.ResumoAvaliacao;
 import br.com.ases.infra.WebChecker;
 import br.com.ases.model.utilities.DateUtil;
 import br.com.ases.model.utilities.ManagerReport;
+import br.com.ases.model.utilities.Validate;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -55,7 +56,7 @@ import br.com.checker.emag.core.Checker;
 public class AvaliacaoController {
 	
 	private Result result;
-	private final Validator validator;
+	private Validator validator;
 	private AvaliacaoBusiness avaliacaoBusiness;
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	private ServletContext application;
@@ -78,9 +79,9 @@ public class AvaliacaoController {
 												  boolean form,
 												  boolean behavior,
 												  int tiprel) throws IOException {
+	Validate validate = new Validate(this.validator);	
 		
-		
-	if(this.validadarUploadForm(file)){
+	if(validate.uploadForm(file)){
 		
 		
 		BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
@@ -89,7 +90,7 @@ public class AvaliacaoController {
 	    while( ( linha = reader.readLine() ) != null )  
 	        html += "\n"+linha;
 		
-		    if(validarConteudoUploadForm(html)){
+		    if(validate.conteudoUploadForm(html)){
 		    	
 		    	 /*if(tiprel != 5)
 		    	 		this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);*/
@@ -120,10 +121,13 @@ public class AvaliacaoController {
 					
 					result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
 		    	
-		    }else
-				 this.validator.onErrorUsePageOf(IndexController.class).index();
+		    }else{
+		    	this.validator = validate.getMessage();
+				this.validator.onErrorUsePageOf(IndexController.class).index();
+			}
 			
 		}else{
+			 this.validator = validate.getMessage();
 			 this.validator.onErrorUsePageOf(IndexController.class).index();
 		}	
     }
@@ -138,7 +142,9 @@ public class AvaliacaoController {
 									boolean behavior,
 									int tiporel) {
 		
-		if(this.validadarCampoForm(url)){
+		Validate validate = new Validate(this.validator);
+		
+		if(validate.url(url)){
 			
 			
 			/*if(tiporel != 5)
@@ -175,6 +181,7 @@ public class AvaliacaoController {
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
 			
 		}else{
+			 this.validator = validate.getMessage();
 			 this.validator.onErrorUsePageOf(IndexController.class).index();
 		}
 	}
@@ -257,7 +264,9 @@ public class AvaliacaoController {
 											  boolean behavior,
 											  int tiporel) throws IOException{
 		
-		if(this.validadarCondigoFonteAvaliar(html)){
+		Validate validate = new Validate(this.validator);
+		
+		if(validate.condigoFonte(html)){
 		
 			/*if(tiporel != 5)
 				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);*/
@@ -289,7 +298,8 @@ public class AvaliacaoController {
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 			
 		}else{
-			 this.validator.onErrorUsePageOf(IndexController.class).index();
+			this.validator = validate.getMessage();
+			this.validator.onErrorUsePageOf(IndexController.class).index();
 		}
 	}
 	
@@ -412,7 +422,7 @@ public class AvaliacaoController {
 	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
 	}
 	
-	private boolean validadarCampoForm(String campo){
+	/*private boolean validadarCampoForm(String campo){
 		boolean isValido = true;
 		if(campo == null || campo.length() <= 10 ){
 			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo URL.", "warning"));
@@ -433,9 +443,9 @@ public class AvaliacaoController {
 		
 		return isValido;
 		
-	} 
+	} */
 	
-	private boolean validadarCondigoFonteAvaliar(String campo){
+	/*private boolean validadarCondigoFonteAvaliar(String campo){
 		
 		if(campo == null || campo.length() <= 10 ){
 			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
@@ -459,10 +469,10 @@ public class AvaliacaoController {
 		
 		return true;
 		
-	} 
+	} */
 
 
-	private boolean validadarUploadForm(UploadedFile file){
+	/*private boolean validadarUploadForm(UploadedFile file){
 		
 		if(file == null ){
 			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor realizar o upload do arquivo.", "warning"));
@@ -482,9 +492,9 @@ public class AvaliacaoController {
 		
 		return true;
 		
-	}
+	}*/
 	
-	private boolean validarConteudoUploadForm(String html){
+	/*private boolean validarConteudoUploadForm(String html){
 		
 		String reg = "<html.*?>(.*)<\\/html>";
 	     
@@ -497,6 +507,6 @@ public class AvaliacaoController {
 	     }	
 		
 	     return true;
-	}
+	}*/
 	
 }
