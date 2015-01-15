@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="142666df-1bd1-4422-a844-93ee33ac154f">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="167"/>
-	<property name="ireport.y" value="353"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="711"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -100,7 +100,7 @@
 	<group name="CategoriaErro">
 		<groupExpression><![CDATA[$F{tipoErro}]]></groupExpression>
 		<groupHeader>
-			<band height="49">
+			<band height="50">
 				<line>
 					<reportElement uuid="0aed7a00-8ee0-478b-aeb6-95754f60e833" x="23" y="18" width="532" height="1"/>
 				</line>
@@ -544,10 +544,10 @@
 		</band>
 	</title>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<elementGroup/>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="b66076e4-f06c-4928-b9dc-84084651256b" stretchType="RelativeToTallestObject" x="385" y="0" width="170" height="16"/>
+				<reportElement uuid="b66076e4-f06c-4928-b9dc-84084651256b" stretchType="RelativeToTallestObject" x="380" y="0" width="175" height="18" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{linhasCodigo}]]></textFieldExpression>
 			</textField>
