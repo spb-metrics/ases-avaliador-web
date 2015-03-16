@@ -35,7 +35,7 @@ public class ManagerReport {
 		this.pathTemplate = path;
 	}
 	
-	public String gerarRelatorio(List list, HashMap<String, Object> map, int tipoRelatorio) throws JRException, IOException{
+	public String gerarRelatorio(List list, HashMap<String, Object> map, int tipoRelatorio, String fileName) throws JRException, IOException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		
@@ -45,19 +45,19 @@ public class ManagerReport {
 		
 		//JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(Ordenacao.ordenarLista(this.carregarBean(list),null)));
 		
-		return this.getRelatorio(print, tipoRelatorio);
+		return this.getRelatorio(print, tipoRelatorio, fileName);
 	}
 	
 	
-   public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio) throws JRException, IOException{
+   public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio,  String fileName) throws JRException, IOException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(criterios));		
 	   
-		return  this.getRelatorio(print, tipoRelatorio);
+		return  this.getRelatorio(print, tipoRelatorio, fileName);
    }
 
-   private String getRelatorio(JasperPrint print, int tipoRelatorio) throws JRException, IOException{
+   private String getRelatorio(JasperPrint print, int tipoRelatorio, String fileName) throws JRException, IOException{
     	
     	File out = null;
 		
@@ -66,7 +66,7 @@ public class ManagerReport {
 				case 1://Export RTF
 					
 					this.contentType = "application/rtf";
-					this.fileName = "RelatorioAvaliacao.rtf";
+					this.fileName = fileName+".rtf";
 					
 					JRAbstractExporter exporterRtf = new JRRtfExporter();                 
 					exporterRtf.setParameter(JRExporterParameter.CHARACTER_ENCODING, "UTF-8");                  
@@ -78,7 +78,7 @@ public class ManagerReport {
 				case 2://Export XLS
 					
 					this.contentType = "application/xls";
-					this.fileName = "RelatorioAvaliacao.xls";
+					this.fileName = fileName+".xls";
 					
 					JRXlsExporter exporterXls = new JRXlsExporter();
 					exporterXls.setParameter(JRExporterParameter.JASPER_PRINT, print);
@@ -90,7 +90,7 @@ public class ManagerReport {
 				case 3://Export ODT
 					
 					this.contentType = "application/odt";
-					this.fileName = "RelatorioAvaliacao.odt";
+					this.fileName = fileName+".odt";
 					
 					JROdtExporter exporterODT = new JROdtExporter();
 				    exporterODT.setParameter(JRExporterParameter.JASPER_PRINT, print);
@@ -102,7 +102,7 @@ public class ManagerReport {
 				case 5://Export CSV
 										
 					this.contentType = "text/csv";
-					this.fileName = "RelatorioAvaliacao.csv";
+					this.fileName = fileName+".csv";
 					
 					JRCsvExporter csvExporter = new JRCsvExporter();
 					csvExporter.setParameter(JRCsvExporterParameter.FIELD_DELIMITER, ",");
@@ -119,7 +119,7 @@ public class ManagerReport {
 				default:
 					
 					this.contentType = "application/pdf";
-					this.fileName = "RelatorioAvaliacao.pdf";
+					this.fileName = fileName+".pdf";
 					
 					out = File.createTempFile("output.", ".pdf");
 					JasperExportManager.exportReportToPdfStream(print, new FileOutputStream(out));

@@ -241,7 +241,7 @@ public class AvaliacaoController {
 				String path =null;
 			
 	   			try {
-	   				path =  managerReport.gerarRelatorio(checkerList, map, tiporel);
+	   				path =  managerReport.gerarRelatorio(checkerList, map, tiporel, "RelatorioAvaliacao");
 				} catch (JRException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -290,6 +290,7 @@ public class AvaliacaoController {
 			result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
 			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo"));
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 			
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
@@ -410,7 +411,7 @@ public class AvaliacaoController {
 		String path = null;
 		
 		try{
-			path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel);
+			path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel, "DetalhesRelatorioAvaliacao");
 		} catch (JRException e) {
 			e.printStackTrace();
 	    } catch (IOException e) {
