@@ -2,6 +2,7 @@ package br.com.ases.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -9,9 +10,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import lombok.Getter;
-
-import org.apache.poi.hssf.record.formula.functions.T;
-
 import br.com.ases.infra.CriterioProperties;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.ioc.SessionScoped;
@@ -76,6 +74,12 @@ public class DetalheAvaliacao {
 				linhas.add(ocorrencia.getLine().toString());
 			}
 			this.numeroOcorrencias = String.valueOf(ocorrencias.size());
+			
+			Collections.sort(linhas, new Comparator<String>() {
+				public int compare(String o1, String o2) {
+					return Integer.valueOf(o1).compareTo(Integer.valueOf(o2));
+				}
+			});
 		}
 
 		public int compareTo(Criterio other) {
