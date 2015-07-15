@@ -88,7 +88,8 @@ public class AvaliacaoController {
 		String html = "";   
 	    String linha = "";  
 	    while( ( linha = reader.readLine() ) != null )  
-	        html += "\n"+linha;
+	        //html += "\n"+linha;
+	    	html += linha+"\n";
 		
 		    if(validate.conteudoUploadForm(html)){
 		    	

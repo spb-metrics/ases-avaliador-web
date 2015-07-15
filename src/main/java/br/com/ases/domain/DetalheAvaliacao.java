@@ -39,11 +39,13 @@ public class DetalheAvaliacao {
 	public @Getter class Detalhe {
 		
 		private List<Criterio> criterios;
-		private Set<Occurrence> ocorrencias;
+		//private Set<Occurrence> ocorrencias;
+		private List<Occurrence> ocorrencias;
 		
 		public Detalhe(String rn,Map<String, List<Occurrence>> map) {
 			
-			this.ocorrencias = new TreeSet<Occurrence>();
+			//this.ocorrencias = new TreeSet<Occurrence>();
+			this.ocorrencias = new ArrayList<Occurrence>();
 			this.criterios = new ArrayList<DetalheAvaliacao.Criterio>();
 			
 			for(Entry<String, List<Occurrence>> entry : map.entrySet()){
