@@ -1,11 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page  contentType="text/html; charset=UTF-8"  %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<html lang="pt_br">
-	<head>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+<t:baseLayout>
+   <jsp:body>
+		<link rel="stylesheet" href="css/bootstrap.alert.css"> 
+		<!-- <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css"> -->
 		
 		<title>Lamentamos</title>
 	</head>
@@ -18,8 +19,9 @@
 				<div class="alert alert-error">
 					Não foi possível realizar a avaliação. Verifique o preenchimento da url, arquivo ou o codigo inserido e se o conteúdo está disponível.
 				</div>
+				<input type="button" value="Voltar" onClick="history.go(-1)"> 
 			</div>
 			
 		</div>
-	</body>
-</html>
+	</jsp:body>
+</t:baseLayout>

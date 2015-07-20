@@ -50,19 +50,22 @@
 									<td width="56%" class="topo2"> Linha(s) de Cógido Fonte</td>
 								</tr>
 					
+									
+				
 					
-					 <c:forEach items="${detalhe.criterios}" var="criterio">
-					
-					
+				 	 <c:forEach items="${detalhe.criterios}" var="criterio">
 								<tr>
 								   <td class="celula" width="2%"> ${criterio.id} </td>
 								   <td class="celula" width="60%" align="left">${criterio.descricao}</td>
 								   
 								   <td class="celula">${criterio.numeroOcorrencias}</td>
 								   <td class="celula">
-								     <c:forEach items="${criterio.linhas}" var="linha" varStatus="index">
-								       <a href="#${linha}" class="sublinharLink">  ${linha}</a>
-								       <c:if test="${index.index !=  fn:length(criterio.linhas) -1}"> - </c:if>
+								     <c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
+								     
+								     	<c:set var="linhaCod" value="${fn:split(linha, '.')}" />
+								     	<a href="#${criterio.id}.${linha}" class="sublinharLink">${linhaCod[0]}</a>
+								       	<c:if test="${index.index !=  fn:length(criterio.linhas) -1}"> - </c:if>
+					
 								     </c:forEach> 
 								   </td>
 								</tr>
@@ -73,6 +76,8 @@
 						</table>
 			</div>
 			
+			
+			
 			<div class="tile --NOVALUE--" align="left">
 			
 				<div class="outstanding-header" align="left">
@@ -80,8 +85,8 @@
 				</div>
 				<div id="codigo" align="left">
 					<pre>
-						<c:forEach items="${detalhe.ocorrencias}" var="ocorrencia">
-							<a name="${ocorrencia.line}">${ocorrencia.line}: ${ocorrencia.tag}</a>
+						<c:forEach items="${listOcorrencia}" var="ocorrencia" varStatus="index">
+							<a name="${ocorrencia.criterio}.${ocorrencia.line}.${ocorrencia.column}">${ocorrencia.line} : ${ocorrencia.tag}</a>
 						</c:forEach> 
 					</pre>
 				</div>
@@ -89,7 +94,7 @@
 			</div>	
 			<!-- Término Conteudo-->
      
-       		
+       		<%--  --%>
        		
        		
        		
