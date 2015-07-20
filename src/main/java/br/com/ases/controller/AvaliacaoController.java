@@ -17,6 +17,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
+
+import org.eclipse.jdt.internal.compiler.ast.ForeachStatement;
 
 import net.sf.jasperreports.engine.JRException;
 import br.com.ases.business.AvaliacaoBusiness;
@@ -367,7 +370,17 @@ public class AvaliacaoController {
 	
 	@Path("/detalhes-avaliacao/{rn}")
 	public void detalhesAvaliacao(OccurrenceKey rn){
+		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn).getOcorrencias();
+		
+		//Sorting
+		Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
+		    public int compare(Occurrence  occurrence1, Occurrence  occurrence2){
+	            return  occurrence1.getCriterio().compareTo(occurrence2.getCriterio());
+	        }
+	    });
+		
 		result.include("detalhe",this.detalheAvaliacao.get(rn));
+		result.include("listOcorrencia",listOcorrencias);
 		
 		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
 		String recomendacao = "";

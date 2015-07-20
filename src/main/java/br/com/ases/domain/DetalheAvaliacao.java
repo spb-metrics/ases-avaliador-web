@@ -64,15 +64,18 @@ public class DetalheAvaliacao {
 		private String id;
 		private String descricao;
 		private List<String> linhas;
+		private List<String> linhasColunas;
 		private String numeroOcorrencias;
 		
 		public Criterio(String rn, String key,List<Occurrence> ocorrencias) {
 			this.linhas = new ArrayList<String>();
+			this.linhasColunas = new ArrayList<String>();
 			//TODO concatenar rn + key
 			this.descricao = criterioProperties.getDescricao(rn+"."+key);
 			
 			this.id = key;
 			for(Occurrence ocorrencia : ocorrencias) {
+				linhasColunas.add(ocorrencia.getLine().toString()+"."+ocorrencia.getColumn().toString());
 				linhas.add(ocorrencia.getLine().toString());
 			}
 			this.numeroOcorrencias = String.valueOf(ocorrencias.size());
