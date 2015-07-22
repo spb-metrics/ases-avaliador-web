@@ -51,8 +51,12 @@ public class DetalheAvaliacao {
 			for(Entry<String, List<Occurrence>> entry : map.entrySet()){
 				criterios.add(new Criterio(rn,entry.getKey(),entry.getValue()));
 				
-				for(Occurrence ocorrencia : entry.getValue())
+				int count = 0;
+				for(Occurrence ocorrencia : entry.getValue()){
+					ocorrencia.setPosLineOccurrence(ocorrencia.getLine().toString()+"."+ocorrencia.getColumn().toString()+"."+count);
 					ocorrencias.add(ocorrencia);
+					count++;
+				}	
 			}
 			
 			Collections.sort(this.criterios);
@@ -74,10 +78,14 @@ public class DetalheAvaliacao {
 			this.descricao = criterioProperties.getDescricao(rn+"."+key);
 			
 			this.id = key;
+			
+			int count = 0;
 			for(Occurrence ocorrencia : ocorrencias) {
-				linhasColunas.add(ocorrencia.getLine().toString()+"."+ocorrencia.getColumn().toString());
+				linhasColunas.add(ocorrencia.getLine().toString()+"."+ocorrencia.getColumn().toString()+"."+count);
 				linhas.add(ocorrencia.getLine().toString());
+				count++;
 			}
+			
 			this.numeroOcorrencias = String.valueOf(ocorrencias.size());
 			
 			Collections.sort(linhas, new Comparator<String>() {

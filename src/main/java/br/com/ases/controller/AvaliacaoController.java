@@ -379,6 +379,13 @@ public class AvaliacaoController {
 	        }
 	    });
 		
+		//Sorting
+			Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
+			    public int compare(Occurrence  occurrence1, Occurrence  occurrence2){
+		            return  occurrence1.getLine().compareTo(occurrence2.getLine());
+		        }
+		    });
+		
 		result.include("detalhe",this.detalheAvaliacao.get(rn));
 		result.include("listOcorrencia",listOcorrencias);
 		

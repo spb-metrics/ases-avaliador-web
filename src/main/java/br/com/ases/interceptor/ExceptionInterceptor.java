@@ -25,13 +25,14 @@ public class ExceptionInterceptor implements Interceptor {
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object instance) throws InterceptionException {
 		
-		 try {
-	            stack.next(method, instance);
-	            
-	        } catch (Exception e) {
-	        	result.forwardTo(ErrorController.class).index();
-	        	e.printStackTrace();
-	        }
+		try {
+            stack.next(method, instance);
+            
+        } catch (Exception e) {
+        	result.include("error",e.getMessage());
+        	result.forwardTo(ErrorController.class).index();
+        	e.printStackTrace();
+        }
 		
 	}
 
