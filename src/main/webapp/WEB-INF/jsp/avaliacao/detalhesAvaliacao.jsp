@@ -81,8 +81,8 @@
 					<h2 class="outstanding-title">Código Fonte</h2>
 				</div>
 				<div id="codigo" align="left">
-					<c:set var="testeCrit" value="${listOcorrencia[0].criterio}"/>
-					<c:set var="count1" value="0"/>
+					<%-- <c:set var="testeCrit" value="${listOcorrencia[0].criterio}"/>
+					<c:set var="count1" value="0"/> --%>
 					
 					<pre>
 						<c:forEach items="${listOcorrencia}" var="ocorrencia" varStatus="index">
