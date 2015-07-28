@@ -199,17 +199,17 @@ public class AvaliacaoController {
 		String contentLenght = (String) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("contentLenght");
 		this.sumarizarResultasNoResponse(checkerList, result);
 		
-		//================================================ GERAR RELATÓRIO =============================================//
+		//================================================ GERAR RELATï¿½RIO =============================================//
 		
-				/*Cria um Map de parâmetros*/
+				/*Cria um Map de parï¿½metros*/
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
 				/*Obtem a nota*/
 				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota = avaliacaoBusiness.obterNota(checkerList, urlAvaliada != "" ? urlAvaliada: "Código Fonte ou Arquivo");
+				Nota nota = avaliacaoBusiness.obterNota(checkerList, urlAvaliada != "" ? urlAvaliada: "Cï¿½digo Fonte ou Arquivo");
 				
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
+				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Cï¿½digo Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
 					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
@@ -255,7 +255,7 @@ public class AvaliacaoController {
 	   	
 	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
 	
-	   //=========================================== FIM GERAR RELATÓRIO =============================================//
+	   //=========================================== FIM GERAR RELATï¿½RIO =============================================//
 		
 	}
 	
@@ -373,11 +373,11 @@ public class AvaliacaoController {
 		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn).getOcorrencias();
 		
 		//Sorting
-		Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
+		/*Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
 		    public int compare(Occurrence  occurrence1, Occurrence  occurrence2){
 	            return  occurrence1.getCriterio().compareTo(occurrence2.getCriterio());
 	        }
-	    });
+	    });*/
 		
 		//Sorting
 			Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
@@ -404,7 +404,7 @@ public class AvaliacaoController {
 	@Post("/exportar-detalhes-avaliacao")
 	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn, int tiporel){
 		
-		/*Cria um Map de parâmetros*/
+		/*Cria um Map de parï¿½metros*/
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		List list = this.detalheAvaliacao.get(rn).getCriterios();
@@ -447,7 +447,7 @@ public class AvaliacaoController {
 	/*private boolean validadarCampoForm(String campo){
 		boolean isValido = true;
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo URL.", "warning"));
+			this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! Favor preencher o campo URL.", "warning"));
 			isValido = false;
 		}else{
 			try {
@@ -455,10 +455,10 @@ public class AvaliacaoController {
 			    URLConnection conn = url.openConnection();
 			    conn.connect();
 			} catch (MalformedURLException e) {
-				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! URL "+campo+" considerada invï¿½lida.", "warning"));
 				isValido = false;
 			} catch (IOException e) {
-				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! URL "+campo+" considerada invï¿½lida.", "warning"));
 				isValido = false;
 			}
 		}
@@ -470,7 +470,7 @@ public class AvaliacaoController {
 	/*private boolean validadarCondigoFonteAvaliar(String campo){
 		
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
+			this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
 			return false;
 		}
 		
@@ -480,12 +480,12 @@ public class AvaliacaoController {
 	    Matcher m = p.matcher(campo);
 	    
 	    if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O código fonte não é do tipo HTML ou XHTML.", "warning"));
+	    	this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! O cï¿½digo fonte nï¿½o ï¿½ do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	    }	
 	    
 		if(campo.length() > 1048576){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Tamanho máximo permitido para código fonte é até 1024KB.", "warning"));
+			this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! Tamanho mï¿½ximo permitido para cï¿½digo fonte ï¿½ atï¿½ 1024KB.", "warning"));
 			return false;
 		}
 		
@@ -497,18 +497,18 @@ public class AvaliacaoController {
 	/*private boolean validadarUploadForm(UploadedFile file){
 		
 		if(file == null ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor realizar o upload do arquivo.", "warning"));
+			this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! Favor realizar o upload do arquivo.", "warning"));
 			return false;
 		}
 		
 		String fileType = file.getContentType();
 		if(!(fileType.equals("text/html") || fileType.equals("application/xhtml+xml") ||  fileType.equals("application/xhtml") ||  fileType.equals("application/xml"))){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! As extensões permitidas para o arquivo são: .xht, .htm, .html ou .xhtml.", "warning"));
+			this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! As extensï¿½es permitidas para o arquivo sï¿½o: .xht, .htm, .html ou .xhtml.", "warning"));
 			return false;
 		}
 		
 		if(file.getSize() > 1048576){
-			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido é de 1024KB.", "warning"));
+			this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar o upload do arquivo! Tamanho mï¿½ximo permitido ï¿½ de 1024KB.", "warning"));
 			return false;
 		}
 		
@@ -524,7 +524,7 @@ public class AvaliacaoController {
 	    Matcher m = p.matcher(html);
 	        
 	     if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O conteúdo do arquivo não é do tipo HTML ou XHTML.", "warning"));
+	    	this.validator.add(new ValidationMessage("Nï¿½o foi possï¿½vel realizar a avaliaï¿½ï¿½o! O conteï¿½do do arquivo nï¿½o ï¿½ do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	     }	
 		
