@@ -50,7 +50,7 @@ public class Validate {
 		}
 			
 		if(contato.getMensagem() == null){
-			this.validator.add(new ValidationMessage(" N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo MENSAGEM!", "error"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo MENSAGEM!", "error"));
 			isValido = false;
 		}else
 			if(contato.getMensagem().length() > 500){
@@ -68,7 +68,7 @@ public class Validate {
 		
 		boolean isValido = true;
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo URL.", "warning"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! Favor preencher o campo URL.", "warning"));
 			isValido = false;
 		}else{
 			try {
@@ -76,10 +76,10 @@ public class Validate {
 			    URLConnection conn = url.openConnection();
 			    conn.connect();
 			} catch (MalformedURLException e) {
-				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" considerada inv&aacute;lida.", "warning"));
 				isValido = false;
 			} catch (IOException e) {
-				this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! URL "+campo+" considerada inválida.", "warning"));
+				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" considerada inv&aacute;lida.", "warning"));
 				isValido = false;
 			}
 		}
@@ -91,7 +91,7 @@ public class Validate {
 	public boolean condigoFonte(String campo){
 		
 		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
 			return false;
 		}
 		
@@ -101,12 +101,12 @@ public class Validate {
 	    Matcher m = p.matcher(campo);
 	    
 	    if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O código fonte não é do tipo HTML ou XHTML.", "warning"));
+	    	this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! O c&oacute;digo fonte n&atilde;o &eacute; do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	    }	
 	    
 		if(campo.length() > 1048576){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Tamanho máximo permitido para código fonte é até 1024KB.", "warning"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! Tamanho m&aacute;ximo permitido para c&oacute;digo fonte &eacute; at&eacute; 1024KB.", "warning"));
 			return false;
 		}
 		
@@ -117,18 +117,18 @@ public class Validate {
 	public boolean uploadForm(UploadedFile file){
 		
 		if(file == null ){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! Favor realizar o upload do arquivo.", "warning"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! Favor realizar o upload do arquivo.", "warning"));
 			return false;
 		}
 		
 		String fileType = file.getContentType();
 		if(!(fileType.equals("text/html") || fileType.equals("application/xhtml+xml") ||  fileType.equals("application/xhtml") ||  fileType.equals("application/xml"))){
-			this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! As extensões permitidas para o arquivo são: .xht, .htm, .html ou .xhtml.", "warning"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! As extens&otilde;es permitidas para o arquivo s&atilde;o: .xht, .htm, .html ou .xhtml.", "warning"));
 			return false;
 		}
 		
 		if(file.getSize() > 1048576){
-			this.validator.add(new ValidationMessage("Não foi possível realizar o upload do arquivo! Tamanho máximo permitido é de 1024KB.", "warning"));
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&eacute;vel realizar o upload do arquivo! Tamanho m&aacute;ximo permitido &eacute; de 1024KB.", "warning"));
 			return false;
 		}
 		
@@ -144,7 +144,7 @@ public class Validate {
 	    Matcher m = p.matcher(html);
 	        
 	     if(!m.find()){
-	    	this.validator.add(new ValidationMessage("Não foi possível realizar a avaliação! O conteúdo do arquivo não é do tipo HTML ou XHTML.", "warning"));
+	    	this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! O conte&eacute;do do arquivo n&atilde;o &eacute; do tipo HTML ou XHTML.", "warning"));
 	    	return false;
 	     }	
 		

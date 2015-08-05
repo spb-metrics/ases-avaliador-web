@@ -206,10 +206,10 @@ public class AvaliacaoController {
 				
 				/*Obtem a nota*/
 				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota = avaliacaoBusiness.obterNota(checkerList, urlAvaliada != "" ? urlAvaliada: "C�digo Fonte ou Arquivo");
+				Nota nota = avaliacaoBusiness.obterNota(checkerList, urlAvaliada != "" ? urlAvaliada: "Código Fonte ou Arquivo");
 				
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "C�digo Fonte ou Arquivo");
+				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
 					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
