@@ -1,15 +1,20 @@
 package br.com.ases.business.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.servlet.ServletContext;
+
 import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.controller.EseloController;
 import br.com.ases.controller.EseloController.Nota;
 import br.com.ases.domain.OccurrenceKey;
+import br.com.ases.infra.EseloProperties;
 import br.com.ases.infra.WebChecker;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.checker.emag.Occurrence;
@@ -22,16 +27,19 @@ import com.google.gson.GsonBuilder;
 
 @Component
 public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
+	EseloProperties eseloProperties = null;
 	
-	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo5/avaliar";
+	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo5/calcular-nota";
 
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
 		
 		Nota nota = null ;
 		try {
-		WebChecker.PostParams postParams = WebChecker.from(CALCULAR_NOTA_REST).withPostRequest()
+		//WebChecker.PostParams postParams = WebChecker.from(CALCULAR_NOTA_REST).withPostRequest()
+		WebChecker.PostParams postParams = WebChecker.from(this.eseloProperties.getUrl("url")).withPostRequest()
 				.addParam("avaliationReport.url", url)
-				.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
+				.addParam("avaliationReport.date", new Date().toString());
+				//.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
 				
 		int index = 0;
 		for(SummarizedOccurrence occurence : occurrences){
@@ -41,9 +49,12 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			index++;
 		}
 		
+		System.out.println(this.eseloProperties.getUrl("url"));
+		System.out.println(postParams.execute().getContent());
 		
-		Gson g = new GsonBuilder().create();
-		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
+		/*Gson g = new GsonBuilder().create();
+		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);*/
+		
 		}catch(Exception e){
 			nota = new EseloController(null).new Nota(url, "---" , "0.0");
 		}
@@ -128,6 +139,11 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 		
 		resultadoAvaliacao.put(OccurrenceClassification.MARK, ocorrenciasMarcacao);
 		resultadoAvaliacao.put(OccurrenceClassification.BEHAVIOR, ocorrenciasComportamento);
+	}
+
+	public void initEseloProperties(ServletContext servletContext) {
+		this.eseloProperties = new EseloProperties(servletContext);
+		
 	}
 	
 }
