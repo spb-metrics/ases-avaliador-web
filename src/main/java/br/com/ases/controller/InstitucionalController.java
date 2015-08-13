@@ -27,7 +27,7 @@ public class InstitucionalController {
 		ManagerXml managerXml = new ManagerXml(this.application.getRealPath("")+"/WEB-INF/perguntas-frequentes.xml");
 		
 		if(!managerXml.xmlPerguntaFrequenteExiste()){
-			result.include("mensagem", "Não foi possível carregar o arquivo que armazena as perguntas e respostas! Ocorreu o problema: (Arquivo ou diretório não encontrado)");
+			result.include("mensagem", "N&atilde;o foi poss&iacute;vel carregar o arquivo que armazena as perguntas e respostas! Ocorreu o problema: (Arquivo ou diretório não encontrado)");
 			result.include("status", "error");
 			this.validator.onErrorUsePageOf(InstitucionalController.class).perguntasFrequentes();
 		}else

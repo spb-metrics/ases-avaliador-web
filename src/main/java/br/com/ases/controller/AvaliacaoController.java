@@ -71,6 +71,8 @@ public class AvaliacaoController {
 		this.avaliacaoBusiness = avaliacaoBusiness;
 		this.application = application;
 		this.detalheAvaliacao = detalheAvaliacao;
+		
+		this.avaliacaoBusiness.initEseloProperties(application);
 				
 	}
 	
@@ -404,7 +406,7 @@ public class AvaliacaoController {
 	@Post("/exportar-detalhes-avaliacao")
 	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn, int tiporel){
 		
-		/*Cria um Map de par�metros*/
+		/*Cria um Map de parametros*/
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		List list = this.detalheAvaliacao.get(rn).getCriterios();
@@ -443,92 +445,4 @@ public class AvaliacaoController {
 	   	
 	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
 	}
-	
-	/*private boolean validadarCampoForm(String campo){
-		boolean isValido = true;
-		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! Favor preencher o campo URL.", "warning"));
-			isValido = false;
-		}else{
-			try {
-			    URL url = new URL(campo);
-			    URLConnection conn = url.openConnection();
-			    conn.connect();
-			} catch (MalformedURLException e) {
-				this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! URL "+campo+" considerada inv�lida.", "warning"));
-				isValido = false;
-			} catch (IOException e) {
-				this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! URL "+campo+" considerada inv�lida.", "warning"));
-				isValido = false;
-			}
-		}
-		
-		return isValido;
-		
-	} */
-	
-	/*private boolean validadarCondigoFonteAvaliar(String campo){
-		
-		if(campo == null || campo.length() <= 10 ){
-			this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! Favor preencher o campo C&oacute;digo a analisar.", "warning"));
-			return false;
-		}
-		
-		String reg = "<html.*?>(.*)<\\/html>";
-		 
-	    Pattern p = Pattern.compile(reg,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE );
-	    Matcher m = p.matcher(campo);
-	    
-	    if(!m.find()){
-	    	this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! O c�digo fonte n�o � do tipo HTML ou XHTML.", "warning"));
-	    	return false;
-	    }	
-	    
-		if(campo.length() > 1048576){
-			this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! Tamanho m�ximo permitido para c�digo fonte � at� 1024KB.", "warning"));
-			return false;
-		}
-		
-		return true;
-		
-	} */
-
-
-	/*private boolean validadarUploadForm(UploadedFile file){
-		
-		if(file == null ){
-			this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! Favor realizar o upload do arquivo.", "warning"));
-			return false;
-		}
-		
-		String fileType = file.getContentType();
-		if(!(fileType.equals("text/html") || fileType.equals("application/xhtml+xml") ||  fileType.equals("application/xhtml") ||  fileType.equals("application/xml"))){
-			this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! As extens�es permitidas para o arquivo s�o: .xht, .htm, .html ou .xhtml.", "warning"));
-			return false;
-		}
-		
-		if(file.getSize() > 1048576){
-			this.validator.add(new ValidationMessage("N�o foi poss�vel realizar o upload do arquivo! Tamanho m�ximo permitido � de 1024KB.", "warning"));
-			return false;
-		}
-		
-		return true;
-		
-	}*/
-	
-	/*private boolean validarConteudoUploadForm(String html){
-		
-		String reg = "<html.*?>(.*)<\\/html>";
-	     
-	    Pattern p = Pattern.compile(reg,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
-	    Matcher m = p.matcher(html);
-	        
-	     if(!m.find()){
-	    	this.validator.add(new ValidationMessage("N�o foi poss�vel realizar a avalia��o! O conte�do do arquivo n�o � do tipo HTML ou XHTML.", "warning"));
-	    	return false;
-	     }	
-		
-	     return true;
-	}*/
-	
 }
