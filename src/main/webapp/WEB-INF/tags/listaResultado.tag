@@ -23,11 +23,11 @@
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
 					   	<c:choose>
-					   		<c:when test="${item.possuiLinhas }">
-					   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
+					   		<c:when test="${item.possuiLinhas}">
+					   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}/true">${item.stringLines}</a>
 					   		</c:when>
 					   		<c:otherwise>
-					   			${item.stringLines}
+					   			<c:if test="${item.stringLines=='---'}">Requer valida&ccedil;&atilde;o Humana</c:if>
 					   		</c:otherwise>
 					   	</c:choose>
 					   </td>
@@ -63,11 +63,11 @@
 					   <td class="celula">${item.numberOfOccurrences}</td>
 					   <td class="celula">
 						<c:choose>
-					   		<c:when test="${item.possuiLinhas }">
-					   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}">${item.stringLines}</a>
+					   		<c:when test="${item.possuiLinhas}">
+					   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}/false">${item.stringLines}</a>
 					   		</c:when>
 					   		<c:otherwise>
-					   			${item.stringLines}
+					   			<c:if test="${item.stringLines=='---'}">Requer valida&ccedil;&atilde;o Humana</c:if>
 					   		</c:otherwise>
 					   	</c:choose>
 					   </td>
