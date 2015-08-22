@@ -356,10 +356,14 @@ public class AvaliacaoController {
 			
 			if(listaOcorrencias!=null){
 				for(SummarizedOccurrence ocorrencia : ocorrencias.get(classificacao) ){
+					
 					if(ocorrencia.isError())
-						erros++ ;
+						for (int line : ocorrencia.getLines()) 
+							erros++ ;	
 					else
-						avisos++;
+						for (int line : ocorrencia.getLines())
+							avisos++;
+						
 				}
 			}
 			
@@ -370,9 +374,12 @@ public class AvaliacaoController {
 	}
 	
 	
-	@Path("/detalhes-avaliacao/{rn}")
-	public void detalhesAvaliacao(OccurrenceKey rn){
-		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn).getOcorrencias();
+	@Path("/detalhes-avaliacao/{rn}/{type}")
+	public void detalhesAvaliacao(OccurrenceKey rn, Boolean type){
+		
+		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn, type).getOcorrencias();
+		
+		
 		
 		//Sorting
 		/*Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
@@ -388,7 +395,7 @@ public class AvaliacaoController {
 		        }
 		    });
 		
-		result.include("detalhe",this.detalheAvaliacao.get(rn));
+		result.include("detalhe",this.detalheAvaliacao.get(rn, type));
 		result.include("listOcorrencia",listOcorrencias);
 		
 		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");

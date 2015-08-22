@@ -41,16 +41,27 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 				.addParam("avaliationReport.date", new Date().toString());
 				//.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
 				
+		/*
+		System.out.println("Parametro: "+"avaliationReport.url"+" Valor: "+url);
+		System.out.println("Parametro: "+"avaliationReport.date"+" Valor: "+ new Date().toString());*/
+		
 		int index = 0;
 		for(SummarizedOccurrence occurence : occurrences){
+			
+			/*System.out.println("Parametro: "+"avaliationReport.checkPoints["+index+"].identificador" + "Valor: "+occurence.getCheckPoint());
+			String error = occurence.isError()?occurence.getNumberOfOccurrences():"0";
+			System.out.println("Parametro: "+"avaliationReport.checkPoints["+index+"].totalErrors"+" Valor: "+ error);
+			String warning = ((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0");
+			System.out.println("Parametro: "+"avaliationReport.checkPoints["+index+"].totalWarnings"+" Valor: "+warning);*/
+			
 			postParams.addParam("avaliationReport.checkPoints["+index+"].identificador", occurence.getCheckPoint())
 					  .addParam("avaliationReport.checkPoints["+index+"].totalErrors", occurence.isError()?occurence.getNumberOfOccurrences():"0")
 					  .addParam("avaliationReport.checkPoints["+index+"].totalWarnings", ((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0"));
 			index++;
 		}
 		
-		System.out.println(this.eseloProperties.getUrl("url"));
-		System.out.println(postParams.execute().getContent());
+		/*System.out.println(this.eseloProperties.getUrl("url"));
+		System.out.println(postParams.execute().getContent());*/
 		
 		/*Gson g = new GsonBuilder().create();
 		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);*/
