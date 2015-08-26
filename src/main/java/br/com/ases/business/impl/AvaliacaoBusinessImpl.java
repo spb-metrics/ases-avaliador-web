@@ -29,51 +29,151 @@ import com.google.gson.GsonBuilder;
 public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 	EseloProperties eseloProperties = null;
 	
-	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo5/calcular-nota";
-
+	private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo/calcular-nota";
+	
+	
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
+		Nota nota = null;
+		String local = "http://localhost:18080/e-Selo/calcular-nota";
+		String remoto = "https://sistemas-treinamento.ifbaiano.edu.br/intg_ases_selo/calcular-nota";
 		
-		Nota nota = null ;
 		try {
-		//WebChecker.PostParams postParams = WebChecker.from(CALCULAR_NOTA_REST).withPostRequest()
-		WebChecker.PostParams postParams = WebChecker.from(this.eseloProperties.getUrl("url")).withPostRequest()
-				.addParam("avaliationReport.url", url)
-				.addParam("avaliationReport.date", new Date().toString());
-				//.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
+		WebChecker.PostParams postParams  = WebChecker.from(remoto).withPostRequest();
+		//WebChecker.PostParams postParams = WebChecker.from(this.eseloProperties.getUrl("url")).withPostRequest()
 				
-		/*
-		System.out.println("Parametro: "+"avaliationReport.url"+" Valor: "+url);
-		System.out.println("Parametro: "+"avaliationReport.date"+" Valor: "+ new Date().toString());*/
+				//Relatorio de Avaliacao
+				postParams.addParam("relatorioAvaliacao.date", new Date().toString())
+				.addParam("relatorioAvaliacao.url", url)
+				.addParam("relatorioAvaliacao.qtdeLinhas", "1000");
+				
+					//Recomendacao
+				/*	.addParam("relatorioAvaliacao.recomendacoes[0].idRecomendacao", "1")OK
+				
+						//Critério
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[0].idCriterio","1")
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[0].qtdeErros","15")
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[0].qtdeItens","1000")
+				
+						//Critério
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[1].idCriterio","2")
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[1].qtdeErros","53")
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[1].qtdeItens","1000")
 		
+						//Critério
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[2].idCriterio","3")
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[2].qtdeErros","1")
+						.addParam("relatorioAvaliacao.recomendacoes[0].criterios[2].qtdeItens","0")
+						
+					.addParam("relatorioAvaliacao.recomendacoes[0].totalErros","72");*/
+					
+			
+				int index = 0;
+				int recAval = 0;
+				int countCriterio = 0;
+				int countReq = 0;
+				
+				boolean isTotal = false;
+				
+				for(SummarizedOccurrence occurence : occurrences){
+					
+					String[] idRec = occurence.getCheckPoint().split("\\.");
+					
+						//Recomendacao
+						//postParams.addParam("relatorioAvaliacao.recomendacoes["+index+"].idRecomendacao", idRec[0]);
+						
+
+						//Critério
+						if(Integer.parseInt(idRec[0]) != recAval){
+							
+							recAval = Integer.parseInt(idRec[0]);
+							countCriterio = 0;
+							countReq++;
+							postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",  Integer.toString(recAval));
+							//System.out.println("Recomendação: relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao"+" "+recAval);
+							//postParams.addParam("relatorioAvaliacao.recomendacoes["+index+"].idRecomendacao", idRec[0]);
+							
+							if(index > 0)
+								isTotal = true;
+							
+						}
+						
+						
+						postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].idCriterio",idRec[1])
+						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros",occurence.isError()?occurence.getNumberOfOccurrences():"0")
+						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens", Integer.toString(occurence.getLines().size()));
+						
+						
+						
+						
+						//.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].totalWarnings",((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0"));
+						
+						
+						
+						/*System.out.println("===> Critério");
+						System.out.println("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].idCriterio"+" "+idRec[1]);
+							String teste = occurence.isError()?occurence.getNumberOfOccurrences():"0";
+						System.out.println("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros"+" "+ teste);
+						System.out.println("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens  "+ Integer.toString(occurence.getLines().size()));*/
+						
+						
+						
+						
+						if(isTotal){
+							//String teste3 = occurence.isError()?occurence.getNumberOfOccurrences():"0";
+							//System.out.println("relatorioAvaliacao.recomendacoes["+countReq+"].totalErros "+teste3);
+							postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].totalErros",occurence.isError()?occurence.getNumberOfOccurrences():"0");
+						
+							//System.out.println("------------------------------------------------");
+							isTotal = false;
+						}
+					
+					
+					index++;
+					countCriterio++;
+				}
+				
+				postParams.addParam("relatorioAvaliacao.recomendacoes[1].totalErros","0");
+				
+
+		System.out.println("Resultado esperado: 47,33%");
+		System.out.println(postParams.execute().getContent());
+
+		Gson g = new GsonBuilder().create();
+		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
+		
+		}catch(Exception e){
+			nota = new EseloController(null).new Nota(url, "---" , "0.0");
+		}
+		
+		//return nota;
+		return new EseloController(null).new Nota(url, "---" , "0.0");
+		
+		/*Nota nota = null ; //Versão desenvolvida por Rodrigo
+		try {
+		WebChecker.PostParams postParams = WebChecker.from(CALCULAR_NOTA_REST).withPostRequest()
+				.addParam("avaliationReport.url", url)
+				.addParam("avaliationReport.date", "2014-04-24 10:07:02.447 GMT-03:00");
+				
 		int index = 0;
 		for(SummarizedOccurrence occurence : occurrences){
-			
-			/*System.out.println("Parametro: "+"avaliationReport.checkPoints["+index+"].identificador" + "Valor: "+occurence.getCheckPoint());
-			String error = occurence.isError()?occurence.getNumberOfOccurrences():"0";
-			System.out.println("Parametro: "+"avaliationReport.checkPoints["+index+"].totalErrors"+" Valor: "+ error);
-			String warning = ((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0");
-			System.out.println("Parametro: "+"avaliationReport.checkPoints["+index+"].totalWarnings"+" Valor: "+warning);*/
-			
 			postParams.addParam("avaliationReport.checkPoints["+index+"].identificador", occurence.getCheckPoint())
 					  .addParam("avaliationReport.checkPoints["+index+"].totalErrors", occurence.isError()?occurence.getNumberOfOccurrences():"0")
 					  .addParam("avaliationReport.checkPoints["+index+"].totalWarnings", ((!occurence.isError() && !occurence.getNumberOfOccurrences().equals(SummarizedOccurrence.EMPTY_LINES) )?occurence.getNumberOfOccurrences():"0"));
 			index++;
 		}
 		
-		/*System.out.println(this.eseloProperties.getUrl("url"));
-		System.out.println(postParams.execute().getContent());*/
+		System.out.println(this.eseloProperties.getUrl("url"));
+		System.out.println(postParams.execute().getContent());
 		
-		/*Gson g = new GsonBuilder().create();
-		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);*/
+		Gson g = new GsonBuilder().create();
+		nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
 		
 		}catch(Exception e){
 			nota = new EseloController(null).new Nota(url, "---" , "0.0");
 		}
 		
-		return nota;
+		return nota;*/
 	}
-	
-	
 	
 	public Map<OccurrenceKey,Map<String,List<Occurrence>>> retornarCriterios(Map<OccurrenceClassification,List<Occurrence>> resultadoAvaliacao){
 		
