@@ -24,7 +24,6 @@
 				   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/doc-rtf.png" alt="xls" title="Gerar em RFT" height="20" width="20">
 				   <input type="radio" name="tiporel" value="1">RTF
 				   <input type="hidden" name="rn" value="${rn}">
-				   <input type="hidden" name="isError" value="${isError}">
 		           <input class="submit" name="executar" value="Gerar" type="submit">
 				</p>
 		  </fieldset>
@@ -58,37 +57,13 @@
 								   
 								   <td class="celula">${criterio.numeroOcorrencias}</td>
 								   <td class="celula">
-								   
-								   
-								   
-								 <c:set var="aReq" value="${aReq}" />
-								 <c:set var="req" value="${rn}.${criterio.id}" />
-								   
-								   <c:choose> 
-											   <c:when  test="${fn:contains(aReq, req)}">
-											   		<c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
-									     				     	---
-												     </c:forEach>
-											   </c:when>
-											   
-											   
-											    <c:otherwise>
-												     <c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
-									     
-														     	<c:set var="lineOcc" value="${fn:split(linha, '.')}" />
-														     	<a href="#${criterio.id}.${linha}" class="sublinharLink">${lineOcc[0]}</a>
-														       	<c:if test="${index.index !=  fn:length(criterio.linhas) -1}"> - </c:if>
-											
-												     </c:forEach> 
-											     </c:otherwise>
-									</c:choose>		   
-											   
-								   <c:if test="">
-								   
-								   </c:if>
-								   
-								   
-								    
+								     <c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
+								     
+								     	<c:set var="lineOcc" value="${fn:split(linha, '.')}" />
+								     	<a href="#${criterio.id}.${linha}" class="sublinharLink">${lineOcc[0]}</a>
+								       	<c:if test="${index.index !=  fn:length(criterio.linhas) -1}"> - </c:if>
+					
+								     </c:forEach> 
 								   </td>
 								</tr>
 
@@ -111,13 +86,7 @@
 					
 					<pre>
 						<c:forEach items="${listOcorrencia}" var="ocorrencia" varStatus="index">
-						
-						 	<c:set var="aReq" value="${aReq}" />
-								 <c:set var="req" value="${rn}.${ocorrencia.criterio}" />
-						
-								   <c:if test="${!fn:contains(aReq, req)}">
-								 		<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}">${ocorrencia.line} : ${ocorrencia.tag}</a>			   
-								   </c:if>
+							<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}">${ocorrencia.line} : ${ocorrencia.tag}</a>
 						</c:forEach> 
 					</pre>
 				</div>
