@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-08-27T14:44:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="142666df-1bd1-4422-a844-93ee33ac154f">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -66,7 +64,7 @@
 		<groupFooter>
 			<band height="50">
 				<subreport>
-					<reportElement x="0" y="0" width="554" height="23" uuid="d8cdc113-0414-44a7-b98a-7883450f9983"/>
+					<reportElement uuid="d8cdc113-0414-44a7-b98a-7883450f9983" x="0" y="0" width="554" height="23"/>
 					<subreportParameter name="SUBREPORT_DIR"/>
 					<subreportParameter name="codigoFonte">
 						<subreportParameterExpression><![CDATA[$P{codigoFonte}]]></subreportParameterExpression>
@@ -98,71 +96,71 @@
 	<title>
 		<band height="306" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="283" width="271" height="23" forecolor="#000000" uuid="8acb2283-4613-41b1-8dba-4c93c97763ec"/>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="0" y="283" width="271" height="23" forecolor="#000000"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="18" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Critérios]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="21" width="284" height="47" uuid="4f1c5dc2-865a-4f24-9920-8520c9890dc0"/>
+				<reportElement uuid="4f1c5dc2-865a-4f24-9920-8520c9890dc0" x="0" y="21" width="284" height="47"/>
 				<textElement verticalAlignment="Middle">
 					<font size="37" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ASES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="1" width="555" height="20" uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483"/>
+				<reportElement uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483" x="0" y="1" width="555" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[Avaliador e Simulador de Acessibilidade de Sítios]]></text>
 			</staticText>
 			<line>
-				<reportElement x="1" y="174" width="555" height="1" uuid="f4e0efe1-6fc3-459b-97ee-f55098bbfbaf"/>
+				<reportElement uuid="f4e0efe1-6fc3-459b-97ee-f55098bbfbaf" x="1" y="174" width="555" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="1" y="151" width="214" height="23" forecolor="#000000" uuid="81b0709b-5fba-49d1-82a7-0d203d3163d2"/>
+				<reportElement uuid="81b0709b-5fba-49d1-82a7-0d203d3163d2" x="1" y="151" width="214" height="23" forecolor="#000000"/>
 				<textElement>
 					<font size="18"/>
 				</textElement>
 				<text><![CDATA[Recomendação Avalidada]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="68" width="284" height="20" uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483"/>
+				<reportElement uuid="ff5c7c6d-7116-4cb1-a17b-ded94270e483" x="0" y="68" width="284" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[GOVERNO FEDERAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="106" width="555" height="16" forecolor="#000000" backcolor="#999999" uuid="4c3afaca-feb9-48aa-8a32-aadd8b7475c4"/>
+				<reportElement uuid="4c3afaca-feb9-48aa-8a32-aadd8b7475c4" mode="Opaque" x="0" y="106" width="555" height="16" forecolor="#000000" backcolor="#999999"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Detalhes Relatório de Avaliação]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Opaque" x="1" y="175" width="554" height="106" backcolor="#FFFFFF" uuid="f2c7d9df-c3f8-4216-8083-66e15b6e2dd0"/>
+				<reportElement uuid="f2c7d9df-c3f8-4216-8083-66e15b6e2dd0" mode="Opaque" x="1" y="175" width="554" height="106" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$P{rnAvaliada}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="1" y="281" width="555" height="1" uuid="c0051e6c-900d-4392-96a2-b920f9a27131"/>
+				<reportElement uuid="c0051e6c-900d-4392-96a2-b920f9a27131" x="1" y="281" width="555" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="270" y="283" width="108" height="23" forecolor="#000000" uuid="8acb2283-4613-41b1-8dba-4c93c97763ec"/>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="270" y="283" width="108" height="23" forecolor="#000000"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="18" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Quantidade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="283" width="178" height="23" forecolor="#000000" uuid="8acb2283-4613-41b1-8dba-4c93c97763ec"/>
+				<reportElement uuid="8acb2283-4613-41b1-8dba-4c93c97763ec" x="377" y="283" width="178" height="23" forecolor="#000000"/>
 				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font size="18" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Linha(s) de Código Fonte]]></text>
+				<text><![CDATA[Linha(s) de Cógido Fonte]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -170,21 +168,21 @@
 		<band height="62" splitType="Stretch">
 			<elementGroup/>
 			<textField>
-				<reportElement x="0" y="0" width="271" height="15" isPrintWhenDetailOverflows="true" uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575"/>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="0" y="0" width="271" height="15" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<paragraph tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}+"  "+$F{descricao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="270" y="0" width="108" height="15" uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575"/>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="270" y="0" width="108" height="15"/>
 				<textElement textAlignment="Center">
 					<paragraph tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numeroOcorrencias}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="377" y="0" width="178" height="15" isPrintWhenDetailOverflows="true" uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575"/>
+				<reportElement uuid="b6034e4e-5312-4aa1-afa2-5b74d09f1575" x="377" y="0" width="178" height="15" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Left">
 					<paragraph tabStopWidth="40"/>
 				</textElement>
@@ -198,17 +196,18 @@
 	<pageFooter>
 		<band height="17" splitType="Stretch">
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="526" y="0" width="29" height="13" backcolor="#C0C0C0" uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16"/>
+				<reportElement uuid="92cd3511-3ca2-4329-9ee8-b07354c45b16" mode="Opaque" x="526" y="0" width="29" height="13" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="271" y="0" width="255" height="13" backcolor="#C0C0C0" uuid="85d4ce4d-a582-4705-91b7-31366d02c70e"/>
+				<reportElement uuid="85d4ce4d-a582-4705-91b7-31366d02c70e" mode="Opaque" x="271" y="0" width="255" height="13" backcolor="#C0C0C0"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement mode="Opaque" x="0" y="0" width="271" height="13" backcolor="#C0C0C0" uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba"/>
+				<reportElement uuid="30c93b34-c6c8-43c8-ab90-148add5dd9ba" mode="Opaque" x="0" y="0" width="271" height="13" backcolor="#C0C0C0"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 		</band>
