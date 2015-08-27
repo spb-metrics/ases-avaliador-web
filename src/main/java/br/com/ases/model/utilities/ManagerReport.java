@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import br.com.ases.domain.DetalheAvaliacao.Criterio;
 import br.com.ases.model.entity.RelatorioAvaliacaoJasper;
 import br.com.checker.emag.SummarizedOccurrence;
 import net.sf.jasperreports.engine.JRAbstractExporter;
@@ -49,7 +50,8 @@ public class ManagerReport {
 	}
 	
 	
-   public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio,  String fileName) throws JRException, IOException{
+   //public String gerarRelatorioDetalhesAvaliacao(List<String> criterios, HashMap<String, Object> map, int tipoRelatorio,  String fileName) throws JRException, IOException{
+	public String gerarRelatorioDetalhesAvaliacao(List<Criterio> criterios, HashMap<String, Object> map, int tipoRelatorio,  String fileName) throws JRException, IOException{
 		
 		JasperReport report = JasperCompileManager.compileReport(this.pathTemplate);
 		JasperPrint print = JasperFillManager.fillReport(report, map,new JRBeanCollectionDataSource(criterios));		

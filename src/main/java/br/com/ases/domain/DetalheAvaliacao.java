@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import lombok.Getter;
+import lombok.Setter;
 import br.com.ases.infra.CriterioProperties;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.ioc.SessionScoped;
@@ -93,7 +94,7 @@ public class DetalheAvaliacao {
 		
 	}
 	
-	public @Getter class  Criterio implements Comparable<Criterio>{
+	public @Getter @Setter class  Criterio implements Comparable<Criterio>{
 		private String id;
 		private String descricao;
 		private List<String> linhas;
@@ -152,6 +153,10 @@ public class DetalheAvaliacao {
 				});
 			}
 		}
+		
+		
+		
+		
 		
 		public int compareTo(Criterio other) {
 			if(this.id == null)
