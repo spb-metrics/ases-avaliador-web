@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -37,6 +38,7 @@ import br.com.ases.domain.DetalheAvaliacao;
 import br.com.ases.domain.DetalheAvaliacao.Criterio;
 import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.domain.ResumoAvaliacao;
+import br.com.ases.infra.UtilitiesProperties;
 import br.com.ases.infra.WebChecker;
 import br.com.ases.model.utilities.DateUtil;
 import br.com.ases.model.utilities.ManagerReport;
@@ -65,6 +67,7 @@ public class AvaliacaoController {
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	private ServletContext application;
 	private DetalheAvaliacao detalheAvaliacao;
+	private UtilitiesProperties utilitiesProperties;
 	
 	public AvaliacaoController (Result result, Validator validator,AvaliacaoBusiness avaliacaoBusiness,ServletContext application,DetalheAvaliacao detalheAvaliacao) {
 		this.result = result;
@@ -74,6 +77,7 @@ public class AvaliacaoController {
 		this.detalheAvaliacao = detalheAvaliacao;
 		
 		this.avaliacaoBusiness.initEseloProperties(application);
+		this.utilitiesProperties = new UtilitiesProperties(application);
 				
 	}
 	
@@ -410,7 +414,8 @@ public class AvaliacaoController {
 		
 		result.include("recomendacao",recomendacao);
 		result.include("rn",rn.getCode());
-		result.include("aReq","1.3.1 1.5.1 1.5.3 1.1.1");
+		result.include("aReq",this.utilitiesProperties.get("notExibCrit"));
+		
 	}
 	
 	@Post("/exportar-detalhes-avaliacao")
@@ -422,26 +427,27 @@ public class AvaliacaoController {
 		//List list = this.detalheAvaliacao.get(rn,isError).getCriterios();
 		
 		List<String> aReq = new ArrayList();
+		//List<Integer> index = new ArrayList();
 		
-		aReq.add("1.3.1");
-		aReq.add("1.5.1");
-		aReq.add("1.5.3");
-		aReq.add("1.1.1");
+		String[] crit = this.utilitiesProperties.get("notExibCrit").split(" ");
 		
-		List<Criterio> list = this.detalheAvaliacao.get(rn, isError).getCriterios();
+		for (String c : crit) 
+			aReq.add(c.trim());
 		
-	    for(int i = 0; i < list.size(); i++){
-	    	Criterio criterio = list.get(i);
-	    	
+		List<Criterio> listCrit = this.detalheAvaliacao.get(rn, isError).getCriterios();
+		
+	    
+		List<Criterio> list = new ArrayList<DetalheAvaliacao.Criterio>();
+		
+		for(Criterio criterio : listCrit ){
 	    	if(aReq.contains(rn.getCode()+"."+criterio.getId()))
 				criterio.setLinhas(new ArrayList());
 			
-			if(criterio.getId() == null)
-				list.remove(i);
+			if(criterio.getId() != null)
+				list.add(criterio);
 		}
 		
 		List<String> codigoFonte = new ArrayList();
-		
 		
 		for(Occurrence occurrence : this.detalheAvaliacao.get(rn, isError).getOcorrencias()){
 			if(!aReq.contains(rn.getCode()+"."+occurrence.getCriterio()))
