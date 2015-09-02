@@ -163,7 +163,7 @@ public class ManagerReport {
 	private List criterioOrdenacao(List <RelatorioAvaliacaoJasper> list){
 		List<RelatorioAvaliacaoJasper> listaImpressao = new ArrayList<RelatorioAvaliacaoJasper>();
 		
-		String[] grupos = {"Marcação", "Comportamento", "Conteúdo/Informação", "Apresentação / Design", "Multimídia", "Formulários"};
+		String[] grupos = {"MarcaÃ§Ã£o", "Comportamento", "ConteÃºdo/InformaÃ§Ã£o", "ApresentaÃ§Ã£o / Design", "MultimÃ­dia", "FormulÃ¡rios"};
 		
 		for(String grupo : grupos){
 			for(RelatorioAvaliacaoJasper relatorioAvaliacaoJasper : list){
