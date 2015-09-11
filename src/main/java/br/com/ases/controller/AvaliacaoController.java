@@ -15,9 +15,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -295,11 +297,12 @@ public class AvaliacaoController {
 			html = html.replaceAll(">", "&gt;");
 			html = html.replaceAll(" ", "&nbsp");
 			
+			SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
 			
 			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
 			result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
-			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo"));
+			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo - "+sdf.format(new Date())));
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 			
