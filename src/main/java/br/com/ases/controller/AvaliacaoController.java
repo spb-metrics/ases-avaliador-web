@@ -124,13 +124,17 @@ public class AvaliacaoController {
 					result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 					result.include("html", html);
 					result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
-					result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName()));
+					
+					Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName());
+					
+					result.include("nota",nota);
 					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 					this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 					
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 					
 					result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
 		    	
@@ -185,13 +189,15 @@ public class AvaliacaoController {
 		    result.include("contentLenght", pagina.getContentLength());
 			result.include("url", url);
 			result.include("html", pagina.getParsedContent());
-			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),url));
+			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),url);
+			result.include("nota",nota);
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 			
 			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", url);
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 			
 		}else{
 			 this.validator = validate.getMessage();
@@ -214,11 +220,11 @@ public class AvaliacaoController {
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
 				/*Obtem a nota*/
-				AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota = avaliacaoBusiness.obterNota(checkerList, urlAvaliada != "" ? urlAvaliada: "Código Fonte ou Arquivo");
+				//AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
+				Nota nota  = (Nota) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("notaAvaliacao");
 				
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
+				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "C�digo Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
 					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
@@ -302,13 +308,16 @@ public class AvaliacaoController {
 			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
 			result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
-			result.include("nota",avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo - "+sdf.format(new Date())));
+			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo - "+sdf.format(new Date()));
+			
+			result.include("nota",nota);
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 			
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 			
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 			
