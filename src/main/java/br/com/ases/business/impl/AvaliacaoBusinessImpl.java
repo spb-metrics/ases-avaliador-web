@@ -53,7 +53,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			int qtdLinhas = 0;
 			
 			for(Integer rn : rns){
-				//RecomendaÃ§Ã£o Avaliada
+				//Recomendação Avaliada
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",  Integer.toString(rn));
 				int qtdErros = 0;
 				
