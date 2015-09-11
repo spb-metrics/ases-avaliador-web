@@ -87,7 +87,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			}catch(Exception e){
 				nota = new EseloController(null).new Nota(url, "---" , "0.0");
 			}
-			
+		
 			return nota;
 		
 		/*Nota nota = null ; //Vers�o desenvolvida por Rodrigo
