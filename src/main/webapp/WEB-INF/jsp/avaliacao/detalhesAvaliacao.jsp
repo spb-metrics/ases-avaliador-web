@@ -114,9 +114,26 @@
 						
 						 	<c:set var="aReq" value="${aReq}" />
 								 <c:set var="req" value="${rn}.${ocorrencia.criterio}" />
-						
+								
 								   <c:if test="${!fn:contains(aReq, req)}">
-								 		<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}">${ocorrencia.line} : ${ocorrencia.tag}</a>			   
+								   	<c:choose>
+								   		<c:when test="${ocorrencia.cssEvaluation}">
+								 					<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="http://www.css-validator.org/validator?uri=${ocorrencia.tag}" target="_blank">
+								 						${ocorrencia.line} : Serviço de validação de CSS do W3C : ${ocorrencia.tag}
+								 					</a>
+								 		</c:when>
+								 		<c:when test="${ocorrencia.htmlEvaluation }">
+								 					<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${ocorrencia.tag}" target="_blank">
+								 						${ocorrencia.line} : Serviço de validação de HTML do W3C : ${ocorrencia.tag}
+								 					</a>
+								 		</c:when>
+								 		<c:otherwise>
+								 			<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}">
+								 				${ocorrencia.line} : ${ocorrencia.tag}
+								 			</a>
+								 		</c:otherwise>
+								   	</c:choose>
+								   
 								   </c:if>
 						</c:forEach> 
 					</pre>
