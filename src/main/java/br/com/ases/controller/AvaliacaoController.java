@@ -171,7 +171,7 @@ public class AvaliacaoController {
 			
 			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
 			
-			Checker checker = from(pagina.getContent());
+			Checker checker = from(pagina.getContent(),url);
 			
 			if(mark) checker.with(marking());
 			if(content) checker.with(content());
