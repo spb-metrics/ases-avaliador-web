@@ -411,7 +411,7 @@ public class AvaliacaoController {
 		            return  occurrence1.getLine().compareTo(occurrence2.getLine());
 		        }
 		    });
-		
+			
 		result.include("detalhe",this.detalheAvaliacao.get(rn, type));
 		result.include("listOcorrencia",listOcorrencias);
 		result.include("isError",type);
@@ -427,6 +427,9 @@ public class AvaliacaoController {
 		result.include("recomendacao",recomendacao);
 		result.include("rn",rn.getCode());
 		result.include("aReq",this.utilitiesProperties.get("notExibCrit"));
+		result.include("aReqIsCss",this.utilitiesProperties.get("reqCss"));
+		result.include("url",VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("urlAvaliada").toString().replaceAll("(https://)|(http://)", ""));
+		
 		
 	}
 	
