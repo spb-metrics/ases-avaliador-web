@@ -428,6 +428,7 @@ public class AvaliacaoController {
 		result.include("rn",rn.getCode());
 		result.include("aReq",this.utilitiesProperties.get("notExibCrit"));
 		result.include("aReqIsCss",this.utilitiesProperties.get("reqCss"));
+		result.include("aReqIsW3c",this.utilitiesProperties.get("notExibCritW3c"));
 		result.include("url",VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("urlAvaliada").toString().replaceAll("(https://)|(http://)", ""));
 		
 		
