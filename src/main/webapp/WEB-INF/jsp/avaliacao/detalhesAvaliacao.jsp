@@ -68,18 +68,26 @@
 											   <c:when  test="${fn:contains(aReq, req)}">
 											   		<c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
 											   		
-											   		 	<c:if test="${fn:contains(aReqIsCss, req)}">
-									     				     <a href="http://www.css-validator.org/validator?uri=${url}" target="_blanck">
-									     						   Servi&ccedil;o de valida&ccedil;&atilde;o de CSS do W3C
-								 						     </a>
-												    	</c:if>
-												    	
-												    	<c:if test="${!fn:contains(aReqIsCss, req)}">
-									     				     <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${url}" target="_blanck">
-									     				       		Servi&ccedil;o de valida&ccedil;&atilde;o de HTML do W3C
-									     				     </a>
-												    	</c:if>
-												    
+											   		
+											   		   <c:if test="${fn:contains(aReqIsW3c, req)}">
+									     				
+															   		 	<c:if test="${fn:contains(aReqIsCss, req)}">
+													     				     <a href="http://www.css-validator.org/validator?uri=${url}" target="_blanck">
+													     						   Servi&ccedil;o de valida&ccedil;&atilde;o de CSS do W3C
+												 						     </a>
+																    	</c:if>
+																    	
+																    	<c:if test="${!fn:contains(aReqIsCss, req)}">
+													     				     <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${url}" target="_blanck">
+													     				       		Servi&ccedil;o de valida&ccedil;&atilde;o de HTML do W3C
+													     				     </a>
+																    	</c:if>
+									     				</c:if>
+											   		
+											   			 <c:if test="${!fn:contains(aReqIsW3c, req)}">
+											   					--
+											   		      </c:if>
+											   		
 												     </c:forEach>
 											   </c:when>
 											   
