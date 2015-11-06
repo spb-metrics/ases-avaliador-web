@@ -48,7 +48,7 @@
 								<tr>
 									<td colspan="2" class="topo2"> Teste(s) </td>
 									<td width="9%" class="topo2"> Quantidade</td>
-									<td width="56%" class="topo2"> Linha(s) de Cógido Fonte</td>
+									<td width="56%" class="topo2"> Linha(s) de Código Fonte</td>
 								</tr>
 					
 					 	 <c:forEach items="${detalhe.criterios}" var="criterio">
