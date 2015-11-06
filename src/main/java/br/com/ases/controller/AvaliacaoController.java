@@ -170,6 +170,8 @@ public class AvaliacaoController {
 			if(url.startsWith("www")) url="http://"+url;
 			
 			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
+			int[] errorsWarningsCss = avaliacaoBusiness.getErrorCount(true,url);
+			int[] errorsWarningsHtml = avaliacaoBusiness.getErrorCount(false,url);
 			
 			Checker checker = from(pagina.getContent(),url);
 			
@@ -193,7 +195,7 @@ public class AvaliacaoController {
 			result.include("nota",nota);
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 			
-			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()),errorsWarningsCss,errorsWarningsHtml);
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", url);
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
@@ -415,6 +417,14 @@ public class AvaliacaoController {
 		result.include("detalhe",this.detalheAvaliacao.get(rn, type));
 		result.include("listOcorrencia",listOcorrencias);
 		result.include("isError",type);
+		if(type){
+			result.include("qtdOcorrenciasCss",this.detalheAvaliacao.getErrorsCss());
+			result.include("qtdOcorrenciasHtml",this.detalheAvaliacao.getErrorsHtml());
+		}else{
+			result.include("qtdOcorrenciasCss",this.detalheAvaliacao.getWarningsCss());
+			result.include("qtdOcorrenciasHtml",this.detalheAvaliacao.getWarningsHtml());
+		}
+		
 		
 		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
 		String recomendacao = "";

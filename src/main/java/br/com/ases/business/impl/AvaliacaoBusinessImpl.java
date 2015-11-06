@@ -1,18 +1,22 @@
 package br.com.ases.business.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 
 import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.controller.EseloController;
 import br.com.ases.controller.EseloController.Nota;
+import br.com.ases.domain.HtmlValidation;
 import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.infra.EseloProperties;
 import br.com.ases.infra.WebChecker;
@@ -23,13 +27,16 @@ import br.com.checker.emag.SummarizedOccurrence;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 
 @Component
 public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 	EseloProperties eseloProperties = null;
 	
-	//private static final String CALCULAR_NOTA_REST = "https://sistemas-treinamento.ifbaiano.edu.br/eselo/calcular-nota";
+
+	private static String CSS_VALIDATOR_URL = "http://www.css-validator.org/validator?uri=#{url}&warning=0&output=soap12";
+	private static String HTML_VALIDATOR_URL = "https://validator.w3.org/nu/?doc=#{url}&out=json";
 	
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
 		Nota nota = null;
@@ -163,6 +170,46 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 				
 		}
 		return map;
+	}
+	
+	public int[] getErrorCount(boolean isCss,String url){
+		int errors = 0;
+		int warnings = 0;
+		
+		try{
+			if(isCss){
+				String content = WebChecker.from(CSS_VALIDATOR_URL.replace("#{url}", url)).withGetRequest().execute().getContent();
+				Matcher m = Pattern.compile("<m:errorcount>(\\d)*</m:errorcount>",Pattern.MULTILINE).matcher(content);
+				if(m.find())
+					errors =  Integer.valueOf(m.group(0).replace("<m:errorcount>", "").replace("</m:errorcount>", ""));
+				
+				m = Pattern.compile("<m:warningcount>(\\d)*</m:warningcount>",Pattern.MULTILINE).matcher(content);
+				
+				if(m.find())
+					warnings =  Integer.valueOf(m.group(0).replace("<m:warningcount>", "").replace("</m:warningcount>", ""));
+				
+			}else{
+				
+				String content = WebChecker.from(HTML_VALIDATOR_URL.replace("#{url}", url)).withGetRequest().execute().getContent();
+				Gson g = new GsonBuilder().create();
+				HtmlValidation a =  g.fromJson(content, HtmlValidation.class);
+				int[] errorsWarnings = a.getQtdWarningsErros();
+				errors = errorsWarnings[1];
+				warnings = errorsWarnings[0];
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return new int[]{errors,warnings};
+	}
+	
+	public static void main(String ...arg) {
+		int[] teste = new AvaliacaoBusinessImpl().getErrorCount(false, "http://www.agritempo.gov.br/agritempo/index.jsp");
+		
+		System.out.println("errors :" +teste[0]);
+		System.out.println("warnings :" +teste[1]);
 	}
 	
 	public static Map<OccurrenceClassification,List<Occurrence>> resultadoAvaliacao = new HashMap<OccurrenceClassification, List<Occurrence>>();

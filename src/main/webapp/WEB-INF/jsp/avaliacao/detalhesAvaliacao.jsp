@@ -56,7 +56,29 @@
 								   <td class="celula" width="2%"> ${criterio.id} </td>
 								   <td class="celula" width="60%" align="left">${criterio.descricao}</td>
 								   
-								   <td class="celula">${criterio.numeroOcorrencias}</td>
+								   <td class="celula">
+								   	
+								   		<c:choose>
+								   		<c:when test="${rn == '1.1'}">
+								   			<c:choose>
+								   				<c:when test="${criterio.id == 1 }">
+								   					${qtdOcorrenciasHtml}
+								   				</c:when>
+								   				<c:when test="${criterio.id == 2 }">
+								   					${qtdOcorrenciasCss}
+								   				</c:when>
+								   				<c:otherwise>
+										   			${criterio.numeroOcorrencias}
+										   		</c:otherwise>
+								   			</c:choose>
+								   		</c:when>
+								   		<c:otherwise>
+								   			${criterio.numeroOcorrencias}
+								   		</c:otherwise>
+								   		</c:choose>
+								   	
+								   	
+								   </td>
 								   <td class="celula">
 								   
 								   
@@ -143,7 +165,7 @@
 								 					</a>
 								 		</c:when>
 								 		<c:when test="${ocorrencia.htmlEvaluation }">
-								 					<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${ocorrencia.tag}" target="_blank">
+								 					<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="https://validator.w3.org/nu/?doc=${ocorrencia.tag}" target="_blank">
 								 						${ocorrencia.line} : Serviço de validação de HTML do W3C : ${ocorrencia.tag}
 								 					</a>
 								 		</c:when>

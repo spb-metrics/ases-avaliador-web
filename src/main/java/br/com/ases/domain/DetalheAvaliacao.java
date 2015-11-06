@@ -22,6 +22,8 @@ public class DetalheAvaliacao {
 
 	private CriterioProperties criterioProperties;
 	private Map<OccurrenceKey,Map<String,List<Occurrence>>> detalhes;
+	private int[] warningsErrorsCss;
+	private int[] warningsErrorsHtml;
 	
 	public DetalheAvaliacao(CriterioProperties criterioProperties){
 		this.criterioProperties = criterioProperties;
@@ -31,6 +33,12 @@ public class DetalheAvaliacao {
 		this.detalhes = detalhes;
 	}
 	
+	public void inicializar(Map<OccurrenceKey,Map<String,List<Occurrence>>> detalhes,int[] warningsErrorsCss,int[] warningsErrorsHtml) {
+		this.detalhes = detalhes;
+		this.warningsErrorsCss = warningsErrorsCss;
+		this.warningsErrorsHtml= warningsErrorsHtml;
+		
+	}
 	
 	public Detalhe get(OccurrenceKey rn) {
 		return new Detalhe(rn.getCode(),this.detalhes.get(rn));
@@ -38,6 +46,22 @@ public class DetalheAvaliacao {
 	
 	public Detalhe get(OccurrenceKey rn, boolean type) {
 		return new Detalhe(rn.getCode(),type,this.detalhes.get(rn));
+	}
+	
+	public int getErrorsCss(){
+		return this.warningsErrorsCss!=null ?this.warningsErrorsCss[0] : 0;
+	}
+	
+	public int getWarningsCss(){
+		return this.warningsErrorsCss!=null ?this.warningsErrorsCss[1] : 0;
+	}
+	
+	public int getErrorsHtml(){
+		return this.warningsErrorsHtml!=null ?this.warningsErrorsHtml[0] : 0;
+	}
+	
+	public int getWarningsHtml(){
+		return this.warningsErrorsHtml!=null ?this.warningsErrorsHtml[1] : 0;
 	}
 	
 	

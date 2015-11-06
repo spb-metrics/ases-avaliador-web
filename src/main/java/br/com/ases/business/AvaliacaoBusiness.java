@@ -16,4 +16,5 @@ public interface AvaliacaoBusiness {
 	Nota obterNota(List<SummarizedOccurrence> occurrences,String url);
 	Map<OccurrenceKey,Map<String,List<Occurrence>>> retornarCriterios(Map<OccurrenceClassification,List<Occurrence>> resultadoAvaliacao);
 	void initEseloProperties(ServletContext servletContext);
+	public int[] getErrorCount(boolean isCss,String url);
 }
