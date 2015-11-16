@@ -226,7 +226,7 @@ public class AvaliacaoController {
 				Nota nota  = (Nota) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("notaAvaliacao");
 				
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
+				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Cï¿½digo Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
 					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  

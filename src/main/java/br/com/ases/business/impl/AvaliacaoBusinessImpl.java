@@ -35,7 +35,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 	EseloProperties eseloProperties = null;
 	
 
-	private static String CSS_VALIDATOR_URL = "http://www.css-validator.org/validator?uri=#{url}&warning=0&output=soap12";
+	//private static String CSS_VALIDATOR_URL = "http://www.css-validator.org/validator?uri=#{url}&warning=0&output=soap12";
+	private static String CSS_VALIDATOR_URL = "http://jigsaw.w3.org/css-validator/validator?uri=#{url}&warning=0&output=soap12";
 	private static String HTML_VALIDATOR_URL = "https://validator.w3.org/nu/?doc=#{url}&out=json";
 	
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
@@ -60,7 +61,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			int qtdLinhas = 0;
 			
 			for(Integer rn : rns){
-				//Recomendação Avaliada
+				//Recomendaï¿½ï¿½o Avaliada
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",  Integer.toString(rn));
 				int qtdErros = 0;
 				
