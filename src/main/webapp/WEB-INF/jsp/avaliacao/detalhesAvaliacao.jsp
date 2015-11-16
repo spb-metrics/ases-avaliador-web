@@ -94,7 +94,7 @@
 											   		   <c:if test="${fn:contains(aReqIsW3c, req)}">
 									     				
 															   		 	<c:if test="${fn:contains(aReqIsCss, req)}">
-													     				     <a href="http://www.css-validator.org/validator?uri=${url}" target="_blanck">
+													     				     <a href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}" target="_blanck">
 													     						   Servi&ccedil;o de valida&ccedil;&atilde;o de CSS do W3C
 												 						     </a>
 																    	</c:if>
@@ -160,7 +160,7 @@
 								   <c:if test="${!fn:contains(aReq, req)}">
 								   	<c:choose>
 								   		<c:when test="${ocorrencia.cssEvaluation}">
-								 					<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="http://www.css-validator.org/validator?uri=${ocorrencia.tag}" target="_blank">
+								 					<a name="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="http://jigsaw.w3.org/css-validator/validator?uri=${ocorrencia.tag}" target="_blank">
 								 						${ocorrencia.line} : Serviço de validação de CSS do W3C : ${ocorrencia.tag}
 								 					</a>
 								 		</c:when>
