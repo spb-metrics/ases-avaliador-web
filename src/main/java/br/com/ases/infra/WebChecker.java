@@ -21,7 +21,7 @@ import br.com.checker.emag.core.Checker;
 
 public class WebChecker {
 	private static final String CONTENT_LENGHT = "Content-Length" ;
-	private static final String HTTP_PROTOCOL_ALLOW_CIRCULAR_REDIRECTS = "https.protocol.allow-circular-redirects";
+	private static final String HTTP_PROTOCOL_ALLOW_CIRCULAR_REDIRECTS = "http.protocol.allow-circular-redirects";
 	private HttpClient client;
 	private HttpMethod method;
 	private String url;
