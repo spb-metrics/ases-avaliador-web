@@ -1,255 +1,455 @@
-body {
-	margin: 0 auto;
-	background-color: #fff;
-	color: #000000;
-	font-family: Open Sans, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
+@media only screen and (min-width : 768px) {
+	body {
+		margin: 0 auto;
+		background-color: #fff;
+		color: #000000;
+		font-family: "Open Sans", Arial, Helvetica, sans-serif;
+		font-size: 12px;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	}
+	header ul li {
+		display: inline;
+		margin-top: 0;
+		padding: 0;
+	}
+	header {
+		width: 100%;
+		/*Banner*/
+		/*	height: 132px;*/
+		background-color: #19882c;
+		/* Old browsers */
+		background-color: #0A5517;
+		background-image: -moz-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* FF3.6+ */
+		background-image: -webkit-gradient(radial, center center, 0px, center center, 100%,
+			color-stop(1%, #19882c), color-stop(100%, #025310));
+		/* Chrome,Safari4+ */
+		background-image: -webkit-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* Chrome10+,Safari5.1+ */
+		background-image: -o-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* Opera 12+ */
+		background-image: -ms-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* IE10+ */
+		background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
+		/* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',
+			endColorstr='#025310', GradientType=1);
+		/* IE6-9 fallback on horizontal gradient */
+	}
+	a {
+		text-decoration: none;
+	}
+	#barra-brasil {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+	#topo {
+		width: 93.75%;
+		margin: auto;
+		margin-top: 30px;
+		padding: 0;
+	}
+	#accessibility {
+		display: inline;
+		margin-left: 9.5%;
+		padding-top: 5px;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: left;
+		float: left;
+		padding-left: 0;
+	}
+	#accessibility a {
+		color: #dcffe3;
+		font-size: 0.88em;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	#accessibility span {
+		background: #9ed5ab;
+		color: #dcffe3;
+		padding: 0 4px;
+	}
+	#accessibility a:hover {
+		border-bottom: 1px solid;
+	}
+	#portal-siteactions {
+		float: left;
+		padding: 0;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin-left: 60%;
+		width: 318px;
+		position: absolute;
+		border-bottom: 1px dotted #9ed5ab;
+		color: #9ed5ab;
+	}
+	#portal-siteactions li {
+		padding-right: 10px;
+	}
+	#portal-siteactions a {
+		color: #9ed5ab;
+	}
+	#portal-siteactions a:hover {
+		border-bottom: 1px solid;
+	}
+	#portal-siteactions  li:last-child {
+		padding-right: 0;
+	}
+	#logo {
+		padding: 0;
+		float: left;
+		width: 70%;
+		padding-left: 12%;
+		margin-bottom: 15px;
+	}
+	#logo a {
+		color: #fff;
+		display: block;
+		width: 100%;
+		margin: 1px 0px;
+	}
+	#logo #portal-title-1 {
+		font-size: 16px;
+		font-weight: 800;
+	}
+	#logo #portal-title {
+		font-size: 50px;
+		font-weight: 800;
+	}
+	#logo #portal-description {
+		font-size: 16px;
+		margin: 5px 0 0 0;
+		text-transform: uppercase;
+		font-weight: 800;
+	}
+	#sobre {
+		clear: both;
+		background: #0a5517;
+		padding: 5px 0;
+		padding-left: 0;
+		text-align: right;
+	}
+	#sobre ul {
+		margin: 0;
+		margin-left: 55%;
+		width: 370px;
+	}
+	#sobre a {
+		color: #fff;
+	}
+	#sobre .portalservicos-item a {
+		margin-top: 50%;
+		padding: 0 10px;
+		border-right: 1px solid #fff;
+		font-size: 12px;
+	}
+	#voltar-topo {
+		text-align: right;
+		font-size: 12px;
+	}
+	#voltar-topo a {
+		color: #000000;
+	}
+	#main {
+		max-width: 960px;
+		margin: 0 auto;
+		background: #fff;
+	}
+	#label_contato {
+		width: 10%;
+		float: left;
+	}
+	#txt_contato {
+		width: 90%;
+		float: left;
+	}
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: Open Sans, Arial, Helvetica, sans-serif;
-}
+	/*-----------Footer-----------*/
+	#footer-brasil {
+		background: none repeat scroll 0% 0% #00420c;
+		padding: 1em 0px;
+		max-width: 100%;
+	}
+	a.oculto {
+		display: inline-block;
+		font-size: 0;
+		text-indent: -20000px;
+	}
+} /*-----Fim max-width: 1024px */
 
-header ul li {
+/*------Inicio max-width: 768px----*/
+@media only screen and (max-width : 768px) {
+	body {
+		margin: 0 auto;
+		background-color: #fff;
+		color: #000000;
+		font-family: "Open Sans", Arial, Helvetica, sans-serif;
+		font-size: 12px;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	}
+	header ul li {
+		display: block;
+		margin-top: 0;
+		padding: 0;
+	}
+	header {
+		width: 100%;
+		/*Banner*/
+		/*	height: 132px;*/
+		background-color: #19882c;
+		/* Old browsers */
+		background-color: #0A5517;
+		background-image: -moz-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* FF3.6+ */
+		background-image: -webkit-gradient(radial, center center, 0px, center center, 100%,
+			color-stop(1%, #19882c), color-stop(100%, #025310));
+		/* Chrome,Safari4+ */
+		background-image: -webkit-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* Chrome10+,Safari5.1+ */
+		background-image: -o-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* Opera 12+ */
+		background-image: -ms-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
+		/* IE10+ */
+		background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
+		/* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',
+			endColorstr='#025310', GradientType=1);
+		/* IE6-9 fallback on horizontal gradient */
+	}
+	a {
+		text-decoration: none;
+	}
+	#barra-brasil {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+	#topo {
+		width: 93.75%;
+		margin: auto;
+		margin-top: 30px;
+		padding: 0;
+	}
+	
+	#portal-siteactions {
+		float: left;
+		padding: 0;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin-left: auto;
+		width: 318px;
+		border-bottom: 1px dotted #9ed5ab;
+		color: #9ed5ab;
+	}
+	#portal-siteactions li {
+		padding-right: 10px;
+		display: inline;
+	}
+	#portal-siteactions a {
+		color: #9ed5ab;
+	}
+	#portal-siteactions a:hover {
+		border-bottom: 1px solid;
+	}
+	#portal-siteactions  li:last-child {
+		padding-right: 0;
+	}
+	
+	#accessibility {
+		display: block;
+		padding-top: 20px;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: left;
+		padding-left: 0;
+	}
+	#accessibility li {
 	display: inline;
-	margin-top: 0px;
+	}
+	#accessibility a {
+		color: #dcffe3;
+		font-size: 0.88em;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	#accessibility span {
+		background: #9ed5ab;
+		color: #dcffe3;
+		padding: 0 4px;
+	}
+	#accessibility a:hover {
+		border-bottom: 1px solid;
+	}
+	#portal-siteactions {
+		padding: 0;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin-right: 0;
+		width: 318px;
+		color: #9ed5ab;
+	}
+	#portal-siteactions li {
+		padding-right: 10px;
+	}
+	#portal-siteactions a {
+		color: #9ed5ab;
+	}
+	#portal-siteactions a:hover {
+		border-bottom: 1px solid;
+	}
+	#portal-siteactions  li:last-child {
+		padding-right: 0;
+	}
+	#logo {
+		padding: 0;
+		width: 70%;
+		padding-left: 3%;
+		margin-bottom: 15px;
+	}
+	#logo a {
+		color: #fff;
+		display: block;
+		width: 100%;
+		margin: 1px 0px;
+	}
+	#logo #portal-title-1 {
+		font-size: 0.8em;
+		font-weight: 800;
+	}
+	#logo #portal-title {
+		font-size: 1.5em;
+		font-weight: 800;
+	}
+	#logo #portal-description {
+		font-size: 0.8em;
+		margin: 5px 0 0 0;
+		text-transform: uppercase;
+		font-weight: 800;
+	}
+	#sobre {
+		clear: both;
+		background: #0a5517;
+		padding: 5px 0;
+		padding-left: 0;
+		text-align: right;
+	}
+	#sobre ul {
+		position: relative;
+		margin: 0; margin-left : auto;
+		width: 370px;
+		margin-left: auto;
+	}
+	#sobre li {
+		display: inline;
+	}
+	#sobre a {
+		color: #fff;
+	}
+	#sobre .portalservicos-item a {
+		margin-top: 50%;
+		padding: 0 10px;
+		border-right: 1px solid #fff;
+		font-size: 12px;
+	}
+	#voltar-topo {
+		text-align: right;
+		font-size: 12px;
+	}
+	#voltar-topo a {
+		color: #000000;
+	}
+	#main {
+		max-width: 960px;
+		margin: 0 auto;
+		background: #fff;
+		clear: both;
+		min-height: 100%;
+	}
+	#label_contato {
+		width: 10%;
+		float: left;
+	}
+	#txt_contato {
+		width: 90%;
+		float: left;
+	}
+
+	/*-----------Footer-----------*/
+	#footer-brasil {
+		background: none repeat scroll 0% 0% #00420c;
+		padding: 1em 0px;
+		max-width: 100%;
+	}
+	a.oculto {
+		display: inline-block;
+		font-size: 0;
+		text-indent: -20000px;
+	}
+} /*-----Fim max-width: 1024px */
+
+/*------Alto Contraste-----*/
+.contraste, .contrast header, .contraste div, .contraste ul, .contraste p
+	{
+	background: #000 !important;
+	color: #fff !important;
 }
 
-header {
-	width: 100%;
-	/*Banner*/
-	/*	height: 132px;*/
-	background-color: #19882c;
-	/* Old browsers */
-	background-color: #0A5517;
-	background-image: -moz-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
-	/* FF3.6+ */
-	background-image: -webkit-gradient(radial, center center, 0px, center center, 100%,
-		color-stop(1%, #19882c), color-stop(100%, #025310));
-	/* Chrome,Safari4+ */
-	background-image: -webkit-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
-	/* Chrome10+,Safari5.1+ */
-	background-image: -o-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
-	/* Opera 12+ */
-	background-image: -ms-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
-	/* IE10+ */
-	background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
-	/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',
-		endColorstr='#025310', GradientType=1);
-	/* IE6-9 fallback on horizontal gradient */
-}
-
-a {
-	text-decoration: none;
-}
-
-#accessibility {
-	width: 50%;
-	float: left;
-	text-indent: 22%;
-	width: 50%;
-	margin-bottom: 15px;
-}
-
-#accessibility a {
-	color: #dcffe3;
-	font-size: 12px;
-}
-
-#accessibility span {
-	background: #9ed5ab;
-	color: dcffe3;
-	padding: 0 4px;
-}
-
-#accessibility a:hover {
-	border-bottom: 1px solid;
-}
-
-#portal-siteactions {
-	float: right;
-	width: 50%;
-	text-align: right;
-}
-
-#portal-siteactions ul {
-	margin-right: 19%;
-}
-
-#portal-siteactions ul li {
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 5px;
-	border-bottom: 1px dotted #9bc2a3;
-}
-
-#portal-siteactions a {
-	color: #dcffe3;
-	font-size: 13px;
-}
-
-#logo {
-	padding: 0;
-	float: left;
-	width: 70%;
-	padding-left: 14%;
-	margin-bottom: 15px;
-}
-
-#logo a {
-	color: #fff;
-	display: block;
-	width: 100%;
-	margin: 1px 0px;
-}
-
-#logo #portal-title-1 {
-	font-size: 17px;
-	font-weight: 800;
-}
-
-#logo #portal-title {
-	font-size: 50px;
-	font-weight: 800;
-}
-
-#logo #portal-description {
-	font-size: 17px;
-	margin: 5px 0 0 0;
-	text-transform: uppercase;
-	font-weight: 800;
-}
-
-#sobre {
-	clear: both;
-	width: 100%;
-	margin: 0;
-	background: #0a5517;
-	padding: 5px 0;
-}
-
-#sobre ul {
-	max-width: 960px;
-	margin: 0 auto;
-	text-align: right;
-}
-
-#sobre a {
-	color: #fff;
-}
-
-#sobre .portalservicos-item a {
-	margin-top: 50%;
-	padding: 0 10px;
-	border-right: 1px solid #fff;
-	font-size: 12px;
-}
-
-#voltar-topo {
-	text-align: right;
-	font-size: 12px;
-}
-
-#voltar-topo a {
-	color: #000000;
-}
-/*-----------Footer-----------*/
-footer {
-	background: #034811;
-	padding: 20px 0;
-	width: 100%;
-	min-height: 50%;
-}
-
-.logo-acesso {
-	margin-left: 10%;
-}
-
-.logo-brasil {
-	margin-left: 58%;
-}
-
-footer ul li {
-	display: inline;
-	margin-top: 0px;
-}
-
-#main {
-	max-width: 960px;
-	margin: 0 auto;
-	background: #fff;
-}
-
-#label_contato {
-	width: 10%;
-	float: left;
-}
-#txt_contato
-{
-	width: 90%;
-	float: left;
-}
-
-
-/*--------tabe---------*/
-
-@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
-
-*, *:after, *:before {
-  box-sizing: border-box;
-}
-.tabs-container {
-  position: relative;
-  height: 360px;
-  max-width: 98%;
-  margin: 0 auto;
-}
 /*
-.tabs-container p{
-  margin: 0;
-  padding: 0;
+.contraste * {
+	color: #FFF !important;
 }*/
-.tabs-container:after {
-  content: '.';
-display: block;
-  clear: both;
-  height: 0;
-  font-size: 0;
-  line-height: 0;
-  visibility: none;
-}
-input.tabs {
-display: none;
-}
-input.tabs + label {
-  line-height: 40px;
-  padding: 0 20px;
-  float: left;
-
-  background: #444;
-  color: #fff;
-  cursor: pointer;
-  transition: background ease-in-out .3s;
+.contraste a {
+	color: #FC0 !important;
 }
 
-input.tabs:checked + label {
-  color: #000;
-  background: #eee;
+.contraste a:hover {
+	text-decoration: underline !important;
 }
-input.tabs + label + div {
-  width: 98%;
-  opacity: 0;
-  position: absolute;
-  background: #eee;
-  top: 40px;
-  left: 0;
-  min-height height: 200px;
-  padding: 10px;
-  z-index: -1;
-  transition: opacity ease-in-out .3s;
+
+.contraste img {
+	border: 2px solid #FC0 !important;
+	padding: 5px;
 }
-input.tabs:checked + label + div {
-  opacity: 1;
-  z-index: 1000;
+
+.contraste #material ul#navegacao li {
+	border: 2px solid #FC0 !important;
+}
+
+.contraste #topo h1 a.gov {
+	background: transparent url('../images/gov_br_contraste.jpg') no-repeat
+		left top;
+}
+
+.contraste #menu a.atual {
+	color: #000 !important;
+	background-color: #FBBD0A;
+}
+
+.contraste pre * {
+	background-color: #161616 !important;
+	color: #FBBD0A !important;
+}
+
+.contraste input[type="submit"] {
+	background-color: #161616 !important;
+	color: #FBBD0A !important;
+	border: #FBBD0A solid 1px;
+	padding: 10px;
+}
+
+.contraste #accessibility span {
+	background: #333 !important;
+	color: #ffffff !important;
+}
+
+.contraste #sobre {
+	background: #333 !important;
+}
+
+.contraste #sobre ul {
+	background: #333 !important;
 }
