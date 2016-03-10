@@ -1,0 +1,104 @@
+@media only screen and (min-width : 768px) {
+	.container {
+		position: relative;
+		min-height: 270px;
+		clear: both;
+		margin: 25px 0;
+	}
+	.tab {
+		float: left;
+	}
+	.tab label.rarios {
+		background: #eee;
+		padding: 10px;
+		border: 1px solid #ccc;
+		margin-left: -1px;
+		position: relative;
+		left: 1px;
+	}
+	.contraste .tab label.rarios {
+		background: #000;
+		padding: 10px;
+		border: 1px solid #ccc;
+		margin-left: -1px;
+		position: relative;
+		left: 1px;
+	}
+	.tab [type=radio] {
+		display: none;
+	}
+	.contenteudo {
+		position: absolute;
+		top: 28px;
+		left: 0;
+		background: #ffffff;
+		right: 0;
+		bottom: 0;
+		padding: 20px;
+		border: 1px solid #ccc;
+	}
+	[type=radio]:checked ~ label {
+		background: #ffffff;
+		border-bottom: 1px solid #ffffff;
+		z-index: 2;
+	}
+	[type=radio]:checked ~ label ~ .contenteudo {
+		z-index: 1;
+	}
+
+	/*-------Alto Contraste------*/
+	.contraste .tab label.rarios {
+		color: #FC0 !important;
+	}
+}
+
+/*-----Fim (min-width : 768px)------ */
+@media only screen and (max-width : 768px) {
+	.container {
+		position: relative;
+		min-height: 440px;
+		clear: both;
+		margin: 25px 0;
+		min-width: 80%;
+	}
+	.tab .contenteudo {
+		background-color: #fff;
+		border: 1px solid #000;
+		padding-right: 10px;
+		margin-bottom: 15px;
+		margin-left: 15px;
+		clear: both;
+	}
+	.contraste .tab .contenteudo {
+		border: 1px solid #fff !important;
+	}
+	.tab {
+		float: left;
+	}
+	.tab [type=radio] {
+		display: none;
+	}
+	.tab input {
+		margin-bottom: 10px;
+		margin-top: 10px;
+		margin-left: 10px;
+		
+	}
+	.tab label {
+		margin-bottom: 15px;
+		margin-top: 15px;
+		margin-left: 15px;
+		border: 0;
+	}
+	.tab textarea {
+		margin-top: 10px;
+		margin-left: 10px;
+		width: 90%;
+		height: 40px;
+	}
+
+	/*-------Alto Contraste------*/
+	.contraste .tab label.rarios {
+		color: #FC0 !important;
+	}
+}
