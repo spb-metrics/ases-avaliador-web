@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <t:baseLayout>
-	<jsp:body>
+	 <jsp:body>
    
    <h2>Exportar Resultado</h2>
       <form name="form1" action="relatorioavaliacao" method="post">
