@@ -1,7 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="body" fragment="true"%>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
