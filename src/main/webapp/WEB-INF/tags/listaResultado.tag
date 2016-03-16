@@ -3,10 +3,34 @@
 <%@ attribute name="cssClass" required="true" type="java.lang.String" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
-<p><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros" height="19" width="20"> Erros</p>
+<c:choose>
+    <c:when test="${cssClass == 'mark'}">
+    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção marcação</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'behavior'}">
+    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção comportamento</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'information'}">
+    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção conteúdo/informação</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'presentation'}">
+    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção apresentação/design</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'multimedia'}">
+    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção multimídia</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'form'}">
+    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção formulários</a> 
+    </c:when>
+    </c:choose>
 
 <table class="${cssClass}_error">
-	<caption>Tabela de Erros</caption>
+	<caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros"> Tabela de Erros</caption>
 	<thead>
 		<tr>
 		    <th id="erro_numero_recomendacao_${cssClass}" class="topo2">Numero</th>
@@ -41,11 +65,12 @@
 	</tbody>
 </table>
 			
-<p><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="alertas" height="19" width="20"> Avisos</p>	
-					 	
+					 	<br>
 															
-<table class="${cssClass}_warning">
-	<caption>Tabela de Avisos</caption>
+<table class="${cssClass}_warning" id="${cssClass}_aviso">
+	<caption>
+	<img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">
+	Tabela de Avisos</caption>
 	<thead>
 		<tr>
 		    <th id="aviso_numero_recomendacao_${cssClass}" class="topo2">Número</th>
@@ -56,8 +81,11 @@
 	</thead>
 	
 	<tbody>
+
 		<c:forEach items="${lista}" var="item">
+	
 			<c:if test="${not item.error }">
+			
 				<tr id="aviso_numero_recomendacao__${cssClass}_${item.checkPoint}">
 			   		<td headers="aviso_numero_recomendacao_${cssClass}" class="celula"><a target="_blank" class="sublinharLink" href="http://emag.governoeletronico.gov.br/#r${item.checkPoint}">${item.checkPoint}</a></td>
 			   		<td headers="aviso_recomendacao_${cssClass}" class="celula"> ${item.description}</td>
@@ -79,19 +107,28 @@
 	</tbody>
 			
 	</table>
-		
-	<script type="text/javascript">
-    	$('.${cssClass}_error').each(function(index){
-  		    if($(this).find('tbody tr').length == 0){
-    		  	$(this).before( "<p>A seção não apresentou erros!</p>" );
-    		  	$(this).hide();
-    		}
-  		 });
-		  
-		 $('.${cssClass}_warning').each(function(index){
-	  	    if($(this).find('tbody tr').length == 0){
-	    	  $(this).before( "<p>A seção não apresentou avisos!</p>" );
-	    	  $(this).hide();
-	    	}
-	  	 });
-	</script>
+	<c:choose>
+    <c:when test="${cssClass == 'mark'}">
+    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção marcação</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'behavior'}">
+    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção comportamento</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'information'}">
+    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção conteúdo/informação</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'presentation'}">
+    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção apresentação/design</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'multimedia'}">
+    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção multimídia</a> 
+    </c:when>
+    
+    <c:when test="${cssClass == 'form'}">
+    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção formulários</a> 
+    </c:when>
+    </c:choose>		
