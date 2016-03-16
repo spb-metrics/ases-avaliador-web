@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8" />
 
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" type="text/css"
@@ -25,7 +23,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/inicial_arquivos/css/avaliar.css"
 	media="screen">
-
 
 <title>ASES - Avaliador e Simulador de AcessibilidadE em Sites</title>
 
