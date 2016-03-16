@@ -17,15 +17,15 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/inicial_arquivos/css/tab_css.css"
 	media="screen">
+	
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/tabAvaliar.css"
+	media="screen">
+	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/avaliar.css"
+	media="screen">
 
-<!-- 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/inicial_arquivos/js/domtab.js"></script>
-<style type="text/css">
-div.domtab div {
-	display: none;
-}
-</style> -->
 
 <title>ASES - Avaliador e Simulador de AcessibilidadE em Sites</title>
 
@@ -121,10 +121,15 @@ div.domtab div {
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/tab_script.js"></script> 
-<!-- -->
+		<script type="text/javascript"
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/tab_avaliar_script.js"></script> 
+
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/acessibilidade.js"></script>
+		
+			<script type="text/javascript"
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/avaliar.js"></script>
 
 	<script defer="defer" src="//barra.brasil.gov.br/barra.js"
 		type="text/javascript"></script>
-</html>
+</body></html>
