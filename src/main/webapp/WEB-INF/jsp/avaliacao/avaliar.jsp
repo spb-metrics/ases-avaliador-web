@@ -3,23 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <t:baseLayout>
-	 <jsp:body>
-   
-   <h2>Exportar Resultado</h2>
-      <form name="form1" action="relatorioavaliacao" method="post">
-			<fieldset>
-					<legend>
-						Tipos de Exportação
-					</legend>
-				    				
-					<p>
-					   <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png" alt="pdf" title="Gerar em PDF" height="20" width="20">
-					   <input type="radio" name="tiporel" value="4">PDF
-					   <input id="url" name="url" value="${url}" type="hidden">
-					   <input class="submit" name="executar" value="Executar" type="submit">
-					</p>
-			</fieldset>
-	</form>
+	<jsp:body>
+ 
    
     <div class="tile --NOVALUE--">	
 		<div class="outstanding-header">
@@ -33,13 +18,14 @@
 		<strong>Tamanho:</strong> ${contentLenght} Bytes <br>
 		<strong>Data/Hora:</strong> ${data}
     </div>
-     
+     <br>
     <div class="tile --NOVALUE--">	
-		<div class="outstanding-header">
+		<div class="outstanding-header" id="notaResumo">
 			<h2 class="outstanding-title">Nota e Resumo da Avaliação de Acessibilidade</h2>
 		</div>
 				
 		<div class="row" data-layout-type="row">
+		
 			<div class="cell width-5 position-2 " data-panel="">
 				<div id="block">
 					<div id="webaxscore" class="scoreB">Porcentagem
@@ -48,16 +34,19 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<div class="cell width-7 position-6 " data-panel="">
+			
+			<div class="cell width-7 position-6">
 			<table id="tabelaErros">
-				<caption>Resumo de Acessibilidade por Seção E-MAG</caption>
-					<thead>
+				<caption>Resumo de Acessibilidade por Seção eMAG</caption>
+					<thead>					
 						<tr>
 							<th id="secao" class="topo">Seção</th>
-							<th id="erro" class="topo"><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="erro" height="20" width="20"> Erro(s) </th>
-							<th id="aviso" class="topo"><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="alerta" height="19" width="20"> Avisos </th>
+							<th id="erro" class="topo"><img
+									src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif"
+									alt="erro"> Erro(s) </th>
+							<th id="aviso" class="topo"><img
+									src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif"
+									alt="alerta"> Aviso(s) </th>
 						</tr>
 					</thead>
 							
@@ -72,64 +61,121 @@
 					<tbody>
 						<c:forEach items="${listaResumo}" var="resumo">
 							<tr>
-								<td headers="secao" class="celula">${resumo.tipo.description}</td>
+							<c:choose>
+							<c:when test="${resumo.tipo.description == 'Marcação'}">
+								<td headers="secao" class="celula"><a id="#tab-1" href="#inicio_mark">${resumo.tipo.description}</a></td>								
+							</c:when>
+							<c:when test="${resumo.tipo.description == 'Comportamento'}">
+								<td headers="secao" class="celula"><a id="#tab-2"  href="#inicio_behavior">${resumo.tipo.description}</a></td>								
+							</c:when>
+							<c:when test="${resumo.tipo.description == 'Conteúdo/Informação'}">
+								<td headers="secao" class="celula"><a id="#tab-3"  href="#inicio_information">${resumo.tipo.description}</a></td>								
+							</c:when>
+							<c:when test="${resumo.tipo.description == 'Apresentação / Design'}">
+								<td headers="secao" class="celula"><a id="#tab-4"  href="#inicio_presentation">${resumo.tipo.description}</a></td>								
+							</c:when>
+								<c:when test="${resumo.tipo.description == 'Multimídia'}">
+								<td headers="secao" class="celula"><a id="#tab-5"  href="#inicio_multimedia">${resumo.tipo.description}</a></td>								
+							</c:when>								
+								<c:when test="${resumo.tipo.description == 'Formulários'}">
+								<td headers="secao" class="celula"><a id="#tab-6"  href="#inicio_form">${resumo.tipo.description}</a></td>								
+							</c:when>
+							</c:choose>
 								<td headers="erro" class="celula">${resumo.quantidadeErros}</td>
 								<td headers="aviso" class="celula">${resumo.quantidadeAvisos}</td>
 							</tr>
 						</c:forEach>
-					</tbody>
-							
+					</tbody>							
 			</table> 
 		</div>
-	</div>
-				
-		
-			
-	<div class="tile --NOVALUE--">
-		<div class="outstanding-header"></div>
-		<div class="domtab">
-			<ul class="domtabs">
-				<li class=""><a href="#pri1">Marcação</a></li>
-				<li class=""><a href="#pri2">Comportamento</a></li>
-				<li class=""><a href="#pri3">Conteúdo / Informação</a></li>
-				<li class=""><a href="#pri4">Apresentação / Design</a></li>
-				<li class=""><a href="#pri5">Multimídia</a></li>
-				<li class=""><a href="#pri6">Formulários</a></li>
-			</ul>
-					
-			<div style="display: block;">
-				<a name="pri1" id="pri1"></a>
-				<t:listaResultado cssClass="mark" lista="${LISTA_MARK}" />
-			</div>
-					 
-					
-			<div style="display: none;">
-				<a name="pri2" id="pri2"></a>
-				<t:listaResultado cssClass="behavior" lista="${LISTA_BEHAVIOR}" />
-			</div>
-								
-			<div style="display: none;">
-				<a name="pri3" id="pri3"></a>
-				<t:listaResultado cssClass="information" lista="${LISTA_CONTENT_INFORMATION}" />
-			</div>
-					 
-	  		<div style="display: none;">
-				<a name="pri4" id="pri4"></a>
-				<t:listaResultado cssClass="presentation" lista="${LISTA_PRESENTATION_DESIGN}" />
-			</div> 
-					 
-			<div style="display: none;">
-				<a name="pri5" id="pri5"></a>
-				<t:listaResultado cssClass="multimedia"	lista="${LISTA_MULTIMEDIA}" />
-			</div>
-					 
-			<div style="display: none;">
-				<a name="pri6" id="pri6"></a>
-				<t:listaResultado cssClass="form" lista="${LISTA_FORM}" />
-			</div>
-					 
 		</div>
+
 	</div>
-       		
-   </jsp:body>
+	<div id="corpo">
+	<br>
+	<hr class="hr_avaliar">
+	<h2 class="outstanding-title">Resumo de Acessibilidade por recomendações do eMAG</h2>
+	
+<div class="containerAvaliacao">
+
+   <div class="tabAvaliacao">
+       <input type="radio" id="tab-1" name="tab-group-1" checked="checked">
+     <label class="rariosAvaliacao" for="tab-1">Marcação</label>
+       
+       <div class="contenteudoAvaliacao">
+				<t:listaResultado cssClass="mark" lista="${LISTA_MARK}" />			
+       </div> 
+   </div>
+    
+   <div class="tabAvaliacao">
+       <input type="radio" id="tab-2" name="tab-group-1">
+       <label class="rariosAvaliacao" for="tab-2">Comportamento</label>
+       
+       <div class="contenteudoAvaliacao">
+				<t:listaResultado cssClass="behavior" lista="${LISTA_BEHAVIOR}" />        
+       </div> 
+   </div>
+    
+    <div class="tabAvaliacao">
+       <input type="radio" id="tab-3" name="tab-group-1">
+       <label class="rariosAvaliacao" for="tab-3">Conteúdo/Informação</label>
+     
+       <div class="contenteudoAvaliacao">
+				<t:listaResultado cssClass="information"
+							lista="${LISTA_CONTENT_INFORMATION}" />
+       </div> 
+   </div>
+   
+     <div class="tabAvaliacao">
+       <input type="radio" id="tab-4" name="tab-group-1">
+       <label class="rariosAvaliacao" for="tab-4">Apresentação / Design</label>
+       
+       <div class="contenteudoAvaliacao">
+				<t:listaResultado cssClass="presentation"
+							lista="${LISTA_PRESENTATION_DESIGN}" />      
+       </div> 
+   	</div>
+  
+     <div class="tabAvaliacao">
+       		<input type="radio" id="tab-5" name="tab-group-1">
+       		<label class="rariosAvaliacao" for="tab-5">Multimídia</label>
+       
+       		<div class="contenteudoAvaliacao">
+				<t:listaResultado cssClass="multimedia" lista="${LISTA_MULTIMEDIA}" />       
+         	</div>
+       </div>        
+       
+        <div class="tabAvaliacao">
+       		<input type="radio" id="tab-6" name="tab-group-1">
+       		<label class="rariosAvaliacao" for="tab-6">Formulários</label>
+       
+       		<div class="contenteudoAvaliacao">    
+     			<t:listaResultado cssClass="form" lista="${LISTA_FORM}" />
+       		</div> 
+   		</div>
+	
+		</div>
+		<br>
+		<hr class="hr_avaliar">
+	<h2 class="outstanding-title">Exportar Resultado</h2>
+      <form name="form1" action="relatorioavaliacao" method="post">
+			<fieldset>
+					<legend>
+						Tipos de Exportação
+					</legend>
+				   <br>
+				   
+					   <img
+							src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png"
+							alt="pdf" title="Gerar em PDF">
+					   <input type="radio" id="tiporel" name="tiporel" value="4"><label for="tiporel">PDF</label>
+					   <input id="url" name="url" value="${url}" type="hidden">
+					   <input class="submit" name="executar" value="Executar"
+							type="submit">
+				
+			</fieldset>
+	</form>
+		</div>
+
+	</jsp:body>
 </t:baseLayout>
