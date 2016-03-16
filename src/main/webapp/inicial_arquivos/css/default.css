@@ -1,12 +1,10 @@
 @media only screen and (min-width : 768px) {
-	body {
-		margin: 0 auto;
-		background-color: #fff;
-		color: #000000;
-		font-family: "Open Sans", Arial, Helvetica, sans-serif;
-		font-size: 12px;
-	}
-	h1, h2, h3, h4, h5, h6 {
+	body {	
+		margin: 0;
+	    background-color: #fff;
+    	color: #000000;    
+    	font-size: 62.5%;
+    	font-weight: normal;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
 	header ul li {
@@ -54,15 +52,15 @@
 	#accessibility {
 		display: inline;
 		margin-left: 9.5%;
-		padding-top: 5px;
-		font-family: Arial, Helvetica, sans-serif;
+		padding-top: 5px;		
 		text-align: left;
 		float: left;
 		padding-left: 0;
 	}
 	#accessibility a {
 		color: #dcffe3;
-		font-size: 0.88em;
+		font-size: 1.2em;
+		padding-right: 10px;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 	#accessibility span {
@@ -86,6 +84,7 @@
 	}
 	#portal-siteactions li {
 		padding-right: 10px;
+		font-size: 1.2em;
 	}
 	#portal-siteactions a {
 		color: #9ed5ab;
@@ -97,38 +96,33 @@
 		padding-right: 0;
 	}
 	#logo {
+	
 		padding: 0;
 		float: left;
 		width: 70%;
 		padding-left: 12%;
-		margin-bottom: 15px;
+		margin-bottom: 15px;		
 	}
 	#logo a {
 		color: #fff;
 		display: block;
 		width: 100%;
-		margin: 1px 0px;
+		margin: 1px 0px;	
 	}
 	#logo #portal-title-1 {
-		font-size: 16px;
-		font-weight: 800;
+		font-size: 0.7em;
 	}
 	#logo #portal-title {
-		font-size: 50px;
-		font-weight: 800;
+		font-size: 3em;		
 	}
-	#logo #portal-description {
-		font-size: 16px;
-		margin: 5px 0 0 0;
-		text-transform: uppercase;
-		font-weight: 800;
-	}
+
 	#sobre {
 		clear: both;
 		background: #0a5517;
 		padding: 5px 0;
 		padding-left: 0;
 		text-align: right;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 	#sobre ul {
 		margin: 0;
@@ -142,7 +136,7 @@
 		margin-top: 50%;
 		padding: 0 10px;
 		border-right: 1px solid #fff;
-		font-size: 12px;
+		font-size: 1.3em;
 	}
 	#voltar-topo {
 		text-align: right;
@@ -180,16 +174,15 @@
 
 /*------Inicio max-width: 768px----*/
 @media only screen and (max-width : 768px) {
-	body {
-		margin: 0 auto;
-		background-color: #fff;
-		color: #000000;
-		font-family: "Open Sans", Arial, Helvetica, sans-serif;
-		font-size: 12px;
-	}
-	h1, h2, h3, h4, h5, h6 {
+	body {	
+		margin: 0;
+	    background-color: #fff;
+    	color: #000000;    
+    	font-size: 62.5%;
+    	font-weight: normal;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
+
 	header ul li {
 		display: block;
 		margin-top: 0;
@@ -234,8 +227,9 @@
 		margin-top: 30px;
 		padding: 0;
 	}
-	
+
 	#portal-siteactions {
+		font-size: 1.2em;
 		float: left;
 		padding: 0;
 		padding-top: 5px;
@@ -259,19 +253,27 @@
 		padding-right: 0;
 	}
 	
+	
+	
+
+
+	
 	#accessibility {
 		display: block;
 		padding-top: 20px;
 		font-family: Arial, Helvetica, sans-serif;
+		font-size: 1.2em;
 		text-align: left;
 		padding-left: 0;
 	}
+
 	#accessibility li {
 	display: inline;
 	}
 	#accessibility a {
 		color: #dcffe3;
-		font-size: 0.88em;
+		font-size: 1.2em;
+		padding-right: 10px;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 	#accessibility span {
