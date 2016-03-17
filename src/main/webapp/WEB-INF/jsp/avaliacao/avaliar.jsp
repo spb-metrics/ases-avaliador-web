@@ -4,8 +4,8 @@
 
 <t:baseLayout>
 	<jsp:body>
- 
    
+				
     <div class="tile --NOVALUE--">	
 		<div class="outstanding-header">
 			<h2 class="outstanding-title">Página Avaliada</h2>
@@ -18,6 +18,7 @@
 		<strong>Tamanho:</strong> ${contentLenght} Bytes <br>
 		<strong>Data/Hora:</strong> ${data}
     </div>
+    
      <br>
     <div class="tile --NOVALUE--">	
 		<div class="outstanding-header" id="notaResumo">
