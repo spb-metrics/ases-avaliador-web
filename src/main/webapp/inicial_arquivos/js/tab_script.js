@@ -1,17 +1,19 @@
 $(document).ready(function()
 
 	{
-		var teclaPressionada;
-		var shiftPressionado;
-
+	
+	var teclaPressionada;
+	var shiftPressionado;
+		
 		$(document).keydown(function(e) {
 			if(e.which != 13 )
 				{
 			shiftPressionado = e.shiftKey;
 			teclaPressionada = e.which;
-
+										
+			
 			$("#input").blur(function() {
-				if (shiftPressionado == true) {
+				if (shiftPressionado == true) {			
 					$("#tab-2").prop("checked", true);
 				}
 			});
@@ -38,3 +40,5 @@ $(document).ready(function()
 		});
 
 	});
+
+
