@@ -7,6 +7,36 @@
     	font-weight: normal;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
+	
+	.funcionalidades {	
+    clear: both;
+	}
+	.tile
+	{
+		clear: both;
+	}
+	
+	.funcionalidades ul.breadcrumb {
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    float: left;
+    height: 15px;
+    padding: 10px;
+    background: transparent url('../images/fundo_breadcrumb.jpg') no-repeat left top;
+    color: #003760;
+    clear: both;
+    margin-top: 10px;
+}
+	.funcionalidades li {
+    list-style: none;
+    float: left;
+    padding-right: 10px;
+}
+#formaavaliacao
+	{
+	color: #2C67CD !important;
+	font-size: 1.6em;
+	}
 	header ul li {
 		display: inline;
 		margin-top: 0;
@@ -116,13 +146,14 @@
 		font-size: 3em;		
 	}
 
-	#sobre {
-		clear: both;
+	#sobre {		
 		background: #0a5517;
 		padding: 5px 0;
 		padding-left: 0;
 		text-align: right;
 		font-family: Arial, Helvetica, sans-serif;
+		margin-bottom:0;
+		clear: both;
 	}
 	#sobre ul {
 		margin: 0;
@@ -252,11 +283,6 @@
 	#portal-siteactions  li:last-child {
 		padding-right: 0;
 	}
-	
-	
-	
-
-
 	
 	#accessibility {
 		display: block;
