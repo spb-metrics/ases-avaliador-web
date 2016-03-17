@@ -2,6 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <t:baseLayout>
 	<jsp:body>
    		<div class="tile --NOVALUE--">
@@ -16,10 +17,10 @@
 					</c:forEach>				
 				</c:if>
 				</div>
-				
-	
-<h2>Formas de Avaliação</h2>
-	
+
+
+<h2 id="formaavaliacao">Formas de Avaliação</h2>
+
 <div class="container">
  
    <div class="tab">
