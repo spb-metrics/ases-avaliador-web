@@ -1,0 +1,40 @@
+div::after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+.funcionalidades {	
+	clear: both;
+}
+
+.funcionalidades ul.breadcrumb {
+	background: transparent url("../imagens/fundo_breadcrumb.jpg") no-repeat scroll left top;
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	clear: both;
+	color: #003760;
+	float: left;
+	height: 15px;
+	padding: 10px;
+}
+
+.funcionalidades ul.breadcrumb span {
+	color: #515151;
+	display: inline-block;
+	width: 100%;
+}
+
+.funcionalidades li {
+	list-style: none;
+	font-weight: normal;
+	font-size: 16px;
+	font-family: Arial ,'Open Sans', sans-serif;
+	padding-right: 10px;	
+	float: left;	
+}
+
+
