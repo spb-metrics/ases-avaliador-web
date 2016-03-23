@@ -1,0 +1,54 @@
+.criterios{
+    font-size:1.4em; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.subtitulo{
+	font-family: Arial, Helvetica, sans-serif; 
+    font-weight: normal;
+    color: #2c66ce;
+    font-size:1.4em;
+    font-style: italic;
+}
+
+.tabelaCriterioSucesso{
+    font-family: Arial, Helvetica, sans-serif; 
+    width:100%;
+    table-layout:fixed;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.capitulo{
+    text-align: center;
+    font-size:1.5em;    
+}
+
+.topo {
+    background-color: #d2e4fc;
+    color: #003399;
+    font-weight: bold;
+    font-size:1.4em;   
+}
+
+.celula {
+	background-color: #f2f4f7;
+    color: #000;
+    font-weight: normal;
+    font-size:1.4em;   
+}
+
+.indice0{
+	width:1em;
+	 
+}
+
+.indice1{
+	width:3em;
+		
+}
+
+.indice2{
+	width:6em;
+		
+}
