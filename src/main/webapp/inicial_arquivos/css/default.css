@@ -1,41 +1,15 @@
 @media only screen and (min-width : 768px) {
-	body {	
+	body {
 		margin: 0;
-	    background-color: #fff;
-    	color: #000000;    
-    	font-size: 62.5%;
-    	font-weight: normal;
+		background-color: #fff;
+		color: #000000;
+		font-size: 62.5%;
+		font-weight: normal;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
-	
-	.funcionalidades {	
-    clear: both;
-	}
-	.tile
-	{
-		clear: both;
-	}
-	
-	.funcionalidades ul.breadcrumb {
-    border: 1px solid #D1D1D1;
-    border-radius: 5px;
-    float: left;
-    height: 15px;
-    padding: 10px;
-    background: transparent url('../images/fundo_breadcrumb.jpg') no-repeat left top;
-    color: #003760;
-    clear: both;
-    margin-top: 10px;
-}
-	.funcionalidades li {
-    list-style: none;
-    float: left;
-    padding-right: 10px;
-}
-#formaavaliacao
-	{
-	color: #2C67CD !important;
-	font-size: 1.6em;
+	#formaavaliacao {
+		color: #2C67CD !important;
+		font-size: 1.6em;
 	}
 	header ul li {
 		display: inline;
@@ -51,7 +25,8 @@
 		background-color: #0A5517;
 		background-image: -moz-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
 		/* FF3.6+ */
-		background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #19882c), color-stop(100%, #025310));
+		background-image: -webkit-gradient(radial, center center, 0px, center center, 100%,
+			color-stop(1%, #19882c), color-stop(100%, #025310));
 		/* Chrome,Safari4+ */
 		background-image: -webkit-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
 		/* Chrome10+,Safari5.1+ */
@@ -61,14 +36,16 @@
 		/* IE10+ */
 		background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
 		/* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',endColorstr='#025310', GradientType=1);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',
+			endColorstr='#025310', GradientType=1);
 		/* IE6-9 fallback on horizontal gradient */
 	}
 	a {
 		text-decoration: none;
 	}
 	#barra-brasil {
-		position: fixed;
+		/*position: fixed;*/
+		position: absolute;
 		width: 100%;
 		top: 0;
 		left: 0;
@@ -82,7 +59,7 @@
 	#accessibility {
 		display: inline;
 		margin-left: 9.5%;
-		padding-top: 5px;		
+		padding-top: 5px;
 		text-align: left;
 		float: left;
 		padding-left: 0;
@@ -126,33 +103,31 @@
 		padding-right: 0;
 	}
 	#logo {
-	
 		padding: 0;
 		float: left;
 		width: 70%;
 		padding-left: 12%;
-		margin-bottom: 15px;		
+		margin-bottom: 15px;
 	}
 	#logo a {
 		color: #fff;
 		display: block;
 		width: 100%;
-		margin: 1px 0px;	
+		margin: 1px 0px;
 	}
 	#logo #portal-title-1 {
 		font-size: 0.7em;
 	}
 	#logo #portal-title {
-		font-size: 3em;		
+		font-size: 3em;
 	}
-
-	#sobre {		
+	#sobre {
 		background: #0a5517;
 		padding: 5px 0;
 		padding-left: 0;
 		text-align: right;
 		font-family: Arial, Helvetica, sans-serif;
-		margin-bottom:0;
+		margin-bottom: 0;
 		clear: both;
 	}
 	#sobre ul {
@@ -201,19 +176,33 @@
 		font-size: 0;
 		text-indent: -20000px;
 	}
+	
+	.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('/ases/inicial_arquivos/imagens/warning.png');
+}
+.info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+
 } /*-----Fim max-width: 1024px */
 
 /*------Inicio max-width: 768px----*/
 @media only screen and (max-width : 768px) {
-	body {	
+	body {
 		margin: 0;
-	    background-color: #fff;
-    	color: #000000;    
-    	font-size: 62.5%;
-    	font-weight: normal;
+		background-color: #fff;
+		color: #000000;
+		font-size: 62.5%;
+		font-weight: normal;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
-
 	header ul li {
 		display: block;
 		margin-top: 0;
@@ -258,7 +247,6 @@
 		margin-top: 30px;
 		padding: 0;
 	}
-
 	#portal-siteactions {
 		font-size: 1.2em;
 		float: left;
@@ -283,7 +271,6 @@
 	#portal-siteactions  li:last-child {
 		padding-right: 0;
 	}
-	
 	#accessibility {
 		display: block;
 		padding-top: 20px;
@@ -292,9 +279,8 @@
 		text-align: left;
 		padding-left: 0;
 	}
-
 	#accessibility li {
-	display: inline;
+		display: inline;
 	}
 	#accessibility a {
 		color: #dcffe3;
@@ -365,7 +351,8 @@
 	}
 	#sobre ul {
 		position: relative;
-		margin: 0; margin-left : auto;
+		margin: 0;
+		margin-left: auto;
 		width: 370px;
 		margin-left: auto;
 	}
@@ -403,7 +390,18 @@
 		width: 90%;
 		float: left;
 	}
-
+	.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('/ases/inicial_arquivos/imagens/warning.png');
+}
+.info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
 	/*-----------Footer-----------*/
 	#footer-brasil {
 		background: none repeat scroll 0% 0% #00420c;
@@ -414,7 +412,8 @@
 		display: inline-block;
 		font-size: 0;
 		text-indent: -20000px;
-	}
+	}	
+	
 } /*-----Fim max-width: 1024px */
 
 /*------Alto Contraste-----*/
@@ -424,10 +423,7 @@
 	color: #fff !important;
 }
 
-/*
-.contraste * {
-	color: #FFF !important;
-}*/
+
 .contraste a {
 	color: #FC0 !important;
 }
