@@ -17,7 +17,7 @@ public class PesquisaController {
 	
 	@Post("/pesquisar")
 	public void pesquisar() {
-		System.out.println("passando por aki");
+	
 	}
 	
 }
