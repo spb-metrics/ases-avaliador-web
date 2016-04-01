@@ -5,7 +5,10 @@
 
 <t:baseLayout>
 	<jsp:body>
-   		<div class="tile --NOVALUE--">
+
+<div class="container">
+
+	<div class="tile --NOVALUE--">
    		
    			<!-- ADICIONANDO ERROS -->
 				<c:if test="${not empty errors}">
@@ -16,15 +19,28 @@
 					<br />
 					</c:forEach>				
 				</c:if>
-				</div>
+		</div>
 
+	<div class="funcionalidades">
+			<ul class="breadcrumb">
+				<li>
+				<span>Você está em: </span>
+				</li>
+				<li>Página Inicial</li>
+			
+			</ul>
+	</div>
+	
+	 <div class="outstanding-header">
+	<h2 class="outstanding-title">Formas de Avaliação</h2>
+	</div>
+	
+		<div class="containerTab">
+		
 
-<h2 id="formaavaliacao">Formas de Avaliação</h2>
-
-<div class="container">
- 
    <div class="tab">
-       <input type="radio" id="tab-1" name="tab-group-1" checked="checked">
+       <input type="radio" id="tab-1" name="tab-group-1"
+						checked="checked">
      <label class="rarios" for="tab-1">Validação pela URI</label>
        
        <div class="contenteudo">
@@ -38,9 +54,9 @@
 												  		
 				
 									<label class="" for="url">URL:</label><input id="url"
-							name="url" value="http://" size="40" type="text">
+								name="url" value="http://" size="40" type="text">
 									<input id="input_tab_1" class="submit" name="executar"
-							value="Executar" type="submit">
+								value="Executar" type="submit">
 								
 							</form>
        </div> 
@@ -52,7 +68,7 @@
        
        <div class="contenteudo">
            <form name="form2" action="avaliar-arquivo" method="post"
-						enctype="multipart/form-data">
+							enctype="multipart/form-data">
 								<input type="hidden" name="mark" value="true">
 								<input type="hidden" name="content" value="true">
 								<input type="hidden" name="presentation" value="true">
@@ -63,9 +79,9 @@
 								
 																	
 										<label for="up_file">Arquivo:</label><input id="up_file"
-							name="file" size="30" type="file">
+								name="file" size="30" type="file">
 										<input id="input_tab_2" class="submit" name="executar"
-							value="Executar" type="submit">
+								value="Executar" type="submit">
 								
 							</form>
        </div> 
@@ -76,7 +92,8 @@
        <label class="rarios" for="tab-3">Validação pelo código fonte</label>
      
        <div class="contenteudo">
-       <form name="form3" action="avaliar-codigo" method="post" enctype="multipart/form-data">
+       <form name="form3" action="avaliar-codigo" method="post"
+							enctype="multipart/form-data">
 								<input type="hidden" name="mark" value="true">
 								<input type="hidden" name="content" value="true">
 								<input type="hidden" name="presentation" value="true">
@@ -85,14 +102,16 @@
 								<input type="hidden" name="behavior" value="true">							
 								
 									
-										<label for="input">Código a analisar:<br><textarea id="input" name="html" rows="8" cols="75"></textarea>					</label>
-										<br><input class="submit" name="executar" value="Executar" type="submit">
+										<label for="input">Código a analisar:<br>
+						<textarea id="input" name="html" rows="8" cols="75"></textarea>					</label>
+										<br><input class="submit" name="executar"
+								value="Executar" type="submit">
 								
 								</form>       
 
        </div> 
    </div>
-    
+    </div>
 </div>
 	
 	
