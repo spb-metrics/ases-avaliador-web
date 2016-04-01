@@ -19,26 +19,33 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 @Path("/contato")
 public class ContatoController {
 
+	private String tituloPagina = "Contato - ASES";
 	private Result result;
 	private Validator validator;
 	private ServletContext application;
 	
+	
+	
 	public ContatoController(Result result, Validator validator,ServletContext application) {
+		
 		this.result = result;
 		this.validator = validator;
 		this.application = application;
+		
+		//Seta o título da página 
+		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 	}
 	
 	@Path("")
 	public void index() {
-		
-		System.out.println("passando por aki");
+
 	}
 	
 	@Post("/confirmacao")
