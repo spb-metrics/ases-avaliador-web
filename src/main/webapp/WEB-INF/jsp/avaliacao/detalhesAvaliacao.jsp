@@ -6,25 +6,22 @@
 
 <t:baseLayout>
 	<jsp:body>
+
+		<div class="funcionalidades">
+		<ul class="breadcrumb">
+			<li>
+				<span>Você está em: </span>
+			</li>
+			<li><a href="${pageContext.request.contextPath}">Página Inicial  |</a></li>
+			<li><a id="voltar" href="#">Resumo de avaliação  |</a></li>			
+			<li>Detalhes de Avaliação da recomendação ${rn}</li>
+		</ul>
+	</div>
+	
+	
       <!-- Início Conteudo -->
       
-      <h2>Exportar Resultado</h2>
-      <form name="form" action="${pageContext.request.contextPath}/exportar-detalhes-avaliacao" method="post">
-	      <fieldset>
-			    <legend>
-					Tipos de Exportação
-				</legend>
-				
-				<p>
-				   <img	src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png" alt="pdf" title="Gerar em PDF" height="20" width="20">
-				   <input type="radio" name="tiporel" value="4">PDF	
-				   <input type="hidden" name="rn" value="${rn}">
-				   <input type="hidden" name="isError" value="${isError}">
-		           <input class="submit" name="executar" value="Executar" type="submit">			  
-				</p>
-		  </fieldset>
-	  </form>
-    
+         
 	  <div class="tile --NOVALUE--">	
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Página Avaliada</h2>
@@ -38,14 +35,15 @@
 			<strong>Data/Hora:</strong> ${data}
       </div>
     
+    <hr class="hr_linhaDupla">
     
 	  <div class="tile --NOVALUE--">	
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Recomendação Avaliada</h2>
 			</div>
-			<strong>${recomendacao}</strong>
+			<strong> ${rn} ${recomendacao}</strong>
 	  </div>
-			
+			<hr class="hr_linhaDupla">
 	  <div class="tile --NOVALUE--">
 	  		<div class="outstanding-header">
     	    	<h2 class="outstanding-title">Critério(s) Avaliado(s)</h2>
@@ -55,8 +53,8 @@
 			<caption>Tabela de Erros</caption>
 				 <thead>								
 						<tr>
-						    <th id="numero" class="topo2">Número</th>
-							<th id="teste" class="topo2">Teste(s)</th>
+						    <th id="numero" class="topo2 indiceDetalhes0">Número</th>
+							<th id="teste" class="topo2 indiceDetalhes1">Teste(s)</th>
 							<th id="quantidade" class="topo2">Quantidade</th>
 							<th id="linhaCodigoFonte" class="topo2">Linha(s) de Código Fonte</th>
 						</tr>
@@ -65,7 +63,12 @@
 			     <tbody>
 				 	 <c:forEach items="${detalhe.criterios}" var="criterio">
 						<tr>
-						   <td headers="numero" class="celula"> ${criterio.id} </td>
+							<!-- retirar o ponto da recomendação -->
+							<c:set var="var_recomendacaoComPonto"	value="${rn}" />
+							<c:set var="var_RecomendacaoSemPonto" value="${fn:replace(var_recomendacaoComPonto,'.','')}" />
+						   <td headers="numero" class="celula"><a href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}"> ${criterio.id} </a></td>
+						   <!-- Fim retirar o ponto da recomendação -->
+						   
 						   <td headers="teste" class="celula">${criterio.descricao}</td>
 						   <td headers="quantidade" class="celula">
 								   	
@@ -94,16 +97,21 @@
 								   <c:set var="req" value="${rn}.${criterio.id}" />
 								       <c:choose> 
 											   <c:when test="${fn:contains(aReq, req)}">
-											   		<c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
+											   		<c:forEach items="${criterio.linhasColunas}" var="linha"
+											varStatus="index">
 											   			<c:if test="${fn:contains(aReqIsW3c, req)}">
 									     					<c:if test="${fn:contains(aReqIsCss, req)}">
-													     	      <a href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}" target="_blanck">
+													     	      <a
+														href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}"
+														target="_blanck">
 													     						   Servi&ccedil;o de valida&ccedil;&atilde;o de CSS do W3C (link para um novo sitio)
 												 				  </a>
 														    </c:if>
 															
 															<c:if test="${!fn:contains(aReqIsCss, req)}">
-													     	      <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${url}" target="_blanck">
+													     	      <a
+														href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${url}"
+														target="_blanck">
 													     				       		Servi&ccedil;o de valida&ccedil;&atilde;o de HTML do W3C (link para um novo sitio)
 													     		  </a>
 														    </c:if>
@@ -119,12 +127,27 @@
 											   
 											    <c:otherwise>
 											    	<ul>
-														<c:forEach items="${criterio.linhasColunas}" var="linha" varStatus="index">
-									         	     		<c:set var="lineOcc" value="${fn:split(linha, '.')}" />
-																<li id="linhaCodigoFonte_${criterio.id}.${linha}" style="display:inline"><a href="#${criterio.id}.${linha}" class="sublinharLink">${lineOcc[0]}</a>
-														    		<c:if test="${index.index !=  fn:length(criterio.linhas) -1}"> - 
+														<c:forEach items="${criterio.linhasColunas}" var="linha"
+												varStatus="index">
+									         	     		<c:set var="lineOcc"
+													value="${fn:split(linha, '.')}" />
+									         	     		
+									         	     <%--Para trocar os "." por "_" devido problemas com css  --%>
+									         	    
+									         	    <c:set var="var_01"
+													value="${criterio.id}_${linha}" />
+													<c:set var="linhaSelecionar"
+													value="${fn:replace(var_01,'.','_')}" />
+													
+													<%-- ***********  --%>
+													
+																<li id="linhaCodigoFonte_${criterio.id}.${linha}"><a
+													href="#selecionar_${linhaSelecionar}" class="sublinharLink">${lineOcc[0]}</a>
+														    		<c:if
+														test="${index.index !=  fn:length(criterio.linhas) -1}"> - 
 																	</c:if>
 																</li>
+																
 													 	</c:forEach>
 													</ul> 
 											     </c:otherwise>
@@ -132,9 +155,7 @@
 											   
 							    <c:if test="">
 								   
-							    </c:if>
-							  
-								    
+							    </c:if>						  		    
 						</td>
 								</tr>
 
@@ -144,7 +165,7 @@
 						</table>
 			     </div>
 			
-			
+			<hr class="hr_linhaDupla">
 			
 			<div class="tile --NOVALUE--">
 			    <div class="outstanding-header">
@@ -152,20 +173,38 @@
 				</div>
 				
 				<div id="codigo">
-					<pre style="overflow: auto; width:100%; height:400px; border:1px solid #cccccc; display:block; white-space:nowrap">					
-						<c:forEach items="${listOcorrencia}" var="ocorrencia" varStatus="index">
-							<c:set var="aReq" value="${aReq}"/>
-							<c:set var="req" value="${rn}.${ocorrencia.criterio}"/>
+					<pre>					
+						<c:forEach items="${listOcorrencia}" var="ocorrencia"
+						varStatus="index">
+							<c:set var="aReq" value="${aReq}" />
+							<c:set var="req" value="${rn}.${ocorrencia.criterio}" />
 								<c:if test="${!fn:contains(aReq, req)}">
 									<c:choose>
 										<c:when test="${ocorrencia.cssEvaluation}">
-											<a id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="http://jigsaw.w3.org/css-validator/validator?uri=${ocorrencia.tag}" target="_blank">${ocorrencia.line} : Serviço de validação de CSS do W3C : ${ocorrencia.tag}</a>
+											<a
+										id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}"
+										href="http://jigsaw.w3.org/css-validator/validator?uri=${ocorrencia.tag}"
+										target="_blank">${ocorrencia.line} : Serviço de validação de CSS do W3C : ${ocorrencia.tag}</a>
 					            		</c:when>
 					            		<c:when test="${ocorrencia.htmlEvaluation}">
-					            			<a id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}" href="https://validator.w3.org/nu/?doc=${ocorrencia.tag}" target="_blank">${ocorrencia.line} : Serviço de validação de HTML do W3C : ${ocorrencia.tag}</a>
+					            			<a
+										id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}"
+										href="https://validator.w3.org/nu/?doc=${ocorrencia.tag}"
+										target="_blank">${ocorrencia.line} : Serviço de validação de HTML do W3C : ${ocorrencia.tag}</a>
 										</c:when>
 										<c:otherwise>
-											<a id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}">${ocorrencia.line} : ${ocorrencia.tag}</a><br>
+										
+										 <%--Para trocar os "." por "_" devido problemas com css  --%>
+									         	    
+									         	    <c:set var="var_01"
+										value="${ocorrencia.criterio}_${ocorrencia.posLineOccurrence}" />
+													<c:set var="linhaSelecionar"
+										value="${fn:replace(var_01,'.','_')}" />
+													
+													<%-- ***********  --%>
+										
+											<a id="selecionar_${linhaSelecionar}">${ocorrencia.line} : ${ocorrencia.tag}</a>
+									<br>
 								 		</c:otherwise>
 							 		</c:choose>
 							 	</c:if>
@@ -173,7 +212,32 @@
 					</pre>
 				</div>
 			</div>	
-			      		
-       		
+			<hr class="hr_linhaDupla">     	
+			<div class="tile --NOVALUE--">
+	<div class="outstanding-header">
+	 <h2 class="outstanding-title">Exportar Resultado</h2>
+	 </div>
+      <form name="form"
+				action="${pageContext.request.contextPath}/exportar-detalhes-avaliacao"
+				method="post">
+	      <fieldset>
+			    <legend>
+					Tipos de Exportação
+				</legend>
+				
+				<br>
+				   <img
+						src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png"
+						alt="pdf" title="Gerar em PDF">
+				   <input type="radio" id="tiporel" value="4"><label
+						for="tiporel">PDF</label>
+				   <input type="hidden" name="rn" value="${rn}">
+				   <input type="hidden" name="isError" value="${isError}">
+		           <input class="submit" name="executar" value="Executar"
+						type="submit">			  
+			
+		  </fieldset>
+	  </form>	
+       		</div>
    </jsp:body>
 </t:baseLayout>
