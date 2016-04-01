@@ -4,7 +4,7 @@
 
 
 <t:baseLayout>
-	<jsp:body>
+	<jsp:body> 
        	       	      
        	      		 <div class="funcionalidades">
 						<ul class="breadcrumb">
