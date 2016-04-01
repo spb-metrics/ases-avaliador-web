@@ -2,7 +2,7 @@
 $(document).ready(function()
 
 	{
-	
+		
 	$("#tabelaErros a").click(function(){	
 		
 		$($(this).attr('id')).prop("checked", true);
