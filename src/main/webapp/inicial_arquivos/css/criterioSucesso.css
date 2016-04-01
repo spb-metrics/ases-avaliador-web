@@ -5,9 +5,17 @@
 
 .subtitulo{
 	font-family: Arial, Helvetica, sans-serif; 
+    font-size:1.9em; 
     font-weight: normal;
     color: #2c66ce;
-    font-size:1.4em;
+    font-style: italic;
+}
+
+.contraste .subtitulo{
+	font-family: Arial, Helvetica, sans-serif; 
+    font-size:1.9em; 
+    font-weight: normal;
+    color: #fff;
     font-style: italic;
 }
 
@@ -17,25 +25,51 @@
     table-layout:fixed;
     word-wrap: break-word;
     text-align: left;
+    font-size:1.4em; 
+    margin-bottom: 2em; 
 }
 
-.capitulo{
-    text-align: center;
-    font-size:1.5em;    
+.contraste .tabelaCriterioSucesso{
+    font-family: Arial, Helvetica, sans-serif; 
+    width:100%;
+    table-layout:fixed;
+    word-wrap: break-word;
+    text-align: left;
+    font-size:1.4em; 
+    margin-bottom: 2em;
+   border: 1px solid #fff;
 }
 
-.topo {
+.tabelaCriterioSucesso caption{
+	text-align: center;
+	font-size: 1.25em; 
+}
+
+
+.topoCriterios {
     background-color: #d2e4fc;
     color: #003399;
     font-weight: bold;
-    font-size:1.4em;   
+    
 }
 
-.celula {
+.contraste .topoCriterios {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    
+}
+
+.celulaCriterios {
 	background-color: #f2f4f7;
     color: #000;
+    font-weight: normal;   
+}
+
+.contraste .celulaCriterios {
+	background-color: #000;
+    color: #fff;
     font-weight: normal;
-    font-size:1.4em;   
 }
 
 .indice0{
