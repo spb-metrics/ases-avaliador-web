@@ -1,11 +1,11 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="body" fragment="true"%>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,7 +25,35 @@
 	href="${pageContext.request.contextPath}/inicial_arquivos/css/avaliar.css"
 	media="screen">
 
-<title>ASES - Avaliador e Simulador de AcessibilidadE em Sites</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/detalhesAvaliacao.css"
+	media="screen">
+	
+		<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/criterioSucesso.css"
+	media="screen">
+	
+			<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/contato.css"
+	media="screen">
+	
+			<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/mapa.css"
+	media="screen">
+	
+			<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/perguntasFrequentes.css"
+	media="screen">
+
+	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/breadcrumb.css"
+	media="screen">	
+	
+
+	
+<!--  <title>ASES - Avaliador e Simulador de AcessibilidadE em Sites</title>-->
+<title>${tituloPagina}</title>
 
 </head>
 
@@ -81,21 +109,22 @@
 					</a>
 				</h1>
 			</div>
-			<div id="sobre">
+			<nav id="sobre">
 				<ul>
 					<li id="portalservicos-perguntas-frequentes"
-						class="portalservicos-item"><a href="perguntas-frequentes"
+						class="portalservicos-item"><a href="${pageContext.request.contextPath}/perguntas-frequentes"
 						title="Perguntas frequentes">Perguntas frequentes</a></li>
+						
 					<li id="portalservicos-contato" class="portalservicos-item"><a
-						href="contato" title="Contato">Contato</a></li>
+						href="${pageContext.request.contextPath}/contato" title="Contato">Contato</a></li>
 						<li id="portalservicos-criterios" class="portalservicos-item"><a
-						href="criteriosSucesso" title="Critérios de sucesso">Critérios de sucesso</a></li>
+						href="${pageContext.request.contextPath}/criteriosSucesso" title="Critérios de sucesso">Critérios de sucesso</a></li>
 				</ul>
-			</div>
+			</nav>
 		</div>
 	</header>
 
-	<div id="main" role="main">
+	<div id="main" role="main">  
 
 		<div id="content">
 			<a id="inicioConteudo" class="oculto" href="#">Início do conteúdo</a>
@@ -128,6 +157,13 @@
 			<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/avaliar.js"></script>
 
+<script type="text/javascript"
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/detalhesAvaliacao.js"></script>
+
+
+			<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+		
 	<script defer="defer" src="//barra.brasil.gov.br/barra.js"
 		type="text/javascript"></script>
 </body></html>
