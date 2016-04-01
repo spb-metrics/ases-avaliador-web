@@ -4,6 +4,19 @@
 
 <t:baseLayout>
    <jsp:body>
+       <div class="funcionalidades"> 
+	   		<ul class="breadcrumb">
+				<li>
+					<span>Você está em:</span>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}">Página Inicial</a>
+				</li>
+				<li>|</li>
+               	<li>Perguntas Frequentes</li>
+			</ul>
+	   </div>
+   
        <div class="tile --NOVALUE--">	
        		<c:if test="${not empty mensagem}">
 				<div id="mensagem">
@@ -14,23 +27,26 @@
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Perguntas Frequentes</h2>
 			</div>
-					
-			<dt>
-				<c:forEach var="perguntaFrequente" items="${perguntasFrequentes}">
-					<dd class="summary"><strong><a href="#resp${perguntaFrequente.id}">${perguntaFrequente.pergunta}</a></strong></dd>
-				</c:forEach> 	
-			</dt>
 		</div>
+					
+		<ul id="perguntas" class="perguntasRespostas">
+			<c:forEach var="perguntaFrequente" items="${perguntasFrequentes}">
+				<li><strong><a href="#resp${perguntaFrequente.id}">${perguntaFrequente.pergunta}</a></strong></li>
+			</c:forEach> 	
+		</ul>
 		
+		
+		<hr>
 		<div class="tile --NOVALUE--">	
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Respostas Perguntas Frequentes</h2>
 			</div>
-			<dt>
-				<c:forEach var="perguntaFrequente" items="${perguntasFrequentes}">
-					<dd class="summary"><a name="resp${perguntaFrequente.id}"><i>${perguntaFrequente.resposta}</i></a></dd>
-				</c:forEach> 
-			</dt>
 		</div>
+		    <ul id="respostas" class="perguntasRespostas">
+				<c:forEach var="perguntaFrequente" items="${perguntasFrequentes}">
+					<li><a name="resp${perguntaFrequente.id}" id="resp${perguntaFrequente.id}"><i>${perguntaFrequente.resposta}</i></a></li>
+				</c:forEach> 
+		    </ul>
+		
    </jsp:body>
 </t:baseLayout>
