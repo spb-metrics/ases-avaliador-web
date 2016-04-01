@@ -1,13 +1,25 @@
 @media only screen and (min-width : 768px) {
-	.containerAvaliacao {
+	.containerAvaliacao {		
 		position: relative;
-		min-height: 500px;
-		clear: both;
-		
+		height:550px;	
+		clear: both;		
 	}
-
+	.contenteudoAvaliacao {
+		overflow:auto;
+		position: absolute;
+		top: 28px;
+		left: 0;
+		background: #dbe9ba;
+		right: 0;
+		bottom: 0;
+		width:auto;
+		padding: 20px;		
+		border: 1px solid #ccc;
+		clear: both;
+	}
 	.tabAvaliacao {
 		float: left;
+		
 	}
 	.tabAvaliacao label.rariosAvaliacao {
 		background: #eee;
@@ -30,16 +42,7 @@
 	.tabAvaliacao [type=radio] {
 		display: none;
 	}
-	.contenteudoAvaliacao {
-		position: absolute;
-		top: 28px;
-		left: 0;
-		background: #dbe9ba;
-		right: 0;
-		bottom: 0;
-		padding: 20px;
-		border: 1px solid #ccc;
-	}
+
 	[type=radio]:checked ~ label {
 		background:#dbe9ba;
 		border-bottom: 1px solid #ffffff;
@@ -47,6 +50,53 @@
 	}
 	[type=radio]:checked ~ label ~ .contenteudoAvaliacao {
 		z-index: 1;
+	}
+}
+/*-----Fim (min-width : 768px)------ */
+@media only screen and (max-width : 768px) {
+	.containerAvaliacao {
+		position: relative;
+		min-height: 440px;
+		clear: both;
+		margin: 25px 10px 0 10px;
+		min-width: 80%;
+		font-size: 1.2em;
+	}
+	.tabAvaliacao .contenteudoAvaliacao {
+		background-color: #dbe9ba;
+		border: 1px solid #000;
+		padding-right: 10px;
+		margin-bottom: 15px;
+		
+		padding-left: 10px;
+		clear: both;
+	}
+	.contraste .tabAvaliacao .contenteudoAvaliacao {
+		border: 1px solid #fff !important;
+	}
+	.tabAvaliacao {
+		float: left;
+	}
+	.tabAvaliacao [type=radio] {
+		display: none;
+	}
+	.tabAvaliacao input {
+		margin-bottom: 10px;
+		margin-top: 10px;
+		margin-left: 10px;
+		
+	}
+	.tabAvaliacao label {
+		margin-bottom: 15px;
+		margin-top: 15px;
+		margin-left: 15px;
+		border: 0;
+	}
+	.tabAvaliacao textarea {
+		margin-top: 10px;
+		margin-left: 10px;
+		width: 90%;
+		height: 40px;
 	}
 
 	/*-------Alto Contraste------*/
