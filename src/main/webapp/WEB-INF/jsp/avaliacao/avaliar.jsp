@@ -4,7 +4,18 @@
 
 <t:baseLayout>
 	<jsp:body>
-    
+
+	<div class="funcionalidades">
+		<ul class="breadcrumb">
+			<li>
+				<span>Você está em: </span>
+			</li>
+			<li><a href="${pageContext.request.contextPath}">Página Inicial  |</a></li>
+	
+			<li>Resumo de avaliação</li>
+			
+		</ul>
+	</div>
     
     
 				
@@ -31,7 +42,7 @@
 		
 			<div class="cell width-5 position-2 " data-panel="">
 				<div id="block">
-					<div id="webaxscore" class="scoreB">Porcentagem
+					<div id="webaxscore" class="scoreB_${webaxscore}">Porcentagem
 						<strong>ASES</strong>
 						<span>${nota.valor}%</span>
 					</div>
@@ -96,7 +107,7 @@
 	</div>
 	<div id="corpo">
 	<br>
-	<hr class="hr_avaliar">
+	<hr class="hr_linhaDupla">
 	<h2 class="outstanding-title">Resumo de Acessibilidade por recomendações do eMAG</h2>
 	
 <div class="containerAvaliacao">
@@ -157,9 +168,10 @@
        		</div> 
    		</div>
 	
-		</div>
+</div>
+	
 		<br>
-		<hr class="hr_avaliar">
+		<hr class="hr_linhaDupla">
 	<h2 class="outstanding-title">Exportar Resultado</h2>
       <form name="form1" action="relatorioavaliacao" method="post">
 			<fieldset>
@@ -178,6 +190,7 @@
 				
 			</fieldset>
 	</form>
+	
 		</div>
 
 	</jsp:body>
