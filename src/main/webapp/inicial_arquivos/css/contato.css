@@ -1,0 +1,24 @@
+.formContato{
+	font-size: 1.7em; 
+	font-family: Arial, Helvetica, sans-serif;
+	font-color: #000; 
+}
+
+.formContato label{
+	display: block;
+	float: left;
+	text-align: left;
+	width: 3.5em;
+	padding-right: 1.7em;
+	padding-botton: 1em;
+}
+
+.formContato input{
+	display: block;
+	float: left;
+}
+
+.formContato fildset{
+	border: solid 1em #000;
+}
+
