@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.controller.EseloController;
 import br.com.ases.controller.EseloController.Nota;
@@ -65,8 +67,12 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",  Integer.toString(rn));
 				int qtdErros = 0;
 				
+				
+				
+				
 				for(SummarizedOccurrence occurence : occurrences){
 					String[] idRec = occurence.getCheckPoint().split("\\.");
+					
 					
 					qtdLinhas = qtdLinhas + occurence.getLines().size();
 				
@@ -85,6 +91,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].totalErros", Integer.toString(qtdErros));
 				//postParams.addParam("relatorioAvaliacao.qtdeLinhas", Integer.toString(qtdLinhas));
 				countReq++;
+				
+			
 			}
 			
 			postParams.addParam("relatorioAvaliacao.qtdeLinhas", Integer.toString(qtdLinhas));
@@ -92,8 +100,11 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			Gson g = new GsonBuilder().create();
 			nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
 			
+			
+			
 			}catch(Exception e){
-				nota = new EseloController(null).new Nota(url, "---" , "0.0");
+				nota = new EseloController(null).new Nota(url, "---" , "0.0");			
+				
 			}
 		
 			return nota;

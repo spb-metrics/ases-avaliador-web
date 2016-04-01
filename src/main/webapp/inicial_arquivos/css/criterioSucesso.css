@@ -13,12 +13,11 @@
 
 .contraste .subtitulo{
 	font-family: Arial, Helvetica, sans-serif; 
-    font-size:1.9em; 
     font-weight: normal;
     color: #fff;
+    font-size:1.4em;
     font-style: italic;
 }
-
 .tabelaCriterioSucesso{
     font-family: Arial, Helvetica, sans-serif; 
     width:100%;
@@ -26,7 +25,6 @@
     word-wrap: break-word;
     text-align: left;
     font-size:1.4em; 
-    margin-bottom: 2em; 
 }
 
 .contraste .tabelaCriterioSucesso{
@@ -36,30 +34,27 @@
     word-wrap: break-word;
     text-align: left;
     font-size:1.4em; 
-    margin-bottom: 2em;
-   border: 1px solid #fff;
+    border: 1px solid #fff;
 }
 
 .tabelaCriterioSucesso caption{
 	text-align: center;
-	font-size: 1.25em; 
-}
+	}
 
 
-.topoCriterios {
+ .topoCriterios {
     background-color: #d2e4fc;
     color: #003399;
     font-weight: bold;
-    
+     
 }
 
-.contraste .topoCriterios {
+ .contraste .topoCriterios {
     background-color: #000;
     color: #fff;
     font-weight: bold;
-    
+     
 }
-
 .celulaCriterios {
 	background-color: #f2f4f7;
     color: #000;
@@ -70,8 +65,14 @@
 	background-color: #000;
     color: #fff;
     font-weight: normal;
+
 }
 
+.contraste .celulaCriterios {
+	background-color: #000;
+    color: #fff;
+    font-weight: normal;    
+}
 .indice0{
 	width:1em;
 	 

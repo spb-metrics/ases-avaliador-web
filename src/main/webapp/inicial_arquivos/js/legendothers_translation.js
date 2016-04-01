@@ -1,1 +1,0 @@
-legendothers_translation = 'label_legendothers';

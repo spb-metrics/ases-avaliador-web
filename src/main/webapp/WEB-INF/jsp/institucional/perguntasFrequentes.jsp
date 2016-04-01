@@ -10,9 +10,8 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial</a>
+					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
 				</li>
-				<li>|</li>
                	<li>Perguntas Frequentes</li>
 			</ul>
 	   </div>
@@ -36,7 +35,7 @@
 		</ul>
 		
 		
-		<hr>
+		<hr class="hr_linhaDupla">
 		<div class="tile --NOVALUE--">	
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Respostas Perguntas Frequentes</h2>

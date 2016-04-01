@@ -141,7 +141,7 @@
 	<footer id="footer-brasil" role="contentinfo"> </footer>
 
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/jquery-1.10.2.min.js"></script>
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/jquery-1.10.2.min.js"></script>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/jquery.cookie.js"></script>
@@ -161,8 +161,8 @@
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/detalhesAvaliacao.js"></script>
 
 
-			<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+	<!--  	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/bootstrap.js"></script>-->
 		
 	<script defer="defer" src="//barra.brasil.gov.br/barra.js"
 		type="text/javascript"></script>

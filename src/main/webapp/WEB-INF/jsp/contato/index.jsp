@@ -10,9 +10,8 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial</a>
+					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
 				</li>
-				<li>|</li>
                	<li>Contato</li>
 			</ul>
 	   </div>
@@ -49,9 +48,9 @@
 							<label id="labelAssunto" for="assunto">Assunto:</label>
 							<select name="contato.assunto"  id="assunto">
 								<option value="" selected="selected">Selecione o assunto desejado</option>   
-								<option value="Informações">Informações</option>   
-								<option value="Sugestões">Sugestões</option>   
-								<option value="Dúvidas">Dúvidas</option>     
+								<option value="Informacoes">Informações</option>   
+								<option value="Sugestoes">Sugestõess</option>   
+								<option value="Duvidas">Dúvidas</option>     
 							</select>
 							<br>
 							<br>   

@@ -9,9 +9,8 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial</a>
+					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
 				</li>
-				<li>|</li>
                	<li>Mapa do Site</li>
 			</ul>
 	   </div>

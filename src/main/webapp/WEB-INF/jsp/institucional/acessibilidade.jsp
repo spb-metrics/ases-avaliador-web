@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -9,9 +10,8 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial</a>
+					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
 				</li>
-				<li>|</li>
         		<li>Acessibilidade</li>
 			</ul>
 		</div>
