@@ -2,6 +2,7 @@
 
 //Contraste
 function configContrastePadrao(){
+		
 	if(!$.cookie("contraste"))
 	{
 		$.cookie("contraste", "", { path: '/' });
