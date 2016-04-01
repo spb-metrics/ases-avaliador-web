@@ -29,7 +29,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.record.formula.functions.Replace;
 import org.eclipse.jdt.internal.compiler.ast.ForeachStatement;
 
 import net.sf.jasperreports.engine.JRException;
@@ -63,6 +65,10 @@ import br.com.checker.emag.core.Checker;
 @Resource
 public class AvaliacaoController {
 	
+	private String tituloPagina;
+	private String titulosite;
+	private String dataHoraAvaliacao;
+	private String webaxscore;
 	private Result result;
 	private Validator validator;
 	private AvaliacaoBusiness avaliacaoBusiness;
@@ -83,6 +89,26 @@ public class AvaliacaoController {
 				
 	}
 	
+	private void DefinirCorWebaxscore(String valorNota) {
+		
+		//Define a cor do webaxscore na página "Avaliar" de acordo a pontuação
+		
+		Double notaAvaliacao = Double.parseDouble(valorNota.replaceFirst(",", ".")) ;
+				
+		if(notaAvaliacao >= 70)
+		{
+			webaxscore = "verde";
+		}
+		else if(notaAvaliacao >= 50 & notaAvaliacao < 70)
+		{
+			webaxscore = "amarela";
+		}
+		else
+		{
+			webaxscore = "vermelha";
+		}					
+	}
+	
 	@Path("/avaliar-arquivo")
 	public void avaliarArquivo(UploadedFile file, boolean mark,
 												  boolean content,
@@ -91,6 +117,9 @@ public class AvaliacaoController {
 												  boolean form,
 												  boolean behavior,
 												  int tiprel) throws IOException {
+		
+				
+				
 	Validate validate = new Validate(this.validator);	
 		
 	if(validate.uploadForm(file)){
@@ -123,21 +152,44 @@ public class AvaliacaoController {
 					
 					result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 					result.include("html", html);
-					result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
 					
+					this.titulosite = "Código Fonte ou Arquivo";
+					result.include("titulosite", titulosite);
+									
 					Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName());
 					
 					result.include("nota",nota);
 					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 					this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+					 		
+					
+				
+					
+					
 					
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 					
+										
+					//Altera a cor de webaxscore de acordo a pontuacao
+					
+					DefinirCorWebaxscore(nota.getValor());	
+					
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
+					//Seta o valor do título no template
+					tituloPagina = "Resumo de avaliação por upload de arquivo - ASES";
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
+					
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
+					
+					this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
+					
 					result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
-		    	
+					
+					
 		    }else{
 		    	this.validator = validate.getMessage();
 				this.validator.onErrorUsePageOf(IndexController.class).index();
@@ -158,6 +210,8 @@ public class AvaliacaoController {
 									boolean form, 
 									boolean behavior,
 									int tiporel) {
+		
+					
 		
 		Validate validate = new Validate(this.validator);
 		
@@ -186,8 +240,10 @@ public class AvaliacaoController {
 		    Matcher mm = pp.matcher(url.toLowerCase());  
 		    
 		    if (mm.find())
-		      	result.include("titulosite", mm.group(2));
-		   
+		    	
+		    	this.titulosite = mm.group(2);
+		      	result.include("titulosite", titulosite);
+		    
 		    result.include("contentLenght", pagina.getContentLength());
 			result.include("url", url);
 			result.include("html", pagina.getParsedContent());
@@ -200,6 +256,23 @@ public class AvaliacaoController {
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", url);
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
+			
+			
+			//Altera a cor de webaxscore de acordo a pontuacao
+			
+			DefinirCorWebaxscore(nota.getValor());		
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
+			
+			
+			//Seta o valor do título no template
+			tituloPagina = "Resumo de avaliação por URI - ASES";
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
+			
+			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
 			
 		}else{
 			 this.validator = validate.getMessage();
@@ -239,7 +312,9 @@ public class AvaliacaoController {
 					 map.put("pTitulo", "governoeletronico");
 				
 				map.put("pTamanho", contentLenght+" Bytes");
+				dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
 				map.put("pDataHoraAvaliacao",   DateUtil.dataHoraAtual());
+				
 				
 				//Obtem Resumo da AvaliaÃ§Ã£o
 				List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
@@ -285,6 +360,8 @@ public class AvaliacaoController {
 											  boolean behavior,
 											  int tiporel) throws IOException{
 		
+		
+		
 		Validate validate = new Validate(this.validator);
 		
 		if(validate.condigoFonte(html)){
@@ -309,8 +386,10 @@ public class AvaliacaoController {
 			
 			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
-			result.include("titulosite", "C&oacute;digo Fonte ou Arquivo");
-			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),"C&oacute;digo Fonte ou Arquivo - "+sdf.format(new Date()));
+			
+			this.titulosite = "Código Fonte ou Arquivo";
+			result.include("titulosite", titulosite);
+			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),titulosite + " - "+sdf.format(new Date()));
 			
 			result.include("nota",nota);
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
@@ -321,7 +400,23 @@ public class AvaliacaoController {
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 			
+			
+			//Altera a cor de webaxscore de acordo a pontuacao
+			
+			DefinirCorWebaxscore(nota.getValor());
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
+			
+			
+			//Seta o valor do título no template
+			tituloPagina = "Resumo de avaliação por código fonte - ASES";
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
+			
+			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
 			
 		}else{
 			this.validator = validate.getMessage();
@@ -395,6 +490,9 @@ public class AvaliacaoController {
 	
 	@Path("/detalhes-avaliacao/{rn}/{type}")
 	public void detalhesAvaliacao(OccurrenceKey rn, boolean type){
+		
+		tituloPagina = "Detalhes da avaliação - ASES";
+		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 		
 		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn, type).getOcorrencias();
 		
