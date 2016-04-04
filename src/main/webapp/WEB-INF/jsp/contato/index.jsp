@@ -23,16 +23,17 @@
 					</div>
 				</div>
 					<c:if test="${not empty mensagem}">
-						<div id="mensagem">
-   							<div class="${status}"> <div class="alinName">${mensagem}</div></div>
+						<div class="warning">
+							<div class="alinName fonteWarning">${mensagem}</div>
 						</div>
 					</c:if>
 					
 					<c:forEach var="error" items="${errors}">  
-   							<div id="erro">${error.message}</div>  
+   						<div class="warning">	
+   							<div class="alinName fonteWarning">${error.message}</div>
+   						</div>
    					</c:forEach>  
-   					
-   				   				
+   				   				   				
 				    <form method="post" action="${pageContext.request.contextPath}/contato/confirmacao">   
 				    	<fieldset class="formContato">   
 							<legend>Formulário de Contato</legend>
@@ -48,9 +49,9 @@
 							<label id="labelAssunto" for="assunto">Assunto:</label>
 							<select name="contato.assunto"  id="assunto">
 								<option value="" selected="selected">Selecione o assunto desejado</option>   
-								<option value="Informacoes">Informações</option>   
-								<option value="Sugestoes">Sugestõess</option>   
-								<option value="Duvidas">Dúvidas</option>     
+								<option value="Informações">Informações</option>   
+								<option value="Sugestões">Sugestões</option>   
+								<option value="Dúvidas">Dúvidas</option>     
 							</select>
 							<br>
 							<br>   
