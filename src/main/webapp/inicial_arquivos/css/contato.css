@@ -4,6 +4,11 @@
 	font-color: #000; 
 }
 
+.fonteWarning{
+	font-size: 1.4em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 .formContato label{
 	display: block;
 	float: left;
