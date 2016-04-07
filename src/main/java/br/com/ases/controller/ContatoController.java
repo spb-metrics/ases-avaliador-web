@@ -71,7 +71,7 @@ public class ContatoController {
 				
 			}else{
 				result.include("mensagem", "N&atilde; foi poss&iacute;vel enviar a mensagem! Ocorreu o problema: "+respSendEmail);
-				result.include("status", "error");
+				result.include("status", "error");				
 			}
 			
 			this.result.redirectTo(ContatoController.class).index();
