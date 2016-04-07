@@ -74,12 +74,12 @@
 				<ul id="portal-siteactions">
 					<li id="siteaction-accessibility"><a
 						href="${pageContext.request.contextPath}/acessibilidade"
-						title="Acessibilidade" accesskey="3">ACESSIBILIDADE</a></li>
+						accesskey="3">ACESSIBILIDADE</a></li>
 					<li id="altoContraste"><a href="#contraste" accesskey="4">ALTO
 							CONTRASTE</a></li>
 					<li id="siteaction-mapadosite"><a
 						href="${pageContext.request.contextPath}/mapa-site"
-						title="Mapa do Site" accesskey="5">MAPA DO SITE</a></li>
+						 accesskey="5">MAPA DO SITE</a></li>
 				</ul>
 			</div>
 
@@ -112,13 +112,12 @@
 			<nav id="sobre">
 				<ul>
 					<li id="portalservicos-perguntas-frequentes"
-						class="portalservicos-item"><a href="${pageContext.request.contextPath}/perguntas-frequentes"
-						title="Perguntas frequentes">Perguntas frequentes</a></li>
+						class="portalservicos-item"><a href="${pageContext.request.contextPath}/perguntas-frequentes">Perguntas frequentes</a></li>
 						
 					<li id="portalservicos-contato" class="portalservicos-item"><a
-						href="${pageContext.request.contextPath}/contato" title="Contato">Contato</a></li>
+						href="${pageContext.request.contextPath}/contato">Contato</a></li>
 						<li id="portalservicos-criterios" class="portalservicos-item"><a
-						href="${pageContext.request.contextPath}/criteriosSucesso" title="Critérios de sucesso">Critérios de sucesso</a></li>
+						href="${pageContext.request.contextPath}/criteriosSucesso">Critérios de sucesso</a></li>
 				</ul>
 			</nav>
 		</div>
