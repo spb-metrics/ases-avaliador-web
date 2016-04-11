@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="body" fragment="true"%>
 
-<!DOCTYPE html>
+<!DOCTYPE             html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
@@ -44,7 +44,10 @@
 			<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/inicial_arquivos/css/perguntasFrequentes.css"
 	media="screen">
-
+	
+		<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/barra_brasil.css"
+	media="screen">
 	
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/inicial_arquivos/css/breadcrumb.css"
@@ -59,7 +62,7 @@
 
 <body>
 
-	<header role="banner">
+	<header id="topoPagina">
 		<div>
 			<div id="topo">
 				<ul id="accessibility">
@@ -75,7 +78,7 @@
 					<li id="siteaction-accessibility"><a
 						href="${pageContext.request.contextPath}/acessibilidade"
 						accesskey="3">ACESSIBILIDADE</a></li>
-					<li id="altoContraste"><a href="#contraste" accesskey="4">ALTO
+					<li id="altoContraste"><a accesskey="4">ALTO
 							CONTRASTE</a></li>
 					<li id="siteaction-mapadosite"><a
 						href="${pageContext.request.contextPath}/mapa-site"
@@ -83,24 +86,21 @@
 				</ul>
 			</div>
 
-			<div id="barra-brasil"
-				style="background: #7F7F7F; height: 20px; padding: 0 0 0 10px; display: block;">
-				<ul id="menu-barra-temp" style="list-style: none;">
-					<li
-						style="display: inline; float: left; padding-right: 10px; margin-right: 10px; border-right: 1px solid #EDEDED"><a
-						href="http://brasil.gov.br"
-						style="font-family: sans, sans-serif; text-decoration: none; color: white;">Portal
-							do Governo Brasileiro</a></li>
-					<li><a
-						style="font-family: sans, sans-serif; text-decoration: none; color: white;"
+
+			<div id="barra-brasil" class="barra_brasil">
+				
+				<ul id="menu-barra-temp">
+					<li><a class="primeiro-link" href="http://brasil.gov.br">Portal
+							do Governo Brasileiro</a>
+					</li>
+					<li><a class="segundo-link"
 						href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize
 							sua Barra de Governo</a></li>
 				</ul>
 			</div>
-
 			<div id="logo">
 				<h1>
-					<a id="portal-logo" title=""
+					<a id="portal-logo"
 						href="${pageContext.request.contextPath}"> <span
 						id="portal-title-1">Avaliador e Simulador de Acessibilidade
 							em Sítios<br>
@@ -117,7 +117,7 @@
 					<li id="portalservicos-contato" class="portalservicos-item"><a
 						href="${pageContext.request.contextPath}/contato">Contato</a></li>
 						<li id="portalservicos-criterios" class="portalservicos-item"><a
-						href="${pageContext.request.contextPath}/criteriosSucesso">Critérios de sucesso</a></li>
+						href="${pageContext.request.contextPath}/criteriosSucesso">Critérios de sucesso</a></li>					
 				</ul>
 			</nav>
 		</div>
@@ -126,18 +126,18 @@
 	<div id="main" role="main">  
 
 		<div id="content">
-			<a id="inicioConteudo" class="oculto" href="#">Início do conteúdo</a>
+			<a id="inicioConteudo" class="oculto">Início do conteúdo</a>
 			<!-- Início Conteudo -->
 			<jsp:doBody />
 			<!-- Término Conteudo-->
-			<a id="fimConteudo" class="oculto" href="#">Fim do conteúdo</a>
+			<a id="fimConteudo" class="oculto">Fim do conteúdo</a>
 		</div>
 		<div id="voltar-topo">
-			<a href="#inicioConteudo">Voltar para o topo</a>
+			<a href="#topoPagina">Voltar para o topo</a>
 		</div>
 	</div>
 
-	<footer id="footer-brasil" role="contentinfo"> </footer>
+	<footer id="footer-brasil"> </footer>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/jquery-1.10.2.min.js"></script>

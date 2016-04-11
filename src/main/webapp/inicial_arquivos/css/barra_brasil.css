@@ -1,0 +1,36 @@
+.barra_brasil
+{
+	background: #7F7F7F; 
+	height: 20px; 
+	padding: 0 0 0 10px; 
+	display: block;
+}
+
+.barra_brasil ul
+{
+	list-style: none;	
+}
+
+.barra_brasil li
+{
+	display: inline; 
+	float: left; 
+	padding-right: 10px; 
+	margin-right: 10px; 
+	border-right: 1px solid #EDEDED";
+	
+}
+
+.primeiro-link
+	{
+	font-family: sans, sans-serif; 
+	text-decoration: none; 
+	color: white;
+	}
+	
+	.segundo-link
+	{
+	font-family: sans, sans-serif; 
+	text-decoration: none; 
+	color: white;
+	}

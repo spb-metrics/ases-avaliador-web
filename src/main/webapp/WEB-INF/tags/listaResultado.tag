@@ -5,27 +5,27 @@
 	
 <c:choose>
     <c:when test="${cssClass == 'mark'}">
-    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção marcação</a> 
+    <a id="inicio_${cssClass}" class="oculto">Início do conteúdo das recomendações da seção marcação</a> 
     </c:when>
     
     <c:when test="${cssClass == 'behavior'}">
-    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção comportamento</a> 
+    <a id="inicio_${cssClass}" class="oculto">Início do conteúdo das recomendações da seção comportamento</a> 
     </c:when>
     
     <c:when test="${cssClass == 'information'}">
-    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção conteúdo/informação</a> 
+    <a id="inicio_${cssClass}" class="oculto">Início do conteúdo das recomendações da seção conteúdo/informação</a> 
     </c:when>
     
     <c:when test="${cssClass == 'presentation'}">
-    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção apresentação/design</a> 
+    <a id="inicio_${cssClass}" class="oculto">Início do conteúdo das recomendações da seção apresentação/design</a> 
     </c:when>
     
     <c:when test="${cssClass == 'multimedia'}">
-    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção multimídia</a> 
+    <a id="inicio_${cssClass}" class="oculto">Início do conteúdo das recomendações da seção multimídia</a> 
     </c:when>
     
     <c:when test="${cssClass == 'form'}">
-    <a id="inicio_${cssClass}" class="oculto" href="#">Início do conteúdo das recomendações da seção formulários</a> 
+    <a id="inicio_${cssClass}" class="oculto">Início do conteúdo das recomendações da seção formulários</a> 
     </c:when>
     </c:choose>
 
@@ -76,10 +76,10 @@
 	               
 				   	<c:choose>
 				   		<c:when test="${item.possuiLinhas}">
-				   			<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}/true">${item.stringLines}</a>
+				   			<a class="sublinharLink" href="${pageContext.request.contextPath}/detalhes-avaliacao/${item.checkPoint}/true">${item.stringLines}</a>
 				   		</c:when>
 				   		<c:otherwise>
-				   			<c:if test="${item.stringLines=='---'}">Requer valida&ccedil;&atilde;o Humana</c:if>
+				   			<c:if test="${item.stringLines=='---'}">Requer validaçãoo Humana</c:if>
 				   		</c:otherwise>
 				   	</c:choose>
 	
@@ -142,11 +142,11 @@
 			   		<td headers="aviso_linha_codigo_fonte_${cssClass}" class="celula">
 			   			<c:choose>
 			   					<c:when test="${item.possuiLinhas}">
-									<a class="sublinharLink" href="detalhes-avaliacao/${item.checkPoint}/false">${item.stringLines}</a>
+									<a class="sublinharLink" href="${pageContext.request.contextPath}/detalhes-avaliacao/${item.checkPoint}/false">${item.stringLines}</a>
 			   					</c:when>
 				
 				   				<c:otherwise>
-									<c:if test="${item.stringLines=='---'}">Requer valida&ccedil;&atilde;o Humana</c:if>
+									<c:if test="${item.stringLines=='---'}">Requer validação Humana</c:if>
 			   					</c:otherwise>
 		       			</c:choose>
 		       		</td>
@@ -158,26 +158,26 @@
 	</table>
 	<c:choose>
     <c:when test="${cssClass == 'mark'}">
-    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção marcação</a> 
+    <a id="fim_${cssClass}" class="oculto">Fim do conteúdo das recomendações da seção marcação</a> 
     </c:when>
     
     <c:when test="${cssClass == 'behavior'}">
-    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção comportamento</a> 
+    <a id="fim_${cssClass}" class="oculto">Fim do conteúdo das recomendações da seção comportamento</a> 
     </c:when>
     
     <c:when test="${cssClass == 'information'}">
-    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção conteúdo/informação</a> 
+    <a id="fim_${cssClass}" class="oculto">Fim do conteúdo das recomendações da seção conteúdo/informação</a> 
     </c:when>
     
     <c:when test="${cssClass == 'presentation'}">
-    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção apresentação/design</a> 
+    <a id="fim_${cssClass}" class="oculto">Fim do conteúdo das recomendações da seção apresentação/design</a> 
     </c:when>
     
     <c:when test="${cssClass == 'multimedia'}">
-    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção multimídia</a> 
+    <a id="fim_${cssClass}" class="oculto">Fim do conteúdo das recomendações da seção multimídia</a> 
     </c:when>
     
     <c:when test="${cssClass == 'form'}">
-    <a id="fim_${cssClass}" class="oculto" href="#">Fim do conteúdo das recomendações da seção formulários</a> 
+    <a id="fim_${cssClass}" class="oculto">Fim do conteúdo das recomendações da seção formulários</a> 
     </c:when>
     </c:choose>		
