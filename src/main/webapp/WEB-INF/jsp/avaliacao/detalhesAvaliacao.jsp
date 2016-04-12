@@ -12,8 +12,8 @@
 			<li>
 				<span>Você está em: </span>
 			</li>
-			<li><a href="${pageContext.request.contextPath}">Página Inicial  |</a></li>
-			<li><a id="voltar" href="#">Resumo de avaliação  |</a></li>			
+			<li><a href="${pageContext.request.contextPath}">ASES</a></li>
+			<li><a id="voltar" href="#">|  Resumo de avaliação  |</a></li>			
 			<li>Detalhes de Avaliação da recomendação ${rn}</li>
 		</ul>
 	</div>

@@ -11,9 +11,9 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
+					<a href="${pageContext.request.contextPath}">ASES</a>
 				</li>
-        		<li>Acessibilidade</li>
+        		<li>|  Acessibilidade</li>
 			</ul>
 		</div>
    
@@ -67,7 +67,7 @@
 				<li><a class="external-link" href="http://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2004/Decreto/D5296.htm">Decreto nº 5.296, de 02 de Dezembro de 2004 (link para um novo sítio)</a></li>
 				<li><a href="http://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/decreto/d6949.htm">Decreto nº 6.949, de 25 de Agosto de 2009 - Promulga a Convenção Internacional sobre os Direitos das Pessoas com Deficiência e seu Protocolo Facultativo, assinados em Nova York, em 30 de Março de 2007 (link para um novo sítio)</a></li>
 				<li><a href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/Decreto/D7724.htm">Decreto nº 7.724, de 16 de Maio de 2012 - Regulamenta a Lei nº 12.527, que dispõe sobre o acesso a informações (link para um novo sítio)</a></li>
-				<li><a class="external-link" href="http://www.governoeletronico.gov.br/acoes-e-projetos/eMAG">Modelo de Acessibilidade de Governo Eletrônico (link para um novo sítio)</a></li>
+				<li><a class="external-link" href="http://www.governoeletronico.gov.br/acoes-e-projetos/e-MAG">Modelo de Acessibilidade de Governo Eletrônico (link para um novo sítio)</a></li>
 				<li><a href="http://www.governoeletronico.gov.br/biblioteca/arquivos/portaria-no-03-de-07-05-2007">Portaria nº 03, de 07 de Maio de 2007 - Institucionaliza o Modelo de Acessibilidade em Governo Eletrônico – eMAG (formato .pdf - 36 Kb)</a></li> 
 			    <li><a href="http://www.planalto.gov.br/ccivil_03/_Ato2015-2018/2015/Lei/L13146.htm">Lei nº 13.146, de 6 de Julho de 2015 - Institui a Lei Brasileira de Inclusão da Pessoa com Deficiência (link para um novo sítio)</a></li>
 			    <li><a href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/Decreto/D7724.htm">Decreto nº 7.724, de 16 de Maio de 2012 - Regulamenta a Lei nº 12.527, que dispõe sobre o acesso a informações (link para um novo sítio)</a></li>
@@ -79,7 +79,7 @@
 				<h2 class="outstanding-title">Dúvidas, sugestões e críticas</h2>
 			</div>
 			
-			<p>No caso de problemas com a acessibilidade do portal, favor <a class="external-link" href="${pageContext.request.contextPath}/contato" >entrar em contato</a>.</p>	
+			<p>No caso de problemas com a acessibilidade do portal, favor entrar em<a class="external-link" href="${pageContext.request.contextPath}/contato" > contato</a>.</p>	
 			
 			<hr class="hr_linhaDupla">
 			<div class="outstanding-header">
@@ -87,7 +87,7 @@
 			</div>
 			
 			<ul>
-				<li><a class="external-link" href="http://www.acessibilidadelegal.com/" target="_self" title="">Acessibilidade Legal (link para um novo sítio)</a></li>
+				<li><a class="external-link" href="http://www.acessibilidadelegal.com" target="_self" title="">Acessibilidade Legal (link para um novo sítio)</a></li>
 				<li><a class="external-link" href="http://www.acessodigital.net/links.html" target="_self" title="">Acesso Digital (link para um novo sítio)</a></li>
 			</ul>
 		</div>	

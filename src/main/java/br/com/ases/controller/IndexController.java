@@ -1,5 +1,7 @@
 package br.com.ases.controller;
 
+import com.jcabi.http.Response;
+
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;

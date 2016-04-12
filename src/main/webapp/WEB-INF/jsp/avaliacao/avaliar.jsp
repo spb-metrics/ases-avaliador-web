@@ -10,9 +10,9 @@
 			<li>
 				<span>Você está em: </span>
 			</li>
-			<li><a href="${pageContext.request.contextPath}">Página Inicial  |</a></li>
+			<li><a href="${pageContext.request.contextPath}">ASES</a></li>
 	
-			<li>Resumo de avaliação</li>
+			<li>|  Resumo de avaliação</li>
 			
 		</ul>
 	</div>

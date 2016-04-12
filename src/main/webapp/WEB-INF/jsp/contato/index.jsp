@@ -10,9 +10,9 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
+					<li><a href="${pageContext.request.contextPath}">ASES</a></li>
 				</li>
-               	<li>Contato</li>
+               	<li>|  Contato</li>
 			</ul>
 	   </div>
    

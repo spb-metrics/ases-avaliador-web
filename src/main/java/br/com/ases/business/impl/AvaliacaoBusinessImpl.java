@@ -99,9 +99,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			
 			Gson g = new GsonBuilder().create();
 			nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
-			
-			
-			
+						
 			}catch(Exception e){
 				nota = new EseloController(null).new Nota(url, "---" , "0.0");			
 				

@@ -10,9 +10,9 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">Página Inicial  |</a>
+					<a href="${pageContext.request.contextPath}">ASES</a>
 				</li>
-               	<li>Mapa do Site</li>
+               	<li>|  Mapa do Site</li>
 			</ul>
 	   </div>
        
@@ -34,7 +34,7 @@
 					<ul>
 					<li class="linhasMapa">										
 						<div>
-							<a href="${pageContext.request.contextPath}"><span>Avaliador e Simulador de Acessibilidade em Sítios</span></a>
+							<a href="${pageContext.request.contextPath}">ASES</a>
 						</div>
 					</li>
 									

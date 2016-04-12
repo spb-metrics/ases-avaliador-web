@@ -100,13 +100,15 @@
 			</div>
 			<div id="logo">
 				<h1>
-					<a id="portal-logo"
-						href="${pageContext.request.contextPath}"> <span
+				<span
 						id="portal-title-1">Avaliador e Simulador de Acessibilidade
 							em Sítios<br>
-					</span> <span id="portal-title" class="corto">ASES</span><br> <span
-						id="portal-description">Governo Federal </span>
+					</span> 
+					<a id="portal-logo"
+						href="${pageContext.request.contextPath}"> <span id="portal-title" class="corto">ASES</span><br> 
 					</a>
+					<span
+						id="portal-description">Governo Federal </span>
 				</h1>
 			</div>
 			<nav id="sobre">
@@ -158,7 +160,6 @@
 
 <script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/detalhesAvaliacao.js"></script>
-
 
 	<!--  	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrap.js"></script>-->
