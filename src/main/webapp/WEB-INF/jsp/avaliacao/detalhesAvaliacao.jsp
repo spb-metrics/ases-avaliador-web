@@ -103,15 +103,15 @@
 									     					<c:if test="${fn:contains(aReqIsCss, req)}">
 													     	      <a
 														href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}"
-														target="_blanck">
+														target="_blank">
 													     						   Servi&ccedil;o de valida&ccedil;&atilde;o de CSS do W3C (link para um novo sitio)
 												 				  </a>
 														    </c:if>
 															
 															<c:if test="${!fn:contains(aReqIsCss, req)}">
 													     	      <a
-														href="https://validator.w3.org/nu/?doc=http%3A%2F%2F${url}"
-														target="_blanck">
+														href="http://validator.w3.org/check?uri=http%3A%2F%2F${url}"
+														target="_blank">
 													     				       		Servi&ccedil;o de valida&ccedil;&atilde;o de HTML do W3C (link para um novo sitio)
 													     		  </a>
 														    </c:if>

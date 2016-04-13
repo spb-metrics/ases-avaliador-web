@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
@@ -39,18 +40,22 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 
 	//private static String CSS_VALIDATOR_URL = "http://www.css-validator.org/validator?uri=#{url}&warning=0&output=soap12";
 	private static String CSS_VALIDATOR_URL = "http://jigsaw.w3.org/css-validator/validator?uri=#{url}&warning=0&output=soap12";
-	private static String HTML_VALIDATOR_URL = "https://validator.w3.org/nu/?doc=#{url}&out=json";
+	//private static String HTML_VALIDATOR_URL = "https://validator.w3.org/nu/?doc=#{url}&out=json";
+	private static String HTML_VALIDATOR_URL = "https://validator.w3.org/check?uri=#{url}&output=json";
 	
 	public Nota obterNota(List<SummarizedOccurrence> occurrences,String url) {
 		Nota nota = null;
 		try {
 		
+		
+			
 			WebChecker.PostParams postParams = WebChecker.from(this.eseloProperties.getUrl("url")).withPostRequest();
 				
 			//Relatorio de Avaliacao
 			postParams.addParam("relatorioAvaliacao.date", new Date().toString())
 			.addParam("relatorioAvaliacao.url", url);
-		
+					
+					
 			TreeSet<Integer> rns = new TreeSet<Integer>();
 			
 			for(SummarizedOccurrence occurence : occurrences){
@@ -65,6 +70,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			for(Integer rn : rns){
 				//Recomenda��o Avaliada
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",  Integer.toString(rn));
+				
+			
 				int qtdErros = 0;
 				
 				
@@ -80,9 +87,10 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 					if(rn == Integer.parseInt(idRec[0])){
 						qtdErros = qtdErros + Integer.parseInt(occurence.isError()?occurence.getNumberOfOccurrences():"0");
 						postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].idCriterio",idRec[1])
-						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros",occurence.isError()?occurence.getNumberOfOccurrences():"0")
+						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros", occurence.isError()?occurence.getNumberOfOccurrences():"0")
 						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens", Integer.toString(occurence.getLines().size()));
-						
+					
+								
 					}else countCriterio = 0;
 					
 					countCriterio++;
@@ -90,16 +98,17 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 				
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].totalErros", Integer.toString(qtdErros));
 				//postParams.addParam("relatorioAvaliacao.qtdeLinhas", Integer.toString(qtdLinhas));
-				countReq++;
+				countReq++;			
 				
-			
 			}
 			
 			postParams.addParam("relatorioAvaliacao.qtdeLinhas", Integer.toString(qtdLinhas));
 			
 			Gson g = new GsonBuilder().create();
 			nota  = g.fromJson(postParams.execute().getContent(), Nota.class);
-						
+			
+		
+					
 			}catch(Exception e){
 				nota = new EseloController(null).new Nota(url, "---" , "0.0");			
 				
