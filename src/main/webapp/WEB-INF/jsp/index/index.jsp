@@ -30,13 +30,13 @@
 			
 			</ul>
 	</div>
-	
+
 	 <div class="outstanding-header">
 	<h2 class="outstanding-title">Formas de Avaliação</h2>
 	</div>
 	
 		<div class="containerTab">
-		
+
 
    <div class="tab">
        <input type="radio" id="tab-1" name="tab-group-1"
@@ -103,7 +103,8 @@
 								
 									
 										<label for="input">Código a analisar:<br>
-						<textarea id="input" name="html" rows="8" cols="75"></textarea>					</label>
+						<textarea id="input" name="html" rows="8" cols="75"></textarea>					
+						</label>
 										<br><input class="submit" name="executar"
 								value="Executar" type="submit">
 								
