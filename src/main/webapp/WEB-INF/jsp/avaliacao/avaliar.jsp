@@ -34,13 +34,13 @@
     
      <br>
     <div class="tile --NOVALUE--">	
-		<div class="outstanding-header" id="notaResumo">
-			<h2 class="outstanding-title">Nota e Resumo da Avaliação de Acessibilidade</h2>
+		<div class="outstanding-header" id="notaResumo">		
+			<h2 class="outstanding-title">${mensagem_avaliacao}</h2>
 		</div>
 				
 		<div class="row" data-layout-type="row">
 		
-			<div class="cell width-5 position-2 " data-panel="">
+			<div class="cell width-5 position-2 ${sem_nota}" data-panel="">
 				<div id="block">
 					<div id="webaxscore" class="scoreB_${webaxscore}">Porcentagem
 						<strong>ASES</strong>
@@ -50,8 +50,8 @@
 			</div>
 			
 			<div class="cell width-7 position-6">
-			<table id="tabelaErros">
-				<caption>Resumo de Acessibilidade por Seção eMAG</caption>
+			<table id="tabelaErros${sem_nota}">
+				<caption class="tabelaErros">Resumo de Acessibilidade por Seção eMAG</caption>
 					<thead>					
 						<tr>
 							<th id="secao" class="topo">Seção</th>
@@ -183,7 +183,7 @@
 					   <img
 							src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png"
 							alt="pdf" title="Gerar em PDF">
-					   <input type="radio" id="tiporel" name="tiporel" value="4"><label for="tiporel">PDF</label>
+					   <input type="radio" id="tiporel" name="tiporel" value="4" checked="checked"><label for="tiporel">PDF</label>
 					   <input id="url" name="url" value="${url}" type="hidden">
 					   <input class="submit" name="executar" value="Executar"
 							type="submit">
