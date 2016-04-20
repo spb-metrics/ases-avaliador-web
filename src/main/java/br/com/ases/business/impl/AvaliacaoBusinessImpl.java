@@ -67,6 +67,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			int countCriterio = 0;
 			int qtdLinhas = 0;
 			
+			
+			
 			for(Integer rn : rns){
 				//Recomenda��o Avaliada
 				postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",  Integer.toString(rn));
@@ -74,8 +76,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 			
 				int qtdErros = 0;
 				
-				
-				
+								
 				
 				for(SummarizedOccurrence occurence : occurrences){
 					String[] idRec = occurence.getCheckPoint().split("\\.");
@@ -84,12 +85,17 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness{
 					qtdLinhas = qtdLinhas + occurence.getLines().size();
 				
 					//Critérios
+					
+					
+					
 					if(rn == Integer.parseInt(idRec[0])){
 						qtdErros = qtdErros + Integer.parseInt(occurence.isError()?occurence.getNumberOfOccurrences():"0");
 						postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].idCriterio",idRec[1])
 						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros", occurence.isError()?occurence.getNumberOfOccurrences():"0")
 						.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens", Integer.toString(occurence.getLines().size()));
-					
+					String teste = null;
+					teste = "relatorioAvaliacao.recomendacoes["+ countReq +"].criterios["+countCriterio+"].idCriterio," + idRec[1];
+						System.out.println(teste);
 								
 					}else countCriterio = 0;
 					
