@@ -27,6 +27,10 @@
 	font-size: 1.2em;
     font-weight: bold;	
 }
+
+.sem_nota{
+	display: none;
+}
 fieldset
 	{
 	font-size: 14px;
@@ -103,6 +107,7 @@ div  #notaResumo .outstanding-title
 table caption{
 	margin-top: 10px;
 	margin-bottom: 10px;
+	text-align: left;
 }
 
 #webaxscore {
@@ -207,6 +212,51 @@ div.block {
     font-weight: normal;   
 }
 
+
+#tabelaErrossem_nota {
+	position: relative;
+	margin-bottom: 30px;     
+    margin-left: 30%;
+    width: 40%;    
+}
+
+.contraste #tabelaErrossem_nota {
+	position: relative;
+	margin-bottom: 30px;     
+    margin-left: 5px;
+    width: 40%;
+    border: 1px solid #fff;    
+}
+#tabelaErrossem_nota .topo {
+	font-size: 1.4em;
+    background-color: #d2e4fc;
+    color: #003399;    
+    text-align: left;
+    font-size: 1.3em;
+}
+
+.contraste #tabelaErrossem_nota .topo {
+	font-size: 1.4em;
+    background-color: #000;
+    color: #fff;    
+    text-align: left;
+    font-size: 1.3em;
+}
+#tabelaErrossem_nota .celula {
+    background-color: #f2f4f7;  
+    color: #003399;
+    text-align: left;
+    font-weight: normal;   
+}
+
+.contraste #tabelaErrossem_nota .celula {
+    background-color: #000;  
+    color: #fff;
+    text-align: left;
+    font-weight: normal;   
+}
+
+
 .contenteudoAvaliacao
 {
 	font-size: 1.2em;
@@ -247,9 +297,14 @@ div.block {
     text-align: left;
 }
 
-caption
+#tabelaErros caption
 {
-	text-align: left;
+	text-align: center;
+}
+
+#tabelaErrossem_nota caption
+{
+	text-align: center;
 }
 
 .containerAvaliacao table
@@ -326,7 +381,11 @@ border: none;
 {
 	width: 26%;
 	margin-left: 10px;
+}
 
+
+.sem_nota{
+	display: none;
 }
 
 #content fieldset {
@@ -392,6 +451,7 @@ div  #notaResumo .outstanding-title
 table caption{
 	margin-top: 10px;
 	margin-bottom: 10px;
+	text-align: left;
 }
 
 #webaxscore {
@@ -448,7 +508,21 @@ div.block {
     margin-left: 5px;
     width: 40%;    
 }
+#tabelaErrossem_nota {
+	position: relative;
+	margin-bottom: 30px;     
+    margin-left: 30%;
+    width: 40%;    
+}
 #tabelaErros .topo {
+	font-size: 1.4em;
+    background-color: #d2e4fc;
+    color: #003399;    
+    text-align: left;
+    font-size: 1.3em;
+}
+
+#tabelaErrossem_nota .topo {
 	font-size: 1.4em;
     background-color: #d2e4fc;
     color: #003399;    
@@ -460,13 +534,28 @@ div.block {
 {
     background-color: #000 !important;
     border-collapse: collapse;
-    margin: 0;
-   
+    margin: 0;   
+    color: #fff;
+    padding: .4em;    
+}
+
+.contraste #tabelaErrossem_nota .topo
+{
+    background-color: #000 !important;
+    border-collapse: collapse;
+    margin: 0;   
     color: #fff;
     padding: .4em;    
 }
 
 #tabelaErros .celula {
+    background-color: #f2f4f7;  
+    color: #003399;
+    text-align: left;
+    font-weight: normal;   
+}
+
+#tabelaErrossem_nota .celula {
     background-color: #f2f4f7;  
     color: #003399;
     text-align: left;
@@ -495,10 +584,18 @@ div.block {
     padding: 5px;
     text-align: left;
 }
-caption
+
+#tabelaErros caption
 {
-	text-align: left;
+	text-align: center;
 }
+
+#tabelaErrossem_nota caption
+{
+	text-align: center;
+}
+
+
 
 .containerAvaliacao .celula
 {	
