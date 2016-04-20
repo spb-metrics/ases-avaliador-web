@@ -62,11 +62,14 @@
 					            
 			     <tbody>
 				 	 <c:forEach items="${detalhe.criterios}" var="criterio">
+				 	
 						<tr>
 							<!-- retirar o ponto da recomendação -->
-							<c:set var="var_recomendacaoComPonto"	value="${rn}" />
-							<c:set var="var_RecomendacaoSemPonto" value="${fn:replace(var_recomendacaoComPonto,'.','')}" />
-						   <td headers="numero" class="celula"><a href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}"> ${criterio.id} </a></td>
+							<c:set var="var_recomendacaoComPonto" value="${rn}" />
+							<c:set var="var_RecomendacaoSemPonto"
+								value="${fn:replace(var_recomendacaoComPonto,'.','')}" />
+						   <td headers="numero" class="celula"><a
+								href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}"> ${criterio.id} </a></td>
 						   <!-- Fim retirar o ponto da recomendação -->
 						   
 						   <td headers="teste" class="celula">${criterio.descricao}</td>
@@ -91,7 +94,7 @@
 									   		</c:otherwise>
 						   		</c:choose>
 						   </td>
-						   
+						  
 						   <td headers="linhaCodigoFonte" class="celula">
 								   <c:set var="aReq" value="${aReq}" />
 								   <c:set var="req" value="${rn}.${criterio.id}" />
@@ -102,17 +105,13 @@
 											   			<c:if test="${fn:contains(aReqIsW3c, req)}">
 									     					<c:if test="${fn:contains(aReqIsCss, req)}">
 													     	      <a
-														href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}"
-														target="_blank">
-													     						   Servi&ccedil;o de valida&ccedil;&atilde;o de CSS do W3C (link para um novo sitio)
+														href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}"> Serviço de validação de CSS do W3C (link para um novo sitio)
 												 				  </a>
 														    </c:if>
 															
 															<c:if test="${!fn:contains(aReqIsCss, req)}">
 													     	      <a
-														href="http://validator.w3.org/check?uri=http%3A%2F%2F${url}"
-														target="_blank">
-													     				       		Servi&ccedil;o de valida&ccedil;&atilde;o de HTML do W3C (link para um novo sitio)
+														href="http://validator.w3.org/check?uri=http%3A%2F%2F${url}">Serviçoo de validação de HTML do W3C (link para um novo sitio)
 													     		  </a>
 														    </c:if>
 									     			    </c:if>
@@ -151,11 +150,8 @@
 													 	</c:forEach>
 													</ul> 
 											     </c:otherwise>
-									</c:choose>		   
-											   
-							    <c:if test="">
-								   
-							    </c:if>						  		    
+									</c:choose>	   
+											   							  				  		    
 						</td>
 								</tr>
 
@@ -183,14 +179,10 @@
 										<c:when test="${ocorrencia.cssEvaluation}">
 											<a
 										id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}"
-										href="http://jigsaw.w3.org/css-validator/validator?uri=${ocorrencia.tag}"
-										target="_blank">${ocorrencia.line} : Serviço de validação de CSS do W3C : ${ocorrencia.tag}</a>
+										href="http://jigsaw.w3.org/css-validator/validator?uri=${ocorrencia.tag}">${ocorrencia.line} : Serviço de validação de CSS do W3C : ${ocorrencia.tag}</a>
 					            		</c:when>
 					            		<c:when test="${ocorrencia.htmlEvaluation}">
-					            			<a
-										id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}"
-										href="https://validator.w3.org/nu/?doc=${ocorrencia.tag}"
-										target="_blank">${ocorrencia.line} : Serviço de validação de HTML do W3C : ${ocorrencia.tag}</a>
+					            			<a id="${ocorrencia.criterio}.${ocorrencia.posLineOccurrence}">${ocorrencia.line} : Serviço de validação de HTML do W3C : ${ocorrencia.tag}</a>
 										</c:when>
 										<c:otherwise>
 										
@@ -229,7 +221,7 @@
 				   <img
 						src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png"
 						alt="pdf" title="Gerar em PDF">
-				   <input type="radio" id="tiporel" value="4"><label
+				   <input type="radio" id="tiporel" value="4" checked="checked"><label
 						for="tiporel">PDF</label>
 				   <input type="hidden" name="rn" value="${rn}">
 				   <input type="hidden" name="isError" value="${isError}">
