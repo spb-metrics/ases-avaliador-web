@@ -69,8 +69,8 @@
 					<li><a accesskey="1" href="#inicioConteudo" id="link-conteudo">Ir
 							para o conteúdo <span>1</span>
 					</a></li>
-					<li><a accesskey="2" href="#footer-brasil" id="link-rodape">Ir
-							para o rodapé <span>2</span>
+					<li><a accesskey="4" href="#footer-brasil" id="link-rodape">Ir
+							para o rodapé <span>4</span>
 					</a></li>
 				</ul>
 
@@ -113,11 +113,13 @@
 			</div>
 			<nav id="sobre">
 				<ul>
-					<li id="portalservicos-perguntas-frequentes"
+				<!--	<li id="portalservicos-perguntas-frequentes"
 						class="portalservicos-item"><a href="${pageContext.request.contextPath}/perguntas-frequentes">Perguntas frequentes</a></li>
-						
-					<li id="portalservicos-contato" class="portalservicos-item"><a
-						href="${pageContext.request.contextPath}/contato">Contato</a></li>
+						-->
+					<li id="portalservicos-contato" class="portalservicos-item">
+					<!-- <a	href="${pageContext.request.contextPath}/contato">Contato</a> -->
+					<a href="http://www.governoeletronico.gov.br/contato">Contato (link para um novo sítio)</a>
+					</li>
 						<li id="portalservicos-criterios" class="portalservicos-item"><a
 						href="${pageContext.request.contextPath}/criteriosSucesso">Critérios de sucesso</a></li>					
 				</ul>
