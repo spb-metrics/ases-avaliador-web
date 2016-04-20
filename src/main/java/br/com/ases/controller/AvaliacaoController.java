@@ -7,6 +7,7 @@ import static br.com.checker.emag.core.Checker.from;
 import static br.com.checker.emag.core.Checker.marking;
 import static br.com.checker.emag.core.Checker.multimedia;
 import static br.com.checker.emag.core.Checker.presentation;
+import static br.com.checker.emag.core.Checker.marking;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,6 +35,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.poi.hssf.record.formula.functions.Replace;
 import org.eclipse.jdt.internal.compiler.ast.ForeachStatement;
 
+import com.lowagie.text.Document;
+
 import net.sf.jasperreports.engine.JRException;
 import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.business.impl.AvaliacaoBusinessImpl;
@@ -43,6 +46,7 @@ import br.com.ases.domain.DetalheAvaliacao.Criterio;
 import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.domain.ResumoAvaliacao;
 import br.com.ases.infra.UtilitiesProperties;
+import br.com.ases.infra.EseloProperties;
 import br.com.ases.infra.WebChecker;
 import br.com.ases.model.utilities.DateUtil;
 import br.com.ases.model.utilities.ManagerReport;
@@ -61,11 +65,18 @@ import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
+import br.com.checker.emag.core.Evaluation;
 
 @Resource
 public class AvaliacaoController {
+	EseloProperties eseloProperties = null;
 	
 	private String tituloPagina;
+	//Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da Avaliação de Acessibilidade)
+	private String mensagem_avaliacao = null;
+	
+	//Esconde a nota caso não esteja usando o ESELO		
+	private String sem_nota = null;
 	private String titulosite;
 	private String dataHoraAvaliacao;
 	private String webaxscore;
@@ -77,14 +88,15 @@ public class AvaliacaoController {
 	private DetalheAvaliacao detalheAvaliacao;
 	private UtilitiesProperties utilitiesProperties;
 	
+	
 	public AvaliacaoController (Result result, Validator validator,AvaliacaoBusiness avaliacaoBusiness,ServletContext application,DetalheAvaliacao detalheAvaliacao) {
 		this.result = result;
 		this.validator = validator;
 		this.avaliacaoBusiness = avaliacaoBusiness;
 		this.application = application;
-		this.detalheAvaliacao = detalheAvaliacao;
-		
+		this.detalheAvaliacao = detalheAvaliacao;		
 		this.avaliacaoBusiness.initEseloProperties(application);
+		this.initEseloProperties(application);
 		this.utilitiesProperties = new UtilitiesProperties(application);
 				
 	}
@@ -120,8 +132,7 @@ public class AvaliacaoController {
 		
 				
 				
-	Validate validate = new Validate(this.validator);	
-		
+	Validate validate = new Validate(this.validator);		
 	if(validate.uploadForm(file)){
 		
 		
@@ -181,6 +192,7 @@ public class AvaliacaoController {
 					//Seta o valor do título no template
 					tituloPagina = "Resumo de avaliação por upload de arquivo - ASES";
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
+																	
 					
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
 					
@@ -213,8 +225,7 @@ public class AvaliacaoController {
 		
 					
 		
-		Validate validate = new Validate(this.validator);
-		
+		Validate validate = new Validate(this.validator);		
 		if(validate.url(url)){
 			
 			
@@ -236,9 +247,10 @@ public class AvaliacaoController {
 			if(form) checker.with(form());
 			if(behavior) checker.with(behavior());
 			
+			
 			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
-		    Matcher mm = pp.matcher(url.toLowerCase());  
-		    
+		    Matcher mm = pp.matcher(url.toLowerCase().replace("https", "http"));  
+		   	
 		    if (mm.find())
 		    	
 		    	this.titulosite = mm.group(2);
@@ -268,6 +280,8 @@ public class AvaliacaoController {
 			//Seta o valor do título no template
 			tituloPagina = "Resumo de avaliação por URI - ASES";
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
+			
+		
 			
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
 			
@@ -299,7 +313,7 @@ public class AvaliacaoController {
 				Nota nota  = (Nota) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("notaAvaliacao");
 				
 				map.put("pPercentualAses", nota.getValor());
-				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Cï¿½digo Fonte ou Arquivo");
+				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
 					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
@@ -309,7 +323,7 @@ public class AvaliacaoController {
 				        map.put("pTitulo",  mm.group(2));
 				
 				}else
-					 map.put("pTitulo", "governoeletronico");
+					 map.put("pTitulo", "");
 				
 				map.put("pTamanho", contentLenght+" Bytes");
 				dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
@@ -362,8 +376,7 @@ public class AvaliacaoController {
 		
 		
 		
-		Validate validate = new Validate(this.validator);
-		
+		Validate validate = new Validate(this.validator);		
 		if(validate.condigoFonte(html)){
 		
 			/*if(tiporel != 5)
@@ -386,6 +399,7 @@ public class AvaliacaoController {
 			
 			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
+
 			
 			this.titulosite = "Código Fonte ou Arquivo";
 			result.include("titulosite", titulosite);
@@ -413,6 +427,7 @@ public class AvaliacaoController {
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 			
+						
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
 			
 			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
@@ -494,6 +509,7 @@ public class AvaliacaoController {
 		tituloPagina = "Detalhes da avaliação - ASES";
 		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 		
+
 		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn, type).getOcorrencias();
 		
 		
@@ -607,5 +623,16 @@ public class AvaliacaoController {
 	   	File file = new File(path);
 	   	
 	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
+	}
+	public void initEseloProperties(ServletContext servletContext) {
+		this.eseloProperties = new EseloProperties(servletContext);
+		
+		//Esconde a nota caso não esteja usando o ESELO	
+		sem_nota = this.eseloProperties.getSem_nota("sem_nota");
+		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("sem_nota", sem_nota);
+		
+		//Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da Avaliação de Acessibilidade)
+		mensagem_avaliacao = this.eseloProperties.getMensagem_avaliacao("mensagem_avaliacao");
+		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("mensagem_avaliacao", mensagem_avaliacao);
 	}
 }
