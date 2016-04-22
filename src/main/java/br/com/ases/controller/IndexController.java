@@ -9,7 +9,7 @@ import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
 @Resource
 public class IndexController {
 	
-	private String tituloPagina = "ASES - Avaliador e Simulador de AcessibilidadE em Sites";
+	private String tituloPagina = "ASES - Avaliador e Simulador de Acessibilidade em Sites";
 	private Result result;
 	
 	public IndexController (Result result) {
