@@ -7,22 +7,17 @@ import static br.com.checker.emag.core.Checker.from;
 import static br.com.checker.emag.core.Checker.marking;
 import static br.com.checker.emag.core.Checker.multimedia;
 import static br.com.checker.emag.core.Checker.presentation;
-import static br.com.checker.emag.core.Checker.marking;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -30,16 +25,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
-import org.apache.poi.hssf.record.formula.functions.Replace;
-import org.eclipse.jdt.internal.compiler.ast.ForeachStatement;
-
-import com.lowagie.text.Document;
 
 import net.sf.jasperreports.engine.JRException;
 import br.com.ases.business.AvaliacaoBusiness;
-import br.com.ases.business.impl.AvaliacaoBusinessImpl;
 import br.com.ases.controller.EseloController.Nota;
 import br.com.ases.domain.DetalheAvaliacao;
 import br.com.ases.domain.DetalheAvaliacao.Criterio;
@@ -60,12 +48,12 @@ import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
-import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
-import br.com.checker.emag.core.Evaluation;
+import br.com.checker.emag.core.ContentEvaluation;
+
 
 @Resource
 public class AvaliacaoController {
@@ -77,7 +65,7 @@ public class AvaliacaoController {
 	
 	//Esconde a nota caso n„o esteja usando o ESELO		
 	private String sem_nota = null;
-	private String titulosite;
+	private String tituloSite;
 	private String dataHoraAvaliacao;
 	private String webaxscore;
 	private Result result;
@@ -157,6 +145,7 @@ public class AvaliacaoController {
 					if(form) checker.with(form());
 					if(behavior) checker.with(behavior());
 					
+										
 					html = html.replaceAll("<", "&lt;");
 					html = html.replaceAll(">", "&gt;");
 					html = html.replaceAll(" ", "&nbsp");
@@ -164,8 +153,14 @@ public class AvaliacaoController {
 					result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 					result.include("html", html);
 					
-					this.titulosite = "CÛdigo Fonte ou Arquivo";
-					result.include("titulosite", titulosite);
+					
+					this.tituloSite = "";
+					
+					ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
+									
+					this.tituloSite =	conteudo.retornarTituloSiteAvaliado();
+					
+					result.include("titulosite", tituloSite);
 									
 					Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName());
 					
@@ -173,9 +168,6 @@ public class AvaliacaoController {
 					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 					this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
 					 		
-					
-				
-					
 					
 					
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
@@ -185,7 +177,7 @@ public class AvaliacaoController {
 					
 										
 					//Altera a cor de webaxscore de acordo a pontuacao
-					
+										
 					DefinirCorWebaxscore(nota.getValor());	
 					
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
@@ -194,7 +186,7 @@ public class AvaliacaoController {
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 																	
 					
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
+					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
 					
 					this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
 					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
@@ -253,8 +245,14 @@ public class AvaliacaoController {
 		   	
 		    if (mm.find())
 		    	
-		    	this.titulosite = mm.group(2);
-		      	result.include("titulosite", titulosite);
+		    this.tituloSite = "";
+			
+			ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
+							
+			this.tituloSite =	conteudo.retornarTituloSiteAvaliado();
+			
+			result.include("titulosite", tituloSite);
+		      
 		    
 		    result.include("contentLenght", pagina.getContentLength());
 			result.include("url", url);
@@ -283,7 +281,7 @@ public class AvaliacaoController {
 			
 		
 			
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
 			
 			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
@@ -320,14 +318,14 @@ public class AvaliacaoController {
 				    Matcher mm = pp.matcher(urlAvaliada.toLowerCase());  
 			
 				    if (mm.find())
-				        map.put("pTitulo",  mm.group(2));
+				        map.put("pTitulo", VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("titulosite"));
 				
 				}else
-					 map.put("pTitulo", "");
+					 map.put("pTitulo", VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("titulosite"));
 				
 				map.put("pTamanho", contentLenght+" Bytes");
-				dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
-				map.put("pDataHoraAvaliacao",   DateUtil.dataHoraAtual());
+				dataHoraAvaliacao = (String)VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("data");
+				map.put("pDataHoraAvaliacao",   dataHoraAvaliacao);
 				
 				
 				//Obtem Resumo da Avalia√ß√£o
@@ -399,11 +397,15 @@ public class AvaliacaoController {
 			
 			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
-
-			
-			this.titulosite = "CÛdigo Fonte ou Arquivo";
-			result.include("titulosite", titulosite);
-			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),titulosite + " - "+sdf.format(new Date()));
+			 this.tituloSite = "";
+				
+				ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
+								
+				this.tituloSite =	conteudo.retornarTituloSiteAvaliado();
+				
+				result.include("titulosite", tituloSite);
+			      
+			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),tituloSite + " - "+sdf.format(new Date()));
 			
 			result.include("nota",nota);
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
@@ -428,7 +430,7 @@ public class AvaliacaoController {
 			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
 			
 						
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", titulosite);
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
 			
 			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
