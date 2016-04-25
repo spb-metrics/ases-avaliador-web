@@ -858,7 +858,7 @@
 				    						    		
 				    		<tr id="criterio_441">
 				    		    <td headers="numero_44" class="celulaCriterios">4.4.1</td>
-				    			<td headers="criterio_44" class="celulaCriterios">Presença de destaque do foco do elemento ativo</td>		
+				    			<td headers="criterio_44" class="celulaCriterios">Presença de destaque do foco do elemento ativo.</td>		
 				    			<td headers="como_avaliar_44" class="celulaCriterios">Verificar a ausência de destaque nos elementos HTML. Para verificação, analisar a ausência de utilização da propriedade "<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -1085,7 +1085,7 @@
 				    		
 				    		<tr id="criterio_672">
 				    		    <td headers="numero_67" class="celulaCriterios">6.7.2</td>
-				    			<td headers="criterio_67" class="celulaCriterios">Uso de campo de seleção sem agrupamento.</td>		
+				    			<td headers="criterio_67" class="celulaCriterios">Uso de campo de seleção sem agrupamento</td>		
 				    			<td headers="como_avaliar_67" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">form</span>&gt; e dentro desse o elemento <span lang="en">&lt;select&gt;</span> e ausência do elemento <span lang="en">&lt;optgroup&gt;</span> para conteúdos do <span lang="en">&lt;select&gt;</span> que precisam de agrupamento.</td>				    		
 				    		</tr>
 				    						    						    		
