@@ -4,8 +4,23 @@
 
 <t:baseLayout>
 	<jsp:body>
-
+	
+<div class="tile --NOVALUE--">
+   		
+   			<!-- Adicionando avisos(erros) da ferramenta de verificação da sintaxe html e css  -->
+				<c:if test="${not empty avisosFerramentasHtmlCssW3c}">
+					<c:forEach items="${avisosFerramentasHtmlCssW3c}" var="error">
+						<div class="warning">
+						<div class="alinName">${error}</div>
+					</div>
+					<br />
+					</c:forEach>				
+				</c:if>
+		</div>
 	<div class="funcionalidades">
+	
+	
+	
 		<ul class="breadcrumb">
 			<li>
 				<span>Você está em: </span>
