@@ -69,7 +69,8 @@ public class AvaliacaoController {
 	private String dataHoraAvaliacao;
 	private String webaxscore;
 	private Result result;
-	private Validator validator;
+	private List<String> avisosFerramentasHtmlCssW3c;
+	private Validator validator;	
 	private AvaliacaoBusiness avaliacaoBusiness;
 	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	private ServletContext application;
@@ -230,6 +231,8 @@ public class AvaliacaoController {
 			int[] errorsWarningsCss = avaliacaoBusiness.getErrorCount(true,url);
 			int[] errorsWarningsHtml = avaliacaoBusiness.getErrorCount(false,url);
 			
+		
+			
 			Checker checker = from(pagina.getContent(),url);
 			
 			if(mark) checker.with(marking());
@@ -285,12 +288,41 @@ public class AvaliacaoController {
 			
 			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
+						
+			avisosFerramentasHtmlCssW3c = new ArrayList<String>();
+			
+			validarFerramenta_cssnoAr(errorsWarningsCss);
+			validarFerramenta_htmlnoAr(errorsWarningsHtml);			
+				
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("avisosFerramentasHtmlCssW3c", avisosFerramentasHtmlCssW3c);			
 			
 		}else{
 			 this.validator = validate.getMessage();
 			 this.validator.onErrorUsePageOf(IndexController.class).index();
 		}
 	}
+	
+	//Verifica se o site de avaliação de sintaxe css encontra-se no ar
+		private void validarFerramenta_cssnoAr(int[] erros_avisos)
+		{		
+			if(erros_avisos[0] == -10 && erros_avisos[1] == -10)
+			{
+			
+				avisosFerramentasHtmlCssW3c.add("O avaliador de sintaxe css do w3c encontra-se indispon&iacute;vel, favor tentar mais tarde.");
+			}
+			
+		}
+				
+	//Verifica se o site de avaliação de sintaxe html encontra-se no ar
+	private void validarFerramenta_htmlnoAr(int[] erros_avisos)
+	{			
+		if(erros_avisos[0] == -10 && erros_avisos[1] == -10)
+		{			
+			avisosFerramentasHtmlCssW3c.add("O avaliador de sintaxe html do w3c encontra-se indispon&iacute;vel, favor tentar mais tarde.");
+		}			
+	}
+	
+	
 	
 	@Get("/relatorioavaliacao")
 	@Post("/relatorioavaliacao")
