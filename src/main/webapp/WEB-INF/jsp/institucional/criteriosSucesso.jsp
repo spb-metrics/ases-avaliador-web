@@ -54,13 +54,13 @@
 				    		<tr id="criterio_111">
 				    			<td headers="numero_11" class="celulaCriterios">1.1.1</td>
 				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
-				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros e avisos apresentados pela ferramenta de avaliação de HTML do W3C: <a
+				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros e avisos apresentados pelo <span lang="en">webservice</span> de validação HTML fornecido pelo W3C: <a
 						href="https://validator.w3.org/nu/">https://validator.w3.org/nu/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    		<tr id="criterio_112">
 				    			<td headers="numero_11" class="celulaCriterios">1.1.2</td>
 				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
-				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros e avisos apresentados pela ferramenta da avaliação de CSS do W3C: <a
+				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros e avisos apresentados pelo <span lang="en">webservice</span> de validação CSS fornecido pelo W3C: <a
 						href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    		<tr id="criterio_113">
@@ -106,12 +106,7 @@
 				    			<td headers="criterio_12" class="celulaCriterios">Presença de tags HTML sem atributo e conteúdo de texto</td>
 				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
 				    		</tr>
-				    		<tr id="criterio_122">
-				    		    <td headers="numero_12" class="celulaCriterios">1.2.2</td>
-				    			<td headers="criterio_12" class="celulaCriterios">Elementos utilizados de forma não semântica</td>
-				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML com uso distinto da finalidade. Exemplo: tag &lt;p&gt; parágrafo sendo utilizada para simular quebra de linha, sendo a utilização correta a delimitação de texto.</td>
-				    		</tr>
-				    	</tbody>
+				    	    </tbody>
 				    </table>
 				    
 				    <hr class="hr_linhaDupla">	
@@ -179,7 +174,7 @@
 				    		</tr>
 				    		<tr id="criterio_143">
 				    		    <td headers="numero_14" class="celulaCriterios">1.4.3</td>
-				    			<td headers="criterio_14" class="celulaCriterios">Uso incorreto do <span lang="en">TABINDEX</span></td>
+				    			<td headers="criterio_14" class="celulaCriterios">Presença de número do <span lang="en">tabindex</span> menor do que 0 e maior 32767</td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar a presença do conteúdo -1 do atributo "<span lang="en">tabindex</span>" com o intuito de não influenciar a ordem do código da página, ou verificar se a presença de conteúdo do atributo "<span lang="en">tabindex</span>" esta superior a 32767 e inferior a 0.</td>
 				    		</tr>
 				    		
@@ -644,7 +639,7 @@
 				    	   	<tr id="criterio_358">
 				    		    <td headers="numero_35" class="celulaCriterios">3.5.8</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links que são lidos duas ou mais vezes</td>		
-				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; com o mesmo conteúdo descritivo em locais distintos da página HTML.</td>				    		
+				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; com o mesmo conteúdo no atributo <span lang="en">title</span> e no texto descritivo.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_359">
@@ -800,9 +795,15 @@
 				    			</tr>
 				    		</thead>
 				    		<tbody>
-				    						    		
+				    		
 				    		<tr id="criterio_3111">
 				    		    <td headers="numero_3110" class="celulaCriterios">3.11.1</td>
+				    			<td headers="criterio_3110" class="celulaCriterios">Parágrafos muito extensos</td>		
+				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; com conteúdo acima de 1000 caracteres.</td>				    		
+				    		</tr>
+				    						    		
+				    		<tr id="criterio_3112">
+				    		    <td headers="numero_3110" class="celulaCriterios">3.11.2</td>
 				    			<td headers="criterio_3110" class="celulaCriterios">Presença de parágrafos justificados</td>		
 				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; com conteúdo "<span lang="en">justify</span>" no atributo "<span lang="en">align</span>".</td>				    		
 				    		</tr>
@@ -857,7 +858,7 @@
 				    						    		
 				    		<tr id="criterio_441">
 				    		    <td headers="numero_44" class="celulaCriterios">4.4.1</td>
-				    			<td headers="criterio_44" class="celulaCriterios">Ausência de destaque de foco do elemento ativo</td>		
+				    			<td headers="criterio_44" class="celulaCriterios">Presença de destaque do foco do elemento ativo</td>		
 				    			<td headers="como_avaliar_44" class="celulaCriterios">Verificar a ausência de destaque nos elementos HTML. Para verificação, analisar a ausência de utilização da propriedade "<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
 				    		</tr>
 				    						    						    		
