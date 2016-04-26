@@ -50,7 +50,13 @@
 			</div>
 				
 			<table id="tabelaErros2">
-			<caption>Tabela de Erros</caption>
+			
+			<!-- seta a mensagem de acordo com o tipo (erro ou aviso) -->
+			 <c:choose>          
+           				<c:when test="${isError}"><caption>Erro(s) da recomentação ${rn} ${recomendacao}</caption></c:when> 
+           				<c:otherwise><caption>Aviso(s) da recomentação ${rn} ${recomendacao}</caption></c:otherwise>   
+        	</c:choose>
+			
 				 <thead>								
 						<tr>
 						    <th id="numero" class="topo2 indiceDetalhes0">Número</th>
