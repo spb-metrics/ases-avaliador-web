@@ -38,18 +38,19 @@
 						</div>
 					</li>
 									
-					<li class="linhasMapa">
+					<!-- <li class="linhasMapa">
 						<div>
 							<a href="${pageContext.request.contextPath}/perguntas-frequentes">
 								<span>Perguntas Frequentes</span>
 							</a>
 						</div>
-					</li>
+					</li>-->
 					
 					<li class="linhasMapa">
 						<div>
-							<a href="${pageContext.request.contextPath}/contato">
-								<span>Contato</span>
+							<a href="http://www.governoeletronico.gov.br/contato">
+								<span>Contato
+						(link para um novo sítio)</span>
 							</a>
 						</div>
 					</li>
