@@ -39,7 +39,11 @@
 		            
 						<li>Teclando-se Alt + 1 em qualquer página do portal, chega-se diretamente ao começo do conteúdo principal da página.</li>
 					
+						<li>Teclando-se Alt + 2 em qualquer página do portal, chega-se diretamente ao menu principal da página.</li>
 						<li>Teclando-se Alt + 4 em qualquer página do portal, chega-se diretamente ao rodapé do sítio.</li>
+						<li>Teclando-se Alt + 5 em qualquer página do portal, chega-se diretamente à página de descrição da acessibilidade do ASES-WEB.</li>
+						<li>Teclando-se Alt + 6 em qualquer página do portal, chega-se diretamente à funcionalidade do alto-contraste do ASES-WEB.</li>
+						<li>Teclando-se Alt + 7 em qualquer página do portal, chega-se diretamente ao mapa do site  do ASES-WEB.</li>
 		
 		            </ul>	
 						
