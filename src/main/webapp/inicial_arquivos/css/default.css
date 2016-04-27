@@ -71,17 +71,25 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 	#accessibility span {
-		background: #9ed5ab;
-		color: #dcffe3;
+		background: #ffffff;
+		font-weight:bold;
+		color: #327241;
 		padding: 0 4px;
 	}
 	
 	#portal-siteactions span {
-		background: #9ed5ab;
-		color: #dcffe3;
+		background: #ffffff;
+		font-weight:bold;
+		color: #327241;
 		padding: 0 4px;
 	}
 	
+	label span {
+		background: #327241;
+		color: #dcffe3;
+		font-weight:bold;
+		padding: 0 4px;
+	}
 	#accessibility a:hover {
 		border-bottom: 1px solid;
 	}
