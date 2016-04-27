@@ -14,7 +14,7 @@
 				<c:if test="${not empty errors}">
 					<c:forEach items="${errors}" var="error">
 						<div class="${error.category}">
-						<div class="alinName">${error.message}</div>
+						<div class="alinName"><a id="mensagemErroCampoVazio_${ancoraCampoVazio}" href="#${ancoraCampoVazio}">${error.message}</a></div>
 					</div>
 					<br />
 					</c:forEach>				
@@ -40,8 +40,8 @@
 
    <div class="tab">
        <input type="radio" id="tab-1" name="tab-group-1"
-						checked="checked">
-     <label class="rarios" for="tab-1">Validação pela URI</label>
+						checked="checked" accesskey="u">
+     <label class="rarios" for="tab-1">Validação pela URI <span>U</span></label>
        
        <div class="contenteudo">
            <form name="form1" action="avaliar" method="post">
@@ -56,15 +56,15 @@
 									<label class="" for="url">URL:</label><input id="url"
 								name="url" value="http://" size="40" type="text">
 									<input id="input_tab_1" class="submit" name="executar"
-								value="Executar" type="submit">
+								value="Executar" type="submit"><br>
 								
 							</form>
        </div> 
    </div>
     
    <div class="tab">
-       <input type="radio" id="tab-2" name="tab-group-1">
-       <label class="rarios" for="tab-2">Validação pelo upload de arquivo</label>
+       <input type="radio" id="tab-2" name="tab-group-1" accesskey="a">
+       <label class="rarios" for="tab-2">Validação pelo upload de arquivo <span>A</span></label>
        
        <div class="contenteudo">
            <form name="form2" action="avaliar-arquivo" method="post"
@@ -88,8 +88,8 @@
    </div>
     
     <div class="tab">
-       <input type="radio" id="tab-3" name="tab-group-1">
-       <label class="rarios" for="tab-3">Validação pelo código fonte</label>
+       <input type="radio" id="tab-3" name="tab-group-1" accesskey="c">
+       <label class="rarios" for="tab-3">Validação pelo código fonte <span>C</span></label>
      
        <div class="contenteudo">
        <form name="form3" action="avaliar-codigo" method="post"
