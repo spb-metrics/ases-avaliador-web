@@ -165,6 +165,9 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/detalhesAvaliacao.js"></script>
 
+<script type="text/javascript"
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/default.js"></script>
+		
 	<!--  	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrap.js"></script>-->
 
