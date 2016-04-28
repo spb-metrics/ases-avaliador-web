@@ -101,8 +101,8 @@
 				    		</thead>
 				    		<tbody>
 				    						    		
-				    		<tr id="criterio_121">
-				    		    <td headers="numero_12" class="celulaCriterios">1.2.1</td>
+				    		<tr id="criterio_123">
+				    		    <td headers="numero_12" class="celulaCriterios">1.2.3</td>
 				    			<td headers="criterio_12" class="celulaCriterios">Presença de tags HTML sem atributo e conteúdo de texto</td>
 				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
 				    		</tr>
@@ -134,13 +134,13 @@
 				    			<td headers="criterio_13" class="celulaCriterios">A hierarquia dos níveis de título está incorreta</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a falta de ordem sequencial da presença de níveis de cabeçalho. Exemplo: a presença do nível &lt;h3&gt; depende do nível anterior &lt;h2&gt;.</td>
 				    		</tr>
-				    		<tr id="criterio_133">
-				    		    <td headers="numero_13" class="celulaCriterios">1.3.3</td>
+				    		<tr id="criterio_134">
+				    		    <td headers="numero_13" class="celulaCriterios">1.3.4</td>
 				    			<td headers="criterio_13" class="celulaCriterios">Foi utilizado somente o nível H1</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a presença do nível da cabeçalho &lt;h1&gt; sem categorizar outros assuntos da página em níveis de cabeçalho.</td>
 				    		</tr>
-				    		<tr id="criterio_134">
-				    		    <td headers="numero_13" class="celulaCriterios">1.3.4</td>
+				    		<tr id="criterio_136">
+				    		    <td headers="numero_13" class="celulaCriterios">1.3.6</td>
 				    			<td headers="criterio_13" class="celulaCriterios">Presença de mais de 1 cabeçalho</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a presença de níveis de cabeçalho &lt;h1&gt; sendo utilizados de forma repetida.</td>
 				    		</tr>
@@ -167,13 +167,13 @@
 				    			<td headers="criterio_14" class="celulaCriterios">O bloco de conteúdo não esta antes do bloco de menu no HTML</td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar se a presença do código da página que representa o menu está posicionado depois do código que representa o conteúdo da página HTML.</td>
 				    		</tr>
-				    		<tr id="criterio_142">
-				    		    <td headers="numero_14" class="celulaCriterios">1.4.2</td>
+				    		<tr id="criterio_143">
+				    		    <td headers="numero_14" class="celulaCriterios">1.4.3</td>
 				    			<td headers="criterio_14" class="celulaCriterios">Presença do atributo <span lang="en">TABINDEX</span></td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar a presença de utilização do atributo "<span lang="en">tabindex</span>" nas páginas HTML.</td>
 				    		</tr>
-				    		<tr id="criterio_143">
-				    		    <td headers="numero_14" class="celulaCriterios">1.4.3</td>
+				    		<tr id="criterio_146">
+				    		    <td headers="numero_14" class="celulaCriterios">1.4.6</td>
 				    			<td headers="criterio_14" class="celulaCriterios">Presença de número do <span lang="en">tabindex</span> menor do que 0 e maior 32767</td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar a presença do conteúdo -1 do atributo "<span lang="en">tabindex</span>" com o intuito de não influenciar a ordem do código da página, ou verificar se a presença de conteúdo do atributo "<span lang="en">tabindex</span>" esta superior a 32767 e inferior a 0.</td>
 				    		</tr>
@@ -206,18 +206,18 @@
 				    			<td headers="criterio_15" class="celulaCriterios">Foram encontradas âncoras que permitem saltar pelas diferentes seções da página, porém algumas não possuem um destino correspondente</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença de links com conteúdo de atributo "href" que comecem com "#", porém não há o destino da âncora na página HTML.</td>
 				    		</tr>
-				    		<tr id="criterio_153">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.3</td>
+				    		<tr id="criterio_154">
+				    		    <td headers="numero_15" class="celulaCriterios">1.5.4</td>
 				    			<td headers="criterio_15" class="celulaCriterios">Não existem atalhos</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a ausência de tags HTML com atributo "<span lang="en">accesskey</span>" na página.</td>
 				    		</tr>
-				    		<tr id="criterio_154">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.4</td>
+				    		<tr id="criterio_1510">
+				    		    <td headers="numero_15" class="celulaCriterios">1.5.10</td>
 				    			<td headers="criterio_15" class="celulaCriterios">O primeiro <span lang="en">link</span> é uma âncora para o conteúdo da página</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença de <span lang="en">link</span> com conteúdo de atributo "href" que comece com "#", e o destino da âncora seja um conteúdo específico da página HTML.</td>
 				    		</tr>
-				    		<tr id="criterio_155">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.5</td>
+				    		<tr id="criterio_1511">
+				    		    <td headers="numero_15" class="celulaCriterios">1.5.11</td>
 				    			<td headers="criterio_15" class="celulaCriterios">Presença de atributo <span lang="en">ACCESSKEY</span> com conteúdo repetido</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença do atributo <span lang="en">"accesskey"</span> e conteúdo repetido em outros <span lang="en">"accesskeys"</span> da página HTML.</td>
 				    		</tr>
@@ -293,18 +293,11 @@
 				    		</thead>
 				    		<tbody>
 				    						    		
-				    		<tr id="criterio_181">
-				    		    <td headers="numero_18" class="celulaCriterios">1.8.1</td>
+				    		<tr id="criterio_183">
+				    		    <td headers="numero_18" class="celulaCriterios">1.8.3</td>
 				    			<td headers="criterio_18" class="celulaCriterios">Ausência de divisão de áreas quando do uso do HTML 5</td>		
 				    			<td headers="como_avaliar_18" class="celulaCriterios">Verificar a ausência das tags: <span lang="en">&lt;header&gt;, &lt;footer&gt;, &lt;section&gt;, &lt;aside&gt;, &lt;nav&gt; e &lt;article&gt;</span>.</td>
 				    		</tr>
-				    		
-				    		<tr id="criterio_182">
-				    		    <td headers="numero_18" class="celulaCriterios">1.8.2</td>
-				    			<td headers="criterio_18" class="celulaCriterios">Ausência de divisão de áreas quando do uso de <span lang="en">LANDMARKS</span> de HTML</td>		
-				    		    <td headers="como_avaliar_18" class="celulaCriterios">Verificar a ausência do atributo "role" nas tags HTML com os conteúdos: <span lang="en">"banner", "complementary", "contentinfo", "main", "navigation" e "search"</span>.</td>
-				    		</tr>
-				    		
 				    		
 				    	</tbody>
 				    </table>
@@ -348,20 +341,20 @@
 				    		</thead>
 				    		<tbody>
 				    						    		
-				    		<tr id="criterio_211">
-				    		    <td headers="numero_21" class="celulaCriterios">2.1.1</td>
+				    		<tr id="criterio_212">
+				    		    <td headers="numero_21" class="celulaCriterios">2.1.2</td>
 				    			<td headers="criterio_21" class="celulaCriterios">Há funcionalidade que só funciona pelo <span lang="en">mouse</span></td>		
 				    			<td headers="como_avaliar_21" class="celulaCriterios">Verificar a presença dos eventos (<span lang="en">onmousedown, onmouseup, onmouseover, onmouseout</span>) nas tags HTML e a ausência de evento para permitir a manipulação por teclado.</td>
 				    		</tr>
 				    		
-				    		<tr id="criterio_212">
-				    		    <td headers="numero_21" class="celulaCriterios">2.1.2</td>
+				    		<tr id="criterio_216">
+				    		    <td headers="numero_21" class="celulaCriterios">2.1.6</td>
 				    			<td headers="criterio_21" class="celulaCriterios">Presença de evento <span lang="en">DBLCLICK</span> ou <span lang="en">ONDBCLICK</span> no elemento HTML</td>		
 				    			<td headers="como_avaliar_21" class="celulaCriterios">Verificar a presença do evento "<span lang="en">ondblclick</span>" nas tags HTML.</td>
 				    		</tr>	
 				    				
-				    		<tr id="criterio_213">
-				    		    <td headers="numero_21" class="celulaCriterios">2.1.3</td>
+				    		<tr id="criterio_218">
+				    		    <td headers="numero_21" class="celulaCriterios">2.1.8</td>
 				    			<td headers="criterio_21" class="celulaCriterios"> Presença de eventos associados a elementos não interativos</td>		
 				    			<td headers="como_avaliar_21" class="celulaCriterios">Verificar a presença de eventos HTML associados a elementos estáticos da página HTML. Um exemplo é a presença de mudança de contexto no nível de cabeçalho.</td>
 				    		</tr>			    		
@@ -521,8 +514,8 @@
 						href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a>).</td>
 				    		</tr>
 				    		
-				    		<tr id="criterio_312">
-				    		    <td headers="numero_31" class="celulaCriterios">3.1.2</td>
+				    		<tr id="criterio_313">
+				    		    <td headers="numero_31" class="celulaCriterios">3.1.3</td>
 				    			<td headers="criterio_31" class="celulaCriterios">Presença do elemento HTML, atributo XMLNS, atributo XML;LANG e a ausência do atributo <span lang="en">LANG</span></td>		
 				    			<td headers="como_avaliar_31" class="celulaCriterios">Verificar a presença dos atributos "xmlns" e "xml-lang" e a ausência do atributo "<span lang="en">lang</span>".</td>
 				    		</tr>
@@ -600,56 +593,56 @@
 				    			<td headers="como_avaliar_35" class="celulaCriterios"> Presença do elemento &lt;a&gt; e descrição do texto em formato de endereço da internet. Lembrar que não importará se o <span lang="en">link</span> do texto será igual ou não no atributo "href".</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_352">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.2</td>
+				    		<tr id="criterio_353">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.3</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links vazios</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e ausência de texto descritivo.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_353">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.3</td>
+				    		<tr id="criterio_354">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.4</td>
 				    			<td headers="criterio_35" class="celulaCriterios"><span lang="en">Link</span> com descrição somente do <span lang="en">TITLE</span></td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt;, atributo "<span lang="en">title</span>" com texto descritivo e ausência de texto descritivo na estrutura principal do <span lang="en">link</span>.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_354">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.4</td>
+				    		<tr id="criterio_355">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.5</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links que são imagens sem descrição</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e dentro o elemento &lt;img&gt; sem conteúdo descritivo no atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_355">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.5</td>
+				    		<tr id="criterio_356">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.6</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links do tipo "clique aqui", "leia mais", "veja mais", "veja aqui", "clique", "acesse aqui", "clique para acessar", "aqui", entre outros</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e de texto descritivo com as palavras exatas ou palavras começando no texto do inicio do <span lang="en">link</span>: "clique aqui", "leia mais", "veja aqui", "veja mais", "veja aqui", "clique", "acesse aqui", "clique para acessar", "aqui".</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_356">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.6</td>
+				    		<tr id="criterio_3510">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.10</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links com descrições diferentes que remetem ao mesmo local</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença de elementos &lt;a&gt; com textos descritivos diferentes, porém os conteúdos dos href's remetem para o mesmo <span lang="en">link</span>.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_357">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.7</td>
+				    		<tr id="criterio_3511">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.11</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links com a mesma descrição que remetem a locais diferentes</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença de elementos &lt;a&gt; com textos descritivos iguais, porém os conteúdos dos href's remetem para links diferentes.</td>				    		
 				    		</tr>
 				    	   		
-				    	   	<tr id="criterio_358">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.8</td>
+				    	   	<tr id="criterio_3512">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.12</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links que são lidos duas ou mais vezes</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; com o mesmo conteúdo no atributo <span lang="en">title</span> e no texto descritivo.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_359">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.9</td>
+				    		<tr id="criterio_3513">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.13</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links com descrição muito longa</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; com conteúdo do texto descrito com quantidade de caracteres acima de 2000.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_3510">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.10</td>
+				    		<tr id="criterio_3514">
+				    		    <td headers="numero_35" class="celulaCriterios">3.5.14</td>
 				    			<td headers="criterio_35" class="celulaCriterios">Links que remetem a páginas indisponiveis/inexistentes (links quebrados)</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e o conteúdo do atributo "href" direciona para páginas de erros: 404, 405, 503 e outros.</td>				    		
 				    		</tr>
@@ -695,14 +688,14 @@
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; e atributo "<span lang="en">alt</span>" com conteúdo descrito contendo expressões: "figura", "imagem", "<span lang="en">alt</span>", conteúdo em branco e outros.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_365">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.5</td>
+				    		<tr id="criterio_367">
+				    		    <td headers="numero_36" class="celulaCriterios">3.6.7</td>
 				    			<td headers="criterio_36" class="celulaCriterios">Imagens diferentes com a mesma descrição</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; com o mesmo atributo "src", no entanto, o conteúdo do atributo "<span lang="en">alt</span>" não é o mesmo de cada imagem.</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_366">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.6</td>
+				    		<tr id="criterio_368">
+				    		    <td headers="numero_36" class="celulaCriterios">3.6.8</td>
 				    			<td headers="criterio_36" class="celulaCriterios">Imagens com dupla descrição, pois utiliza atributo <span lang="en">TITLE</span> com o mesmo valor da descrição</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; com o mesmo conteúdo descrito no atributo "<span lang="en">title</span>" e no atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
@@ -796,20 +789,14 @@
 				    		</thead>
 				    		<tbody>
 				    		
-				    		<tr id="criterio_3111">
-				    		    <td headers="numero_3110" class="celulaCriterios">3.11.1</td>
-				    			<td headers="criterio_3110" class="celulaCriterios">Parágrafos muito extensos</td>		
-				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; com conteúdo acima de 1000 caracteres.</td>				    		
-				    		</tr>
-				    						    		
 				    		<tr id="criterio_3112">
 				    		    <td headers="numero_3110" class="celulaCriterios">3.11.2</td>
 				    			<td headers="criterio_3110" class="celulaCriterios">Presença de parágrafos justificados</td>		
 				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; com conteúdo "<span lang="en">justify</span>" no atributo "<span lang="en">align</span>".</td>				    		
 				    		</tr>
 				    		
-				    		<tr id="criterio_3112">
-				    		    <td headers="numero_3110" class="celulaCriterios">3.11.2</td>
+				    		<tr id="criterio_3113">
+				    		    <td headers="numero_3110" class="celulaCriterios">3.11.3</td>
 				    			<td headers="criterio_3110" class="celulaCriterios">Presença de textos justificados através de folhas de estilo</td>		
 				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; e propriedade CSS <span lang="en">text-align</span> com conteúdo "<span lang="en">justify</span>". Deverá ser avaliado o CSS externo (com arquivo CSS referenciado pelo elemento &lt;<span lang="en">link</span>&gt;), interno (propriedade dentro do elemento &lt;<span lang="en">style</span>&gt;) e <span lang="en">in-line</span> (propriedade dentro do atributo "<span lang="en">style</span>" no elemento &lt;p&gt;).</td>				    		
 				    		</tr>
