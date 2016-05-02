@@ -44,7 +44,9 @@
 						<li>Teclando-se Alt + 5 em qualquer página do portal, chega-se diretamente à página de descrição da acessibilidade do ASES-WEB.</li>
 						<li>Teclando-se Alt + 6 em qualquer página do portal, chega-se diretamente à funcionalidade do alto-contraste do ASES-WEB.</li>
 						<li>Teclando-se Alt + 7 em qualquer página do portal, chega-se diretamente ao mapa do site  do ASES-WEB.</li>
-		
+						<li>Teclando-se Alt + U em qualquer página do portal, chega-se diretamente à validação pela URI.</li>
+						<li>Teclando-se Alt + A em qualquer página do portal, chega-se diretamente à validação pelo upload de arquivo.</li>
+						<li>Teclando-se Alt + C em qualquer página do portal, chega-se diretamente à validação pelo código fonte.</li>
 		            </ul>	
 						
 					
