@@ -100,7 +100,12 @@
 				    			</tr>
 				    		</thead>
 				    		<tbody>
-				    						    		
+				    		<tr id="criterio_122">
+				    		    <td headers="numero_12" class="celulaCriterios">1.2.2</td>
+				    			<td headers="criterio_12" class="celulaCriterios">Presença de tags HTML sem atributo e conteúdo de texto</td>
+				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML (&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;,
+				&lt;a&gt;, &lt;p&gt;) que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
+				    		</tr>		    		
 				    		<tr id="criterio_123">
 				    		    <td headers="numero_12" class="celulaCriterios">1.2.3</td>
 				    			<td headers="criterio_12" class="celulaCriterios">Presença de tags HTML sem atributo e conteúdo de texto</td>
