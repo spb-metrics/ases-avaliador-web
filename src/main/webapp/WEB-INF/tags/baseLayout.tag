@@ -54,8 +54,8 @@
 	media="screen">
 
 
+<link href="${pageContext.request.contextPath}/inicial_arquivos/imagens/ases.ico" rel='icon' type='image/ico'/>
 
-<!--  <title>ASES - Avaliador e Simulador de AcessibilidadE em Sites</title>-->
 <title>${tituloPagina}</title>
 
 </head>
@@ -103,9 +103,9 @@
 			<div id="logo">
 				<h1>
 					<span id="portal-title-1">Avaliador e Simulador de
-						Acessibilidade em Sítios<br>
+						Acessibilidade em Sítios
 					</span> <a id="portal-logo" href="${pageContext.request.contextPath}">
-						<span id="portal-title" class="corto">ASES</span><br>
+						<span id="portal-title" class="corto">ASES</span>
 					</a> <span id="portal-description">Governo Federal </span>
 				</h1>
 			</div>
