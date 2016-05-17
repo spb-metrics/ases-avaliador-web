@@ -350,6 +350,11 @@ public class AvaliacaoController {
 				
 				map.put("pPercentualAses", nota.getValor());
 				}
+				else
+				{
+					map.put("pPercentualAses", "0");
+				}
+					
 				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
