@@ -338,11 +338,18 @@ public class AvaliacaoController {
 				/*Cria um Map de parï¿½metros*/
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
+				
+				if (!this.sem_nota.equalsIgnoreCase("sem_nota"))
+				{
+								
 				/*Obtem a nota*/
 				//AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				Nota nota  = (Nota) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("notaAvaliacao");
+				
+				Nota nota  = null;
+				nota  = (Nota) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("notaAvaliacao");
 				
 				map.put("pPercentualAses", nota.getValor());
+				}
 				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
 				
 				if(urlAvaliada != ""){
