@@ -76,6 +76,7 @@
 	}
 	.tab {
 		float: left;
+		width: 450px;
 	}
 	.tab [type=radio] {
 		display: none;
