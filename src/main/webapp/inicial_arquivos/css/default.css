@@ -321,6 +321,13 @@
 		padding: 0 4px;
 	}
 	
+	label span {
+		background: #327241;
+		color: #dcffe3;
+		font-weight:bold;
+		padding: 0 4px;
+	}
+	
 	#accessibility a:hover {
 		border-bottom: 1px solid;
 	}
