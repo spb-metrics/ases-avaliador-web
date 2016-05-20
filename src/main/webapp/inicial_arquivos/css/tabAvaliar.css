@@ -76,6 +76,7 @@
 	}
 	.tabAvaliacao {
 		float: left;
+		width: 450px;
 	}
 	.tabAvaliacao [type=radio] {
 		display: none;
