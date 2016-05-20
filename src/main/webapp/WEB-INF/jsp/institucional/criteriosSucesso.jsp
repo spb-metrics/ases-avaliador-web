@@ -10,10 +10,11 @@
 						<ul class="breadcrumb">
 							<li>
 								<span>Você está em:</span>
-							</li>
-							<li>
-								<li><a href="${pageContext.request.contextPath}">ASES</a></li>
-							</li>
+							</li>							
+								<li>
+								<a href="${pageContext.request.contextPath}">ASES</a>
+								</li>
+							
                				<li>|  Critérios de Sucesso</li>
 						</ul>
 					</div>
