@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -54,631 +55,753 @@ import br.com.checker.emag.SummarizedOccurrence;
 import br.com.checker.emag.core.Checker;
 import br.com.checker.emag.core.ContentEvaluation;
 
-
 @Resource
 public class AvaliacaoController {
 	EseloProperties eseloProperties = null;
-	
+
 	private String tituloPagina;
-	//Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da Avaliação de Acessibilidade)
+	// Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da
+	// Avaliação de Acessibilidade)
 	private String mensagem_avaliacao = null;
-	
-	//Esconde a nota caso não esteja usando o ESELO		
+
+	// Esconde a nota caso não esteja usando o ESELO
 	private String sem_nota = null;
 	private String tituloSite;
+	private String ancoraCampoVazio;
 	private String dataHoraAvaliacao;
 	private String webaxscore;
 	private Result result;
 	private List<String> avisosFerramentasHtmlCssW3c;
-	private Validator validator;	
+	private Validator validator;
 	private AvaliacaoBusiness avaliacaoBusiness;
-	private Map<OccurrenceClassification,List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
+	private Map<OccurrenceClassification, List<SummarizedOccurrence>> ocorrencias = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
 	private ServletContext application;
 	private DetalheAvaliacao detalheAvaliacao;
 	private UtilitiesProperties utilitiesProperties;
-	
-	
-	public AvaliacaoController (Result result, Validator validator,AvaliacaoBusiness avaliacaoBusiness,ServletContext application,DetalheAvaliacao detalheAvaliacao) {
+
+	public AvaliacaoController(Result result, Validator validator,
+			AvaliacaoBusiness avaliacaoBusiness, ServletContext application,
+			DetalheAvaliacao detalheAvaliacao) {
 		this.result = result;
 		this.validator = validator;
 		this.avaliacaoBusiness = avaliacaoBusiness;
 		this.application = application;
-		this.detalheAvaliacao = detalheAvaliacao;		
+		this.detalheAvaliacao = detalheAvaliacao;
 		this.avaliacaoBusiness.initEseloProperties(application);
 		this.initEseloProperties(application);
 		this.utilitiesProperties = new UtilitiesProperties(application);
-				
+
 	}
-	
+
 	private void DefinirCorWebaxscore(String valorNota) {
-		
-		//Define a cor do webaxscore na página "Avaliar" de acordo a pontuação
-		
-		Double notaAvaliacao = Double.parseDouble(valorNota.replaceFirst(",", ".")) ;
-				
-		if(notaAvaliacao >= 70)
-		{
+
+		// Define a cor do webaxscore na página "Avaliar" de acordo a pontuação
+
+		Double notaAvaliacao = Double.parseDouble(valorNota.replaceFirst(",",
+				"."));
+
+		if (notaAvaliacao >= 70) {
 			webaxscore = "verde";
-		}
-		else if(notaAvaliacao >= 50 & notaAvaliacao < 70)
-		{
+		} else if (notaAvaliacao >= 50 & notaAvaliacao < 70) {
 			webaxscore = "amarela";
-		}
-		else
-		{
+		} else {
 			webaxscore = "vermelha";
-		}					
+		}
 	}
-	
+
 	@Path("/avaliar-arquivo")
 	public void avaliarArquivo(UploadedFile file, boolean mark,
-												  boolean content,
-												  boolean presentation,
-												  boolean multimedia, 
-												  boolean form,
-												  boolean behavior,
-												  int tiprel) throws IOException {
-		
+			boolean content, boolean presentation, boolean multimedia,
+			boolean form, boolean behavior, int tiprel) throws IOException {
+
+		Validate validate = new Validate(this.validator);
+		if (validate.uploadForm(file)) {
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					file.getFile()));
+			String html = "";
+			String linha = "";
+			while ((linha = reader.readLine()) != null)
+				// html += "\n"+linha;
+				html += linha + "\n";
+
+			if (validate.conteudoUploadForm(html)) {
+
+				/*
+				 * if(tiprel != 5)
+				 * this.result.redirectTo(AvaliacaoController.class
+				 * ).relatorioAvaliacao(html, mark, content, presentation,
+				 * multimedia, form, behavior, tiprel, false);
+				 */
+
+				Checker checker = from(html);
+
+				if (mark)checker.with(marking());
+				if (content)checker.with(content());
+				if (presentation)checker.with(presentation());
+				if (multimedia)checker.with(multimedia());
+				if (form)checker.with(form());
+				if (behavior)checker.with(behavior());
+
+				html = html.replaceAll("<", "&lt;");
+				html = html.replaceAll(">", "&gt;");
+				html = html.replaceAll(" ", "&nbsp");
+
+				result.include("contentLenght",String.valueOf(html.getBytes("UTF-8").length));
+				result.include("html", html);
+
+				this.tituloSite = "";
+
+				ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
+				this.tituloSite = conteudo.retornarTituloSiteAvaliado();
+
+				result.include("titulosite", tituloSite);
+				Nota nota = null;
+
+				if (!this.sem_nota.equalsIgnoreCase("sem_nota")) {
+					List<Entry<OccurrenceKey,List<Occurrence>>> mapaListaOcorrencias = avaliacaoBusiness.retornarCriteriosTeste(checker.check());						
+					//nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), file.getFileName(), mapaListaOcorrencias);
+					nota = avaliacaoBusiness.obterNotaEselo(checker.getDocument(),file.getFileName(), mapaListaOcorrencias);
+					// Altera a cor de webaxscore de acordo a pontuacao
+
+					if (nota != null) {
+						DefinirCorWebaxscore(nota.getValor());
+
+						VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
+					}
+
+				}
+
+				result.include("nota", nota);
+				this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+				this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
+					
 				
+			
 				
-	Validate validate = new Validate(this.validator);		
-	if(validate.uploadForm(file)){
-		
-		
-		BufferedReader reader = new BufferedReader( new InputStreamReader( file.getFile() ) );
-		String html = "";   
-	    String linha = "";  
-	    while( ( linha = reader.readLine() ) != null )  
-	        //html += "\n"+linha;
-	    	html += linha+"\n";
-		
-		    if(validate.conteudoUploadForm(html)){
-		    	
-		    	 /*if(tiprel != 5)
-		    	 		this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiprel, false);*/
-				    
-					Checker checker = from(html);
-					
-					if(mark) checker.with(marking());
-					if(content) checker.with(content());
-					if(presentation) checker.with(presentation());
-					if(multimedia) checker.with(multimedia());
-					if(form) checker.with(form());
-					if(behavior) checker.with(behavior());
-					
-										
-					html = html.replaceAll("<", "&lt;");
-					html = html.replaceAll(">", "&gt;");
-					html = html.replaceAll(" ", "&nbsp");
-					
-					result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
-					result.include("html", html);
-					
-					
-					this.tituloSite = "";
-					
-					ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
-									
-					this.tituloSite =	conteudo.retornarTituloSiteAvaliado();
-					
-					result.include("titulosite", tituloSite);
-									
-					Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),file.getFileName());
-					
-					result.include("nota",nota);
-					this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-					this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
-					 		
-					
-					
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
-					
-										
-					//Altera a cor de webaxscore de acordo a pontuacao
-										
-					DefinirCorWebaxscore(nota.getValor());	
-					
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
-					//Seta o valor do título no template
-					tituloPagina = "Resumo de avaliação por upload de arquivo - ASES";
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
-																	
-					
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
-					
-					this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
-					VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
-					
-					result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiprel);
-					
-					
-		    }else{
-		    	this.validator = validate.getMessage();
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght",String.valueOf(html.getBytes("UTF-8").length));
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
+
+				// Seta o valor do título no template
+				tituloPagina = "Resumo de avaliação por upload de arquivo - ASES";
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
+
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
+
+				this.dataHoraAvaliacao = (String) DateUtil.dataHoraAtual();
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
+
+				result.of(this).avaliar(null, mark, content, presentation, multimedia, form, behavior, tiprel);
+
+			} else {
+
+				// Atribui âncora para as mensagens de erros dos campos vazios
+				ancoraCampoVazio = "up_file";
+				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("ancoraCampoVazio", ancoraCampoVazio);
+
+				this.validator = validate.getMessage();
 				this.validator.onErrorUsePageOf(IndexController.class).index();
 			}
-			
-		}else{
-			 this.validator = validate.getMessage();
-			 this.validator.onErrorUsePageOf(IndexController.class).index();
-		}	
-    }
-	
-	
-	@Post("/avaliar")
-	public void avaliar(String url, boolean mark, 
-									boolean content,
-									boolean presentation,
-									boolean multimedia, 
-									boolean form, 
-									boolean behavior,
-									int tiporel) {
-		
-					
-		
-		Validate validate = new Validate(this.validator);		
-		if(validate.url(url)){
-			
-			
-			/*if(tiporel != 5)
-				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(url, mark, content, presentation, multimedia, form, behavior, tiporel, true);*/
-			
-			if(url.startsWith("www")) url="http://"+url;
-			
-			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
-			int[] errorsWarningsCss = avaliacaoBusiness.getErrorCount(true,url);
-			int[] errorsWarningsHtml = avaliacaoBusiness.getErrorCount(false,url);
-			
-		
-			
-			Checker checker = from(pagina.getContent(),url);
-			
-			if(mark) checker.with(marking());
-			if(content) checker.with(content());
-			if(presentation) checker.with(presentation());
-			if(multimedia) checker.with(multimedia());
-			if(form) checker.with(form());
-			if(behavior) checker.with(behavior());
-			
-			
-			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
-		    Matcher mm = pp.matcher(url.toLowerCase().replace("https", "http"));  
-		   	
-		    if (mm.find())
-		    	
-		    this.tituloSite = "";
-			
-			ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
-							
-			this.tituloSite =	conteudo.retornarTituloSiteAvaliado();
-			
-			result.include("titulosite", tituloSite);
-		      
-		    
-		    result.include("contentLenght", pagina.getContentLength());
-			result.include("url", url);
-			result.include("html", pagina.getParsedContent());
-			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),url);
-			result.include("nota",nota);
-			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-			
-			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()),errorsWarningsCss,errorsWarningsHtml);
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", url);
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
-			
-			
-			//Altera a cor de webaxscore de acordo a pontuacao
-			
-			DefinirCorWebaxscore(nota.getValor());		
-			
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
-			
-			
-			//Seta o valor do título no template
-			tituloPagina = "Resumo de avaliação por URI - ASES";
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
-			
-		
-			
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
-			
-			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
-						
-			avisosFerramentasHtmlCssW3c = new ArrayList<String>();
-			
-			validarFerramenta_cssnoAr(errorsWarningsCss);
-			validarFerramenta_htmlnoAr(errorsWarningsHtml);			
-				
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("avisosFerramentasHtmlCssW3c", avisosFerramentasHtmlCssW3c);			
-			
-		}else{
-			 this.validator = validate.getMessage();
-			 this.validator.onErrorUsePageOf(IndexController.class).index();
-		}
-	}
-	
-	//Verifica se o site de avaliação de sintaxe css encontra-se no ar
-		private void validarFerramenta_cssnoAr(int[] erros_avisos)
-		{		
-			if(erros_avisos[0] == -10 && erros_avisos[1] == -10)
-			{
-			
-				avisosFerramentasHtmlCssW3c.add("O avaliador de sintaxe css do w3c encontra-se indispon&iacute;vel, favor tentar mais tarde.");
-			}
-			
-		}
-				
-	//Verifica se o site de avaliação de sintaxe html encontra-se no ar
-	private void validarFerramenta_htmlnoAr(int[] erros_avisos)
-	{			
-		if(erros_avisos[0] == -10 && erros_avisos[1] == -10)
-		{			
-			avisosFerramentasHtmlCssW3c.add("O avaliador de sintaxe html do w3c encontra-se indispon&iacute;vel, favor tentar mais tarde.");
-		}			
-	}
-	
-	
-	
-	@Get("/relatorioavaliacao")
-	@Post("/relatorioavaliacao")
-	public FileDownload relatorioAvaliacao( int tiporel) {
-		
-		List<SummarizedOccurrence> checkerList = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
-		String urlAvaliada = (String) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("urlAvaliada");
-		String contentLenght = (String) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("contentLenght");
-		this.sumarizarResultasNoResponse(checkerList, result);
-		
-		//================================================ GERAR RELATï¿½RIO =============================================//
-		
-				/*Cria um Map de parï¿½metros*/
-				HashMap<String, Object> map = new HashMap<String, Object>();
-				
-				
-				if (!this.sem_nota.equalsIgnoreCase("sem_nota"))
-				{
-								
-				/*Obtem a nota*/
-				//AvaliacaoBusinessImpl avaliacaoBusiness = new AvaliacaoBusinessImpl();
-				
-				Nota nota  = null;
-				nota  = (Nota) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("notaAvaliacao");
-				
-				map.put("pPercentualAses", nota.getValor());
-				}
-				else
-				{
-					map.put("pPercentualAses", "0");
-				}
-					
-				map.put("pPagina", urlAvaliada != "" ? urlAvaliada : "Código Fonte ou Arquivo");
-				
-				if(urlAvaliada != ""){
-					Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");  
-				    Matcher mm = pp.matcher(urlAvaliada.toLowerCase());  
-			
-				    if (mm.find())
-				        map.put("pTitulo", VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("titulosite"));
-				
-				}else
-					 map.put("pTitulo", VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("titulosite"));
-				
-				map.put("pTamanho", contentLenght+" Bytes");
-				dataHoraAvaliacao = (String)VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("data");
-				map.put("pDataHoraAvaliacao",   dataHoraAvaliacao);
-				
-				
-				//Obtem Resumo da AvaliaÃ§Ã£o
-				List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
-				
-				int totalErros = 0;
-				int totalAvisos = 0;
-				
-				for(ResumoAvaliacao resumo :resumoErrosAvisos ){
-					map.put(resumo.getTipo()+"_A",resumo.getQuantidadeAvisos());
-					map.put(resumo.getTipo()+"_E",resumo.getQuantidadeErros());
-				
-					totalErros+=resumo.getQuantidadeErros();
-					totalAvisos+=resumo.getQuantidadeAvisos();
-				}
-				
-				map.put("TOTAL_E",totalErros);
-				map.put("TOTAL_A",totalAvisos);
-				
-				ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-avaliacao.jrxml");
-				String path =null;
-			
-	   			try {
-	   				path =  managerReport.gerarRelatorio(checkerList, map, tiporel, "RelatorioAvaliacao");
-				} catch (JRException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	   			File file = new File(path);
-	   	
-	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
-	
-	   //=========================================== FIM GERAR RELATï¿½RIO =============================================//
-		
-	}
-	
-	@Post("/avaliar-codigo")
-	public void avaliarPlainText(String html, boolean mark,
-											  boolean content,
-											  boolean presentation, 
-											  boolean multimedia, 
-											  boolean form, 
-											  boolean behavior,
-											  int tiporel) throws IOException{
-		
-		
-		
-		Validate validate = new Validate(this.validator);		
-		if(validate.condigoFonte(html)){
-		
-			/*if(tiporel != 5)
-				this.result.redirectTo(AvaliacaoController.class).relatorioAvaliacao(html, mark, content, presentation, multimedia, form, behavior, tiporel, false);*/
-			
-			Checker checker = from(html);
-			
-			if(mark) checker.with(marking());
-			if(content) checker.with(content());
-			if(presentation) checker.with(presentation());
-			if(multimedia) checker.with(multimedia());
-			if(form) checker.with(form());
-			if(behavior) checker.with(behavior());
-			
-			html = html.replaceAll("<", "&lt;");
-			html = html.replaceAll(">", "&gt;");
-			html = html.replaceAll(" ", "&nbsp");
-			
-			SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
-			
-			result.include("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
-			result.include("html", html);
-			 this.tituloSite = "";
-				
-				ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
-								
-				this.tituloSite =	conteudo.retornarTituloSiteAvaliado();
-				
-				result.include("titulosite", tituloSite);
-			      
-			Nota nota = avaliacaoBusiness.obterNota(checker.checkSumarized(),tituloSite + " - "+sdf.format(new Date()));
-			
-			result.include("nota",nota);
-			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
-			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()));
-			
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao", checker.checkSumarized());
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", "");
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", String.valueOf(html.getBytes("UTF-8").length));
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
-			
-			
-			//Altera a cor de webaxscore de acordo a pontuacao
-			
-			DefinirCorWebaxscore(nota.getValor());
-			
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
-			
-			
-			//Seta o valor do título no template
-			tituloPagina = "Resumo de avaliação por código fonte - ASES";
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
-			result.of(this).avaliar(null, mark,content,presentation, multimedia, form, behavior, tiporel);
-			
-						
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
-			
-			this.dataHoraAvaliacao = (String)DateUtil.dataHoraAtual();
-			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
-			
-		}else{
+
+		} else {
+			// Atribui âncora para as mensagens de erros dos campos vazios
+			ancoraCampoVazio = "up_file";
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("ancoraCampoVazio", ancoraCampoVazio);
+
 			this.validator = validate.getMessage();
 			this.validator.onErrorUsePageOf(IndexController.class).index();
 		}
 	}
-	
-	
-	private void sumarizarResultasNoResponse(List<SummarizedOccurrence> resultadoAvaliacao, Result result){
-		
-		for(SummarizedOccurrence occurrence : resultadoAvaliacao){
-			if(ocorrencias.get(occurrence.getType()) == null)
-				ocorrencias.put(occurrence.getType(), new ArrayList<SummarizedOccurrence>());
-			
-			ocorrencias.get(occurrence.getType()).add(occurrence);
+
+	@Post("/avaliar")
+	public void avaliar(String url, boolean mark, boolean content,
+			boolean presentation, boolean multimedia, boolean form,
+			boolean behavior, int tiporel) {
+
+		Validate validate = new Validate(this.validator);
+		if (validate.url(url)) {
+
+			/*
+			 * if(tiporel != 5)
+			 * this.result.redirectTo(AvaliacaoController.class)
+			 * .relatorioAvaliacao(url, mark, content, presentation, multimedia,
+			 * form, behavior, tiporel, true);
+			 */
+
+			if (url.startsWith("www"))
+				url = "http://" + url;
+
+			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
+			int[] errorsWarningsCss = avaliacaoBusiness
+					.getErrorCount(true, url);
+			int[] errorsWarningsHtml = avaliacaoBusiness.getErrorCount(false,
+					url);
+
+			Checker checker = from(pagina.getContent(), url);
+
+			if (mark)
+				checker.with(marking());
+			if (content)
+				checker.with(content());
+			if (presentation)
+				checker.with(presentation());
+			if (multimedia)
+				checker.with(multimedia());
+			if (form)
+				checker.with(form());
+			if (behavior)
+				checker.with(behavior());
+
+			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");
+			Matcher mm = pp.matcher(url.toLowerCase().replace("https", "http"));
+
+			if (mm.find())
+
+				this.tituloSite = "";
+
+			ContentEvaluation conteudo = new ContentEvaluation(
+					checker.getDocument());
+
+			this.tituloSite = conteudo.retornarTituloSiteAvaliado();
+
+			result.include("titulosite", tituloSite);
+
+			result.include("contentLenght", pagina.getContentLength());
+			result.include("url", url);
+			result.include("html", pagina.getParsedContent());
+
+			Nota nota = null;
+
+			if (!this.sem_nota.equalsIgnoreCase("sem_nota")) {
+				
+				List<Entry<OccurrenceKey,List<Occurrence>>> mapaListaOcorrencias = avaliacaoBusiness.retornarCriteriosTeste(checker.check());	
+				// Altera a cor de webaxscore de acordo a pontuacao
+				//nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), url, mapaListaOcorrencias);
+				
+				nota = avaliacaoBusiness.obterNotaEselo(checker.getDocument(),url, mapaListaOcorrencias);
+
+				if (nota != null) {
+					DefinirCorWebaxscore(nota.getValor());
+
+					VRaptorRequestHolder.currentRequest().getServletContext()
+							.setAttribute("webaxscore", webaxscore);
+				}
+
+			}
+
+			result.include("nota", nota);
+			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+
+			this.detalheAvaliacao.inicializar(
+					avaliacaoBusiness.retornarCriterios(checker.check()),
+					errorsWarningsCss, errorsWarningsHtml);
+			VRaptorRequestHolder
+					.currentRequest()
+					.getServletContext()
+					.setAttribute("resultadoAvaliacao",
+							checker.checkSumarized());
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("urlAvaliada", url);
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("contentLenght", pagina.getContentLength());
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("notaAvaliacao", nota);
+
+			// Seta o valor do título no template
+			tituloPagina = "Resumo de avaliação por URI - ASES";
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("tituloPagina", tituloPagina);
+
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("titulosite", tituloSite);
+
+			this.dataHoraAvaliacao = (String) DateUtil.dataHoraAtual();
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("data", dataHoraAvaliacao);
+
+			avisosFerramentasHtmlCssW3c = new ArrayList<String>();
+
+			validarFerramenta_cssnoAr(errorsWarningsCss);
+			validarFerramenta_htmlnoAr(errorsWarningsHtml);
+
+			VRaptorRequestHolder
+					.currentRequest()
+					.getServletContext()
+					.setAttribute("avisosFerramentasHtmlCssW3c",
+							avisosFerramentasHtmlCssW3c);
+
+		} else {
+			// Atribui âncora para as mensagens de erros dos campos vazios
+			ancoraCampoVazio = "url";
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("ancoraCampoVazio", ancoraCampoVazio);
+
+			this.validator = validate.getMessage();
+			this.validator.onErrorUsePageOf(IndexController.class).index();
 		}
-		
-		for(Entry<OccurrenceClassification, List<SummarizedOccurrence>> entry : ocorrencias.entrySet()) {
-			List<SummarizedOccurrence> ocorrenciasComputadas = entry.getValue();
-			Collections.sort(ocorrenciasComputadas);
-			
-			result.include("LISTA_"+entry.getKey().toString(),ocorrenciasComputadas);
+	}
+
+	// Verifica se o site de avaliação de sintaxe css encontra-se no ar
+	private void validarFerramenta_cssnoAr(int[] erros_avisos) {
+		if (erros_avisos[0] == -10 && erros_avisos[1] == -10) {
+
+			avisosFerramentasHtmlCssW3c
+					.add("O avaliador de sintaxe css do w3c encontra-se indispon&iacute;vel, favor tentar mais tarde.");
 		}
+
+	}
+
+	// Verifica se o site de avaliação de sintaxe html encontra-se no ar
+	private void validarFerramenta_htmlnoAr(int[] erros_avisos) {
+		if (erros_avisos[0] == -10 && erros_avisos[1] == -10) {
+			avisosFerramentasHtmlCssW3c
+					.add("O avaliador de sintaxe html do w3c encontra-se indispon&iacute;vel, favor tentar mais tarde.");
+		}
+	}
+
+	@Get("/relatorioavaliacao")
+	@Post("/relatorioavaliacao")
+	public FileDownload relatorioAvaliacao(int tiporel) {
+
+		List<SummarizedOccurrence> checkerList = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
+		String urlAvaliada = (String) VRaptorRequestHolder.currentRequest()
+				.getServletContext().getAttribute("urlAvaliada");
+		String contentLenght = (String) VRaptorRequestHolder.currentRequest()
+				.getServletContext().getAttribute("contentLenght");
+		this.sumarizarResultasNoResponse(checkerList, result);
+
+		// ================================================ GERAR RELATï¿½RIO
+		// =============================================//
+
+		/* Cria um Map de parï¿½metros */
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		/* Obtem a nota */
+		// AvaliacaoBusinessImpl avaliacaoBusiness = new
+		// AvaliacaoBusinessImpl();
+		Nota nota = null;
+
+		if (!this.sem_nota.equalsIgnoreCase("sem_nota"))
+			{
+		nota = (Nota) VRaptorRequestHolder.currentRequest()
+				.getServletContext().getAttribute("notaAvaliacao");
+
+				map.put("pPercentualAses", nota.getValor());
+			}
+			else
+				{
+				map.put("pPercentualAses", "0");
+				}
 		
-		List<ResumoAvaliacao> resumoErrosAvisos  = obterResumoAvaliacao();
+		map.put("pPagina", urlAvaliada != "" ? urlAvaliada
+				: "Código Fonte ou Arquivo");
+			
+		if (urlAvaliada != "") {
+			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");
+			Matcher mm = pp.matcher(urlAvaliada.toLowerCase());
+
+			if (mm.find())
+				map.put("pTitulo", VRaptorRequestHolder.currentRequest()
+						.getServletContext().getAttribute("titulosite"));
+
+		} else
+			map.put("pTitulo", VRaptorRequestHolder.currentRequest()
+					.getServletContext().getAttribute("titulosite"));
+
+		map.put("pTamanho", contentLenght + " Bytes");
+		dataHoraAvaliacao = (String) VRaptorRequestHolder.currentRequest()
+				.getServletContext().getAttribute("data");
+		map.put("pDataHoraAvaliacao", dataHoraAvaliacao);
+
+		// Obtem Resumo da AvaliaÃ§Ã£o
+		List<ResumoAvaliacao> resumoErrosAvisos = obterResumoAvaliacao();
+
 		int totalErros = 0;
 		int totalAvisos = 0;
-		
-		for(ResumoAvaliacao resumo :resumoErrosAvisos ){
-			totalErros+=resumo.getQuantidadeErros();
-			totalAvisos+=resumo.getQuantidadeAvisos();
+
+		for (ResumoAvaliacao resumo : resumoErrosAvisos) {
+			map.put(resumo.getTipo() + "_A", resumo.getQuantidadeAvisos());
+			map.put(resumo.getTipo() + "_E", resumo.getQuantidadeErros());
+
+			totalErros += resumo.getQuantidadeErros();
+			totalAvisos += resumo.getQuantidadeAvisos();
 		}
-		
-		result.include("totalErros",totalErros);
-		result.include("totalAvisos",totalAvisos);
-		result.include("listaResumo",resumoErrosAvisos);
-		result.include("data", DateUtil.dataHoraAtual());
-		
+
+		map.put("TOTAL_E", totalErros);
+		map.put("TOTAL_A", totalAvisos);
+
+		ManagerReport managerReport = new ManagerReport(
+				this.application.getRealPath("")
+						+ "/WEB-INF/templates-relatorios/relatorio-avaliacao.jrxml");
+		String path = null;
+
+		try {
+			path = managerReport.gerarRelatorio(checkerList, map, tiporel,
+					"RelatorioAvaliacao");
+		} catch (JRException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		File file = new File(path);
+
+		return new FileDownload(file, managerReport.getContentType(),
+				managerReport.getFileName());
+
+		// =========================================== FIM GERAR RELATï¿½RIO
+		// =============================================//
+
 	}
-	
-	private List<ResumoAvaliacao> obterResumoAvaliacao() {
-		List<ResumoAvaliacao>  resultado = new ArrayList<ResumoAvaliacao>();
-		
-		for(OccurrenceClassification classificacao : OccurrenceClassification.values()) {
-		
+
+	@Post("/avaliar-codigo")
+	public void avaliarPlainText(String html, boolean mark, boolean content,
+			boolean presentation, boolean multimedia, boolean form,
+			boolean behavior, int tiporel) throws IOException {
+
+		Validate validate = new Validate(this.validator);
+		if (validate.condigoFonte(html)) {
+
+			/*
+			 * if(tiporel != 5)
+			 * this.result.redirectTo(AvaliacaoController.class)
+			 * .relatorioAvaliacao(html, mark, content, presentation,
+			 * multimedia, form, behavior, tiporel, false);
+			 */
+
+			Checker checker = from(html);
+
+			if (mark)
+				checker.with(marking());
+			if (content)
+				checker.with(content());
+			if (presentation)
+				checker.with(presentation());
+			if (multimedia)
+				checker.with(multimedia());
+			if (form)
+				checker.with(form());
+			if (behavior)
+				checker.with(behavior());
+
+			html = html.replaceAll("<", "&lt;");
+			html = html.replaceAll(">", "&gt;");
+			html = html.replaceAll(" ", "&nbsp");
+
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
+
+			result.include("contentLenght",
+					String.valueOf(html.getBytes("UTF-8").length));
+			result.include("html", html);
+			this.tituloSite = "";
+
+			ContentEvaluation conteudo = new ContentEvaluation(
+					checker.getDocument());
+
+			this.tituloSite = conteudo.retornarTituloSiteAvaliado();
+
+			result.include("titulosite", tituloSite);
+
+			Nota nota = null;
+
+			if (!this.sem_nota.equalsIgnoreCase("sem_nota")) {
+				
+				List<Entry<OccurrenceKey,List<Occurrence>>> mapaListaOcorrencias = avaliacaoBusiness.retornarCriteriosTeste(checker.check());	
+				//nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), tituloSite + " - " + sdf.format(new Date()),mapaListaOcorrencias);
+				nota = avaliacaoBusiness.obterNotaEselo(checker.getDocument(),tituloSite + " - " + sdf.format(new Date()), mapaListaOcorrencias);
+				// Altera a cor de webaxscore de acordo a pontuacao
+
+				if (nota != null) {
+					DefinirCorWebaxscore(nota.getValor());
+
+					VRaptorRequestHolder.currentRequest().getServletContext()
+							.setAttribute("webaxscore", webaxscore);
+				}
+
 			
+			}
+
+			result.include("nota", nota);
+			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
+			this.detalheAvaliacao.inicializar(avaliacaoBusiness
+					.retornarCriterios(checker.check()));
+
+			VRaptorRequestHolder
+					.currentRequest()
+					.getServletContext()
+					.setAttribute("resultadoAvaliacao",
+							checker.checkSumarized());
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("urlAvaliada", "");
+			VRaptorRequestHolder
+					.currentRequest()
+					.getServletContext()
+					.setAttribute("contentLenght",
+							String.valueOf(html.getBytes("UTF-8").length));
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("notaAvaliacao", nota);
+
+			// Seta o valor do título no template
+			tituloPagina = "Resumo de avaliação por código fonte - ASES";
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("tituloPagina", tituloPagina);
+			result.of(this).avaliar(null, mark, content, presentation,
+					multimedia, form, behavior, tiporel);
+
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("titulosite", tituloSite);
+
+			this.dataHoraAvaliacao = (String) DateUtil.dataHoraAtual();
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("data", dataHoraAvaliacao);
+
+		} else {
+			// Atribui âncora para as mensagens de erros dos campos vazios
+			ancoraCampoVazio = "input";
+			VRaptorRequestHolder.currentRequest().getServletContext()
+					.setAttribute("ancoraCampoVazio", ancoraCampoVazio);
+
+			this.validator = validate.getMessage();
+			this.validator.onErrorUsePageOf(IndexController.class).index();
+		}
+	}
+
+	private void sumarizarResultasNoResponse(
+			List<SummarizedOccurrence> resultadoAvaliacao, Result result) {
+
+		for (SummarizedOccurrence occurrence : resultadoAvaliacao) {
+			if (ocorrencias.get(occurrence.getType()) == null)
+				ocorrencias.put(occurrence.getType(),
+						new ArrayList<SummarizedOccurrence>());
+
+			ocorrencias.get(occurrence.getType()).add(occurrence);
+		}
+
+		for (Entry<OccurrenceClassification, List<SummarizedOccurrence>> entry : ocorrencias.entrySet()) {
+			List<SummarizedOccurrence> ocorrenciasComputadas = entry.getValue();
+			Collections.sort(ocorrenciasComputadas);
+
+			result.include("LISTA_" + entry.getKey().toString(),
+					ocorrenciasComputadas);
+		}
+
+		List<ResumoAvaliacao> resumoErrosAvisos = obterResumoAvaliacao();
+		int totalErros = 0;
+		int totalAvisos = 0;
+
+		for (ResumoAvaliacao resumo : resumoErrosAvisos) {
+			totalErros += resumo.getQuantidadeErros();
+			totalAvisos += resumo.getQuantidadeAvisos();
+		}
+
+		result.include("totalErros", totalErros);
+		result.include("totalAvisos", totalAvisos);
+		result.include("listaResumo", resumoErrosAvisos);
+		result.include("data", DateUtil.dataHoraAtual());
+
+	}
+
+	private List<ResumoAvaliacao> obterResumoAvaliacao() {
+		List<ResumoAvaliacao> resultado = new ArrayList<ResumoAvaliacao>();
+
+		for (OccurrenceClassification classificacao : OccurrenceClassification
+				.values()) {
+
 			int erros = 0;
 			int avisos = 0;
-			
-			List<SummarizedOccurrence> listaOcorrencias = ocorrencias.get(classificacao);
-			
-			if(listaOcorrencias!=null){
-				for(SummarizedOccurrence ocorrencia : ocorrencias.get(classificacao) ){
-					
-					if(ocorrencia.isError())
-						for (int line : ocorrencia.getLines()) 
-							erros++ ;	
+
+			List<SummarizedOccurrence> listaOcorrencias = ocorrencias
+					.get(classificacao);
+
+			if (listaOcorrencias != null) {
+				for (SummarizedOccurrence ocorrencia : ocorrencias
+						.get(classificacao)) {
+
+					if (ocorrencia.isError())
+						for (int line : ocorrencia.getLines())
+							erros++;
 					else
 						for (int line : ocorrencia.getLines())
 							avisos++;
-						
+
 				}
 			}
-			
+
 			resultado.add(new ResumoAvaliacao(classificacao, erros, avisos));
 		}
-		
+
 		return resultado;
 	}
 	
 	
+	//Gibran
+	public void obterDetalhes(OccurrenceKey rn, boolean type) {
+
+		
+		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn, type).getOcorrencias();
+
+		
+		Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
+			public int compare(Occurrence occurrence1, Occurrence occurrence2) {
+				return occurrence1.getLine().compareTo(occurrence2.getLine());
+			}
+		});
+
+		
+		result.include("detalhe", this.detalheAvaliacao.get(rn, type));
+	}
+
 	@Path("/detalhes-avaliacao/{rn}/{type}")
-	public void detalhesAvaliacao(OccurrenceKey rn, boolean type){
-		
+	public void detalhesAvaliacao(OccurrenceKey rn, boolean type) {
+
 		tituloPagina = "Detalhes da avaliação - ASES";
-		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
-		
+		VRaptorRequestHolder.currentRequest().getServletContext()
+				.setAttribute("tituloPagina", tituloPagina);
 
 		List<Occurrence> listOcorrencias = this.detalheAvaliacao.get(rn, type).getOcorrencias();
-		
-		
-		
-		//Sorting
-		/*Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
-		    public int compare(Occurrence  occurrence1, Occurrence  occurrence2){
-	            return  occurrence1.getCriterio().compareTo(occurrence2.getCriterio());
-	        }
-	    });*/
-		
-		//Sorting
-			Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
-			    public int compare(Occurrence  occurrence1, Occurrence  occurrence2){
-		            return  occurrence1.getLine().compareTo(occurrence2.getLine());
-		        }
-		    });
-			
-		result.include("detalhe",this.detalheAvaliacao.get(rn, type));
-		result.include("listOcorrencia",listOcorrencias);
-		result.include("isError",type);
-		if(type){
-			result.include("qtdOcorrenciasCss",this.detalheAvaliacao.getErrorsCss());
-			result.include("qtdOcorrenciasHtml",this.detalheAvaliacao.getErrorsHtml());
-		}else{
-			result.include("qtdOcorrenciasCss",this.detalheAvaliacao.getWarningsCss());
-			result.include("qtdOcorrenciasHtml",this.detalheAvaliacao.getWarningsHtml());
+
+		// Sorting
+		/*
+		 * Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
+		 * public int compare(Occurrence occurrence1, Occurrence occurrence2){
+		 * return
+		 * occurrence1.getCriterio().compareTo(occurrence2.getCriterio()); } });
+		 */
+
+		// Sorting
+		Collections.sort(listOcorrencias, new Comparator<Occurrence>() {
+			public int compare(Occurrence occurrence1, Occurrence occurrence2) {
+				return occurrence1.getLine().compareTo(occurrence2.getLine());
+			}
+		});
+
+		result.include("detalhe", this.detalheAvaliacao.get(rn, type));
+		result.include("listOcorrencia", listOcorrencias);
+		result.include("isError", type);
+		if (type) {
+			result.include("qtdOcorrenciasCss",
+					this.detalheAvaliacao.getErrorsCss());
+			result.include("qtdOcorrenciasHtml",
+					this.detalheAvaliacao.getErrorsHtml());
+		} else {
+			result.include("qtdOcorrenciasCss",
+					this.detalheAvaliacao.getWarningsCss());
+			result.include("qtdOcorrenciasHtml",
+					this.detalheAvaliacao.getWarningsHtml());
 		}
-		
-		
+
 		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
 		String recomendacao = "";
-		
-		for(SummarizedOccurrence occurrence : ob){
+
+		for (SummarizedOccurrence occurrence : ob) {
 			recomendacao = occurrence.getMapDescription().get(rn.getCode());
 			break;
 		}
-		
-		result.include("recomendacao",recomendacao);
-		result.include("rn",rn.getCode());
-		result.include("aReq",this.utilitiesProperties.get("notExibCrit"));
-		result.include("aReqIsCss",this.utilitiesProperties.get("reqCss"));
-		result.include("aReqIsW3c",this.utilitiesProperties.get("notExibCritW3c"));
-		result.include("url",VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("urlAvaliada").toString().replaceAll("(https://)|(http://)", ""));
-		
-		
+
+		result.include("recomendacao", recomendacao);
+		result.include("rn", rn.getCode());
+		result.include("aReq", this.utilitiesProperties.get("notExibCrit"));
+		result.include("aReqIsCss", this.utilitiesProperties.get("reqCss"));
+		result.include("aReqIsW3c",
+				this.utilitiesProperties.get("notExibCritW3c"));
+		result.include("url", VRaptorRequestHolder.currentRequest()
+				.getServletContext().getAttribute("urlAvaliada").toString()
+				.replaceAll("(https://)|(http://)", ""));
+
 	}
-	
+
 	@Post("/exportar-detalhes-avaliacao")
-	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn, int tiporel, boolean isError){
-		
-		/*Cria um Map de parametros*/
+	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn,
+			int tiporel, boolean isError) {
+
+		/* Cria um Map de parametros */
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		//List list = this.detalheAvaliacao.get(rn,isError).getCriterios();
-		
+
+		// List list = this.detalheAvaliacao.get(rn,isError).getCriterios();
+
 		List<String> aReq = new ArrayList();
-		//List<Integer> index = new ArrayList();
-		
+		// List<Integer> index = new ArrayList();
+
 		String[] crit = this.utilitiesProperties.get("notExibCrit").split(" ");
-		
-		for (String c : crit) 
+
+		for (String c : crit)
 			aReq.add(c.trim());
-		
-		List<Criterio> listCrit = this.detalheAvaliacao.get(rn, isError).getCriterios();
-		
-	    
+
+		List<Criterio> listCrit = this.detalheAvaliacao.get(rn, isError)
+				.getCriterios();
+
 		List<Criterio> list = new ArrayList<DetalheAvaliacao.Criterio>();
-		
-		for(Criterio criterio : listCrit ){
-	    	if(aReq.contains(rn.getCode()+"."+criterio.getId()))
+
+		for (Criterio criterio : listCrit) {
+			if (aReq.contains(rn.getCode() + "." + criterio.getId()))
 				criterio.setLinhas(new ArrayList());
-			
-			if(criterio.getId() != null)
+
+			if (criterio.getId() != null)
 				list.add(criterio);
 		}
-		
+
 		List<String> codigoFonte = new ArrayList();
-		
-		for(Occurrence occurrence : this.detalheAvaliacao.get(rn, isError).getOcorrencias()){
-			if(!aReq.contains(rn.getCode()+"."+occurrence.getCriterio()))
-				codigoFonte.add(occurrence.getLine() +": "+ occurrence.getTag().replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&nbsp"," ")+"\n\n");
+
+		for (Occurrence occurrence : this.detalheAvaliacao.get(rn, isError)
+				.getOcorrencias()) {
+			if (!aReq.contains(rn.getCode() + "." + occurrence.getCriterio()))
+				codigoFonte.add(occurrence.getLine()
+						+ ": "
+						+ occurrence.getTag().replaceAll("&lt;", "<")
+								.replaceAll("&gt;", ">")
+								.replaceAll("&nbsp", " ") + "\n\n");
 		}
-		map.put("codigoFonte",  codigoFonte);
-		
-				
-		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder.currentRequest().getServletContext().getAttribute("resultadoAvaliacao");
+		map.put("codigoFonte", codigoFonte);
+
+		List<SummarizedOccurrence> ob = (List<SummarizedOccurrence>) VRaptorRequestHolder
+				.currentRequest().getServletContext()
+				.getAttribute("resultadoAvaliacao");
 		String recomendacao = "";
-		
-		for(SummarizedOccurrence occurrence : ob){
+
+		for (SummarizedOccurrence occurrence : ob) {
 			recomendacao = occurrence.getMapDescription().get(rn.getCode());
 			break;
 		}
-		
-		map.put("rnAvaliada",  recomendacao);
-		map.put("SUBREPORT_DIR",  this.application.getRealPath("")+"/WEB-INF/templates-relatorios/");
-			
-		
-		ManagerReport managerReport = new ManagerReport(this.application.getRealPath("")+"/WEB-INF/templates-relatorios/relatorio-detalhes-avaliacao.jrxml");
-		
+
+		map.put("rnAvaliada", recomendacao);
+		map.put("SUBREPORT_DIR", this.application.getRealPath("")
+				+ "/WEB-INF/templates-relatorios/");
+
+		ManagerReport managerReport = new ManagerReport(
+				this.application.getRealPath("")
+						+ "/WEB-INF/templates-relatorios/relatorio-detalhes-avaliacao.jrxml");
+
 		String path = null;
-		
-		try{
-			path =  managerReport.gerarRelatorioDetalhesAvaliacao(list,map, tiporel, "DetalhesRelatorioAvaliacao");
+
+		try {
+			path = managerReport.gerarRelatorioDetalhesAvaliacao(list, map,
+					tiporel, "DetalhesRelatorioAvaliacao");
 		} catch (JRException e) {
 			e.printStackTrace();
-	    } catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	   			
-	   	File file = new File(path);
-	   	
-	   	return new FileDownload(file, managerReport.getContentType(), managerReport.getFileName());
+
+		File file = new File(path);
+
+		return new FileDownload(file, managerReport.getContentType(),
+				managerReport.getFileName());
 	}
+
 	public void initEseloProperties(ServletContext servletContext) {
 		this.eseloProperties = new EseloProperties(servletContext);
-		
-		//Esconde a nota caso não esteja usando o ESELO	
+
+		// Esconde a nota caso não esteja usando o ESELO
 		sem_nota = this.eseloProperties.getSem_nota("sem_nota");
-		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("sem_nota", sem_nota);
-		
-		//Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da Avaliação de Acessibilidade)
-		mensagem_avaliacao = this.eseloProperties.getMensagem_avaliacao("mensagem_avaliacao");
-		VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("mensagem_avaliacao", mensagem_avaliacao);
+		VRaptorRequestHolder.currentRequest().getServletContext()
+				.setAttribute("sem_nota", sem_nota);
+
+		// Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da
+		// Avaliação de Acessibilidade)
+		mensagem_avaliacao = this.eseloProperties
+				.getMensagem_avaliacao("mensagem_avaliacao");
+		VRaptorRequestHolder.currentRequest().getServletContext()
+				.setAttribute("mensagem_avaliacao", mensagem_avaliacao);
 	}
 }
