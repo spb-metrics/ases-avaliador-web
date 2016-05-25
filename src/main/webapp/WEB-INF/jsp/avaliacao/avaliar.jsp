@@ -70,12 +70,8 @@
 					<thead>					
 						<tr>
 							<th id="secao" class="topo">Seção</th>
-							<th id="erro" class="topo"><img
-									src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif"
-									alt="erro"> Erro(s) </th>
-							<th id="aviso" class="topo"><img
-									src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif"
-									alt="alerta"> Aviso(s) </th>
+							<th id="erro" class="topo imgErro"><span>Erro(s)</span></th>
+							<th id="aviso" class="topo imgAviso"><span>Aviso(s)</span> </th>
 						</tr>
 					</thead>
 							
@@ -134,8 +130,9 @@
        <div class="contenteudoAvaliacao">
 				<t:listaResultado cssClass="mark" lista="${LISTA_MARK}" />			
        </div> 
+            
    </div>
-    
+   
    <div class="tabAvaliacao">
        <input type="radio" id="tab-2" name="tab-group-1">
        <label class="rariosAvaliacao" for="tab-2">Comportamento</label>
@@ -203,13 +200,14 @@
 					</legend>
 				   <br>
 				   
-					   <img
-							src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png"
-							alt="pdf" title="Gerar em PDF">
-					   <input type="radio" id="tiporel" name="tiporel" value="4" checked="checked"><label for="tiporel">PDF</label>
-					   <input id="url" name="url" value="${url}" type="hidden">
-					   <input class="submit" name="executar" value="Executar"
-							type="submit">
+					
+							<div id="pdf">		
+							<input type="radio" id="tiporel" name="tiporel" value="4" checked="checked"><label for="tiporel">PDF</label>
+							<input id="url" name="url" value="${url}" type="hidden">
+					   		<input class="submit" name="executar" value="Executar" type="submit">
+							</div>
+					   
+					 
 				
 			</fieldset>
 	</form>
