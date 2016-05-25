@@ -32,27 +32,27 @@
 <table class="${cssClass}_error">
 <c:choose>
     <c:when test="${cssClass == 'mark'}">
-    <caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros">Erros da seção marcação</caption>
+    <caption class="imgErro"> <span>Erros da seção marcação</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'behavior'}">
-       <caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros">Erros da seção comportamento</caption>
+       <caption class="imgErro"> <span>Erros da seção comportamento</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'information'}">
-       <caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros">Erros da seção conteúdo/informação</caption>
+       <caption class="imgErro"> <span>Erros da seção conteúdo/informação</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'presentation'}">
-       <caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros">Erros da seção apresentação/design</caption>
+       <caption class="imgErro"> <span>Erros da seção apresentação/design</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'multimedia'}">
-       <caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros">Erros da seção multimídia</caption>
+       <caption class="imgErro"> <span>Erros da seção multimídia</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'form'}">
-       <caption> <img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/stop.gif" alt="Erros">Erros da seção formulários</caption>
+       <caption class="imgErro"> <span>Erros da seção formulários</span></caption>
     </c:when>
     </c:choose>		
 	
@@ -96,27 +96,27 @@
 
 <c:choose>
     <c:when test="${cssClass == 'mark'}">
-    <caption><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">Avisos da seção marcação</caption>
+    <caption class="imgAviso"><span>Avisos da seção marcação</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'behavior'}">
-       <caption><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">Avisos da seção comportamento</caption>
+       <caption class="imgAviso"><span>Avisos da seção comportamento</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'information'}">
-      <caption><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">Avisos da seção conteúdo/informação</caption>
+      <caption class="imgAviso"><span>Avisos da seção conteúdo/informação</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'presentation'}">
-      <caption><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">Avisos da seção apresentação/design</caption>
+      <caption class="imgAviso"><span>Avisos da seção apresentação/design</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'multimedia'}">
-      <caption><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">Avisos da seção multimídia</caption>
+      <caption class="imgAviso"><span>Avisos da seção multimídia</span></caption>
     </c:when>
     
     <c:when test="${cssClass == 'form'}">
-       <caption><img src="${pageContext.request.contextPath}/inicial_arquivos/imagens/alert.gif" alt="avisos">Avisos da seção formulários</caption>
+       <caption class="imgAviso"><span>Avisos da seção formulários</span></caption>
     </c:when>
     </c:choose>	
 
