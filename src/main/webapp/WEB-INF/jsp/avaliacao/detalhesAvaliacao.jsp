@@ -235,16 +235,13 @@
 				</legend>
 				
 				<br>
-				   <img
-						src="${pageContext.request.contextPath}/inicial_arquivos/imagens/pdf.png"
-						alt="pdf" title="Gerar em PDF">
-				   <input type="radio" id="tiporel" value="4" checked="checked"><label
-						for="tiporel">PDF</label>
+				  <div id="pdf">
+				  		   <input type="radio" id="tiporel" value="4" checked="checked"><label for="tiporel">PDF</label>
 				   <input type="hidden" name="rn" value="${rn}">
 				   <input type="hidden" name="isError" value="${isError}">
-		           <input class="submit" name="executar" value="Executar"
-						type="submit">			  
-			
+		           <input class="submit" name="executar" value="Executar" type="submit">	
+				  </div>
+						
 		  </fieldset>
 	  </form>	
        		</div>
