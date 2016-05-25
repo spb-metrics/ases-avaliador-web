@@ -10,11 +10,10 @@
 						<ul class="breadcrumb">
 							<li>
 								<span>Você está em:</span>
-							</li>							
-								<li>
+							</li>
+							<li>
 								<a href="${pageContext.request.contextPath}">ASES</a>
-								</li>
-							
+							</li>
                				<li>|  Critérios de Sucesso</li>
 						</ul>
 					</div>
@@ -217,8 +216,8 @@
 				    			<td headers="criterio_15" class="celulaCriterios">Não existem atalhos</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a ausência de tags HTML com atributo "<span lang="en">accesskey</span>" na página.</td>
 				    		</tr>
-				    		<tr id="criterio_1510">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.10</td>
+				    		<tr id="criterio_159">
+				    		    <td headers="numero_15" class="celulaCriterios">1.5.9</td>
 				    			<td headers="criterio_15" class="celulaCriterios">O primeiro <span lang="en">link</span> é uma âncora para o conteúdo da página</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença de <span lang="en">link</span> com conteúdo de atributo "href" que comece com "#", e o destino da âncora seja um conteúdo específico da página HTML.</td>
 				    		</tr>
