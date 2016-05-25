@@ -38,3 +38,7 @@ div::after {
 }
 
 
+.contraste .funcionalidades ul.breadcrumb span
+{
+	color: #ffffff;
+}
