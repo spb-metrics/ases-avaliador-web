@@ -1,6 +1,7 @@
 @media only screen and (min-width : 768px) {
+	
 	.hr_linhaDupla {
-		border-botton: 4px solid #000;
+		border-botton: 4px solid #000000;
 		border-top: 1px solid #c0c0c0;
 	}
 	p {
@@ -154,7 +155,7 @@
 		margin-bottom: 30px;
 		margin-left: 5px;
 		width: 40%;
-		border: 1px solid #fff;
+		border: 1px solid #ffffff;
 	}
 	#tabelaErros .topo {
 		font-size: 1.4em;
@@ -165,8 +166,8 @@
 	}
 	.contraste #tabelaErros .topo {
 		font-size: 1.4em;
-		background-color: #000;
-		color: #fff;
+		background-color: #000000;
+		color: #ffffff;
 		text-align: left;
 		font-size: 1.3em;
 	}
@@ -177,8 +178,8 @@
 		font-weight: normal;
 	}
 	.contraste #tabelaErros .celula {
-		background-color: #000;
-		color: #fff;
+		background-color: #000000;
+		color: #ffffff;
 		text-align: left;
 		font-weight: normal;
 	}
@@ -280,15 +281,45 @@
 	.indiceAvaliar1 {
 		width: 50%;
 	}
-	---
-	-Contraste----------
-
-
-
-.contraste img {
+	
+	.contraste img {
 		border: none;
 	}
+	
+	.imgErro span
+	{
+	margin-left: 22px;
+	}
+	.imgErro
+	{
+	background-image: url("/ases/inicial_arquivos/imagens/stop.gif");
+	background-repeat: no-repeat;
+	height: 22px;	
+	}
+	.imgAviso span
+	{
+	margin-left: 22px;
+	}
+		
+	.imgAviso
+	{
+	background-image: url("/ases/inicial_arquivos/imagens/alert.gif");
+	background-repeat: no-repeat;	
+	height: 22px;
+	}
+	#pdf
+	{
+	background-image: url("/ases/inicial_arquivos/imagens/pdf.png");
+	background-repeat: no-repeat;	
+	height: 30px;	
+	}
+	
+	#tiporel
+	{
+	margin-left: 30px;
+	}
 }
+
 /*-----Fim (min-width : 768px)------ */
 @media only screen and (max-width : 768px) {
 	.content {
@@ -518,12 +549,46 @@
 		font-family: Arial, Helvetica, sans-serif;
 		border: 1px solid #fff;
 	}
-	---
-	-Contraste----------
+
+/*---Contraste----------*/
 
 
 .contraste img {
-		border: none;
+		border: none;	
 	}
-}
+	
+		.imgErro span
+	{
+	margin-left: 22px;
+	}
+	.imgErro
+	{
+	background-image: url("/ases/inicial_arquivos/imagens/stop.gif");
+	background-repeat: no-repeat;
+	height: 22px;	
+	}
+	.imgAviso span
+	{
+	margin-left: 22px;
+	}
+		
+	.imgAviso
+	{
+	background-image: url("/ases/inicial_arquivos/imagens/alert.gif");
+	background-repeat: no-repeat;	
+	height: 22px;
+	}
+	
+	#pdf
+	{
+	background-image: url("/ases/inicial_arquivos/imagens/pdf.png");
+	background-repeat: no-repeat;		
+	height: 30px;	
+	}
+	
+	#tiporel
+	{
+	margin-left: 30px;
+	}
+	
 }
