@@ -35,7 +35,7 @@
 		/* IE10+ */
 		background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
 		/* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',endColorstr='#025310', GradientType=1);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#19882c',endColorstr='#025310', GradientType=1);
 		/* IE6-9 fallback on horizontal gradient */
 	}
 	a {
@@ -234,8 +234,7 @@
 		background-color: #0A5517;
 		background-image: -moz-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
 		/* FF3.6+ */
-		background-image: -webkit-gradient(radial, center center, 0px, center center, 100%,
-			color-stop(1%, #19882c), color-stop(100%, #025310));
+		background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #19882c), color-stop(100%, #025310));
 		/* Chrome,Safari4+ */
 		background-image: -webkit-radial-gradient(center, ellipse cover, #19882c 1%, #025310 100%);
 		/* Chrome10+,Safari5.1+ */
@@ -245,8 +244,7 @@
 		/* IE10+ */
 		background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
 		/* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19882c',
-			endColorstr='#025310', GradientType=1);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#19882c',endColorstr='#025310', GradientType=1);
 		/* IE6-9 fallback on horizontal gradient */
 	}
 	a {
@@ -442,10 +440,10 @@
 } /*-----Fim max-width: 1024px */
 
 /*------Alto Contraste-----*/
-.contraste, .contrast header, .contraste div, .contraste ul, .contraste p
+.contraste, .contraste header, .contraste div, .contraste ul, .contraste p
 	{
-	background: #000 !important;
-	color: #fff !important;
+	background: #000000 !important;
+	color: #ffffff !important;
 }
 
 
@@ -467,12 +465,11 @@
 }
 
 .contraste #topo h1 a.gov {
-	background: transparent url('../images/gov_br_contraste.jpg') no-repeat
-		left top;
+	background: transparent url('../images/gov_br_contraste.jpg') no-repeat	left top;
 }
 
 .contraste #menu a.atual {
-	color: #000 !important;
+	color: #000000 !important;
 	background-color: #FBBD0A;
 }
 
@@ -489,19 +486,19 @@
 }
 
 .contraste #accessibility span {
-	background: #333 !important;
+	background: #000000 !important;
 	color: #ffffff !important;
 }
 
 .contraste #portal-siteactions span {
-	background: #333 !important;
+	background: #000000 !important;
 	color: #ffffff !important;
 }
 
 .contraste #menu {
-	background: #333 !important;
+	background: #000000 !important;
 }
 
 .contraste #menu ul {
-	background: #333 !important;
+	background: #000000 !important;
 }
