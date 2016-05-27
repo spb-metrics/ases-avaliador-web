@@ -104,21 +104,25 @@
 						   <td headers="linhaCodigoFonte" class="celula">
 								   <c:set var="aReq" value="${aReq}" />
 								   <c:set var="req" value="${rn}.${criterio.id}" />
+								   <c:set var="linkHtmlJaAdicionado" value="false" />
+								    <c:set var="linkCssJaAdicionado" value="false" />
 								       <c:choose> 
 											   <c:when test="${fn:contains(aReq, req)}">
 											   		<c:forEach items="${criterio.linhasColunas}" var="linha"
 											varStatus="index">
 											   			<c:if test="${fn:contains(aReqIsW3c, req)}">
-									     					<c:if test="${fn:contains(aReqIsCss, req)}">
+									     					<c:if test="${fn:contains(aReqIsCss, req) && linkCssJaAdicionado == false}">
 													     	      <a
 														href=" http://jigsaw.w3.org/css-validator/validator?uri=${url}"> Serviço de validação de CSS do W3C (link para um novo sitio)
 												 				  </a>
+												 				  <c:set var="linkCssJaAdicionado" value="true" />
 														    </c:if>
 															
-															<c:if test="${!fn:contains(aReqIsCss, req)}">
+															<c:if test="${!fn:contains(aReqIsCss, req) && linkHtmlJaAdicionado == false}">
 													     	      <a
 														href="http://validator.w3.org/check?uri=http%3A%2F%2F${url}">Serviçoo de validação de HTML do W3C (link para um novo sitio)
 													     		  </a>
+													     		   <c:set var="linkHtmlJaAdicionado" value="true" />
 														    </c:if>
 									     			    </c:if>
 											   		
