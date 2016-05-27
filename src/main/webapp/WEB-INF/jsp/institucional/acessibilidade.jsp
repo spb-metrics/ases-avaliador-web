@@ -85,12 +85,14 @@
 				<h2 class="outstanding-title">Dúvidas, sugestões e críticas</h2>
 			</div>
 			
-			<p>No caso de problemas com a acessibilidade do portal, favor entrar em<a href="http://www.governoeletronico.gov.br/contato"> contato</a>.</p>	
+			 <p>No caso de problemas com a acessibilidade do portal, favor entrar em<a href="http://www.governoeletronico.gov.br/contato"> contato</a>.</p>	
 			
 			<hr class="hr_linhaDupla">
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Dicas, links e recursos úteis</h2>
 			</div>
+			
+			
 			
 			<ul>
 				<li><a class="external-link" href="http://www.acessibilidadelegal.com" target="_self" title="">Acessibilidade Legal (link para um novo sítio)</a></li>
