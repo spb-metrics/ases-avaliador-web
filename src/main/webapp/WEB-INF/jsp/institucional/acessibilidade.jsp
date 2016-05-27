@@ -80,12 +80,14 @@
 			    <li><a href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm">Lei nº 12.527, de 18 de Novembro de 2011 - Lei de Acesso à Informação (link para um novo sítio)</a></li>
 			</ul>
 			
+			
 			<hr class="hr_linhaDupla">			
 			<div class="outstanding-header">
 				<h2 class="outstanding-title">Dúvidas, sugestões e críticas</h2>
 			</div>
 			
-			 <p>No caso de problemas com a acessibilidade do portal, favor entrar em<a href="http://www.governoeletronico.gov.br/contato"> contato</a>.</p>	
+			
+			 <p>No caso de problemas com a acessibilidade do portal, favor entrar em<a href="http://www.governoeletronico.gov.br/contato"> contato (link para um novo sítio)</a>.</p>	
 			
 			<hr class="hr_linhaDupla">
 			<div class="outstanding-header">
