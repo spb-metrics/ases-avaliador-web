@@ -85,7 +85,7 @@
 				<h2 class="outstanding-title">Dúvidas, sugestões e críticas</h2>
 			</div>
 			
-			<p>No caso de problemas com a acessibilidade do portal, favor entrar em<a class="external-link" href="${pageContext.request.contextPath}/contato" > contato</a>.</p>	
+			<p>No caso de problemas com a acessibilidade do portal, favor entrar em<a href="http://www.governoeletronico.gov.br/contato"> contato</a>.</p>	
 			
 			<hr class="hr_linhaDupla">
 			<div class="outstanding-header">
