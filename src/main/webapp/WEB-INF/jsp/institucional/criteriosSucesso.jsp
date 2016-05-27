@@ -54,13 +54,13 @@
 				    		<tr id="criterio_111">
 				    			<td headers="numero_11" class="celulaCriterios">1.1.1</td>
 				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
-				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros e avisos apresentados pelo <span lang="en">webservice</span> de validação HTML fornecido pelo W3C: <a
+				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros apresentados pelo <span lang="en">webservice</span> de validação HTML fornecido pelo W3C: <a
 						href="https://validator.w3.org/nu/">https://validator.w3.org/nu/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    		<tr id="criterio_112">
 				    			<td headers="numero_11" class="celulaCriterios">1.1.2</td>
 				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
-				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros e avisos apresentados pelo <span lang="en">webservice</span> de validação CSS fornecido pelo W3C: <a
+				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros apresentados pelo <span lang="en">webservice</span> de validação CSS fornecido pelo W3C: <a
 						href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    		<tr id="criterio_113">
@@ -82,6 +82,18 @@
 				    			<td headers="numero_11" class="celulaCriterios">1.1.6</td>
 				    			<td headers="criterio_11" class="celulaCriterios">Presença de <span lang="en">javascript</span>(s) interno</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar a presença de código <span lang="en">javascript</span> dentro da tag &lt;<span lang="en">script</span>&gt;.</td>
+				    		</tr>
+				    			<tr id="criterio_117">
+				    			<td headers="numero_11" class="celulaCriterios">1.1.7</td>
+				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
+				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar avisos apresentados pelo <span lang="en">webservice</span> de validação HTML fornecido pelo W3C: <a
+						href="https://validator.w3.org/nu/">https://validator.w3.org/nu/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
+				    		</tr>
+				    			<tr id="criterio_118">
+				    			<td headers="numero_11" class="celulaCriterios">1.1.8</td>
+				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
+				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar avisos apresentados pelo <span lang="en">webservice</span> de validação CSS fornecido pelo W3C: <a
+						href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    	</tbody>
 				    </table>
