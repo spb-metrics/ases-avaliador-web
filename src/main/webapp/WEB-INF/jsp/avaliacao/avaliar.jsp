@@ -189,7 +189,7 @@
 
 <p>Avaliação tem por base testes automáticos em código-fonte (X)HTML interpretados do <a href="http://emag.governoeletronico.gov.br/">Modelo de Acessibilidade em Governo Eletrônico (eMAG) (link para novo sítio)</a>. </p>
 
-<p>Lembrar que nota não contempla os itens classificados como avisos e os itens passíveis de avaliação humana. Para saber quais testes são contemplados pelo software, <a href="${pageContext.request.contextPath}/criteriosSucesso">favor verificar os critérios de sucesso trabalhados pelo ASESWEB</a>.<p> 
+<p>Lembrar que nota não contempla os itens classificados como avisos e os itens passíveis de avaliação humana. Para saber quais testes são contemplados pelo software, <a href="${pageContext.request.contextPath}/criteriosSucesso">favor verificar os critérios de sucesso trabalhados pelo ASESWEB</a>.</p> 
 	
 		<hr class="hr_linhaDupla">
 	<h2 class="outstanding-title">Exportar Resultado</h2>
