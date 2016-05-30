@@ -59,8 +59,8 @@
 			
 				 <thead>								
 						<tr>
-						    <th id="numero" class="topo2 indiceDetalhes0">Número</th>
-							<th id="teste" class="topo2 indiceDetalhes1">Teste(s)</th>
+						   <!-- <th id="numero" class="topo2 indiceDetalhes0">Número</th> --> 
+							<th id="criterio" class="topo2 indiceDetalhes1">Critério</th>
 							<th id="quantidade" class="topo2">Quantidade</th>
 							<th id="linhaCodigoFonte" class="topo2">Linha(s) de Código Fonte</th>
 						</tr>
@@ -74,11 +74,15 @@
 							<c:set var="var_recomendacaoComPonto" value="${rn}" />
 							<c:set var="var_RecomendacaoSemPonto"
 								value="${fn:replace(var_recomendacaoComPonto,'.','')}" />
-						   <td headers="numero" class="celula"><a
+						  <!--  <td headers="numero" class="celula"><a
 								href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}"> ${criterio.id} </a></td>
-						   <!-- Fim retirar o ponto da recomendação -->
+						   Fim retirar o ponto da recomendação -->
 						   
-						   <td headers="teste" class="celula">${criterio.descricao}</td>
+						  <c:if test="${criterio.id != null}">
+						 
+						   <td headers="criterio" class="celula"><a
+								href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}">${rn}.${criterio.id} ${criterio.descricao}</a></td>
+						  </c:if>
 						   <td headers="quantidade" class="celula">
 								   	
         			   	   		<c:choose>
