@@ -44,54 +44,54 @@
 				    	<caption>Critérios de Avaliação e como avaliar Recomendação 1.1</caption>
 				    	<thead>
 				    		<tr>
-				    			<th id="numero_11" class="topoCriterios indice0">Número</th>
-				    			<th id="criterio_11" class="topoCriterios indice1">Critério</th>
+				    			<th id="criterio_11" class="topoCriterios indice0">Critério</th>
+				    			<th id="tipo_11" class="topoCriterios indice1">Tipo</th>
 				    			<th id="como_avaliar_11" class="topoCriterios indice2">Como avaliar</th>
 				    		</tr>
 				    	</thead>
 				    	<tbody>
 				    					    		
 				    		<tr id="criterio_111">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.1</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.1 Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
+				    			<td headers="tipo_11" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros apresentados pelo <span lang="en">webservice</span> de validação HTML fornecido pelo W3C: <a
 						href="https://validator.w3.org/nu/">https://validator.w3.org/nu/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    		<tr id="criterio_112">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.2</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.2 Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
+				    			<td headers="tipo_11" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar erros apresentados pelo <span lang="en">webservice</span> de validação CSS fornecido pelo W3C: <a
 						href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    		<tr id="criterio_113">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.3</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Presença de CSS(s) <span lang="en">in-line</span></td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.3 Presença de CSS(s) <span lang="en">in-line</span></td>
+				    			<td headers="tipo_11" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar a presença do atributo "<span lang="en">style</span>" no código das páginas HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_114">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.4</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Presença de CSS(s) interno</td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.4 Presença de CSS(s) interno</td>
+				    			<td headers="tipo_11" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar a presença da tag HTML &lt;<span lang="en">style</span>&gt; no código das páginas HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_115">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.5</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Presença de <span lang="en">javascript</span>(s) <span lang="en">in-line</span></td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.5 Presença de <span lang="en">javascript</span>(s) <span lang="en">in-line</span></td>
+				    			<td headers="tipo_11" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar a presença de código <span lang="en">javascript</span> dentro dos atributos de eventos no código HTML a serem avaliados:<span lang="en"> onload, onunload, onblur, onchange, onfocus, onsearch, onselect, onsubmit, onkeydown, onkeypress, onkeyup, onclick, ondblclick, onmousedown, onmousesemove, onmouseout, onmouseover, onmouseup, onmousewheel, oncopy, oncut, onpaste e onabort.</span></td>
 				    		</tr>
 				    		<tr id="criterio_116">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.6</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Presença de <span lang="en">javascript</span>(s) interno</td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.6 Presença de <span lang="en">javascript</span>(s) interno</td>
+				    			<td headers="tipo_11" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar a presença de código <span lang="en">javascript</span> dentro da tag &lt;<span lang="en">script</span>&gt;.</td>
 				    		</tr>
 				    			<tr id="criterio_117">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.7</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.7 Não foram respeitados os Padrões <span lang="en">Web</span> HTML</td>
+				    			<td headers="tipo_11" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar avisos apresentados pelo <span lang="en">webservice</span> de validação HTML fornecido pelo W3C: <a
 						href="https://validator.w3.org/nu/">https://validator.w3.org/nu/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
 				    			<tr id="criterio_118">
-				    			<td headers="numero_11" class="celulaCriterios">1.1.8</td>
-				    			<td headers="criterio_11" class="celulaCriterios">Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
+				    			<td headers="criterio_11" class="celulaCriterios">1.1.8 Não foram respeitados os Padrões <span lang="en">Web</span> CSS</td>
+				    			<td headers="tipo_11" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_11" class="celulaCriterios">Verificar avisos apresentados pelo <span lang="en">webservice</span> de validação CSS fornecido pelo W3C: <a
 						href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/ (<span lang="en">link</span> para um novo sítio)</a>.</td>
 				    		</tr>
@@ -106,21 +106,21 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.2</caption>
 				    		<thead>
 				    			<tr>
-				    			    <th id="numero_12" class="topoCriterios indice0">Número</th>				  
-				    				<th id="criterio_12" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_12" class="topoCriterios indice0">Critério</th>				  
+				    				<th id="tipo_12" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_12" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    		<tr id="criterio_122">
-				    		    <td headers="numero_12" class="celulaCriterios">1.2.2</td>
-				    			<td headers="criterio_12" class="celulaCriterios">Presença de tags HTML sem atributo e conteúdo de texto</td>
+				    		    <td headers="criterio_12" class="celulaCriterios">1.2.2 Presença de tags HTML sem atributo e conteúdo de texto</td>
+				    			<td headers="tipo_12" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML (&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;,
 				&lt;a&gt;, &lt;p&gt;) que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
 				    		</tr>		    		
 				    		<tr id="criterio_123">
-				    		    <td headers="numero_12" class="celulaCriterios">1.2.3</td>
-				    			<td headers="criterio_12" class="celulaCriterios">Presença de tags HTML sem atributo e conteúdo de texto</td>
+				    		    <td headers="criterio_12" class="celulaCriterios">1.2.3 Presença de tags HTML sem atributo e conteúdo de texto</td>
+				    			<td headers="tipo_12" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
 				    		</tr>
 				    	    </tbody>
@@ -134,31 +134,31 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.3</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_13" class="topoCriterios  indice0">Número</th>
-				    				<th id="criterio_13" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_13" class="topoCriterios  indice0">Critério</th>
+				    				<th id="tipo_13" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_13" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_131">
-				    		    <td headers="numero_13" class="celulaCriterios">1.3.1</td>
-				    			<td headers="criterio_13" class="celulaCriterios">Os niveis de título não foram utilizados</td>
+				    		    <td headers="criterio_13" class="celulaCriterios">1.3.1 Os niveis de título não foram utilizados</td>
+				    			<td headers="tipo_13" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a ausência dos níveis de cabeçalho (&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt; e &lt;h6&gt;) nas páginas HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_132">
-				    		    <td headers="numero_13" class="celulaCriterios">1.3.2</td>
-				    			<td headers="criterio_13" class="celulaCriterios">A hierarquia dos níveis de título está incorreta</td>
+				    		    <td headers="criterio_13" class="celulaCriterios">1.3.2 A hierarquia dos níveis de título está incorreta</td>
+				    			<td headers="tipo_13" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a falta de ordem sequencial da presença de níveis de cabeçalho. Exemplo: a presença do nível &lt;h3&gt; depende do nível anterior &lt;h2&gt;.</td>
 				    		</tr>
 				    		<tr id="criterio_134">
-				    		    <td headers="numero_13" class="celulaCriterios">1.3.4</td>
-				    			<td headers="criterio_13" class="celulaCriterios">Foi utilizado somente o nível H1</td>
+				    		    <td headers="criterio_13" class="celulaCriterios">1.3.4 Foi utilizado somente o nível H1</td>
+				    			<td headers="tipo_13" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a presença do nível da cabeçalho &lt;h1&gt; sem categorizar outros assuntos da página em níveis de cabeçalho.</td>
 				    		</tr>
 				    		<tr id="criterio_136">
-				    		    <td headers="numero_13" class="celulaCriterios">1.3.6</td>
-				    			<td headers="criterio_13" class="celulaCriterios">Presença de mais de 1 cabeçalho</td>
+				    		    <td headers="criterio_13" class="celulaCriterios">1.3.6 Presença de mais de 1 cabeçalho</td>
+				    			<td headers="tipo_13" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_13" class="celulaCriterios">Verificar a presença de níveis de cabeçalho &lt;h1&gt; sendo utilizados de forma repetida.</td>
 				    		</tr>
 				    	</tbody>
@@ -172,26 +172,26 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.4</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_14" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_14" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_14" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_14" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_14" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_141">
-				    		    <td headers="numero_14" class="celulaCriterios">1.4.1</td>
-				    			<td headers="criterio_14" class="celulaCriterios">O bloco de conteúdo não esta antes do bloco de menu no HTML</td>
+				    		    <td headers="criterio_14" class="celulaCriterios">1.4.1 O bloco de conteúdo não esta antes do bloco de menu no HTML</td>
+				    			<td headers="tipo_14" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar se a presença do código da página que representa o menu está posicionado depois do código que representa o conteúdo da página HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_143">
-				    		    <td headers="numero_14" class="celulaCriterios">1.4.3</td>
-				    			<td headers="criterio_14" class="celulaCriterios">Presença do atributo <span lang="en">TABINDEX</span></td>
+				    		    <td headers="criterio_14" class="celulaCriterios">1.4.3 Presença do atributo <span lang="en">TABINDEX</span></td>
+				    			<td headers="tipo_14" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar a presença de utilização do atributo "<span lang="en">tabindex</span>" nas páginas HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_146">
-				    		    <td headers="numero_14" class="celulaCriterios">1.4.6</td>
-				    			<td headers="criterio_14" class="celulaCriterios">Presença de número do <span lang="en">tabindex</span> menor do que 0 e maior 32767</td>
+				    		    <td headers="criterio_14" class="celulaCriterios">1.4.6 Presença de número do <span lang="en">tabindex</span> menor do que 0 e maior 32767</td>
+				    			<td headers="tipo_14" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_14" class="celulaCriterios">Verificar a presença do conteúdo -1 do atributo "<span lang="en">tabindex</span>" com o intuito de não influenciar a ordem do código da página, ou verificar se a presença de conteúdo do atributo "<span lang="en">tabindex</span>" esta superior a 32767 e inferior a 0.</td>
 				    		</tr>
 				    		
@@ -206,36 +206,36 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.5</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_15" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_15" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_15" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_15" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_15" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_151">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.1</td>
-				    			<td headers="criterio_15" class="celulaCriterios">Não foram encontradas âncoras que permitam saltar pelas diferentes seções da página</td>
+				    		    <td headers="criterio_15" class="celulaCriterios">1.5.1 Não foram encontradas âncoras que permitam saltar pelas diferentes seções da página</td>
+				    			<td headers="tipo_15" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a ausência de links com conteúdo de atributo "href" que comecem com "#".</td>
 				    		</tr>
 				    		<tr id="criterio_152">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.2</td>
-				    			<td headers="criterio_15" class="celulaCriterios">Foram encontradas âncoras que permitem saltar pelas diferentes seções da página, porém algumas não possuem um destino correspondente</td>
+				    		    <td headers="criterio_15" class="celulaCriterios">1.5.2 Foram encontradas âncoras que permitem saltar pelas diferentes seções da página, porém algumas não possuem um destino correspondente</td>
+				    			<td headers="tipo_15" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença de links com conteúdo de atributo "href" que comecem com "#", porém não há o destino da âncora na página HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_154">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.4</td>
-				    			<td headers="criterio_15" class="celulaCriterios">Não existem atalhos</td>
+				    		    <td headers="criterio_15" class="celulaCriterios">1.5.4 Não existem atalhos</td>
+				    			<td headers="tipo_15" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a ausência de tags HTML com atributo "<span lang="en">accesskey</span>" na página.</td>
 				    		</tr>
 				    		<tr id="criterio_159">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.9</td>
-				    			<td headers="criterio_15" class="celulaCriterios">O primeiro <span lang="en">link</span> é uma âncora para o conteúdo da página</td>
+				    		    <td headers="criterio_15" class="celulaCriterios">1.5.9 O primeiro <span lang="en">link</span> é uma âncora para o conteúdo da página</td>
+				    			<td headers="tipo_15" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença de <span lang="en">link</span> com conteúdo de atributo "href" que comece com "#", e o destino da âncora seja um conteúdo específico da página HTML.</td>
 				    		</tr>
 				    		<tr id="criterio_1511">
-				    		    <td headers="numero_15" class="celulaCriterios">1.5.11</td>
-				    			<td headers="criterio_15" class="celulaCriterios">Presença de atributo <span lang="en">ACCESSKEY</span> com conteúdo repetido</td>
+				    		    <td headers="criterio_15" class="celulaCriterios">1.5.11 Presença de atributo <span lang="en">ACCESSKEY</span> com conteúdo repetido</td>
+				    			<td headers="tipo_15" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_15" class="celulaCriterios">Verificar a presença do atributo <span lang="en">"accesskey"</span> e conteúdo repetido em outros <span lang="en">"accesskeys"</span> da página HTML.</td>
 				    		</tr>
 				    	</tbody>
@@ -249,22 +249,22 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.6</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_16" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_16" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_16" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_16" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_16" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_161">
-				    		    <td headers="numero_16" class="celulaCriterios">1.6.1</td>
-				    			<td headers="criterio_16" class="celulaCriterios">Foram utizadas tabelas</td>
+				    		    <td headers="criterio_16" class="celulaCriterios">1.6.1 Foram utizadas tabelas</td>
+				    			<td headers="tipo_16" class="celulaCriterios">Aviso</td>
 				    			<td headers="como_avaliar_16" class="celulaCriterios">Verificar a presença da tag &lt;<span lang="en">table</span>&gt; na página HTML.</td>
 				    		</tr>
 				    		
 				    		<tr id="criterio_162">
-				    		    <td headers="numero_16" class="celulaCriterios">1.6.2</td>
-				    			<td headers="criterio_16" class="celulaCriterios">Há formulário construído dentro de tabela</td>
+				    		    <td headers="criterio_16" class="celulaCriterios">1.6.2 Há formulário construído dentro de tabela</td>
+				    			<td headers="tipo_16" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_16" class="celulaCriterios">Verificar a presença da tag &lt;<span lang="en">form</span>&gt; entre a tag &lt;<span lang="en">table</span>&gt;.</td>
 				    		</tr>
 				    	</tbody>
@@ -278,16 +278,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.7</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_17" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_17" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_17" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_17" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_17" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_171">
-				    		    <td headers="numero_17" class="celulaCriterios">1.7.1</td>
-				    			<td headers="criterio_17" class="celulaCriterios">Há links adjacentes sem nenhum tipo de separação ou separação por espaços em branco</td>
+				    		    <td headers="criterio_17" class="celulaCriterios">1.7.1 Há links adjacentes sem nenhum tipo de separação ou separação por espaços em branco</td>
+				    			<td headers="tipo_17" class="celulaCriterios">Erro</td>
 				    			<td headers="como_avaliar_17" class="celulaCriterios">Verificar a presença de links dispostos numa forma sequencial sem separação explícita (caracteres especiais) ou separação explícita por espaços em branco.</td>
 				    		</tr>
 				    		
@@ -303,16 +303,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.8</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_18" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_18" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_18" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_18" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_18" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_183">
-				    		    <td headers="numero_18" class="celulaCriterios">1.8.3</td>
-				    			<td headers="criterio_18" class="celulaCriterios">Ausência de divisão de áreas quando do uso do HTML 5</td>		
+				    		    <td headers="criterio_18" class="celulaCriterios">1.8.3 Ausência de divisão de áreas quando do uso do HTML 5</td>
+				    			<td headers="tipo_18" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_18" class="celulaCriterios">Verificar a ausência das tags: <span lang="en">&lt;header&gt;, &lt;footer&gt;, &lt;section&gt;, &lt;aside&gt;, &lt;nav&gt; e &lt;article&gt;</span>.</td>
 				    		</tr>
 				    		
@@ -327,16 +327,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 1.9</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_19" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_19" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_19" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_19" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_19" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_191">
-				    		    <td headers="numero_19" class="celulaCriterios">1.9.1</td>
-				    			<td headers="criterio_19" class="celulaCriterios">Há <span lang="en">link</span> que abre nova página ou aba</td>		
+				    		    <td headers="criterio_19" class="celulaCriterios">1.9.1 Há <span lang="en">link</span> que abre nova página ou aba</td>
+				    			<td headers="tipo_19" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_19" class="celulaCriterios">Verificar a presença de links com atributo "<span lang="en">target</span>" preenchido com "_<span lang="en">blank</span>".</td>
 				    		</tr>
 				    					    		
@@ -351,28 +351,28 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 2.1</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_21" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_21" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_21" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_21" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_21" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_212">
-				    		    <td headers="numero_21" class="celulaCriterios">2.1.2</td>
-				    			<td headers="criterio_21" class="celulaCriterios">Há funcionalidade que só funciona pelo <span lang="en">mouse</span></td>		
+				    		    <td headers="criterio_21" class="celulaCriterios">2.1.2 Há funcionalidade que só funciona pelo <span lang="en">mouse</span></td>
+				    			<td headers="tipo_21" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_21" class="celulaCriterios">Verificar a presença dos eventos (<span lang="en">onmousedown, onmouseup, onmouseover, onmouseout</span>) nas tags HTML e a ausência de evento para permitir a manipulação por teclado.</td>
 				    		</tr>
 				    		
 				    		<tr id="criterio_216">
-				    		    <td headers="numero_21" class="celulaCriterios">2.1.6</td>
-				    			<td headers="criterio_21" class="celulaCriterios">Presença de evento <span lang="en">DBLCLICK</span> ou <span lang="en">ONDBCLICK</span> no elemento HTML</td>		
+				    		    <td headers="criterio_21" class="celulaCriterios">2.1.6 Presença de evento <span lang="en">DBLCLICK</span> ou <span lang="en">ONDBCLICK</span> no elemento HTML</td>
+				    			<td headers="tipo_21" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_21" class="celulaCriterios">Verificar a presença do evento "<span lang="en">ondblclick</span>" nas tags HTML.</td>
 				    		</tr>	
 				    				
 				    		<tr id="criterio_218">
-				    		    <td headers="numero_21" class="celulaCriterios">2.1.8</td>
-				    			<td headers="criterio_21" class="celulaCriterios"> Presença de eventos associados a elementos não interativos</td>		
+				    		    <td headers="criterio_21" class="celulaCriterios">2.1.8 Presença de eventos associados a elementos não interativos</td>
+				    			<td headers="tipo_21" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_21" class="celulaCriterios">Verificar a presença de eventos HTML associados a elementos estáticos da página HTML. Um exemplo é a presença de mudança de contexto no nível de cabeçalho.</td>
 				    		</tr>			    		
 				    	</tbody>
@@ -386,33 +386,33 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 2.2</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_22" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_22" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_22" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_22" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_22" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_221">
-				    		    <td headers="numero_22" class="celulaCriterios">2.2.1</td>
-				    			<td headers="criterio_22" class="celulaCriterios">Presença de elemento <span lang="en">SCRIPT</span> sem o elemento <span lang="en">NOSCRIPT</span></td>		
+				    		    <td headers="criterio_22" class="celulaCriterios">2.2.1 Presença de elemento <span lang="en">SCRIPT</span> sem o elemento <span lang="en">NOSCRIPT</span></td>
+				    			<td headers="tipo_22" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_22" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">script</span>&gt; sem o elemento &lt;<span lang="en">noscript</span>&gt; na página.</td>
 				    		</tr>		
 				    		<tr id="criterio_222">
-				    		    <td headers="numero_22" class="celulaCriterios">2.2.2</td>
-				    			<td headers="criterio_22" class="celulaCriterios">Presença de elemento <span lang="en">OBJECT</span> sem o conteúdo alternativo</td>		
+				    		    <td headers="criterio_22" class="celulaCriterios">2.2.2 Presença de elemento <span lang="en">OBJECT</span> sem o conteúdo alternativo</td>
+				    			<td headers="tipo_22" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_22" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">object</span>&gt; sem texto entre os elementos. Exemplo: &lt;<span lang="en">object</span>&gt; Digite aqui o texto alternativo &lt;/<span lang="en">object</span>&gt;.</td>
 				    		</tr>	
 				    		
 				    		<tr id="criterio_223">
-				    		    <td headers="numero_22" class="celulaCriterios">2.2.3</td>
-				    			<td headers="criterio_22" class="celulaCriterios">Presença de elemento <span lang="en">EMBED</span> na página HTML</td>		
+				    		    <td headers="criterio_22" class="celulaCriterios">2.2.3 Presença de elemento <span lang="en">EMBED</span> na página HTML</td>
+				    			<td headers="tipo_22" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_22" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">embed</span>&gt; sem texto entre os elementos. Exemplo: &lt;<span lang="en">embed</span>&gt; Digite aqui o texto alternativo &lt;/<span lang="en">embed</span>&gt;.</td>
 				    		</tr>
 				    		
 				    		<tr id="criterio_224">
-				    		    <td headers="numero_22" class="celulaCriterios">2.2.4</td>
-				    			<td headers="criterio_22" class="celulaCriterios">Presença de elemento <span lang="en">APPLET</span> na página HTML</td>		
+				    		    <td headers="criterio_22" class="celulaCriterios">2.2.4 Presença de elemento <span lang="en">APPLET</span> na página HTML</td>
+				    			<td headers="tipo_22" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_22" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">applet</span>&gt; sem texto entre os elementos. Exemplo:&lt;<span lang="en">applet</span>&gt; Digite aqui o texto alternativo &lt;/<span lang="en">applet</span>&gt;.</td>
 				    		</tr>				    		
 				    	</tbody>
@@ -426,16 +426,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 2.3</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_23" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_23" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_23" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_23" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_23" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_231">
-				    		    <td headers="numero_23" class="celulaCriterios">2.3.1</td>
-				    			<td headers="criterio_23" class="celulaCriterios">Página que se atualiza automaticamente</td>		
+				    		    <td headers="criterio_23" class="celulaCriterios">2.3.1 Página que se atualiza automaticamente</td>
+				    			<td headers="tipo_23" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_23" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">meta</span>&gt; e o atributo "http-equiv" com o conteúdo "<span lang="en">refresh</span>" ou a presença das funções <span lang="en">javascript</span>: <span lang="en">setTimeOut</span> e <span lang="en">setInterval</span> com a função para carregar a mesma página.</td>
 				    		</tr>
 				    				
@@ -451,16 +451,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 2.4</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_24" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_24" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_24" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_24" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_24" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_241">
-				    		    <td headers="numero_24" class="celulaCriterios">2.4.1</td>
-				    			<td headers="criterio_24" class="celulaCriterios">Há redirecionamento automático</td>		
+				    		    <td headers="criterio_24" class="celulaCriterios">2.4.1 Há redirecionamento automático</td>
+				    			<td headers="tipo_24" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_24" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">meta</span>&gt; e atributo "http-equiv" com conteúdo "<span lang="en">refresh</span>" e atributo "<span lang="en">content</span>" ou a presença do elemento &lt;<span lang="en">script</span>&gt; com a função "<span lang="en">window.location</span>".</td>
 				    		</tr>
 				    				
@@ -476,28 +476,28 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 2.6</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_26" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_26" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_26" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_26" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_26" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_261">
-				    		    <td headers="numero_26" class="celulaCriterios">2.6.1</td>
-				    			<td headers="criterio_26" class="celulaCriterios">Presença do elemento <span lang="en">BLINK</span></td>		
+				    		    <td headers="criterio_26" class="celulaCriterios">2.6.1 Presença do elemento <span lang="en">BLINK</span></td>
+				    			<td headers="tipo_26" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_26" class="celulaCriterios">Presença do elemento &lt;<span lang="en">blink</span>&gt; na página HTML.</td>
 				    		</tr>
 				    		
 				    		<tr id="criterio_262">
-				    		    <td headers="numero_26" class="celulaCriterios">2.6.2</td>
-				    			<td headers="criterio_26" class="celulaCriterios">Presença do elemento <span lang="en">MARQUEE</span></td>		
+				    		    <td headers="criterio_26" class="celulaCriterios">2.6.2 Presença do elemento <span lang="en">MARQUEE</span></td>
+				    			<td headers="tipo_26" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_26" class="celulaCriterios">Presença do elemento &lt;<span lang="en">marquee</span>&gt; na página HTML.</td>
 				    		</tr>
 				    		
 				    		<tr id="criterio_263">
-				    		    <td headers="numero_26" class="celulaCriterios">2.6.3</td>
-				    			<td headers="criterio_26" class="celulaCriterios">Presença do elemento IMG com arquivo GIF com intermitência de tela</td>		
+				    		    <td headers="criterio_26" class="celulaCriterios">2.6.3 Presença do elemento IMG com arquivo GIF com intermitência de tela</td>
+				    			<td headers="tipo_26" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_26" class="celulaCriterios">Presença do elemento &lt;img&gt; e atributo "src" contendo arquivo com extensão "gif" e o arquivo apresenta movimentação.</td>
 				    		</tr>
 				    	</tbody>
@@ -511,16 +511,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.1</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_31" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_31" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_31" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_31" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_31" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_311">
-				    		    <td headers="numero_31" class="celulaCriterios">3.1.1</td>
-				    			<td headers="criterio_31" class="celulaCriterios">Não há identificação do idioma principal da página</td>		
+				    		    <td headers="criterio_31" class="celulaCriterios">3.1.1 Não há identificação do idioma principal da página</td>
+				    			<td headers="tipo_31" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_31" class="celulaCriterios">Verificar a ausência do atributo "lang" no elemento &lt;html&gt;, quando o elemento &lt;<span lang="en">doctype</span>&gt; for do tipo <span lang="en">Strict</span> (<a
 						href="http://www.w3.org/TR/html4/strict.dtd">http://www.w3.org/TR/html4/strict.dtd</a>), <span lang="en">Transitional</span> (<a
 						href="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</a>), <span lang="en">Frameset</span> (<a
@@ -532,8 +532,8 @@
 				    		</tr>
 				    		
 				    		<tr id="criterio_313">
-				    		    <td headers="numero_31" class="celulaCriterios">3.1.3</td>
-				    			<td headers="criterio_31" class="celulaCriterios">Presença do elemento HTML, atributo XMLNS, atributo XML;LANG e a ausência do atributo <span lang="en">LANG</span></td>		
+				    		    <td headers="criterio_31" class="celulaCriterios">3.1.3 Presença do elemento HTML, atributo XMLNS, atributo XML;LANG e a ausência do atributo <span lang="en">LANG</span></td>
+				    			<td headers="tipo_31" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_31" class="celulaCriterios">Verificar a presença dos atributos "xmlns" e "xml-lang" e a ausência do atributo "<span lang="en">lang</span>".</td>
 				    		</tr>
 				    		
@@ -549,16 +549,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.2</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_32" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_32" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_32" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_32" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_32" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_321">
-				    		    <td headers="numero_32" class="celulaCriterios">3.2.1</td>
-				    			<td headers="criterio_32" class="celulaCriterios">Presença de atributo <span lang="en">LANG</span> nos elementos da página, além da tag HTML</td>		
+				    		    <td headers="criterio_32" class="celulaCriterios">3.2.1 Presença de atributo <span lang="en">LANG</span> nos elementos da página, além da tag HTML</td>
+				    			<td headers="tipo_32" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_32" class="celulaCriterios">Verificar a presença do atributo "<span lang="en">lang</span>" nos elementos da página HTML, não considerando o elemento &lt;html&gt;.</td>				    		</tr>
 				    		
 				    					    		
@@ -573,16 +573,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.3</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_33" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_33" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_33" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_33" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_33" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_331">
-				    		    <td headers="numero_33" class="celulaCriterios">3.3.1</td>
-				    			<td headers="criterio_33" class="celulaCriterios">Não há título para a página, ou está em branco</td>		
+				    		    <td headers="criterio_33" class="celulaCriterios">3.3.1 Não há título para a página, ou está em branco</td>
+				    			<td headers="tipo_33" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_33" class="celulaCriterios">Verificar a ausência da tag &lt;<span lang="en">title</span>&gt; na página HTML, ou verificar a presença do tag &lt;<span lang="en">title</span>&gt; sem conteúdo de texto para a identificação da página.</td>				    		
 				    		</tr>
 				    	   		
@@ -597,70 +597,70 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.5</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_35" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_35" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_35" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_35" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_35" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
-				    		<tr id="criterio_351">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.1</td>
-				    			<td headers="criterio_35" class="celulaCriterios"><span lang="en">Link</span> com descrição no formato de URL</td>		
+				    		<tr id="criterio_352">
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.2 <span lang="en">Link</span> com descrição no formato de URL</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios"> Presença do elemento &lt;a&gt; e descrição do texto em formato de endereço da internet. Lembrar que não importará se o <span lang="en">link</span> do texto será igual ou não no atributo "href".</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_353">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.3</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links vazios</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.3 Links vazios</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e ausência de texto descritivo.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_354">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.4</td>
-				    			<td headers="criterio_35" class="celulaCriterios"><span lang="en">Link</span> com descrição somente do <span lang="en">TITLE</span></td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.4 <span lang="en">Link</span> com descrição somente do <span lang="en">TITLE</span></td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt;, atributo "<span lang="en">title</span>" com texto descritivo e ausência de texto descritivo na estrutura principal do <span lang="en">link</span>.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_355">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.5</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links que são imagens sem descrição</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.5 Links que são imagens sem descrição</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e dentro o elemento &lt;img&gt; sem conteúdo descritivo no atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_356">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.6</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links do tipo "clique aqui", "leia mais", "veja mais", "veja aqui", "clique", "acesse aqui", "clique para acessar", "aqui", entre outros</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.6 Links do tipo "clique aqui", "leia mais", "veja mais", "veja aqui", "clique", "acesse aqui", "clique para acessar", "aqui", entre outros</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e de texto descritivo com as palavras exatas ou palavras começando no texto do inicio do <span lang="en">link</span>: "clique aqui", "leia mais", "veja aqui", "veja mais", "veja aqui", "clique", "acesse aqui", "clique para acessar", "aqui".</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_3510">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.10</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links com descrições diferentes que remetem ao mesmo local</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.10 Links com descrições diferentes que remetem ao mesmo local</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença de elementos &lt;a&gt; com textos descritivos diferentes, porém os conteúdos dos href's remetem para o mesmo <span lang="en">link</span>.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_3511">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.11</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links com a mesma descrição que remetem a locais diferentes</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.11 Links com a mesma descrição que remetem a locais diferentes</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença de elementos &lt;a&gt; com textos descritivos iguais, porém os conteúdos dos href's remetem para links diferentes.</td>				    		
 				    		</tr>
 				    	   		
 				    	   	<tr id="criterio_3512">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.12</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links que são lidos duas ou mais vezes</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.12 Links que são lidos duas ou mais vezes</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; com o mesmo conteúdo no atributo <span lang="en">title</span> e no texto descritivo.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_3513">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.13</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links com descrição muito longa</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.13 Links com descrição muito longa</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; com conteúdo do texto descrito com quantidade de caracteres acima de 2000.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_3514">
-				    		    <td headers="numero_35" class="celulaCriterios">3.5.14</td>
-				    			<td headers="criterio_35" class="celulaCriterios">Links que remetem a páginas indisponiveis/inexistentes (links quebrados)</td>		
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.14 Links que remetem a páginas indisponiveis/inexistentes (links quebrados)</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e o conteúdo do atributo "href" direciona para páginas de erros: 404, 405, 503 e outros.</td>				    		
 				    		</tr>
 				    	</tbody>
@@ -674,46 +674,46 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.6</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_36" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_36" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_36" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_36" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_36" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_361">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.1</td>
-				    			<td headers="criterio_36" class="celulaCriterios">Imagens sem a declaração do atributo <span lang="en">ALT</span></td>		
+				    		    <td headers="criterio_36" class="celulaCriterios">3.6.1 Imagens sem a declaração do atributo <span lang="en">ALT</span></td>
+				    			<td headers="tipo_36" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; e ausência do atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_362">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.2</td>
-				    			<td headers="criterio_36" class="celulaCriterios">Imagens com conteúdo sem descrição</td>		
+				    		    <td headers="criterio_36" class="celulaCriterios">3.6.2 Imagens com conteúdo sem descrição</td>
+				    			<td headers="tipo_36" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; e ausência de conteúdo descritivo do atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
 				    	   		
 				    	   	<tr id="criterio_363">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.3</td>
-				    			<td headers="criterio_36" class="celulaCriterios">Imagens com descrição igual ao nome do arquivo</td>		
+				    		    <td headers="criterio_36" class="celulaCriterios">3.6.3 Imagens com descrição igual ao nome do arquivo</td>
+				    			<td headers="tipo_36" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; e atributo "<span lang="en">alt</span>" com conteúdo descrito com o nome do arquivo de referência da imagem.</td>				    		
 				    		</tr>	
 				    		
 				    		<tr id="criterio_364">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.4</td>
-				    			<td headers="criterio_36" class="celulaCriterios">Imagens com descrições comuns</td>		
+				    		    <td headers="criterio_36" class="celulaCriterios">3.6.4 Imagens com descrições comuns</td>
+				    			<td headers="tipo_36" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; e atributo "<span lang="en">alt</span>" com conteúdo descrito contendo expressões: "figura", "imagem", "<span lang="en">alt</span>", conteúdo em branco e outros.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_367">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.7</td>
-				    			<td headers="criterio_36" class="celulaCriterios">Imagens diferentes com a mesma descrição</td>		
+				    		    <td headers="criterio_36" class="celulaCriterios">3.6.7 Imagens diferentes com a mesma descrição</td>
+				    			<td headers="tipo_36" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; com o mesmo atributo "src", no entanto, o conteúdo do atributo "<span lang="en">alt</span>" não é o mesmo de cada imagem.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_368">
-				    		    <td headers="numero_36" class="celulaCriterios">3.6.8</td>
-				    			<td headers="criterio_36" class="celulaCriterios">Imagens com dupla descrição, pois utiliza atributo <span lang="en">TITLE</span> com o mesmo valor da descrição</td>		
+				    		    <td headers="criterio_36" class="celulaCriterios">3.6.8 Imagens com dupla descrição, pois utiliza atributo <span lang="en">TITLE</span> com o mesmo valor da descrição</td>
+				    			<td headers="tipo_36" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_36" class="celulaCriterios">Presença de elementos &lt;img&gt; com o mesmo conteúdo descrito no atributo "<span lang="en">title</span>" e no atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
 				   		</tbody>
@@ -727,16 +727,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.7</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_37" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_37" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_37" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_37" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_37" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_371">
-				    		    <td headers="numero_37" class="celulaCriterios">3.7.1</td>
-				    			<td headers="criterio_37" class="celulaCriterios">Mapa de imagem sem descrição ou alternativa em texto</td>		
+				    		    <td headers="criterio_37" class="celulaCriterios">3.7.1 Mapa de imagem sem descrição ou alternativa em texto</td>
+				    			<td headers="tipo_37" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_37" class="celulaCriterios"> Presença do elemento &lt;img&gt; com atributo "<span lang="en">usemap</span>" e ausência de conteúdo descritivo no atributo "<span lang="en">alt</span>", ou presença do elemento &lt;area&gt; e ausência de conteúdo descritivo no atributo "<span lang="en">alt</span>".</td>				    		
 				    		</tr>
 				    		
@@ -751,16 +751,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.9</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_39" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_39" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_39" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_39" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_39" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_391">
-				    		    <td headers="numero_39" class="celulaCriterios">3.9.1</td>
-				    			<td headers="criterio_39" class="celulaCriterios">Tabelas sem título e resumo</td>		
+				    		    <td headers="criterio_39" class="celulaCriterios">3.9.1 Tabelas sem título e resumo</td>
+				    			<td headers="tipo_39" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_39" class="celulaCriterios">Presença do elemento &lt;<span lang="en">table</span>&gt; e ausência do atributo "<span lang="en">summary</span>" ou ausência do elemento &lt;<span lang="en">caption</span>&gt;.</td>				    		
 				    		</tr>
 				    		
@@ -775,17 +775,17 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.10</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_3100" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_3100" class="topoCriterios indice1">Critério</th>
-				    				<th id="como_avaliar_3100" class="topoCriterios indice2">Como avaliar</th>
+				    			    <th id="criterio_310" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_310" class="topoCriterios indice1">Tipo</th>
+				    				<th id="como_avaliar_310" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_3101">
-				    		    <td headers="numero_3100" class="celulaCriterios">3.10.1</td>
-				    			<td headers="criterio_3100" class="celulaCriterios">Tabelas sem células associadas</td>		
-				    			<td headers="como_avaliar_3100" class="celulaCriterios">Presença do elemento &lt;<span lang="en">table</span>&gt; e ausência dos elementos: &lt;thead&gt;, &lt;tbody&gt;, ou a presença do elemento &lt;<span lang="en">table</span>&gt; e ausência dos atributos: <span lang="en">"id", "headers", "scope", "axis"</span> nos elementos &lt;td&gt; e &lt;th&gt;.</td>				    		
+				    		    <td headers="criterio_310" class="celulaCriterios">3.10.1 Tabelas sem células associadas</td>
+				    			<td headers="tipo_310" class="celulaCriterios">Erro</td>		
+				    			<td headers="como_avaliar_310" class="celulaCriterios">Presença do elemento &lt;<span lang="en">table</span>&gt; e ausência dos elementos: &lt;thead&gt;, &lt;tbody&gt;, ou a presença do elemento &lt;<span lang="en">table</span>&gt; e ausência dos atributos: <span lang="en">"id", "headers", "scope", "axis"</span> nos elementos &lt;td&gt; e &lt;th&gt;.</td>				    		
 				    		</tr>
 				    		
 				    	</tbody>
@@ -799,23 +799,23 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.11</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_3110" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_3110" class="topoCriterios indice1">Critério</th>
-				    				<th id="como_avaliar_3110" class="topoCriterios indice2">Como avaliar</th>
+				    			    <th id="criterio_311" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_311" class="topoCriterios indice1">Tipo</th>
+				    				<th id="como_avaliar_311" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    		
 				    		<tr id="criterio_3112">
-				    		    <td headers="numero_3110" class="celulaCriterios">3.11.2</td>
-				    			<td headers="criterio_3110" class="celulaCriterios">Presença de parágrafos justificados</td>		
-				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; com conteúdo "<span lang="en">justify</span>" no atributo "<span lang="en">align</span>".</td>				    		
+				    		    <td headers="criterio_311" class="celulaCriterios">3.11.2 Presença de parágrafos justificados</td>
+				    			<td headers="tipo_311" class="celulaCriterios">Erro</td>		
+				    			<td headers="como_avaliar_311" class="celulaCriterios">Presença de elementos &lt;p&gt; com conteúdo "<span lang="en">justify</span>" no atributo "<span lang="en">align</span>".</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_3113">
-				    		    <td headers="numero_3110" class="celulaCriterios">3.11.3</td>
-				    			<td headers="criterio_3110" class="celulaCriterios">Presença de textos justificados através de folhas de estilo</td>		
-				    			<td headers="como_avaliar_3110" class="celulaCriterios">Presença de elementos &lt;p&gt; e propriedade CSS <span lang="en">text-align</span> com conteúdo "<span lang="en">justify</span>". Deverá ser avaliado o CSS externo (com arquivo CSS referenciado pelo elemento &lt;<span lang="en">link</span>&gt;), interno (propriedade dentro do elemento &lt;<span lang="en">style</span>&gt;) e <span lang="en">in-line</span> (propriedade dentro do atributo "<span lang="en">style</span>" no elemento &lt;p&gt;).</td>				    		
+				    		    <td headers="criterio_311" class="celulaCriterios">3.11.3 Presença de textos justificados através de folhas de estilo</td>
+				    			<td headers="tipo_311" class="celulaCriterios">Erro</td>		
+				    			<td headers="como_avaliar_311" class="celulaCriterios">Presença de elementos &lt;p&gt; e propriedade CSS <span lang="en">text-align</span> com conteúdo "<span lang="en">justify</span>". Deverá ser avaliado o CSS externo (com arquivo CSS referenciado pelo elemento &lt;<span lang="en">link</span>&gt;), interno (propriedade dentro do elemento &lt;<span lang="en">style</span>&gt;) e <span lang="en">in-line</span> (propriedade dentro do atributo "<span lang="en">style</span>" no elemento &lt;p&gt;).</td>				    		
 				    		</tr>
 				    		
 				    	</tbody>
@@ -829,17 +829,17 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 3.12</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_3120" class="topoCriterios  indice0">Número</th>
-				    				<th id="criterio_3120" class="topoCriterios indice1">Critério</th>
-				    				<th id="como_avaliar_3120" class="topoCriterios indice2">Como avaliar</th>
+				    			    <th id="criterio_312" class="topoCriterios  indice0">Critério</th>
+				    				<th id="tipo_312" class="topoCriterios indice1">Tipo</th>
+				    				<th id="como_avaliar_312" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_3121">
-				    		    <td headers="numero_3120" class="celulaCriterios">3.12.1</td>
-				    			<td headers="criterio_3120" class="celulaCriterios">Siglas marcadas e sem explicação</td>		
-				    			<td headers="como_avaliar_3120" class="celulaCriterios">Presença dos elementos &lt;abbr&gt; ou &lt;<span lang="en">acronym</span>&gt; e ausência do atributo "<span lang="en">title</span>" para descrever a sigla.</td>				    		
+				    		    <td headers="criterio_312" class="celulaCriterios">3.12.1 Siglas marcadas e sem explicação</td>
+				    			<td headers="tipo_312" class="celulaCriterios">Erro</td>		
+				    			<td headers="como_avaliar_312" class="celulaCriterios">Presença dos elementos &lt;abbr&gt; ou &lt;<span lang="en">acronym</span>&gt; e ausência do atributo "<span lang="en">title</span>" para descrever a sigla.</td>				    		
 				    		</tr>
 				    						    						    		
 				    	</tbody>
@@ -853,16 +853,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 4.4</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_44" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_44" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_44" class="topoCriterios indice0">Criterio</th>
+				    				<th id="tipo_44" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_44" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_441">
-				    		    <td headers="numero_44" class="celulaCriterios">4.4.1</td>
-				    			<td headers="criterio_44" class="celulaCriterios">Presença de destaque do foco do elemento ativo.</td>		
+				    		    <td headers="criterio_44" class="celulaCriterios">4.4.1 Presença de destaque do foco do elemento ativo</td>
+				    			<td headers="tipo_44" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_44" class="celulaCriterios">Verificar a ausência de destaque nos elementos HTML. Para verificação, analisar a ausência de utilização da propriedade "<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -877,16 +877,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 5.1</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_51" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_51" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_51" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_51" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_51" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_511">
-				    		    <td headers="numero_51" class="celulaCriterios">5.1.1</td>
-				    			<td headers="criterio_51" class="celulaCriterios">Presença de vídeo na página</td>		
+				    		    <td headers="criterio_51" class="celulaCriterios">5.1.1 Presença de vídeo na página</td>
+				    			<td headers="tipo_51" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_51" class="celulaCriterios">Presença do elemento &lt;<span lang="en">embed</span>&gt; ou &lt;video&gt; com atributos "src" direcionados para arquivo de vídeo ou local de execução de vídeo.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -901,16 +901,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 5.2</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_52" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_52" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_52" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_52" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_52" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_521">
-				    		    <td headers="numero_52" class="celulaCriterios">5.2.1</td>
-				    			<td headers="criterio_52" class="celulaCriterios">Presença de áudio na página</td>		
+				    		    <td headers="criterio_52" class="celulaCriterios">5.2.1 Presença de áudio na página</td>
+				    			<td headers="tipo_52" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_52" class="celulaCriterios">Presença do elemento &lt;<span lang="en">embed</span>&gt; ou &lt;audio&gt; com atributos "src" direcionados para arquivo de audio ou local de execução de áudio.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -925,16 +925,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 5.3</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_53" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_53" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_53" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_53" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_53" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_531">
-				    		    <td headers="numero_53" class="celulaCriterios">5.3.1</td>
-				    			<td headers="criterio_53" class="celulaCriterios">Presença de vídeo na página</td>		
+				    		    <td headers="criterio_53" class="celulaCriterios">5.3.1 Presença de vídeo na página</td>
+				    			<td headers="tipo_53" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_53" class="celulaCriterios">Presença do elemento &lt;<span lang="en">embed</span>&gt; ou &lt;video&gt; com atributos "src" direcioanados para arquivo de vídeo ou local de execução de vídeo.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -949,16 +949,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 5.4</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_54" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_54" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_54" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_54" class="topoCriterios indice1">Teste</th>
 				    				<th id="como_avaliar_54" class="topoCriterios  indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_541">
-				    		    <td headers="numero_54" class="celulaCriterios">5.4.1</td>
-				    			<td headers="criterio_54" class="celulaCriterios">Presença de áudio na página</td>		
+				    		    <td headers="criterio_54" class="celulaCriterios">5.4.1 Presença de áudio na página</td>
+				    			<td headers="tipo_54" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_54" class="celulaCriterios">Presença do elemento &lt;<span lang="en">embed</span>&gt; ou &lt;audio&gt; com atributos "src" direcionados para arquivo de áudio ou local de execução de áudio.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -973,16 +973,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 6.1</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_61" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_61" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_61" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_61" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_61" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_611">
-				    		    <td headers="numero_61" class="celulaCriterios">6.1.1</td>
-				    			<td headers="criterio_61" class="celulaCriterios">Botão sem descrição</td>		
+				    		    <td headers="criterio_61" class="celulaCriterios">6.1.1 Botão sem descrição</td>
+				    			<td headers="tipo_61" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_61" class="celulaCriterios">Presença do elemento &lt;<span lang="en">input</span>&gt; com o conteúdo do atributo "<span lang="en">type</span>" igual a "<span lang="en">image</span>" e ausência de conteúdo no atributo "<span lang="en">alt</span>" ou ausência do "<span lang="en">alt</span>". Presença do elemento &lt;input&gt; com os conteúdos: "<span lang="en">button</span>", "<span lang="en">reset</span>", ou "<span lang="en">submit</span>" e ausência de conteúdo no atributo "value" ou ausência do atributo "value".</td>				    		
 				    		</tr>
 				    						    						    		
@@ -997,16 +997,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 6.2</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_62" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_62" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_62" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_62" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_62" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_621">
-				    		    <td headers="numero_62" class="celulaCriterios">6.2.1</td>
-				    			<td headers="criterio_62" class="celulaCriterios">Campo sem <span lang="en">label</span> associado</td>		
+				    		    <td headers="criterio_62" class="celulaCriterios">6.2.1 Campo sem <span lang="en">label</span> associado</td>
+				    			<td headers="tipo_62" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_62" class="celulaCriterios">Presença do elemento &lt;<span lang="en">input</span>&gt; e ausência de elemento &lt;<span lang="en">label</span>&gt; com atributo "<span lang="en">for</span>" referenciado ao atributo "id" do &lt;<span lang="en">input</span>&gt;, ou presença de elemento &lt;<span lang="en">input</span>&gt; sem estar dentro de elemento &lt;<span lang="en">label</span>&gt;.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -1021,16 +1021,16 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 6.3</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_63" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_63" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_63" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_63" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_63" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_631">
-				    		    <td headers="numero_63" class="celulaCriterios">6.3.1</td>
-				    			<td headers="criterio_63" class="celulaCriterios">Presença do elemento <span lang="en">FORM</span> e atributo <span lang="en">TABINDEX</span></td>		
+				    		    <td headers="criterio_63" class="celulaCriterios">6.3.1 Presença do elemento <span lang="en">FORM</span> e atributo <span lang="en">TABINDEX</span></td>
+				    			<td headers="tipo_63" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_63" class="celulaCriterios">Presença do elemento &lt;<span lang="en">form</span>&gt; e atributo "<span lang="en">tabindex</span>" nos elementos dentro do &lt;<span lang="en">form</span>&gt;.</td>				    		
 				    		</tr>
 				    						    						    		
@@ -1045,22 +1045,22 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 6.4</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_64" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_64" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_64" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_64" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_64" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_641">
-				    		    <td headers="numero_64" class="celulaCriterios">6.4.1</td>
-				    			<td headers="criterio_64" class="celulaCriterios">Presença do elemento <span lang="en">FORM</span> e nos seus elementos a existência do atributo<span lang="en"> ONCHANGE, ONBLUR, ONFOCUS, ONFORMCHANGE, ONFORMINPUT, ONINPUT, ONINVALID, ONRESET, ONSELECT, ONSUBMIT, ONKEYDOWN, ONKEYPRESS, ONKEYUP, ONCLICK</span> exceto elementos <span lang="en">INPUT</span> com <span lang="en">type BUTTON, SUBMIT, RESET</span></td>		
+				    		    <td headers="criterio_64" class="celulaCriterios">6.4.1 Presença do elemento <span lang="en">FORM</span> e nos seus elementos a existência do atributo<span lang="en"> ONCHANGE, ONBLUR, ONFOCUS, ONFORMCHANGE, ONFORMINPUT, ONINPUT, ONINVALID, ONRESET, ONSELECT, ONSUBMIT, ONKEYDOWN, ONKEYPRESS, ONKEYUP, ONCLICK</span> exceto elementos <span lang="en">INPUT</span> com <span lang="en">type BUTTON, SUBMIT, RESET</span></td>
+				    			<td headers="tipo_64" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_64" class="celulaCriterios">Presença do elemento <span lang="en">&lt;form&gt;</span> e nos seus elementos internos, retirando os elementos <span lang="en">&lt;input&gt;</span> com os conteúdos no atributo <span lang="en">“type”: button, submit, reset</span>. Utilização dos eventos (atributos): <span lang="en">onchage, onblur, onfocus, onformchange, onforminput, oninput, oninvalid, onreset, onselect, onsubmit, onkeydown, onkeypress, onkeyup, onclick</span>.</td>				    		
 				    		</tr>
 				    				
 				    		<tr id="criterio_642">
-				    		    <td headers="numero_64" class="celulaCriterios">6.4.2</td>
-				    			<td headers="criterio_64" class="celulaCriterios">Presença do elemento <span lang="en">FORM</span>  e nos seus elementos a existência do atributo<span lang="en"> ONDBLCLICK, ONDRAG, ONDRAGEND, ONDRAGENTER, ONDRAGLEAVE, ONDRAGOVER, ONDRAGSTART, ONDROP, ONMOUSEDOWN, ONMOUSEMOVE, ONMOUSEOUT, ONMOUSEOVER, ONMOUSEUP, ONMOUSEWHEEL, ONSCROLL</span></td>		
+				    		    <td headers="criterio_64" class="celulaCriterios">6.4.2 Presença do elemento <span lang="en">FORM</span>  e nos seus elementos a existência do atributo<span lang="en"> ONDBLCLICK, ONDRAG, ONDRAGEND, ONDRAGENTER, ONDRAGLEAVE, ONDRAGOVER, ONDRAGSTART, ONDROP, ONMOUSEDOWN, ONMOUSEMOVE, ONMOUSEOUT, ONMOUSEOVER, ONMOUSEUP, ONMOUSEWHEEL, ONSCROLL</span></td>
+				    			<td headers="tipo_64" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_64" class="celulaCriterios">Presença do elemento<span lang="en"> &lt;form&gt;</span> e nos seus elementos internos a utilização dos eventos (atributos):<span lang="en"> ondbclick, ondrag, ondragend, ondragcenter, omdragleave, ondragover, ondragstart, ondrop, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onmousewheel, onscroll, </span>ou a presença de funções <span lang="en">javascript in-line</span> (código <span lang="en">javascritpt</span> em elementos html), interno (código <span lang="en">javascript</span> dentro do elemento <span lang="en">&lt;script&gt;</span>) e externo (código <span lang="en">javascript</span> referenciado pelo elemento <span lang="en">&lt;script&gt;</span> por meio do atributo src) que permitem comportamento na página sem apresentar aviso ao utilizador da página.</td>				    		
 				    		</tr>				    						    		
 				    	</tbody>
@@ -1074,22 +1074,22 @@
 				    		<caption>Critérios de Avaliação e como avaliar Recomendação 6.7</caption>
 				    		<thead>
 				    			<tr>				  
-				    			    <th id="numero_67" class="topoCriterios indice0">Número</th>
-				    				<th id="criterio_67" class="topoCriterios indice1">Critério</th>
+				    			    <th id="criterio_67" class="topoCriterios indice0">Critério</th>
+				    				<th id="tipo_67" class="topoCriterios indice1">Tipo</th>
 				    				<th id="como_avaliar_67" class="topoCriterios indice2">Como avaliar</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_671">
-				    		    <td headers="numero_67" class="celulaCriterios">6.7.1</td>
-				    			<td headers="criterio_67" class="celulaCriterios">Existência de formulário e inexistência de agrupamento de campos</td>		
+				    		    <td headers="criterio_67" class="celulaCriterios">6.7.1 Existência de formulário e inexistência de agrupamento de campos</td>
+				    			<td headers="tipo_67" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_67" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">form</span>&gt; e dentro desse os elementos:<span lang="en"> &lt;input&gt;, &lt;textarea&gt;, &lt;button&gt;, &lt;select&gt;, &lt;option&gt;, &lt;label&gt;</span> e ausência do elemento<span lang="en"> &lt;fieldset&gt;</span>.</td>				    		
 				    		</tr>
 				    		
 				    		<tr id="criterio_672">
-				    		    <td headers="numero_67" class="celulaCriterios">6.7.2</td>
-				    			<td headers="criterio_67" class="celulaCriterios">Uso de campo de seleção sem agrupamento</td>		
+				    		    <td headers="criterio_67" class="celulaCriterios">6.7.2 Uso de campo de seleção sem agrupamento</td>
+				    			<td headers="tipo_67" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_67" class="celulaCriterios">Verificar a presença do elemento &lt;<span lang="en">form</span>&gt; e dentro desse o elemento <span lang="en">&lt;select&gt;</span> e ausência do elemento <span lang="en">&lt;optgroup&gt;</span> para conteúdos do <span lang="en">&lt;select&gt;</span> que precisam de agrupamento.</td>				    		
 				    		</tr>
 				    						    						    		
