@@ -1,4 +1,6 @@
 @media only screen and (min-width : 768px) {
+	
+	
 	.containerTab {
 		position: relative;
 		min-height: 270px;
@@ -17,8 +19,19 @@
 		position: relative;
 		left: 1px;
 	}
+	
+	.tab label.tranparente{
+		background: #eee;
+		padding: 10px;
+		border: 1px solid #ccc;
+		margin-left: -1px;
+		position: relative;
+		left: 1px;
+		opacity: 0.4;
+		filter: alpha(opacity=40); /* For IE8 and earlier */
+	}
 	.contraste .tab label.rarios {
-		background: #000;
+		background: #000000;
 		padding: 10px;
 		border: 1px solid #ccc;
 		margin-left: -1px;
@@ -51,6 +64,8 @@
 	.contraste .tab label.rarios {
 		color: #FC0 !important;
 	}
+	
+	
 }
 
 /*-----Fim (min-width : 768px)------ */
@@ -65,14 +80,14 @@
 	}
 	.tab .contenteudo {
 		background-color: #dbe9ba;
-		border: 1px solid #000;
+		border: 1px solid #000000;
 		padding-right: 10px;
 		margin-bottom: 15px;
 		margin-left: 15px;
 		clear: both;
 	}
 	.contraste .tab .contenteudo {
-		border: 1px solid #fff !important;
+		border: 1px solid #ffffff !important;
 	}
 	.tab {
 		float: left;
