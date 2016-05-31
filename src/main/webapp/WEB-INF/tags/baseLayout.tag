@@ -2,9 +2,9 @@
 <%@attribute name="body" fragment="true"%>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,12 +114,8 @@
 
 	<section>
 		<nav id="menu">
-			<ul>
-				<!--	<li id="portalservicos-perguntas-frequentes"
-						class="portalservicos-item"><a href="${pageContext.request.contextPath}/perguntas-frequentes">Perguntas frequentes</a></li>
-						-->
-				<li id="portalservicos-contato" class="portalservicos-item">
-					<!-- <a	href="${pageContext.request.contextPath}/contato">Contato</a> -->
+			<ul>			
+				<li id="portalservicos-contato" class="portalservicos-item">			
 					<a href="http://www.governoeletronico.gov.br/contato">Contato
 						(link para um novo sítio)</a>
 				</li>
@@ -165,11 +161,11 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/detalhesAvaliacao.js"></script>
 
-<script type="text/javascript"
+	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/default.js"></script>
 		
-	<!--  	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/bootstrap.js"></script>-->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/exibirImagemEspera.js"></script>
 
 	<script defer="defer" src="//barra.brasil.gov.br/barra.js"
 		type="text/javascript"></script>
