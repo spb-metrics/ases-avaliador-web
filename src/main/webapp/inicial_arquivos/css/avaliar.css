@@ -84,7 +84,7 @@
 		border-bottom: 1px solid #c0c0c0;
 	}
 	.hr_linhaDupla {
-		border-bottom: 4px solid #000;
+		border-bottom: 4px solid #000000;
 		border-top: 4px solid #c0c0c0;
 	}
 	table caption {
@@ -94,7 +94,7 @@
 	}
 	#webaxscore {
 		background: transparent url("img/bg.png") repeat scroll left top;
-		color: #000;
+		color: #000000;
 		float: left;
 		margin: 20px 10% 1em 12%;
 		padding: 2em;
@@ -124,7 +124,7 @@
 		background-color: #0d0 !important;
 		border: 4px solid #090;
 		color: #fff !important;
-		text-shadow: 0.1em 0.1em 0.1em #000;
+		text-shadow: 0.1em 0.1em 0.1em #000000;
 	}
 	div.scoreB_amarela {
 		background-color: #FFCC00 !important;
@@ -140,7 +140,7 @@
 	div.block {
 		background: #ffa none repeat scroll 0 0;
 		border: 1px solid #999;
-		color: #000;
+		color: #000000;
 		margin-left: 10%;
 		width: 28%;
 	}
@@ -194,7 +194,7 @@
 		margin-bottom: 30px;
 		margin-left: 5px;
 		width: 40%;
-		border: 1px solid #fff;
+		border: 1px solid #ffffff;
 	}
 	#tabelaErrossem_nota .topo {
 		font-size: 1.4em;
@@ -205,7 +205,7 @@
 	}
 	.contraste #tabelaErrossem_nota .topo {
 		font-size: 1.4em;
-		background-color: #000;
+		background-color: #000000;
 		color: #fff;
 		text-align: left;
 		font-size: 1.3em;
@@ -217,8 +217,8 @@
 		font-weight: normal;
 	}
 	.contraste #tabelaErrossem_nota .celula {
-		background-color: #000;
-		color: #fff;
+		background-color: #000000;
+		color: #ffffff;
 		text-align: left;
 		font-weight: normal;
 	}
@@ -229,13 +229,13 @@
 	}
 	.contenteudoAvaliacao table {
 		width: 100%;
-		background-color: #fff;
+		background-color: #ffffff;
 		font-size: 1.2em;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 	.contraste .contenteudoAvaliacao table {
 		width: 100%;
-		background-color: #000;
+		background-color: #000000;
 		font-size: 1.2em;
 		font-family: Arial, Helvetica, sans-serif;
 	}
@@ -248,8 +248,8 @@
 	}
 	.contraste .containerAvaliacao .topo2 {
 		font-size: 14px;
-		background-color: #000;
-		color: #fff;
+		background-color: #000000;
+		color: #ffffff;
 		padding: 5px;
 		text-align: left;
 	}
@@ -260,17 +260,17 @@
 		text-align: center;
 	}
 	.containerAvaliacao table {
-		border: 1px solid #fff;
+		border: 1px solid #ffffff;
 	}
 	.containerAvaliacao .celula {
-		background-color: #fff;
+		background-color: #ffffff;
 		padding: .4em;
 		color: #003399;
 	}
 	.contraste .containerAvaliacao .celula {
-		background-color: #000;
+		background-color: #000000;
 		padding: .4em;
-		color: #fff !important;
+		color: #ffffff !important;
 	}
 	.outstanding-header {
 		border-bottom: 1px solid #CCCCCC;
@@ -393,11 +393,11 @@
 		border-bottom: 1px solid #CCCCCC;
 	}
 	div  #notaResumo .outstanding-title {
-		border-top: 4px solid #000;
+		border-top: 4px solid #000000;
 		border-bottom: 1px solid #c0c0c0;
 	}
 	.hr_linhaDupla {
-		border-bottom: 4px solid #000;
+		border-bottom: 4px solid #000000;
 		border-top: 4px solid #c0c0c0;
 	}
 	table caption {
@@ -406,10 +406,10 @@
 		text-align: left;
 	}
 	#webaxscore {
-		background: transparent url("img/bg.png") repeat scroll left top;
-		color: #000;
+		/*background: transparent url("img/bg.png") repeat scroll left top;*/
+		color: #000000;
 		float: left;
-		margin: 0 10% 1em 12%;
+		margin: 20px 10% 1em 12%;
 		padding: 2em;
 		text-align: center;
 		width: 7em;
@@ -433,16 +433,27 @@
 		font-weight: bold;
 		line-height: 1em;
 	}
-	div.scoreB {
+	div.scoreB_verde {
 		background-color: #0d0 !important;
 		border: 4px solid #090;
+		color: #ffffff !important;
+		text-shadow: 0.1em 0.1em 0.1em #000000;
+	}
+	div.scoreB_amarela {
+		background-color: #FFCC00 !important;
+		border: 4px solid #e6e600;
+		color: #000 !important;
+	}
+	div.scoreB_vermelha {
+		background-color: #e60000 !important;
+		border: 4px solid #ff0000;
 		color: #fff !important;
-		text-shadow: 0.1em 0.1em 0.1em #000;
+		text-shadow: 0.1em 0.1em 0.1em #000000;
 	}
 	div.block {
 		background: #ffa none repeat scroll 0 0;
 		border: 1px solid #999;
-		color: #000;
+		color: #000000;
 		margin-left: 10%;
 		width: 28%;
 	}
@@ -473,14 +484,14 @@
 		font-size: 1.3em;
 	}
 	.contraste #tabelaErros .topo {
-		background-color: #000 !important;
+		background-color: #000000 !important;
 		border-collapse: collapse;
 		margin: 0;
 		color: #fff;
 		padding: .4em;
 	}
 	.contraste #tabelaErrossem_nota .topo {
-		background-color: #000 !important;
+		background-color: #000000 !important;
 		border-collapse: collapse;
 		margin: 0;
 		color: #fff;
@@ -499,7 +510,7 @@
 		font-weight: normal;
 	}
 	.containerAvaliacao table {
-		border: 1px solid #fff;
+		border: 1px solid #ffffff;
 	}
 	.containerAvaliacao .topo2 {
 		font-size: 14px;
@@ -510,8 +521,8 @@
 	}
 	.contraste .containerAvaliacao .topo2 {
 		font-size: 14px;
-		background-color: #000;
-		color: #fff;
+		background-color: #000000;
+		color: #ffffff;
 		padding: 5px;
 		text-align: left;
 	}
@@ -522,14 +533,14 @@
 		text-align: center;
 	}
 	.containerAvaliacao .celula {
-		background-color: #fff;
+		background-color: #ffffff;
 		padding: .4em;
 		color: #003399;
 	}
 	.contraste .containerAvaliacao .celula {
-		background-color: #000;
+		background-color: #000000;
 		padding: .4em;
-		color: #fff;
+		color: #ffffff;
 	}
 	.contenteudoAvaliacao {
 		font-size: 1.2em;
@@ -538,16 +549,16 @@
 	}
 	.contenteudoAvaliacao table {
 		width: 100%;
-		background-color: #fff;
+		background-color: #ffffff;
 		font-size: 1.2em;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 	.contraste .contenteudoAvaliacao table {
 		width: 100%;
-		background-color: #000;
+		background-color: #000000;
 		font-size: 1.2em;
 		font-family: Arial, Helvetica, sans-serif;
-		border: 1px solid #fff;
+		border: 1px solid #ffffff;
 	}
 
 /*---Contraste----------*/
