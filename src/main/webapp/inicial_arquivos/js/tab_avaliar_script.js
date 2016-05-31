@@ -16,6 +16,7 @@ $(document).ready(function()
 	
 	
 	$("#altoContraste a").attr("href", "#");
+	$("#inicio_mark").attr("href", "#");
 	$("#fim_mark").attr("href", "#");					
 	$("#inicio_behavior").attr("href", "#");	
 	$("#fim_behavior").attr("href", "#");						
