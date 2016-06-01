@@ -659,7 +659,7 @@
 				    		</tr>
 				    		
 				    		<tr id="criterio_3514">
-				    		    <td headers="criterio_35" class="celulaCriterios">3.5.14 Links que remetem a páginas indisponiveis/inexistentes (links quebrados)</td>
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.14 Links que remetem a páginas indisponiveis/inexistentes</td>
 				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e o conteúdo do atributo "href" direciona para páginas de erros: 404, 405, 503 e outros.</td>				    		
 				    		</tr>
