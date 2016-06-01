@@ -1,7 +1,7 @@
 .formContato{
 	font-size: 1.7em; 
 	font-family: Arial, Helvetica, sans-serif;
-	font-color: #000000; 
+	color: #000000; 
 }
 
 .fonteWarning{
@@ -15,7 +15,7 @@
 	text-align: left;
 	width: 3.5em;
 	padding-right: 1.7em;
-	padding-botton: 1em;
+	padding-botton: 1px;
 }
 
 .formContato input{
