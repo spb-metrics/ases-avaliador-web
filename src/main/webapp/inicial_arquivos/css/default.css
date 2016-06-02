@@ -1,4 +1,5 @@
 @media only screen and (min-width : 768px) {
+	
 	body {
 		margin: 0;
 		background-color: #ffffff;
@@ -7,6 +8,9 @@
 		font-weight: normal;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
+	 a:focus, a:hover {   
+		border: 2px solid #F00;   
+		}
 	
 	.imgLoading
 	{
@@ -258,9 +262,11 @@
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	}
 	
+	 a:focus, a:hover {   
+		border: 2px solid #F00;   
+		}
 	
-	
-		.imgLoading
+	.imgLoading
 	{
 	padding-top:30px;
 	height:105px;
