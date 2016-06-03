@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <t:baseLayout> 
    <jsp:body>
@@ -10,8 +11,7 @@
 					<span>Você está em:</span>
 				</li>
 				<li>
-					<li><a href="${pageContext.request.contextPath}">ASES</a></li>
-				</li>
+					<li><a href="${pageContext.request.contextPath}">ASES</a></li>				
                	<li>|  Contato</li>
 			</ul>
 	   </div>
@@ -23,17 +23,31 @@
 					</div>
 				</div>
 					<c:if test="${not empty mensagem}">
+					
 						<div class="warning">
-							<div class="alinName fonteWarning">${mensagem}</div>
+							<a id="listaErros">${mensagem}</div></a>
 						</div>
+						
 					</c:if>
 					
-					<c:forEach var="error" items="${errors}">  
-   						<div class="warning">	
-   							<div class="alinName fonteWarning">${error.message}</div>
+				 <c:set var="mensagemAdicionada" value="false" />	
+				 			 
+					<ul class="listaErrosAvisos">
+					<c:forEach var="error" items="${errors}"> 
+					
+					<c:if test="${mensagemAdicionada == false}">
+						<a id="listaErros">Não foi possível enviar a mensagem devido aos seguintes erros:</a>
+						<c:set var="mensagemAdicionada" value="true" />
+					</c:if>
+					
+					 
+					<li>
+   						<div class="warning">	   						
+   							<div class="alinName fonteWarning"><a class="addAncora">${error.message}</a></div>
    						</div>
+   					</li>
    					</c:forEach>  
-   				   				   				
+   				   	</ul>			   				
 				    <form method="post" action="${pageContext.request.contextPath}/contato/confirmacao">   
 				    	<fieldset class="formContato">   
 							<legend>Formulário de Contato</legend>
