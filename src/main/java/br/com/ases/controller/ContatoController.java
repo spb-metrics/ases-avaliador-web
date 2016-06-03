@@ -2,15 +2,13 @@ package br.com.ases.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.nio.charset.Charset;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 
 import org.apache.commons.mail.EmailException;
 
 import br.com.ases.model.entity.Contato;
+import br.com.ases.model.entity.EnvioEmailSemAutenticacao;
 import br.com.ases.model.utilities.Email;
 import br.com.ases.model.utilities.StringHelper;
 import br.com.ases.model.utilities.Validate;
@@ -20,7 +18,6 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
-import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 @Path("/contato")
@@ -55,15 +52,17 @@ public class ContatoController {
 		Validate validate = new Validate(this.validator);
 
 		if (validate.contato(contato)) {
+			String respSendEmail;
+			
+			Email email = new Email(this.application.getRealPath("") + "/WEB-INF/mail.properties");
+			
+			EnvioEmailSemAutenticacao envioEmailSemAutenticacao = new EnvioEmailSemAutenticacao(email.getHost(), Integer.toString(email.getPort()));
+			
+			respSendEmail = envioEmailSemAutenticacao.sendMail(contato.getEmail(),email.getTo(), StringHelper.convertFromUTF8(contato.getAssunto()), StringHelper.convertFromUTF8(contato.getMensagem()),email.getAuth(), email.getAuthUser(), email.getAuthPass());
 
-			Email email = new Email(this.application.getRealPath("")
-					+ "/WEB-INF/mail.properties");
-			String respSendEmail = email.sendEmail(
-					"Contato",
-					"govbr@planejamento.gov.br", contato.getNome(),
-					contato.getEmail(),
-					StringHelper.convertFromUTF8(contato.getAssunto()),
-					StringHelper.convertFromUTF8(contato.getMensagem()), true);
+
+			/*String respSendEmail = email.sendEmail("Contato","govbr@planejamento.gov.br", contato.getNome(),contato.getEmail(),StringHelper.convertFromUTF8(contato.getAssunto()),
+					StringHelper.convertFromUTF8(contato.getMensagem()), true);*/
 
 			if (respSendEmail.equals("")) {
 				result.include("mensagem", "Mensagem enviada com Sucesso");

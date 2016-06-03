@@ -24,37 +24,38 @@ public class Validate {
 		boolean isValido =  true;
 		
 		if(contato.getNome() == null){
-			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo NOME!", "error"));
+			this.validator.add(new ValidationMessage("Favor preencher o campo NOME!", "error"));
 			isValido = false;
 		}else
 			if(contato.getNome().length() > 200){
-				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Ocorreu o problema: o campo NOME aceita at&eacute; 200 caracteres.", "error"));
+				this.validator.add(new ValidationMessage("O campo NOME aceita at&eacute; 200 caracteres.", "error"));
 				isValido = false;
 			}
 				
 		if(contato.getEmail() == null){
-			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo E-MAIL!", "error"));
+			this.validator.add(new ValidationMessage("Favor preencher o campo E-MAIL!", "error"));
 			isValido = false;
 		}else{
 			Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$"); 
 		    Matcher m = p.matcher(contato.getEmail()); 
 		    if (!m.find()){
-		    	this.validator.add(new ValidationMessage(" N&atilde;o foi poss&iacute;vel enviar a mensagem!  E-MAIL '"+contato.getEmail()+"' considerado inv&aacute;lido!", "error"));
+		    	//this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem!  E-MAIL '"+contato.getEmail()+"' considerado inv&aacute;lido!", "error"));
+		    	this.validator.add(new ValidationMessage("E-MAIL considerado inv&aacute;lido!", "error"));
 		    	isValido = false;
 		    }
 		}
 		
 		if(contato.getAssunto() == null){
-			this.validator.add(new ValidationMessage(" N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor escolher uma das op&ccedil;&otilde;es no campo ASSUNTO!", "error"));
+			this.validator.add(new ValidationMessage("Favor escolher uma das op&ccedil;&otilde;es no campo ASSUNTO!", "error"));
 			isValido = false;
 		}
 			
 		if(contato.getMensagem() == null){
-			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Favor preencher o campo MENSAGEM!", "error"));
+			this.validator.add(new ValidationMessage("Favor preencher o campo MENSAGEM!", "error"));
 			isValido = false;
 		}else
 			if(contato.getMensagem().length() > 500){
-				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel enviar a mensagem! Ocorreu o problema: o campo MENSAGEM aceita at&eacute; 500 caracteres.", "error"));
+				this.validator.add(new ValidationMessage("O campo MENSAGEM aceita at&eacute; 500 caracteres.", "error"));
 				isValido = false;
 			}
 		
