@@ -87,7 +87,7 @@
 			</div>
 			
 			
-			 <p>No caso de problemas com a acessibilidade do portal, favor entrar em<a href="http://www.governoeletronico.gov.br/contato"> contato (link para um novo sítio)</a>.</p>	
+			 <p>No caso de problemas com a acessibilidade do portal, favor entrar em <a href="${pageContext.request.contextPath}/contato">contato</a>.</p>	
 			
 			<hr class="hr_linhaDupla">
 			<div class="outstanding-header">

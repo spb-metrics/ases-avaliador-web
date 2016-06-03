@@ -48,9 +48,8 @@
 					
 					<li class="linhasMapa">
 						<div>
-							<a href="http://www.governoeletronico.gov.br/contato">
-								<span>Contato
-						(link para um novo sítio)</span>
+							<a href="${pageContext.request.contextPath}/contato">
+								<span>Contato</span>
 							</a>
 						</div>
 					</li>

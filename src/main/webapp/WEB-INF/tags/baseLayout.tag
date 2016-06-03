@@ -115,9 +115,8 @@
 	<section>
 		<nav id="menu">
 			<ul>			
-				<li id="portalservicos-contato" class="portalservicos-item">			
-					<a href="http://www.governoeletronico.gov.br/contato">Contato
-						(link para um novo sítio)</a>
+				<li id="portalservicos-contato" class="portalservicos-item">
+				<a href="${pageContext.request.contextPath}/contato">Contato</a>
 				</li>
 				<li id="portalservicos-criterios" class="portalservicos-item"><a
 					href="${pageContext.request.contextPath}/criteriosSucesso">Critérios
@@ -166,6 +165,9 @@
 		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/exibirImagemEspera.js"></script>
+		
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/inicial_arquivos/js/contatoAddAncoras.js"></script>
 
 	<script defer="defer" src="//barra.brasil.gov.br/barra.js"
 		type="text/javascript"></script>
