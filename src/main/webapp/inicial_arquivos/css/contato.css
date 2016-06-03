@@ -1,10 +1,13 @@
+
 .formContato{
+	border-style: solid none none;
+    border-width: 0.1em;
 	font-size: 1.7em; 
 	font-family: Arial, Helvetica, sans-serif;
 	color: #000000; 
 }
 
-.fonteWarning{
+.fonteWarning {
 	font-size: 1.4em;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -23,7 +26,19 @@
 	float: left;
 }
 
-.formContato fildset{
-	border: solid 1em #000000;
+
+
+.listaErrosAvisos li
+{
+list-style-type: none;	
+}
+.listaErrosAvisos li
+{
+	text-decoration: none;
 }
 
+#listaErros
+{
+	font-size: 14px;	
+	margin-top: 30px;
+}

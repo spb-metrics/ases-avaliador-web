@@ -40,7 +40,7 @@
 		-moz-border-left-colors: none;
 		-moz-border-right-colors: none;
 		-moz-border-top-colors: none;
-		border-color: #329fd7;
+		/*border-color: #329fd7;*/
 		border-image: none;
 		border-style: solid none none;
 		border-width: 0.1em;
@@ -135,7 +135,7 @@
 		background-color: #e60000 !important;
 		border: 4px solid #ff0000;
 		color: #fff !important;
-		text-shadow: 0.1em 0.1em 0.1em #000;
+		text-shadow: 0.1em 0.1em 0.1em #000000;
 	}
 	div.block {
 		background: #ffa none repeat scroll 0 0;
@@ -355,7 +355,7 @@
 		-moz-border-left-colors: none;
 		-moz-border-right-colors: none;
 		-moz-border-top-colors: none;
-		border-color: #329fd7;
+		/*border-color: #329fd7;*/
 		border-image: none;
 		border-style: solid none none;
 		border-width: 0.1em;
@@ -442,12 +442,12 @@
 	div.scoreB_amarela {
 		background-color: #FFCC00 !important;
 		border: 4px solid #e6e600;
-		color: #000 !important;
+		color: #000000 !important;
 	}
 	div.scoreB_vermelha {
 		background-color: #e60000 !important;
 		border: 4px solid #ff0000;
-		color: #fff !important;
+		color: #ffffff !important;
 		text-shadow: 0.1em 0.1em 0.1em #000000;
 	}
 	div.block {

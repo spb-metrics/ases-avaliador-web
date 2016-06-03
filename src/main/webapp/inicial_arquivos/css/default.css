@@ -137,8 +137,8 @@
 		padding: 0;
 		padding-top: 5px;
 		padding-bottom: 5px;
-		margin-left: 57%;
-		width: 369px;
+		margin-left: 56%;
+		width: 373px;
 		position: absolute;
 		border-bottom: 1px dotted #9ed5ab;
 		color: #9ed5ab;
@@ -151,7 +151,7 @@
 		color: #ffffff;
 	}
 	#portal-siteactions a:hover {
-		border-bottom: 1px solid;
+		border-bottom: 0.5px solid;
 	}
 	#portal-siteactions  li:last-child {
 		padding-right: 0;
@@ -380,9 +380,9 @@
 	#portal-siteactions a {
 		color: #9ed5ab;
 	}
-	#portal-siteactions a:hover {
+	/*#portal-siteactions a:hover {
 		border-bottom: 1px solid;
-	}
+	}*/
 	#portal-siteactions  li:last-child {
 		padding-right: 0;
 	}
@@ -416,9 +416,9 @@
 		padding: 0 4px;
 	}
 	
-	#accessibility a:hover {
+	/*#accessibility a:hover {
 		border-bottom: 1px solid;
-	}
+	}*/
 	#portal-siteactions {
 		padding: 0;
 		padding-top: 5px;
@@ -433,9 +433,9 @@
 	#portal-siteactions a {
 		color: #ffffff;
 	}
-	#portal-siteactions a:hover {
+	/*#portal-siteactions a:hover {
 		border-bottom: 1px solid;
-	}
+	}*/
 	#portal-siteactions  li:last-child {
 		padding-right: 0;
 	}

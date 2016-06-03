@@ -14,15 +14,15 @@
 	position: relative;
 	text-align: left;
 	color: #003399;
-	border: 1px solid #000;	
+	border: 1px solid #000000;	
 }
 
 .contraste #tabelaErros2 {	
 	position: relative;
 	text-align: left;
-	background-color: #000;
-	color: #fff;
-	border: 1px solid #fff;	
+	background-color: #000000;
+	color: #ffffff;
+	border: 1px solid #ffffff;	
 }
 
 #tabelaErros2 .topo2 {
@@ -36,19 +36,19 @@
 }
 
 .contraste #tabelaErros2 .topo2 {
-	background-color: #000;
+	background-color: #000000;
 	border: 0px;
 	margin: 0px;
 	border-collapse: collapse;
 	font-weight: bold;
-	color: #fff;
+	color: #ffffff;
 	padding: .4em;
 }
 
 #tabelaErros2 .celula {
 	border: 0px;
 	margin: 0px;
-	background-color: #fff;
+	background-color: #ffffff;
 	border-collapse: collapse;
 	color: #003399;
 	padding: 0;
@@ -58,9 +58,9 @@
 .contraste #tabelaErros2 .celula {
 	border: 0px;
 	margin: 0px;
-	background-color: #000;
+	background-color: #000000;
 	border-collapse: collapse;
-	color: #fff;
+	color: #ffffff;
 	padding: 0;
 	padding-left: 10px;
 }
@@ -77,7 +77,7 @@
 	
 .contraste	#tabelaErros2 .celula ul
 	{
-	background: #000 !important;
+	background: #000000 !important;
 	color: #FC0 !important
 	}
 
@@ -112,12 +112,12 @@
 
 .contraste pre
 {
-	background-color: #000;	
+	background-color: #000000;	
 }
 
 .contraste pre a
 {
-	background-color: #000 !important;	
+	background-color: #000000 !important;	
 }
 
 .selecionado{
@@ -125,7 +125,7 @@ background-color: #ffffb9;
 }
 
 .contraste pre .selecionado{
-background-color: #fff !important;
-color: #000 !important;
+background-color: #ffffff !important;
+color: #000000 !important;
 }
 
