@@ -11,9 +11,9 @@
 	<div class="tile --NOVALUE--">
    		
    			<!-- ADICIONANDO ERROS -->
-				<c:if test="${not empty errors}">
+				<c:if test="${not empty errors}">				
 					<c:forEach items="${errors}" var="error">
-						<div class="${error.category}">
+						<div class="${error.category}">						
 						<div class="alinName"><a id="mensagemErroCampoVazio_${ancoraCampoVazio}" href="#${ancoraCampoVazio}">${error.message}</a></div>
 					</div>
 					<br />
