@@ -17,6 +17,7 @@ $(document).ready(function()
 	});
 
 	$("#mensagemErroCampoVazio_up_file").click(function() {
+		
 		focarMensagemErro = false;
 		$("#tab-2").prop("checked", true);
 		$("#up_file").focus();
