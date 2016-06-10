@@ -124,7 +124,7 @@
 															
 															<c:if test="${!fn:contains(aReqIsCss, req) && linkHtmlJaAdicionado == false}">
 													     	      <a
-														href="http://validator.w3.org/check?uri=http%3A%2F%2F${url}">Serviçoo de validação de HTML do W3C (link para um novo sitio)
+														href="http://validator.w3.org/check?uri=http%3A%2F%2F${url}">Serviço de validação de HTML do W3C (link para um novo sitio)
 													     		  </a>
 													     		   <c:set var="linkHtmlJaAdicionado" value="true" />
 														    </c:if>
