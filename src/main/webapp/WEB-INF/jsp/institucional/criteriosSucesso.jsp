@@ -861,7 +861,7 @@
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_441">
-				    		    <td headers="criterio_44" class="celulaCriterios">4.4.1 Presença de destaque do foco do elemento ativo</td>
+				    		    <td headers="criterio_44" class="celulaCriterios">4.4.1 Ausência de destaque do foco do elemento ativo</td>
 				    			<td headers="tipo_44" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_44" class="celulaCriterios">Verificar a ausência de destaque nos elementos HTML. Para verificação, analisar a ausência de utilização da propriedade "<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
 				    		</tr>

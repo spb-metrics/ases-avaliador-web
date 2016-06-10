@@ -140,9 +140,10 @@
 
 	<footer id="footer-brasil"></footer>
 
+		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/jquery-1.10.2.min.js"></script>
-
+	    		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/jquery.cookie.js"></script>
 
@@ -166,9 +167,10 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/exibirImagemEspera.js"></script>
 		
-	<script type="text/javascript"
+		<script type="text/javascript"
 		src="${pageContext.request.contextPath}/inicial_arquivos/js/contatoAddAncoras.js"></script>
-
+		
+		
 	<script defer="defer" src="//barra.brasil.gov.br/barra.js"
 		type="text/javascript"></script>
 </body>
