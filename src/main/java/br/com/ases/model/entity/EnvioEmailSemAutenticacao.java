@@ -60,7 +60,7 @@ public class EnvioEmailSemAutenticacao {
 			//Setando o assunto
 			msg.setSubject(subject);
 			//Setando o conteúdo/corpo do email
-			msg.setContent(message,"text/html");			
+			msg.setContent(message,"text/html; charset=utf-8");			
 			
 			
 		} catch (Exception e) {
