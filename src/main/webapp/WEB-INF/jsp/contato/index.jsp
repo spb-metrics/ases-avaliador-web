@@ -25,7 +25,7 @@
 					<c:if test="${not empty mensagem}">
 					
 						<div class="warning">
-							<a id="listaErros">${mensagem}</div></a>
+							<a id="listaErros">${mensagem}</a>
 						</div>
 						
 					</c:if>
@@ -75,7 +75,8 @@
 							<br>  
 							<input type="submit" name="enviar" id="enviar" value="Enviar" class="bnt"/>   
 						</fieldset>   
+						
 					</form>
-					  
+			
    </jsp:body>
 </t:baseLayout>
