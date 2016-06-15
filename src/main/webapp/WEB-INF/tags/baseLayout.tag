@@ -4,57 +4,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/default.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/default.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/tab_css.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/tab_css.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/tabAvaliar.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/tabAvaliar.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/avaliar.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/avaliar.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/detalhesAvaliacao.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/detalhesAvaliacao.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/criterioSucesso.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/criterioSucesso.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/contato.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/contato.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/mapa.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/mapa.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/perguntasFrequentes.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/perguntasFrequentes.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/barra_brasil.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/barra_brasil.css"
 	media="screen">
 
 <link rel="stylesheet" type="text/css"
-	href="inicial_arquivos/css/breadcrumb.css"
+	href="${pageContext.request.contextPath}/inicial_arquivos/css/breadcrumb.css"
 	media="screen">
 
 
-<link href="inicial_arquivos/imagens/ases.ico" rel='icon' type='image/ico'/>
+<link href="${pageContext.request.contextPath}/inicial_arquivos/imagens/ases.ico" rel='icon' type='image/ico'/>
 
 <title>${tituloPagina}</title>
 
