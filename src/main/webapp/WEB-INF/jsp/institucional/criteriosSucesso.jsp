@@ -663,6 +663,11 @@
 				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e o conteúdo do atributo "href" direciona para páginas de erros: 404, 405, 503 e outros.</td>				    		
 				    		</tr>
+				    		<tr id="criterio_3515">
+				    		    <td headers="criterio_35" class="celulaCriterios">3.5.15 Links que remetem a páginas indisponiveis/inexistentes</td>
+				    			<td headers="tipo_35" class="celulaCriterios">Aviso</td>		
+				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença do elemento &lt;a&gt; e o conteúdo do atributo "href" direciona para páginas que contenham os protocolos "https, file e ftp" ou "URL's" mal formatadas.</td>				    		
+				    		</tr>
 				    	</tbody>
 				    </table>
 				    
@@ -844,6 +849,35 @@
 				    						    						    		
 				    	</tbody>
 				    </table>
+				    
+				     <hr class="hr_linhaDupla">	
+				    <h3 class="subtitulo">Recomendação 4.1 - Oferecer contraste mínimo entre plano de fundo e primeiro plano</h3>
+				    <p class="criterios">As cores do plano de fundo e do primeiro plano deverão ser suficientemente contrastantes para que possam ser visualizadas, também, por pessoas com baixa visão, com cromodeficiências ou que utilizam monitores de vídeo monocromático.</p>
+				    				     
+				    <table class="tabelaCriterioSucesso">
+				    		<caption>Critérios de Avaliação e como avaliar Recomendação 4.1</caption>
+				    		<thead>
+				    			<tr>				  
+				    			    <th id="criterio_41" class="topoCriterios indice0">Criterio</th>
+				    				<th id="tipo_41" class="topoCriterios indice1">Tipo</th>
+				    				<th id="como_avaliar_41" class="topoCriterios indice2">Como avaliar</th>
+				    			</tr>
+				    		</thead>
+				    		<tbody>
+				    						    		
+				    		<tr id="criterio_412">
+				    		    <td headers="criterio_41" class="celulaCriterios">4.1.2 Oferecer contraste mínimo entre plano de fundo e primeiro plano</td>
+				    			<td headers="tipo_41" class="celulaCriterios">Erro</td>		
+				    			<td headers="como_avaliar_41" class="celulaCriterios">As cores do plano de fundo e do primeiro plano deverão ser suficientemente contrastantes para que possam ser visualizadas, também, por pessoas com baixa visão, com cromodeficiências ou que utilizam monitores de vídeo monocromático."<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
+				    		</tr>
+				    		<tr id="criterio_413">
+				    		    <td headers="criterio_41" class="celulaCriterios">4.1.3 Oferecer contraste mínimo entre plano de fundo e primeiro plano</td>
+				    			<td headers="tipo_41" class="celulaCriterios">Aviso</td>		
+				    			<td headers="como_avaliar_41" class="celulaCriterios">As cores do plano de fundo e do primeiro plano deverão ser suficientemente contrastantes para que possam ser visualizadas, também, por pessoas com baixa visão, com cromodeficiências ou que utilizam monitores de vídeo monocromático."<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
+				    		</tr>	    						    		
+				    	</tbody>
+				    </table>
+				    				
 				    
 				    <hr class="hr_linhaDupla">	
 				    <h3 class="subtitulo">Recomendação 4.4 - Possibilitar que o elemento com foco seja visualmente evidente</h3>
