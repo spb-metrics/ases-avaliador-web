@@ -115,13 +115,14 @@
 				    		<tr id="criterio_122">
 				    		    <td headers="criterio_12" class="celulaCriterios">1.2.2 Presença de tags HTML sem atributo e conteúdo de texto</td>
 				    			<td headers="tipo_12" class="celulaCriterios">Aviso</td>
-				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML (&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;,
-				&lt;a&gt;, &lt;p&gt;) que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
+				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
 				    		</tr>		    		
 				    		<tr id="criterio_123">
 				    		    <td headers="criterio_12" class="celulaCriterios">1.2.3 Presença de tags HTML sem atributo e conteúdo de texto</td>
 				    			<td headers="tipo_12" class="celulaCriterios">Erro</td>
-				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
+				    			<td headers="como_avaliar_12" class="celulaCriterios">Verificar a presença de tags HTML (&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;,
+				&lt;a&gt;, &lt;p&gt;) que apresentem inicio e fechamento, mas sem conteúdo de texto. Possível exemplo seria &lt;a&gt;&lt;/a&gt; ou &lt;div&gt;&lt;/div&gt;.</td>
+				    			
 				    		</tr>
 				    	    </tbody>
 				    </table>
@@ -636,7 +637,7 @@
 				    		
 				    		<tr id="criterio_3510">
 				    		    <td headers="criterio_35" class="celulaCriterios">3.5.10 Links com descrições diferentes que remetem ao mesmo local</td>
-				    			<td headers="tipo_35" class="celulaCriterios">Erro</td>		
+				    			<td headers="tipo_35" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_35" class="celulaCriterios">Presença de elementos &lt;a&gt; com textos descritivos diferentes, porém os conteúdos dos href's remetem para o mesmo <span lang="en">link</span>.</td>				    		
 				    		</tr>
 				    		
@@ -867,14 +868,9 @@
 				    						    		
 				    		<tr id="criterio_412">
 				    		    <td headers="criterio_41" class="celulaCriterios">4.1.2 Oferecer contraste mínimo entre plano de fundo e primeiro plano</td>
-				    			<td headers="tipo_41" class="celulaCriterios">Erro</td>		
-				    			<td headers="como_avaliar_41" class="celulaCriterios">As cores do plano de fundo e do primeiro plano deverão ser suficientemente contrastantes para que possam ser visualizadas, também, por pessoas com baixa visão, com cromodeficiências ou que utilizam monitores de vídeo monocromático."<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
-				    		</tr>
-				    		<tr id="criterio_413">
-				    		    <td headers="criterio_41" class="celulaCriterios">4.1.3 Oferecer contraste mínimo entre plano de fundo e primeiro plano</td>
 				    			<td headers="tipo_41" class="celulaCriterios">Aviso</td>		
 				    			<td headers="como_avaliar_41" class="celulaCriterios">As cores do plano de fundo e do primeiro plano deverão ser suficientemente contrastantes para que possam ser visualizadas, também, por pessoas com baixa visão, com cromodeficiências ou que utilizam monitores de vídeo monocromático."<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
-				    		</tr>	    						    		
+				    		</tr>				    			    						    		
 				    	</tbody>
 				    </table>
 				    				
