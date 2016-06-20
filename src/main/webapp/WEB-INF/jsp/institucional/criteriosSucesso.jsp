@@ -867,9 +867,9 @@
 				    		<tbody>
 				    						    		
 				    		<tr id="criterio_412">
-				    		    <td headers="criterio_41" class="celulaCriterios">4.1.2 Oferecer contraste mínimo entre plano de fundo e primeiro plano</td>
+				    		    <td headers="criterio_41" class="celulaCriterios">4.1.2 Foram localizados combinações de cor cuja relação de contraste é inferior 4,5:1</td>
 				    			<td headers="tipo_41" class="celulaCriterios">Aviso</td>		
-				    			<td headers="como_avaliar_41" class="celulaCriterios">As cores do plano de fundo e do primeiro plano deverão ser suficientemente contrastantes para que possam ser visualizadas, também, por pessoas com baixa visão, com cromodeficiências ou que utilizam monitores de vídeo monocromático."<span lang="en">border</span>" dentro dos seletores CSS.</td>				    		
+				    			<td headers="como_avaliar_41" class="celulaCriterios">Verificar em cada elemento HTML a presença das propriedades color, background, background-color e bgcolor (verificação respeitará apresentação de CSS - in-line, interno e externo - e tipo de seletores - Id, Classe e próprio elemento), e realizar cálculo de luminosidade para determinar relação é inferior 4,5:1.</td>				    		
 				    		</tr>				    			    						    		
 				    	</tbody>
 				    </table>
