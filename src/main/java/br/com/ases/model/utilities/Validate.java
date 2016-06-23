@@ -1,5 +1,8 @@
 package br.com.ases.model.utilities;
 
+import static br.com.checker.emag.core.Checker.from;
+import groovy.time.BaseDuration.From;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,10 +10,18 @@ import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
+
+import br.com.ases.infra.WebChecker;
 import br.com.ases.model.entity.Contato;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.ValidationMessage;
+import br.com.checker.emag.core.Checker;
 
 public class Validate {
 	
@@ -68,19 +79,51 @@ public class Validate {
 	public boolean url(String campo){
 		
 		boolean isValido = true;
+		int codResponse;
+		HttpMethod metodoRequisicaoGET = null;
+		HttpClient clienteHTTPJakartaCommons;
+		URL UrlConvertida;
+		
 		if(campo == null || campo.length() <= 10 ){
 			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! Favor preencher o campo URL.", "warning"));
 			isValido = false;
 		}else{
 			try {
-			    URL url = new URL(campo);
-			    URLConnection conn = url.openConnection();
-			    conn.connect();
+				 //URL url = new URL(campo);				 
+			
+			    //URLConnection conn = url.openConnection();
+			   // conn.connect();
+				
+					UrlConvertida = new URL(campo);
+				
+					clienteHTTPJakartaCommons = new HttpClient();
+					clienteHTTPJakartaCommons.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler(3,false));
+					clienteHTTPJakartaCommons.getParams().setParameter("http.protocol.allow-circular-redirects", true); 
+					
+					metodoRequisicaoGET = new GetMethod(UrlConvertida.toExternalForm());
+				
+					metodoRequisicaoGET.setRequestHeader("http.agent", "Jakarta Commons-HttpClient/3.1");
+					metodoRequisicaoGET.setFollowRedirects(true);
+					
+					codResponse = clienteHTTPJakartaCommons.executeMethod(metodoRequisicaoGET);
+					
+					if(codResponse != 200)
+					{
+						this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" é considerada inválida.", "warning"));
+						isValido = false;
+					}
+					else
+					{
+						isValido = true;
+					}
+					
 			} catch (MalformedURLException e) {
-				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" considerada inv&aacute;lida.", "warning"));
+				e.printStackTrace();
+				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" é considerada inválida.", "warning"));
 				isValido = false;
 			} catch (IOException e) {
-				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" considerada inv&aacute;lida.", "warning"));
+				e.printStackTrace();
+				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" é considerada inválida.", "warning"));
 				isValido = false;
 			}
 		}
