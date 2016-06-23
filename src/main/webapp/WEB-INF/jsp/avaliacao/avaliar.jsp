@@ -211,7 +211,14 @@
 				
 			</fieldset>
 	</form>
-	
+	<br>
+		<hr class="hr_linhaDupla">
+		
+		<h2 class="outstanding-title">Código Avaliado</h2>
+		
+		<pre>
+		<code id="codigoFonte">${html}</code>
+		</pre>
 		</div>
 
 	</jsp:body>
