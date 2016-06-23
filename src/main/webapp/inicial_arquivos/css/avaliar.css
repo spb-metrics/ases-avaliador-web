@@ -34,7 +34,7 @@
 		width: 26%;
 		float: left;
 		margin-left: 10%;
-	}
+	}	
 	#content fieldset {
 		-moz-border-bottom-colors: none;
 		-moz-border-left-colors: none;
@@ -318,6 +318,12 @@
 	{
 	margin-left: 30px;
 	}
+	
+	#codigoFonte
+	{
+		font-size: 1.4em;
+		font-family: Arial, Helvetica, sans-serif;
+	}
 }
 
 /*-----Fim (min-width : 768px)------ */
@@ -537,6 +543,13 @@
 		padding: .4em;
 		color: #003399;
 	}
+	
+	#codigoFonte
+	{
+		font-size: 1.4em;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	
 	.contraste .containerAvaliacao .celula {
 		background-color: #000000;
 		padding: .4em;
