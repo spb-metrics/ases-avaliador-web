@@ -3,12 +3,10 @@ package br.com.ases.infra;
 import static br.com.checker.emag.core.Checker.presentation;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
-import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
@@ -28,6 +26,7 @@ public class WebChecker {
 	private int statusCode;
 	private String content;
 	private String contentLength;
+
 	
 	private WebChecker(HttpClient client,String url) { 
 		this.client = client; 
