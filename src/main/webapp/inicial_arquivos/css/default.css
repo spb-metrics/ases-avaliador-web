@@ -186,8 +186,8 @@
 	}
 	#menu ul {
 		margin: 0;
-		margin-left: 55%;
-		width: 400px;		
+		margin-left: 50%;
+		width: 460px;		
 	}
 	
 	#menu li
@@ -475,8 +475,8 @@
 	#menu ul {
 		position: relative;
 		margin: 0;
-		margin-left: auto;
-		width: 400px;
+		margin-left: auto;		
+		width: 460px;
 		margin-left: auto;
 	}
 	#menu li {

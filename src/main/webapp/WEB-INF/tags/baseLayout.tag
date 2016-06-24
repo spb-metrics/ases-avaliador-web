@@ -121,6 +121,8 @@
 				<li id="portalservicos-criterios" class="portalservicos-item"><a
 					href="${pageContext.request.contextPath}/criteriosSucesso">Critérios
 						de sucesso</a></li>
+						<li id="versaoAses" class="portalservicos-item"><a
+					href="http://softwarepublico.gov.br/social/ases">Sobre o Ases (Link para um novo sítio)</a></li>
 			</ul>
 		</nav>
 
