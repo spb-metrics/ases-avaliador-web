@@ -13,7 +13,7 @@ import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
 import br.com.checker.emag.SummarizedOccurrence;
 
-
+ 
 public interface AvaliacaoBusiness {
 	Nota obterNota(List<SummarizedOccurrence> occurrences,String url, List<Entry<OccurrenceKey,List<Occurrence>>> mapaListaOcorrencias);
 	Nota obterNotaEselo(Source html, String url, List<Entry<OccurrenceKey,List<Occurrence>>> mapaListaOcorrencias);
