@@ -267,9 +267,12 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 				}			
 				//Fim Cria lista a ser pesquisada e retorna a quantidade de itens
 				
-				if(!tipoBusca.equalsIgnoreCase("1"))
+				if(!tipoBusca.equalsIgnoreCase("1") && !tipoTeste.equalsIgnoreCase("decrescente"))
 				{
 					qtdItens = retornarQuantidadeItens(documento, elementosBuscar, atributosBuscar,tipoBusca);
+				}else if(!tipoBusca.equalsIgnoreCase("1") && tipoTeste.equalsIgnoreCase("decrescente"))			
+				{
+					qtdItens = totalLinhas;
 				}
 				else
 				{
@@ -279,11 +282,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 				
 				qtdErrosAvisos = retornaQuantidadeErrosAvisos(mapaListaOcorrencias, recomendacaoProperties, criterioProperties);
 				
-								
-				// postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].idCriterio",criterioProperties)
-				// .addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros", Integer.toString(qtdErrosAvisos))
-				// .addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens",Integer.toString(qtdItens));
-				 
+							 
 				if(isErro)
 				{
 					totalErros = totalErros + qtdErrosAvisos;
@@ -303,6 +302,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 				recomendacaoAdd.setQtdItens(qtdItens);
 				lsRecomendacaoCriterios.add(recomendacaoAdd);
 				}
+				
+				
 			
 			}
 			
@@ -316,7 +317,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 				countCriterio++;
 				 postParams.addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].idCriterio",recCriterio.criterio)
 				 .addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeErros", Integer.toString(recCriterio.qtdErros))
-				 .addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens",Integer.toString(recCriterio.qtdItens));
+				 .addParam("relatorioAvaliacao.recomendacoes["+countReq+"].criterios["+countCriterio+"].qtdeItens",Integer.toString(recCriterio.qtdItens));			 
+				
 			}
 				
 				postParams.addParam("relatorioAvaliacao.recomendacoes[" + countReq+ "].totalErros", Integer.toString(totalErros));
