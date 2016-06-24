@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -34,8 +33,8 @@ import br.com.ases.domain.DetalheAvaliacao;
 import br.com.ases.domain.DetalheAvaliacao.Criterio;
 import br.com.ases.domain.OccurrenceKey;
 import br.com.ases.domain.ResumoAvaliacao;
-import br.com.ases.infra.UtilitiesProperties;
 import br.com.ases.infra.EseloProperties;
+import br.com.ases.infra.UtilitiesProperties;
 import br.com.ases.infra.WebChecker;
 import br.com.ases.model.utilities.DateUtil;
 import br.com.ases.model.utilities.ManagerReport;
@@ -261,8 +260,7 @@ public class AvaliacaoController {
 
 				this.tituloSite = "";
 
-			ContentEvaluation conteudo = new ContentEvaluation(
-					checker.getDocument());
+			ContentEvaluation conteudo = new ContentEvaluation(checker.getDocument());
 
 			this.tituloSite = conteudo.retornarTituloSiteAvaliado();
 
@@ -491,8 +489,7 @@ public class AvaliacaoController {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
 
-			result.include("contentLenght",
-					String.valueOf(html.getBytes("UTF-8").length));
+			result.include("contentLenght",String.valueOf(html.getBytes("UTF-8").length));
 			result.include("html", html);
 			this.tituloSite = "";
 
