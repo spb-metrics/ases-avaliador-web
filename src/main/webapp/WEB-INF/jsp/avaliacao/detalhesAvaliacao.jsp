@@ -68,7 +68,8 @@
 					            
 			     <tbody>
 				 	 <c:forEach items="${detalhe.criterios}" var="criterio">
-				 	
+				 	 <c:if test="${criterio.id != null}">	
+						  	<c:if test="${not empty criterio.id}">	
 						<tr>
 							<!-- retirar o ponto da recomendação -->
 							<c:set var="var_recomendacaoComPonto" value="${rn}" />
@@ -78,11 +79,10 @@
 								href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}"> ${criterio.id} </a></td>
 						   Fim retirar o ponto da recomendação -->
 						   
-						  <c:if test="${criterio.id != null}">
-						 
-						   <td headers="criterio" class="celula"><a
+						 				 
+						  		 <td headers="criterio" class="celula"><a
 								href="${pageContext.request.contextPath}/criteriosSucesso#criterio_${var_RecomendacaoSemPonto}${criterio.id}">${rn}.${criterio.id} ${criterio.descricao}</a></td>
-						  </c:if>
+						  
 						   <td headers="quantidade" class="celula">
 								   	
         			   	   		<c:choose>
@@ -167,8 +167,10 @@
 									</c:choose>	   
 											   							  				  		    
 						</td>
+						
 								</tr>
-
+							</c:if>
+						  </c:if>
 					        </c:forEach> 
 							</tbody>
 								
