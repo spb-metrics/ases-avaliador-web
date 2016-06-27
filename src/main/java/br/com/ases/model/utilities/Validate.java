@@ -102,6 +102,7 @@ public class Validate {
 					
 					metodoRequisicaoGET = new GetMethod(UrlConvertida.toExternalForm());
 				
+					metodoRequisicaoGET.setRequestHeader("user-agent", "NewUseAgent/1.0");
 					metodoRequisicaoGET.setRequestHeader("http.agent", "Jakarta Commons-HttpClient/3.1");
 					metodoRequisicaoGET.setFollowRedirects(true);
 					
