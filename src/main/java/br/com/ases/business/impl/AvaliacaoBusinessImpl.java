@@ -566,24 +566,33 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 
 		try {
 			if (isCss) {
-				String content = WebChecker
-						.from(CSS_VALIDATOR_URL.replace("#{url}", url))
-						.withGetRequest().execute().getContent();
-				Matcher m = Pattern.compile(
-						"<m:errorcount>(\\d)*</m:errorcount>",
-						Pattern.MULTILINE).matcher(content);
+				String content = WebChecker.from(CSS_VALIDATOR_URL.replace("#{url}", url)).withGetRequest().execute().getContent();
+				
+				Matcher m = Pattern.compile("<m:errorcount>(\\d)*</m:errorcount>",Pattern.MULTILINE).matcher(content);
+				
 				if (m.find())
-					errors = Integer.valueOf(m.group(0)
-							.replace("<m:errorcount>", "")
-							.replace("</m:errorcount>", ""));
+				{
+					errors = Integer.valueOf(m.group(0).replace("<m:errorcount>", "").replace("</m:errorcount>", ""));
+				}
 
-				m = Pattern.compile("<m:warningcount>(\\d)*</m:warningcount>",
-						Pattern.MULTILINE).matcher(content);
+				m = Pattern.compile("<m:warningcount>(\\d)*</m:warningcount>",Pattern.MULTILINE).matcher(content);
 
 				if (m.find())
-					warnings = Integer.valueOf(m.group(0)
-							.replace("<m:warningcount>", "")
-							.replace("</m:warningcount>", ""));
+				{
+					warnings = Integer.valueOf(m.group(0).replace("<m:warningcount>", "").replace("</m:warningcount>", ""));
+				}
+				
+				
+				if(errors == 0 && warnings == 0)
+				{
+					m = Pattern.compile("</m:errordetail>",Pattern.MULTILINE).matcher(content);
+					if (m.find())
+					{
+						errors = -10;
+						warnings = -10;
+					}
+				}
+				
 
 			} else {
 
