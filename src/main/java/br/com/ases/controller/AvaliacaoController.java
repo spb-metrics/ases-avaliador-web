@@ -233,10 +233,9 @@ public class AvaliacaoController {
 				url = "http://" + url;
 
 			WebChecker pagina = WebChecker.from(url).withGetRequest().execute();
-			int[] errorsWarningsCss = avaliacaoBusiness
-					.getErrorCount(true, url);
-			int[] errorsWarningsHtml = avaliacaoBusiness.getErrorCount(false,
-					url);
+			
+			int[] errorsWarningsCss = avaliacaoBusiness.getErrorCount(true, url);
+			int[] errorsWarningsHtml = avaliacaoBusiness.getErrorCount(false,url);
 
 			Checker checker = from(pagina.getContent(), url);
 
@@ -292,32 +291,25 @@ public class AvaliacaoController {
 			result.include("nota", nota);
 			this.sumarizarResultasNoResponse(checker.checkSumarized(), result);
 
-			this.detalheAvaliacao.inicializar(
-					avaliacaoBusiness.retornarCriterios(checker.check()),
-					errorsWarningsCss, errorsWarningsHtml);
-			VRaptorRequestHolder
-					.currentRequest()
-					.getServletContext()
-					.setAttribute("resultadoAvaliacao",
-							checker.checkSumarized());
-			VRaptorRequestHolder.currentRequest().getServletContext()
-					.setAttribute("urlAvaliada", url);
-			VRaptorRequestHolder.currentRequest().getServletContext()
-					.setAttribute("contentLenght", pagina.getContentLength());
-			VRaptorRequestHolder.currentRequest().getServletContext()
-					.setAttribute("notaAvaliacao", nota);
+			this.detalheAvaliacao.inicializar(avaliacaoBusiness.retornarCriterios(checker.check()),errorsWarningsCss, errorsWarningsHtml);
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("resultadoAvaliacao",checker.checkSumarized());
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("urlAvaliada", url);
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght", pagina.getContentLength());
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 
 			// Seta o valor do título no template
 			tituloPagina = "Resumo de avaliação por URI - ASES";
-			VRaptorRequestHolder.currentRequest().getServletContext()
-					.setAttribute("tituloPagina", tituloPagina);
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 
-			VRaptorRequestHolder.currentRequest().getServletContext()
-					.setAttribute("titulosite", tituloSite);
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
 
 			this.dataHoraAvaliacao = (String) DateUtil.dataHoraAtual();
-			VRaptorRequestHolder.currentRequest().getServletContext()
-					.setAttribute("data", dataHoraAvaliacao);
+			
+			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("data", dataHoraAvaliacao);
 
 			avisosFerramentasHtmlCssW3c = new ArrayList<String>();
 
