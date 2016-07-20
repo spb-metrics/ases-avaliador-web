@@ -80,58 +80,73 @@ public class Validate {
 		
 		boolean isValido = true;
 		int codResponse;
-		HttpMethod metodoRequisicaoGET = null;
-		HttpClient clienteHTTPJakartaCommons;
-		URL UrlConvertida;
 		
 		if(campo == null || campo.length() <= 10 ){
 			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! Favor preencher o campo URL.", "warning"));
 			isValido = false;
 		}else{
-			try {
-				 //URL url = new URL(campo);				 
-			
-			    //URLConnection conn = url.openConnection();
-			   // conn.connect();
-				
-					UrlConvertida = new URL(campo);
-				
-					clienteHTTPJakartaCommons = new HttpClient();
-					clienteHTTPJakartaCommons.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler(3,false));
-					clienteHTTPJakartaCommons.getParams().setParameter("http.protocol.allow-circular-redirects", true); 
-					
-					metodoRequisicaoGET = new GetMethod(UrlConvertida.toExternalForm());
-				
-					metodoRequisicaoGET.setRequestHeader("user-agent", "NewUseAgent/1.0");
-					metodoRequisicaoGET.setRequestHeader("http.agent", "Jakarta Commons-HttpClient/3.1");
-					metodoRequisicaoGET.setFollowRedirects(true);
-					
-					codResponse = clienteHTTPJakartaCommons.executeMethod(metodoRequisicaoGET);
+							
+					codResponse = verificarConexao(campo ,"user-agent", "NewUseAgent/1.0");
 					
 					if(codResponse != 200)
 					{
-						this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" é considerada inválida.", "warning"));
+						codResponse = verificarConexao(campo ,"http.agent", "Jakarta Commons-HttpClient/3.1");
+						if(codResponse != 200)
+						{
+						this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" ï¿½ considerada invï¿½lida.", "warning"));
 						isValido = false;
+						}
+						else
+						{
+							isValido = true;
+						}
 					}
 					else
 					{
 						isValido = true;
 					}
 					
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" é considerada inválida.", "warning"));
-				isValido = false;
-			} catch (IOException e) {
-				e.printStackTrace();
-				this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" é considerada inválida.", "warning"));
-				isValido = false;
-			}
 		}
 		
 		return isValido;
 	}
 	
+	private Integer verificarConexao(String campo, String usuario, String agente)
+	{
+		
+		int codResponse = -1;
+		HttpMethod metodoRequisicaoGET = null;
+		HttpClient clienteHTTPJakartaCommons;
+		URL UrlConvertida;
+		
+		try {
+			 			
+				UrlConvertida = new URL(campo);
+			
+				clienteHTTPJakartaCommons = new HttpClient();
+				clienteHTTPJakartaCommons.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler(3,false));
+				clienteHTTPJakartaCommons.getParams().setParameter("http.protocol.allow-circular-redirects", true); 
+				
+				metodoRequisicaoGET = new GetMethod(UrlConvertida.toExternalForm());
+			
+				metodoRequisicaoGET.setRequestHeader(usuario, agente);				
+				metodoRequisicaoGET.setFollowRedirects(true);
+				
+				codResponse = clienteHTTPJakartaCommons.executeMethod(metodoRequisicaoGET);
+				
+				return codResponse;
+				
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" ï¿½ considerada invï¿½lida.", "warning"));
+			return -1;
+		} catch (IOException e) {
+			e.printStackTrace();
+			this.validator.add(new ValidationMessage("N&atilde;o foi poss&iacute;vel realizar a avalia&ccedil;&atilde;o! URL "+campo+" ï¿½ considerada invï¿½lida.", "warning"));
+			return -1;
+		}
+		
+	}
 	
 	public boolean condigoFonte(String campo){
 		
