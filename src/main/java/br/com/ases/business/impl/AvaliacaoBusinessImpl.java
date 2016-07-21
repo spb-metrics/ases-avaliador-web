@@ -2,6 +2,8 @@ package br.com.ases.business.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,11 +18,8 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 
-import org.apache.catalina.util.StringParser;
-
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
-import net.htmlparser.jericho.Tag;
 import br.com.ases.business.AvaliacaoBusiness;
 import br.com.ases.controller.EseloController;
 import br.com.ases.controller.EseloController.Nota;
@@ -37,7 +36,6 @@ import br.com.checker.emag.SummarizedOccurrence;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 
 @Component
@@ -51,7 +49,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 	// "http://www.css-validator.org/validator?uri=#{url}&warning=0&output=soap12";
 	private static String CSS_VALIDATOR_URL = "http://jigsaw.w3.org/css-validator/validator?uri=#{url}&warning=0&output=soap12";
 	// private static String HTML_VALIDATOR_URL =
-	// "https://validator.w3.org/nu/?doc=#{url}&out=json";
+	// "https://validator.w3.org/nu/?doc=#{url}&out=json";	
 	private static String HTML_VALIDATOR_URL = "https://validator.w3.org/check?uri=#{url}&output=json";
 
 	private static String PROPERTIES_PATH = "/WEB-INF/deparaAsesComEselo.properties";
@@ -98,7 +96,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 		{
 			for (Element element : documento.getAllElements()) {			
 				for (String atributoBuscar : atributosBuscar) {
-					 System.out.println(element.getAttributeValue(atributoBuscar));
+					
 					 qtdItens = qtdItens + (element.getAttributeValue(atributoBuscar)!= null?	1 : 0);
 					
 					}
@@ -135,7 +133,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 		String linha = "";
 		String[] chaveValor;
 		String recomendacaoProperties = "";
-		String recomendacaoAntiga = ""; // Serve identificar a mudança de recomendação										
+		String recomendacaoAntiga = ""; // Serve identificar a mudanï¿½a de recomendaï¿½ï¿½o										
 		String recomendacao = "";
 		String criterioProperties = "";
 		String criterio = "";
@@ -173,10 +171,10 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 				//chave do arquivo testeEselo.properties sendo (x.y.z)
 				recomendacaoCriterio = chaveValor[0].split("\\.");
 				
-				//Separa a recomendação do critério sendo (x.y) de (x.y.z)
+				//Separa a recomendaï¿½ï¿½o do critï¿½rio sendo (x.y) de (x.y.z)
 				recomendacaoProperties = recomendacaoCriterio[0].toString() + "." + recomendacaoCriterio[1].toString();
 				
-				//Semara a critério da recomendação sendo (z) de (x.y.z)		
+				//Semara a critï¿½rio da recomendaï¿½ï¿½o sendo (z) de (x.y.z)		
 				criterioProperties = recomendacaoCriterio[2];
 				
 							
@@ -209,7 +207,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 					
 				}
 
-				// Fim adiciona a recomendação da lista do properties
+				// Fim adiciona a recomendaï¿½ï¿½o da lista do properties
 				
 				
 				//Cria lista a ser pesquisada e retorna a quantidade de itens
@@ -375,7 +373,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 			
 
 			/*
-			 * for(Integer rn : rns){ //Recomendação Avaliada //
+			 * for(Integer rn : rns){ //Recomendaï¿½ï¿½o Avaliada //
 			 * postParams.addParam
 			 * ("relatorioAvaliacao.recomendacoes["+countReq+"].idRecomendacao",
 			 * Integer.toString((rn)));
@@ -456,7 +454,7 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 		 */
 	}
 
-	// Passa a recomendação do Ases como chave e retorna a recomendação do Eselo
+	// Passa a recomendaï¿½ï¿½o do Ases como chave e retorna a recomendaï¿½ï¿½o do Eselo
 	// contida no deparaAsesComEselo.properties
 	private String retornaRecomendacaoEselo(String recomendacaoAses) {
 		String recomendacaoEselo;
@@ -563,10 +561,16 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 	public int[] getErrorCount(boolean isCss, String url) {
 		int errors = 0;
 		int warnings = 0;
+		
+		URL UrlConvertida;
+		
 
 		try {
+			UrlConvertida = new URL(url);			
+			
+			
 			if (isCss) {
-				String content = WebChecker.from(CSS_VALIDATOR_URL.replace("#{url}", url)).withGetRequest().execute().getContent();
+				String content = WebChecker.from(CSS_VALIDATOR_URL.replace("#{url}", URLEncoder.encode(UrlConvertida.toExternalForm(), "UTF-8"))).withGetRequest().execute().getContent();
 				
 				Matcher m = Pattern.compile("<m:errorcount>(\\d)*</m:errorcount>",Pattern.MULTILINE).matcher(content);
 				
@@ -596,7 +600,8 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 
 			} else {
 
-				String content = WebChecker.from(HTML_VALIDATOR_URL.replace("#{url}", url)).withGetRequest().execute().getContent();
+				
+				String content = WebChecker.from(HTML_VALIDATOR_URL.replace("#{url}", URLEncoder.encode(UrlConvertida.toExternalForm(), "UTF-8"))).withGetRequest().execute().getContent();
 				Gson g = new GsonBuilder().create();
 				HtmlValidation a = g.fromJson(content, HtmlValidation.class);
 				int[] errorsWarnings = a.getQtdWarningsErros();
