@@ -12,6 +12,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,11 +62,11 @@ public class AvaliacaoController {
 	EseloProperties eseloProperties = null;
 
 	private String tituloPagina;
-	// Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da
-	// Avaliação de Acessibilidade)
+	// Altera a mensagem caso nï¿½o esteja usando o ESELO (Nota e Resumo da
+	// Avaliaï¿½ï¿½o de Acessibilidade)
 	private String mensagem_avaliacao = null;
 
-	// Esconde a nota caso não esteja usando o ESELO
+	// Esconde a nota caso nï¿½o esteja usando o ESELO
 	private String sem_nota = null;
 	private String tituloSite;
 	private String ancoraCampoVazio;
@@ -91,10 +94,11 @@ public class AvaliacaoController {
 		this.utilitiesProperties = new UtilitiesProperties(application);
 
 	}
+	
 
 	private void DefinirCorWebaxscore(String valorNota) {
 
-		// Define a cor do webaxscore na página "Avaliar" de acordo a pontuação
+		// Define a cor do webaxscore na pï¿½gina "Avaliar" de acordo a pontuaï¿½ï¿½o
 
 		Double notaAvaliacao = Double.parseDouble(valorNota.replaceFirst(",",
 				"."));
@@ -183,8 +187,8 @@ public class AvaliacaoController {
 				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("contentLenght",String.valueOf(html.getBytes("UTF-8").length));
 				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 
-				// Seta o valor do título no template
-				tituloPagina = "Resumo de avaliação por upload de arquivo - ASES";
+				// Seta o valor do tï¿½tulo no template
+				tituloPagina = "Resumo de avaliaï¿½ï¿½o por upload de arquivo - ASES";
 				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 
 				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
@@ -196,7 +200,7 @@ public class AvaliacaoController {
 
 			} else {
 
-				// Atribui âncora para as mensagens de erros dos campos vazios
+				// Atribui ï¿½ncora para as mensagens de erros dos campos vazios
 				ancoraCampoVazio = "up_file";
 				VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("ancoraCampoVazio", ancoraCampoVazio);
 
@@ -205,7 +209,7 @@ public class AvaliacaoController {
 			}
 
 		} else {
-			// Atribui âncora para as mensagens de erros dos campos vazios
+			// Atribui ï¿½ncora para as mensagens de erros dos campos vazios
 			ancoraCampoVazio = "up_file";
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("ancoraCampoVazio", ancoraCampoVazio);
 
@@ -239,18 +243,12 @@ public class AvaliacaoController {
 
 			Checker checker = from(pagina.getContent(), url);
 
-			if (mark)
-				checker.with(marking());
-			if (content)
-				checker.with(content());
-			if (presentation)
-				checker.with(presentation());
-			if (multimedia)
-				checker.with(multimedia());
-			if (form)
-				checker.with(form());
-			if (behavior)
-				checker.with(behavior());
+			if (mark)checker.with(marking());
+			if (content)checker.with(content());
+			if (presentation)checker.with(presentation());
+			if (multimedia)checker.with(multimedia());
+			if (form)checker.with(form());
+			if (behavior)checker.with(behavior());
 
 			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");
 			Matcher mm = pp.matcher(url.toLowerCase().replace("https", "http"));
@@ -301,8 +299,8 @@ public class AvaliacaoController {
 			
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("notaAvaliacao", nota);
 
-			// Seta o valor do título no template
-			tituloPagina = "Resumo de avaliação por URI - ASES";
+			// Seta o valor do tï¿½tulo no template
+			tituloPagina = "Resumo de avaliaï¿½ï¿½o por URI - ASES";
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("tituloPagina", tituloPagina);
 
 			VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("titulosite", tituloSite);
@@ -323,7 +321,7 @@ public class AvaliacaoController {
 							avisosFerramentasHtmlCssW3c);
 
 		} else {
-			// Atribui âncora para as mensagens de erros dos campos vazios
+			// Atribui ï¿½ncora para as mensagens de erros dos campos vazios
 			ancoraCampoVazio = "url";
 			VRaptorRequestHolder.currentRequest().getServletContext()
 					.setAttribute("ancoraCampoVazio", ancoraCampoVazio);
@@ -333,7 +331,7 @@ public class AvaliacaoController {
 		}
 	}
 
-	// Verifica se o site de avaliação de sintaxe css encontra-se no ar
+	// Verifica se o site de avaliaï¿½ï¿½o de sintaxe css encontra-se no ar
 	private void validarFerramenta_cssnoAr(int[] erros_avisos) {
 		if (erros_avisos[0] == -10 && erros_avisos[1] == -10) {
 
@@ -343,7 +341,7 @@ public class AvaliacaoController {
 
 	}
 
-	// Verifica se o site de avaliação de sintaxe html encontra-se no ar
+	// Verifica se o site de avaliaï¿½ï¿½o de sintaxe html encontra-se no ar
 	private void validarFerramenta_htmlnoAr(int[] erros_avisos) {
 		if (erros_avisos[0] == -10 && erros_avisos[1] == -10) {
 			avisosFerramentasHtmlCssW3c
@@ -386,7 +384,7 @@ public class AvaliacaoController {
 				}
 		
 		map.put("pPagina", urlAvaliada != "" ? urlAvaliada
-				: "Código Fonte ou Arquivo");
+				: "Cï¿½digo Fonte ou Arquivo");
 			
 		if (urlAvaliada != "") {
 			Pattern pp = Pattern.compile("(http://www.)?([a-z]*)(.)?");
@@ -531,8 +529,8 @@ public class AvaliacaoController {
 			VRaptorRequestHolder.currentRequest().getServletContext()
 					.setAttribute("notaAvaliacao", nota);
 
-			// Seta o valor do título no template
-			tituloPagina = "Resumo de avaliação por código fonte - ASES";
+			// Seta o valor do tï¿½tulo no template
+			tituloPagina = "Resumo de avaliaï¿½ï¿½o por cï¿½digo fonte - ASES";
 			VRaptorRequestHolder.currentRequest().getServletContext()
 					.setAttribute("tituloPagina", tituloPagina);
 			result.of(this).avaliar(null, mark, content, presentation,
@@ -546,7 +544,7 @@ public class AvaliacaoController {
 					.setAttribute("data", dataHoraAvaliacao);
 
 		} else {
-			// Atribui âncora para as mensagens de erros dos campos vazios
+			// Atribui ï¿½ncora para as mensagens de erros dos campos vazios
 			ancoraCampoVazio = "input";
 			VRaptorRequestHolder.currentRequest().getServletContext()
 					.setAttribute("ancoraCampoVazio", ancoraCampoVazio);
@@ -643,8 +641,8 @@ public class AvaliacaoController {
 
 	@Path("/detalhes-avaliacao/{rn}/{type}")
 	public void detalhesAvaliacao(OccurrenceKey rn, boolean type) {
-
-		tituloPagina = "Detalhes da avaliação - ASES";
+		String url = "";
+		tituloPagina = "Detalhes da avaliaï¿½ï¿½o - ASES";
 		VRaptorRequestHolder.currentRequest().getServletContext()
 				.setAttribute("tituloPagina", tituloPagina);
 
@@ -694,12 +692,31 @@ public class AvaliacaoController {
 		result.include("aReqIsCss", this.utilitiesProperties.get("reqCss"));
 		result.include("aReqIsW3c",
 				this.utilitiesProperties.get("notExibCritW3c"));
-		result.include("url", VRaptorRequestHolder.currentRequest()
+		url = VRaptorRequestHolder.currentRequest()
 				.getServletContext().getAttribute("urlAvaliada").toString()
-				.replaceAll("(https://)|(http://)", ""));
-
+				.replaceAll("(https://)|(http://)", "");
+		result.include("url", url);
+			
+		try {
+			
+			result.include("urlFormatada", encodeURI(url));
+			
+		} catch (UnsupportedEncodingException e) {			
+			e.printStackTrace();
+		}
+			
 	}
-
+	
+	private String encodeURI(String url) throws UnsupportedEncodingException {
+	    return URLEncoder.encode(url, "UTF-8")
+	        .replace("+", "%20")
+	        .replace("%21", "!")
+	        .replace("%27", "'")
+	        .replace("%28", "(")
+	        .replace("%29", ")")
+	        .replace("%7E", "~");
+	}
+	
 	@Post("/exportar-detalhes-avaliacao")
 	public FileDownload exportarDetalhesAvaliacao(OccurrenceKey rn,
 			int tiporel, boolean isError) {
@@ -781,13 +798,13 @@ public class AvaliacaoController {
 	public void initEseloProperties(ServletContext servletContext) {
 		this.eseloProperties = new EseloProperties(servletContext);
 
-		// Esconde a nota caso não esteja usando o ESELO
+		// Esconde a nota caso nï¿½o esteja usando o ESELO
 		sem_nota = this.eseloProperties.getSem_nota("sem_nota");
 		VRaptorRequestHolder.currentRequest().getServletContext()
 				.setAttribute("sem_nota", sem_nota);
 
-		// Altera a mensagem caso não esteja usando o ESELO (Nota e Resumo da
-		// Avaliação de Acessibilidade)
+		// Altera a mensagem caso nï¿½o esteja usando o ESELO (Nota e Resumo da
+		// Avaliaï¿½ï¿½o de Acessibilidade)
 		mensagem_avaliacao = this.eseloProperties
 				.getMensagem_avaliacao("mensagem_avaliacao");
 		VRaptorRequestHolder.currentRequest().getServletContext()
