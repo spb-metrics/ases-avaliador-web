@@ -60,11 +60,14 @@ public class EseloController {
 		}
 		public String getValor() {
 			NumberFormat format = NumberFormat.getInstance();
-		    
+		    String notaFormatada = null;
 			format.setMaximumFractionDigits(2);
 			format.setMinimumFractionDigits(0);
-
-			return format.format(Double.valueOf(nota));
+			if(nota != null)
+			{
+				notaFormatada = format.format(Double.valueOf(nota));
+			}
+			return notaFormatada;
 		}
 		
 		public void setNota(String valor) {
