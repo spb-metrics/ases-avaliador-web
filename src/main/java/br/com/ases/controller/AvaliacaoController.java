@@ -167,7 +167,7 @@ public class AvaliacaoController {
 					nota = avaliacaoBusiness.obterNotaEselo(checker.getDocument(),file.getFileName(), mapaListaOcorrencias);
 					// Altera a cor de webaxscore de acordo a pontuacao
 
-					if (nota != null) {
+					if (nota.getValor() != null) {
 						DefinirCorWebaxscore(nota.getValor());
 
 						VRaptorRequestHolder.currentRequest().getServletContext().setAttribute("webaxscore", webaxscore);
@@ -276,8 +276,8 @@ public class AvaliacaoController {
 				//nota = avaliacaoBusiness.obterNota(checker.checkSumarized(), url, mapaListaOcorrencias);
 				
 				nota = avaliacaoBusiness.obterNotaEselo(checker.getDocument(),url, mapaListaOcorrencias);
-
-				if (nota != null) {
+				
+				if (nota.getValor() != null) {
 					DefinirCorWebaxscore(nota.getValor());
 
 					VRaptorRequestHolder.currentRequest().getServletContext()
@@ -499,7 +499,7 @@ public class AvaliacaoController {
 				nota = avaliacaoBusiness.obterNotaEselo(checker.getDocument(),tituloSite + " - " + sdf.format(new Date()), mapaListaOcorrencias);
 				// Altera a cor de webaxscore de acordo a pontuacao
 
-				if (nota != null) {
+				if (nota.getValor() != null) {
 					DefinirCorWebaxscore(nota.getValor());
 
 					VRaptorRequestHolder.currentRequest().getServletContext()
