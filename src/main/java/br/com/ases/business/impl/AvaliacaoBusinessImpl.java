@@ -106,10 +106,29 @@ public class AvaliacaoBusinessImpl implements AvaliacaoBusiness {
 			for (String elementoBuscar : elementosBuscar) {
 				for (Element element : documento.getAllElements(elementoBuscar)) {	
 					for (String atributoBuscar : atributosBuscar) {
+						
+						if(element.getStartTag().getName().equalsIgnoreCase("input"))
+						{									
+							if(!element.getAttributeValue(atributoBuscar).equalsIgnoreCase("button") 
+									&& !element.getAttributeValue(atributoBuscar).equalsIgnoreCase("reset") 
+									&& !element.getAttributeValue(atributoBuscar).equalsIgnoreCase("submit")
+									&& !element.getAttributeValue(atributoBuscar).equalsIgnoreCase("hidden")
+									&& !element.getAttributeValue(atributoBuscar).equalsIgnoreCase("image"))
+							{
+							qtdItens = qtdItens + (element.getAttributeValue(atributoBuscar) != null? 1 : 0);
+							}
+						}else if(element.getStartTag().getName().equalsIgnoreCase("textarea") ||
+								element.getStartTag().getName().equalsIgnoreCase("select"))
+						{							
+							qtdItens++;
+						}
+						else
+						{
 						 qtdItens = qtdItens + (element.getAttributeValue(atributoBuscar) != null? 1 : 0);
 						}
 					}
 				}
+			}
 		}else if(tipoTeste.equalsIgnoreCase("startTag"))
 		{
 			qtdItens = documento.getAllStartTags().size();
